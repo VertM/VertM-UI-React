@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phase 0 — 蒙古文竖排 CSS 基线验证</title>
+  <style>
+    @font-face {
+      font-family: 'Noto Sans Mongolian';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('../packages/styles/src/fonts/NotoSansMongolian-400.woff2') format('woff2');
+      unicode-range: U+1800-18AF, U+202F, U+2060, U+180B-180F;
+    }
+    :root {
+      --vertm-font-family: "Noto Sans Mongolian", "Mongolian Baiti", "Menksoft Qagan", sans-serif;
+      --vertm-writing-mode: vertical-lr;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      padding: 2rem;
+      background: #fafaf9;
+      color: #1c1917;
+    }
+
+    h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .meta { color: #78716c; font-size: 0.9rem; margin-bottom: 2rem; }
+
+    .grid {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .panel {
+      background: #fff;
+      border: 1px solid #e7e5e4;
+      border-radius: 8px;
+      padding: 1.5rem;
+      min-width: 280px;
+    }
+
+    .panel h2 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #b45309;
+    }
+
+    /* W3C mlreq: vertical-lr — top-to-bottom, columns left-to-right */
+    .vertm-vertical {
+      writing-mode: var(--vertm-writing-mode);
+      font-family: var(--vertm-font-family);
+      font-size: 24px;
+      line-height: 1.6;
+      height: 320px;
+      border: 1px dashed #d6d3d1;
+      padding: 1rem;
+    }
+
+    /* Safari < 18 fallback per W3C Gap Analysis #39 */
+    @supports (-webkit-hyphens: none) {
+      .vertm-vertical.safari-fallback {
+        text-orientation: sideways;
+      }
+    }
+
+    .vertm-vertical.mixed {
+      text-orientation: mixed;
+    }
+
+    .results {
+      margin-top: 2rem;
+      background: #fff;
+      border: 1px solid #e7e5e4;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .results h2 { font-size: 1.1rem; margin-bottom: 1rem; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #e7e5e4;
+    }
+
+    th { background: #f0efea; }
+
+    .pass { color: #0d9488; font-weight: 600; }
+    .fail { color: #dc2626; font-weight: 600; }
+    .warn { color: #b45309; font-weight: 600; }
+
+    #detect-output {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #f0efea;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Phase 0 — 蒙古文竖排 CSS 基线验证</h1>
+  <p class="meta">对齐 W3C mlreq / i18n-tests · writing-mode: vertical-lr</p>
+
+  <div class="grid">
+    <div class="panel">
+      <h2>Test 1: vertical-lr + Noto Sans Mongolian</h2>
+      <div class="vertm-vertical mixed" id="sample1">
+        ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Test 2: 连字 / Cursive joining</h2>
+      <div class="vertm-vertical mixed" id="sample2">
+        ᠡᠴᠡ ᠳᠡᠭᠡᠳᠦ ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠤᠰᠤᠭ
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Test 3: Safari fallback (text-orientation: sideways)</h2>
+      <div class="vertm-vertical safari-fallback" id="sample3">
+        ᠮᠣᠩᠭᠣᠯ ᠬᠡᠯᠡ
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Test 4: 混合拉丁字符</h2>
+      <div class="vertm-vertical mixed" id="sample4">
+        ᠮᠣᠩᠭᠣᠯ ABC 123
+      </div>
+    </div>
+  </div>
+
+  <div class="results">
+    <h2>浏览器能力检测</h2>
+    <div id="detect-output"></div>
+
+    <h2 style="margin-top: 1.5rem;">兼容矩阵（手动验证后填写）</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>测试项</th>
+          <th>Chrome (Blink)</th>
+          <th>Firefox (Gecko)</th>
+          <th>Safari (WebKit)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>vertical-lr 列从左到右</td>
+          <td class="pass">✓ 预期通过</td>
+          <td class="pass">✓ 预期通过</td>
+          <td class="pass">✓ 18.1+ 通过</td>
+        </tr>
+        <tr>
+          <td>蒙古文连字 joining</td>
+          <td class="pass">✓ 原生 OpenType</td>
+          <td class="pass">✓ 原生 OpenType</td>
+          <td class="warn">⚠ 18.1+ 修复 #39</td>
+        </tr>
+        <tr>
+          <td>竖排 form 控件</td>
+          <td class="fail">✗ Gap #37</td>
+          <td class="warn">⚠ 部分支持</td>
+          <td class="fail">✗ Gap #37</td>
+        </tr>
+        <tr>
+          <td>是否需要 Harfbuzz WASM</td>
+          <td colspan="3">默认 CSS 路径足够；旧 Safari 用 text-orientation: sideways fallback</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script type="module">
+    function detectVerticalSupport() {
+      const el = document.createElement('div');
+      el.style.writingMode = 'vertical-lr';
+      document.body.appendChild(el);
+      const supported = getComputedStyle(el).writingMode === 'vertical-lr';
+      document.body.removeChild(el);
+      return supported;
+    }
+
+    function detectFontLoaded(family) {
+      if (!document.fonts?.check) return 'unknown';
+      return document.fonts.check(`16px "${family}"`) ? 'loaded' : 'missing';
+    }
+
+    function getBrowserInfo() {
+      const ua = navigator.userAgent;
+      if (ua.includes('Firefox')) return 'Firefox (Gecko)';
+      if (ua.includes('Chrome') && !ua.includes('Edg')) return 'Chrome (Blink)';
+      if (ua.includes('Safari') && !ua.includes('Chrome')) return 'Safari (WebKit)';
+      if (ua.includes('Edg')) return 'Edge (Blink)';
+      return 'Unknown';
+    }
+
+    async function runDetection() {
+      await document.fonts.ready;
+      const output = {
+        browser: getBrowserInfo(),
+        verticalLrSupport: detectVerticalSupport(),
+        notoSansMongolian: detectFontLoaded('Noto Sans Mongolian'),
+        userAgent: navigator.userAgent,
+        recommendation: detectVerticalSupport()
+          ? 'CSS-native path recommended (no Harfbuzz WASM needed)'
+          : 'Fallback to horizontal layout or Harfbuzz WASM',
+      };
+      document.getElementById('detect-output').textContent =
+        JSON.stringify(output, null, 2);
+    }
+
+    runDetection();
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{
+  "name": "@vertm/wasm",
+  "version": "0.1.0",
+  "description": "Optional Harfbuzz WASM shaping for Canvas export and legacy browser fallback",
+  "license": "MIT",
+  "author": "dorren002",
+  "homepage": "https://github.com/dorren002/mongol-text-component/tree/main/packages/wasm#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dorren002/mongol-text-component.git",
+    "directory": "packages/wasm"
+  },
+  "bugs": {
+    "url": "https://github.com/dorren002/mongol-text-component/issues"
+  },
+  "keywords": [
+    "mongolian",
+    "harfbuzz",
+    "wasm",
+    "text-shaping"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "optionalDependencies": {
+    "harfbuzzjs": "^0.4.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

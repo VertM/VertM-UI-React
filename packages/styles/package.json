@@ -1,0 +1,30 @@
+{
+  "name": "@vertm/styles",
+  "version": "0.1.0",
+  "description": "CSS tokens and vertical layout presets for Mongolian text",
+  "license": "MIT",
+  "author": "dorren002",
+  "homepage": "https://github.com/dorren002/mongol-text-component/tree/main/packages/styles#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dorren002/mongol-text-component.git",
+    "directory": "packages/styles"
+  },
+  "bugs": {
+    "url": "https://github.com/dorren002/mongol-text-component/issues"
+  },
+  "keywords": [
+    "mongolian",
+    "vertical-text",
+    "css",
+    "writing-mode"
+  ],
+  "type": "module",
+  "exports": {
+    "./tokens.css": "./src/tokens.css",
+    "./vertical.css": "./src/vertical.css",
+    "./index.css": "./src/index.css",
+    ".": "./src/index.css"
+  },
+  "files": ["src"]
+}

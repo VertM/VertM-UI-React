@@ -1,0 +1,508 @@
+@import './tokens.css';
+
+/* W3C mlreq: vertical-lr — top-to-bottom, columns left-to-right */
+.vertm-vertical,
+.vertm-text,
+.vertm-list,
+.vertm-typography,
+.vertm-typography-title,
+.vertm-typography-paragraph,
+.vertm-typography-text,
+.vertm-typography-link {
+  writing-mode: var(--vertm-writing-mode);
+  font-family: var(--vertm-font-family);
+  font-size: var(--vertm-font-size);
+  line-height: var(--vertm-line-height);
+  color: var(--vertm-color-text);
+  text-orientation: mixed;
+  white-space: pre-wrap;
+  hanging-punctuation: var(--vertm-hanging-punctuation);
+  /* Center column on block axis; default `start` pins vertical text to the left. */
+  text-align: center;
+  padding-block-start: var(--vertm-text-block-padding-start);
+  padding-block-end: var(--vertm-text-block-padding-end);
+}
+
+/* Safari < 18 fallback per W3C Gap Analysis #39 */
+.vertm-vertical--safari-fallback {
+  text-orientation: sideways;
+}
+
+.vertm-text--truncate {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+/*
+ * Do not use display:flex on the same node as writing-mode:vertical-lr —
+ * the flex main axis follows the block axis and pins text to the edge.
+ * Keep text layers as block; outer containers handle flex (see components.css).
+ */
+
+/* ── Field (Mirror Input) ── */
+.vertm-field {
+  position: relative;
+  /* Same as Button: outer flex centers content; text layer stays display:block */
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  /* Fixed physical axis so padding is not flipped by inherited vertical-lr */
+  writing-mode: horizontal-tb;
+  --vertm-field-font-size: var(--vertm-font-size);
+  --vertm-field-line-height: var(--vertm-line-height);
+  --vertm-field-column-count: 1;
+  --vertm-field-needed-column-count: 1;
+  --vertm-field-column-width: calc(var(--vertm-field-font-size) * var(--vertm-field-line-height));
+  --vertm-field-content-width: calc(
+    var(--vertm-field-column-width) * var(--vertm-field-column-count) + var(--vertm-field-text-block-pad)
+  );
+  /* Column offset centers the glyph column inside the slot (fixed token) */
+  --vertm-field-column-offset: calc(
+    (var(--vertm-field-content-width) - var(--vertm-field-column-width)) / 2
+  );
+  --vertm-field-content-height: calc(
+    var(--vertm-field-column-width) * var(--vertm-field-row-depth) + var(--vertm-field-font-size) +
+      var(--vertm-field-text-padding-start) + var(--vertm-field-text-padding-end)
+  );
+  --vertm-field-border-width: 0px;
+  min-height: calc(
+    var(--vertm-field-content-height) + 2 * var(--vertm-field-padding-y) +
+      2 * var(--vertm-field-border-width)
+  );
+  min-width: calc(
+    var(--vertm-field-content-width) + 2 * var(--vertm-field-padding-x) +
+      2 * var(--vertm-field-border-width)
+  );
+  cursor: text;
+  overflow: hidden;
+}
+
+.vertm-field--boxed {
+  --vertm-field-border-width: 1px;
+  padding-top: var(--vertm-field-padding-y);
+  padding-bottom: var(--vertm-field-padding-y);
+  padding-left: var(--vertm-field-padding-x);
+  padding-right: var(--vertm-field-padding-x);
+  border: 1px solid var(--vertm-color-border);
+  border-radius: var(--vertm-border-radius);
+  background: var(--vertm-color-bg-container);
+}
+
+.vertm-field--bare {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  min-height: var(--vertm-field-content-height);
+  min-width: var(--vertm-field-content-width);
+}
+
+.vertm-field--single {
+  max-width: calc(
+    var(--vertm-field-content-width) + 2 * var(--vertm-field-padding-x) +
+      2 * var(--vertm-field-border-width)
+  );
+}
+
+/* Field text: reset global .vertm-text, then apply --single/--multi padding */
+.vertm-field .vertm-text {
+  position: relative;
+  vertical-align: top;
+  margin: 0;
+  margin-block-start: 0;
+  padding-block-start: 0;
+  padding-block-end: 0;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  box-sizing: border-box;
+  font-family: var(--vertm-field-font-family, var(--vertm-font-family));
+  font-size: var(--vertm-field-font-size, var(--vertm-font-size));
+  line-height: var(--vertm-field-line-height, var(--vertm-line-height));
+  writing-mode: var(--vertm-field-writing-mode, var(--vertm-writing-mode));
+  max-width: 100%;
+  text-align: start;
+}
+
+/* Single column: fixed viewport height; overflow scrolls down the same column */
+.vertm-field--single .vertm-field__visual {
+  display: block;
+  position: relative;
+  flex-shrink: 0;
+  align-self: center;
+  width: var(--vertm-field-content-width);
+  max-width: var(--vertm-field-content-width);
+  height: var(--vertm-field-content-height);
+  pointer-events: none;
+  user-select: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  writing-mode: horizontal-tb;
+  text-align: start;
+}
+
+.vertm-field--single .vertm-field__visual::-webkit-scrollbar {
+  display: none;
+}
+
+.vertm-field--single .vertm-field__text-wrap {
+  position: relative;
+  display: block;
+}
+
+.vertm-field--single .vertm-text,
+.vertm-field--single .vertm-field__text {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  text-align: start;
+  /* inline axis = physical top/bottom (start/end of stroke) */
+  padding-inline-start: var(--vertm-field-text-padding-start);
+  padding-inline-end: var(--vertm-field-text-padding-end);
+  /* block axis = physical left/right (fixed symmetric token centering) */
+  padding-block-start: var(--vertm-field-column-offset);
+  padding-block-end: var(--vertm-field-column-offset);
+  max-block-size: var(--vertm-field-column-width);
+  transform: none;
+}
+
+/* Single-line Input auto columns: widen until maxColumns, then wrap and scroll */
+.vertm-field--single.vertm-field--wide .vertm-text,
+.vertm-field--single.vertm-field--wide .vertm-field__text {
+  white-space: pre-wrap;
+  padding-block-start: var(--vertm-text-block-padding-start);
+  padding-block-end: var(--vertm-text-block-padding-end);
+  max-block-size: unset;
+  max-height: var(--vertm-field-content-height);
+}
+
+/* At maxColumns: viewport width fixed; content expands by actual column count */
+.vertm-field--single.vertm-field--wide.vertm-field--capped .vertm-field__visual {
+  overflow-x: auto;
+}
+
+.vertm-field--single.vertm-field--wide.vertm-field--capped .vertm-text,
+.vertm-field--single.vertm-field--wide.vertm-field--capped .vertm-field__text {
+  width: calc(
+    var(--vertm-field-column-width) * var(--vertm-field-needed-column-count) +
+      var(--vertm-field-text-block-pad)
+  );
+  max-width: none;
+}
+
+.vertm-field--multi {
+  --vertm-field-padding-x: var(--vertm-padding-xs);
+  --vertm-field-inner-padding: var(--vertm-padding-xs);
+}
+
+/* Multi-column TextArea: visual layer absolutely covers and sync-scrolls with textarea */
+.vertm-field--multi .vertm-field__visual {
+  position: absolute;
+  top: var(--vertm-field-inner-padding);
+  right: var(--vertm-field-inner-padding);
+  bottom: var(--vertm-field-inner-padding);
+  left: var(--vertm-field-inner-padding);
+  box-sizing: border-box;
+  pointer-events: none;
+  user-select: none;
+  writing-mode: horizontal-tb;
+  text-align: start;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.vertm-field--multi .vertm-field__visual::-webkit-scrollbar {
+  display: none;
+}
+
+.vertm-field--multi .vertm-field__text-wrap {
+  position: relative;
+  display: block;
+}
+
+.vertm-field--multi .vertm-text {
+  display: block;
+  width: 100%;
+  text-align: start;
+  padding: 0;
+  max-height: var(--vertm-field-content-height);
+  white-space: pre-wrap;
+  transform: none;
+}
+
+/* TextArea auto columns: widen field until maxColumns */
+.vertm-field--multi.vertm-field--wide .vertm-text {
+  max-height: var(--vertm-field-content-height);
+}
+
+/* TextArea at maxColumns: fixed viewport width, content expands by column count */
+.vertm-field--multi.vertm-field--capped .vertm-field__visual {
+  overflow-x: auto;
+}
+
+.vertm-field--multi.vertm-field--capped .vertm-text {
+  width: calc(
+    var(--vertm-field-column-width) * var(--vertm-field-needed-column-count) +
+      var(--vertm-field-text-block-pad)
+  );
+  max-width: none;
+}
+
+.vertm-field--bare.vertm-field--single {
+  min-width: var(--vertm-field-content-width);
+  max-width: var(--vertm-field-content-width);
+}
+
+.vertm-field--disabled {
+  background: #f5f5f4;
+  cursor: not-allowed;
+}
+
+.vertm-field--disabled.vertm-field--bare {
+  background: transparent;
+}
+
+.vertm-field--boxed.vertm-field--multi .vertm-field__visual {
+  top: calc(var(--vertm-field-padding-y) + var(--vertm-field-inner-padding));
+  right: calc(var(--vertm-field-padding-x) + var(--vertm-field-inner-padding));
+  bottom: calc(var(--vertm-field-padding-y) + var(--vertm-field-inner-padding));
+  left: calc(var(--vertm-field-padding-x) + var(--vertm-field-inner-padding));
+}
+
+.vertm-field__visual--placeholder .vertm-text {
+  opacity: 0.4;
+}
+
+.vertm-field__input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: text;
+  border: none;
+  background: transparent;
+  color: transparent;
+  caret-color: transparent;
+  overflow: hidden;
+  scrollbar-width: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.vertm-field__input:focus,
+.vertm-field__input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.vertm-field__input::-webkit-scrollbar {
+  display: none;
+}
+
+.vertm-field--single .vertm-field__input--native {
+  opacity: 1;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  caret-color: var(--vertm-caret-color);
+  writing-mode: var(--vertm-field-writing-mode, var(--vertm-writing-mode));
+  text-orientation: sideways;
+  font-family: var(--vertm-field-font-family, var(--vertm-font-family));
+  font-size: var(--vertm-field-font-size, var(--vertm-font-size));
+  line-height: var(--vertm-field-line-height, var(--vertm-line-height));
+  white-space: nowrap;
+  inset: auto;
+  top: 0;
+  left: 50%;
+  width: var(--vertm-field-content-width);
+  height: var(--vertm-field-content-height);
+  padding-inline-start: var(--vertm-field-text-padding-start);
+  padding-inline-end: var(--vertm-field-text-padding-end);
+  padding-block-start: var(--vertm-field-column-offset);
+  padding-block-end: var(--vertm-field-column-offset);
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  overflow: auto;
+  resize: none;
+  scrollbar-width: none;
+}
+
+.vertm-field--single .vertm-field__input--native::selection {
+  background: transparent;
+}
+
+/* Align native layer with the visual viewport inside the boxed shell padding */
+.vertm-field--boxed.vertm-field--single .vertm-field__input--native {
+  top: var(--vertm-field-padding-y);
+}
+
+.vertm-field--single.vertm-field--wide .vertm-field__input--native {
+  white-space: pre-wrap;
+  padding-block-start: var(--vertm-text-block-padding-start);
+  padding-block-end: var(--vertm-text-block-padding-end);
+}
+
+.vertm-field--multi .vertm-field__input--textarea {
+  opacity: 1;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  caret-color: var(--vertm-caret-color);
+  writing-mode: var(--vertm-field-writing-mode, var(--vertm-writing-mode));
+  text-orientation: sideways;
+  font-family: var(--vertm-field-font-family, var(--vertm-font-family));
+  font-size: var(--vertm-field-font-size, var(--vertm-font-size));
+  line-height: var(--vertm-field-line-height, var(--vertm-line-height));
+  white-space: pre-wrap;
+  top: var(--vertm-field-inner-padding);
+  right: var(--vertm-field-inner-padding);
+  bottom: var(--vertm-field-inner-padding);
+  left: var(--vertm-field-inner-padding);
+  width: auto;
+  height: auto;
+  padding: 0;
+  overflow: auto;
+  resize: none;
+  scrollbar-width: none;
+}
+
+.vertm-field--multi .vertm-field__input--textarea::selection {
+  background: transparent;
+}
+
+.vertm-field--multi .vertm-field__input--textarea::-webkit-scrollbar {
+  display: none;
+}
+
+.vertm-field--boxed.vertm-field--multi .vertm-field__input--textarea {
+  top: calc(var(--vertm-field-padding-y) + var(--vertm-field-inner-padding));
+  right: calc(var(--vertm-field-padding-x) + var(--vertm-field-inner-padding));
+  bottom: calc(var(--vertm-field-padding-y) + var(--vertm-field-inner-padding));
+  left: calc(var(--vertm-field-padding-x) + var(--vertm-field-inner-padding));
+}
+
+.vertm-field__input--textarea {
+  resize: none;
+}
+
+.vertm-field__caret {
+  position: absolute;
+  width: 2px;
+  background: var(--vertm-caret-color);
+  pointer-events: none;
+  animation: vertm-caret-blink 1s step-end infinite;
+}
+
+@keyframes vertm-caret-blink {
+  50% { opacity: 0; }
+}
+
+/* ── List ── */
+.vertm-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vertm-list__item {
+  display: list-item;
+  margin-block: 0.5em;
+}
+
+.vertm-list__item::marker {
+  text-orientation: mixed;
+}
+
+.vertm-list-container ol,
+.vertm-list-container ul {
+  list-style-position: inside;
+}
+
+.vertm-list-container ol {
+  list-style-type: mongolian;
+}
+
+.vertm-list-container ul {
+  list-style-type: disc;
+}
+
+/* ── Icon spin animation ── */
+@keyframes vertm-icon-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ── Typography ── */
+.vertm-typography-title {
+  font-weight: 600;
+  margin: 0;
+}
+
+.vertm-typography-title--h1 { font-size: var(--vertm-font-size-heading-1); }
+.vertm-typography-title--h2 { font-size: var(--vertm-font-size-heading-2); }
+.vertm-typography-title--h3 { font-size: var(--vertm-font-size-heading-3); }
+.vertm-typography-title--h4 { font-size: var(--vertm-font-size-heading-4); }
+.vertm-typography-title--h5 { font-size: var(--vertm-font-size-heading-5); }
+
+.vertm-typography-text--secondary { color: var(--vertm-color-text-secondary); }
+.vertm-typography-text--success { color: var(--vertm-color-success); }
+.vertm-typography-text--warning { color: var(--vertm-color-warning); }
+.vertm-typography-text--danger { color: var(--vertm-color-error); }
+
+.vertm-typography-link {
+  color: var(--vertm-color-link);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--vertm-motion-duration-fast);
+}
+
+.vertm-typography-link:hover {
+  color: var(--vertm-color-link-hover);
+}
+
+.vertm-typography-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vertm-typography-ellipsis--single {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.vertm-typography-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  margin-inline-start: var(--vertm-margin-xs);
+  padding: 2px;
+  border: none;
+  background: transparent;
+  color: var(--vertm-color-text-secondary);
+  cursor: pointer;
+  border-radius: var(--vertm-border-radius-sm);
+  transition: color var(--vertm-motion-duration-fast);
+}
+
+.vertm-typography-copy-btn:hover {
+  color: var(--vertm-color-primary);
+}
+
+.vertm-typography-copy-btn:focus-visible {
+  outline: 2px solid var(--vertm-color-primary);
+  outline-offset: 2px;
+}
+
+/* ── Config Provider root ── */
+.vertm-config-provider {
+  color: var(--vertm-color-text);
+  font-family: var(--vertm-font-family);
+}

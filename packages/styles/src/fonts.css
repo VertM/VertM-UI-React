@@ -1,0 +1,20 @@
+/*
+ * Bundled Traditional Mongolian webfont.
+ *
+ * Noto Sans Mongolian (SIL Open Font License 1.1) ships a complete OpenType
+ * shaping table (GSUB/GPOS), so Unicode Mongolian shapes correctly regardless
+ * of what fonts the user's OS has installed. It is placed first in the default
+ * font stack (see tokens `--vertm-font-family`).
+ *
+ * Font: Noto Sans Mongolian — https://fonts.google.com/noto/specimen/Noto+Sans+Mongolian
+ * License: OFL-1.1 (redistributable) — see docs/design/brand.md for attribution.
+ */
+@font-face {
+  font-family: 'Noto Sans Mongolian';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/NotoSansMongolian-400.woff2') format('woff2');
+  /* Restrict to the Mongolian block so it never overrides Latin/CJK glyphs. */
+  unicode-range: U+1800-18AF, U+202F, U+2060, U+180B-180F;
+}

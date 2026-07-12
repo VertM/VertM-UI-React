@@ -1,0 +1,91 @@
+/* VertM UI design tokens — generated from @vertm/tokens defaultTheme */
+:root {
+  /* Colors */
+  --vertm-color-primary: #1266d9;
+  --vertm-color-success: #16a34a;
+  --vertm-color-warning: #d97706;
+  --vertm-color-error: #dc2626;
+  --vertm-color-info: #1266d9;
+  --vertm-color-text: #1c1917;
+  --vertm-color-text-secondary: #78716c;
+  --vertm-color-text-disabled: #a8a29e;
+  --vertm-color-bg-container: #ffffff;
+  --vertm-color-bg-elevated: #ffffff;
+  --vertm-color-bg-layout: #faf9f7;
+  --vertm-color-border: #e7e5e4;
+  --vertm-color-border-secondary: #f0efea;
+  --vertm-color-link: #1266d9;
+  --vertm-color-link-hover: #0b4ea8;
+
+  /* Spacing */
+  --vertm-padding-xs: 8px;
+  --vertm-padding-sm: 12px;
+  --vertm-padding: 16px;
+  --vertm-padding-lg: 24px;
+  --vertm-margin-xs: 8px;
+  --vertm-margin-sm: 12px;
+  --vertm-margin: 16px;
+  --vertm-margin-lg: 24px;
+
+  /* Typography */
+  --vertm-font-size: 16px;
+  --vertm-font-size-sm: 14px;
+  --vertm-font-size-lg: 18px;
+  --vertm-font-size-heading-1: 38px;
+  --vertm-font-size-heading-2: 30px;
+  --vertm-font-size-heading-3: 24px;
+  --vertm-font-size-heading-4: 20px;
+  --vertm-font-size-heading-5: 16px;
+  --vertm-line-height: 1.6;
+  --vertm-font-family: "Noto Sans Mongolian", "Mongolian Baiti", "Menksoft Qagan", sans-serif;
+
+  /* Border */
+  --vertm-border-radius: 6px;
+  --vertm-border-radius-sm: 4px;
+  --vertm-border-radius-lg: 8px;
+
+  /* Motion */
+  --vertm-motion-duration-fast: 0.1s;
+  --vertm-motion-duration-mid: 0.2s;
+  --vertm-motion-duration-slow: 0.3s;
+
+  /* Shadow */
+  --vertm-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+  --vertm-box-shadow-secondary: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+
+  /* Z-index */
+  --vertm-z-index-popup: 1050;
+  --vertm-z-index-modal: 1000;
+  --vertm-z-index-tooltip: 1070;
+
+  /* Vertical layout */
+  --vertm-column-size: 32px;
+  --vertm-column-gap: 16px;
+  --vertm-vertical-line-height: 1.6;
+  --vertm-hanging-punctuation: allow-end;
+  /* vertical-lr: block axis = physical left/right; symmetric padding avoids edge clipping */
+  --vertm-text-block-padding-start: 4px;
+  --vertm-text-block-padding-end: 4px;
+
+  /* Component */
+  --vertm-caret-color: #1266d9;
+  --vertm-writing-mode: vertical-lr;
+  /* Input shell safe area (physical top/bottom/left/right) */
+  --vertm-field-padding-y: var(--vertm-padding-sm);
+  --vertm-field-padding-x: 4px;
+  /* Vertical start/end padding (vertical-lr inline axis = physical top/bottom) */
+  --vertm-field-text-padding-start: 6px;
+  --vertm-field-text-padding-end: 4px;
+  /* Column horizontal centering handled by .vertm-field flex align-items:center */
+  /* Mirror field dimensions (set via --vertm-field-column-count etc.) */
+  --vertm-field-text-block-pad: calc(
+    var(--vertm-field-text-padding-start) + var(--vertm-field-text-padding-end)
+  );
+  --vertm-field-row-depth: 4; /* single-column depth = line-height × depth + font-size */
+  --vertm-select-height: 160px;
+  --vertm-select-width: 48px;
+  --vertm-select-multiple-width: 56px;
+  --vertm-result-min-height: 280px;
+  --vertm-result-icon-size: 20px;
+  --vertm-split-min-height: var(--vertm-result-min-height);
+}

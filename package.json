@@ -1,0 +1,42 @@
+{
+  "name": "vertm-ui",
+  "private": true,
+  "version": "0.1.0",
+  "description": "VertM UI — Traditional Mongolian vertical React component library",
+  "license": "MIT",
+  "author": "dorren002",
+  "homepage": "https://github.com/VertM/VertM-UI-React#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VertM/VertM-UI-React.git"
+  },
+  "bugs": {
+    "url": "https://github.com/VertM/VertM-UI-React/issues"
+  },
+  "keywords": [
+    "vertm",
+    "mongolian",
+    "traditional-mongolian",
+    "vertical-text",
+    "writing-mode",
+    "react",
+    "typescript",
+    "unicode",
+    "ui"
+  ],
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @vertm/tokens && npm run build -w @vertm/core && npm run build -w @vertm/icons && npm run build -w @vertm/react && npm run build -w @vertm/wasm && npm run build -w @vertm/react-demo --if-present",
+    "dev": "npm run dev -w @vertm/react-demo",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
