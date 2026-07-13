@@ -7,6 +7,26 @@
 
 采用 **CSS-native 渲染路径**（`writing-mode: vertical-lr`，符合 [W3C mlreq](https://www.w3.org/TR/mlreq/)），输入交互使用 Mirror Input 模式。
 
+## 预览
+
+### 基础组件
+
+Button、Input、Tag 等：
+
+![Button / Input / Tag](./images/buttons.jpg)
+
+### 表单与选择
+
+Radio、Checkbox、Switch、Select、Form：
+
+![Radio / Checkbox / Select / Form](./images/selection.jpg)
+
+### 导航与布局
+
+Menu、Tabs、Dropdown、Pagination、Steps、Collapse：
+
+![Menu / Tabs / Pagination / Steps](./images/menu.jpg)
+
 ## 包结构
 
 | 包 | 说明 |

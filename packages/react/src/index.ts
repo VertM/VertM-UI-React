@@ -43,7 +43,7 @@ export {
   type VertMTextFieldProps,
   type VertMTextFieldVariant,
 } from './VertMTextField.js';
-export { VertMList, type VertMListProps, type VertMListItem } from './VertMList.js';
+export { VertMList, type VertMListProps, type VertMListItem, type ListGrid } from './list/List.js';
 
 // ── Phase 1 components ──
 export { computeOverlayPosition, Overlay, Tooltip, Portal, type Placement, type OverlayProps, type TooltipProps, type TriggerType } from './overlay/index.js';
@@ -69,6 +69,93 @@ export { VertMPopover, type PopoverProps } from './popover/Popover.js';
 export { VertMPopconfirm, type PopconfirmProps } from './popconfirm/Popconfirm.js';
 export { VertMModal, type ModalProps } from './modal/Modal.js';
 export { VertMDrawer, type DrawerProps, type DrawerPlacement } from './drawer/Drawer.js';
+
+// ── Phase 2 components ──
+export {
+  VertMLayout,
+  type LayoutProps,
+  type HeaderProps,
+  type FooterProps,
+  type ContentProps,
+  type SiderProps,
+} from './layout/Layout.js';
+export {
+  VertMRow,
+  VertMCol,
+  type RowProps,
+  type ColProps,
+  type RowJustify,
+  type RowAlign,
+} from './grid/Grid.js';
+export {
+  VertMFlex,
+  type FlexProps,
+  type FlexJustify,
+  type FlexAlign,
+} from './flex/Flex.js';
+export {
+  VertMCard,
+  type CardProps,
+  type CardMetaProps,
+  type CardGridProps,
+} from './card/Card.js';
+export { useBreakpoint, BREAKPOINTS, type Breakpoint, type BreakpointMap } from './hooks/useBreakpoint.js';
+export {
+  VertMMenu,
+  type MenuProps,
+  type MenuItemProps,
+  type SubMenuProps,
+  type MenuItemType,
+  type MenuArrowConfig,
+  type MenuExpandIconRender,
+} from './menu/Menu.js';
+export type { MenuMode, MenuSelectInfo } from './menu/types.js';
+export {
+  VertMTabs,
+  type TabsProps,
+  type TabItem,
+  type TabsType,
+  type TabPosition,
+  type TabsEditableConfig,
+} from './tabs/Tabs.js';
+export {
+  VertMDropdown,
+  type DropdownProps,
+  type DropdownMenuConfig,
+  type DropdownButtonProps,
+  type DropdownOpenChangeInfo,
+  type DropdownArrowConfig,
+} from './dropdown/Dropdown.js';
+export {
+  VertMBreadcrumb,
+  type BreadcrumbProps,
+  type BreadcrumbItem,
+  type BreadcrumbItemType,
+  type BreadcrumbRouteItem,
+  type BreadcrumbSeparatorItem,
+  type BreadcrumbMenuConfig,
+  type BreadcrumbMenuItem,
+  type BreadcrumbDirection,
+  type BreadcrumbSemanticClassNames,
+  type BreadcrumbSemanticStyles,
+  type BreadcrumbItemProps,
+  type BreadcrumbSeparatorProps,
+} from './breadcrumb/Breadcrumb.js';
+export {
+  VertMPagination,
+  type PaginationProps,
+  type PaginationLayout,
+} from './pagination/Pagination.js';
+export { VertMSteps, type StepsProps, type StepItem, type StepStatus, type StepsDirection } from './steps/Steps.js';
+export { VertMCollapse, type CollapseProps, type CollapsePanel } from './collapse/Collapse.js';
+export { VertMDescriptions, type DescriptionsProps, type DescriptionItem } from './descriptions/Descriptions.js';
+export { VertMAvatar, type AvatarProps, type AvatarGroupProps, type AvatarSize, type AvatarShape } from './avatar/Avatar.js';
+export { VertMBadge, type BadgeProps, type BadgeStatus } from './badge/Badge.js';
+export { VertMStatistic, type StatisticProps, type CountdownProps } from './statistic/Statistic.js';
+export { VertMTimeline, type TimelineProps, type TimelineItem } from './timeline/Timeline.js';
+export { VertMSegmented, type SegmentedProps, type SegmentedOption } from './segmented/Segmented.js';
+export { VertMAnchor, type AnchorProps, type AnchorItem } from './anchor/Anchor.js';
+export { VertMSplitter, type SplitterProps, type SplitterPanelProps } from './splitter/Splitter.js';
 
 // ── antd-style aliases ──
 export { VertMConfigProvider as ConfigProvider } from './config/index.js';

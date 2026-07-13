@@ -29,6 +29,18 @@ import {
   VertMPopconfirm,
   VertMModal,
   VertMDrawer,
+  VertMLayout,
+  VertMRow,
+  VertMCol,
+  VertMFlex,
+  VertMCard,
+  VertMMenu,
+  VertMTabs,
+  VertMDropdown,
+  VertMBreadcrumb,
+  VertMPagination,
+  VertMSteps,
+  VertMCollapse,
   message,
   notification,
   MessageHolder,
@@ -102,6 +114,16 @@ export default function App() {
   const [dividerText, setDividerText] = useState('ᠳᠤᠮᠳᠠᠭᠤᠷ');
   const [modalOpen, setModalOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [siderCollapsed, setSiderCollapsed] = useState(false);
+  const [menuSelected, setMenuSelected] = useState(['mail']);
+  const [menuOpen, setMenuOpen] = useState<string[]>([]);
+  const [tabKey, setTabKey] = useState('1');
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [cardTabs, setCardTabs] = useState([
+    { key: '1', label: 'ᠲᠠᠪ 1', children: <VertMText text={SAMPLE_TEXT} fontSize={16} /> },
+    { key: '2', label: 'ᠲᠠᠪ 2', children: <VertMText text={LONG_TEXT} fontSize={16} /> },
+  ]);
   const [spinning, setSpinning] = useState(false);
   const [support, setSupport] = useState('');
   const [fonts, setFonts] = useState('');
@@ -488,6 +510,234 @@ export default function App() {
             >
               <VertMText text='ᠠᠭᠤᠯᠭ᠎ᠠ ᠁' />
             </VertMDrawer>
+          </VertMSpace>
+        </Section>
+
+        <Section title="Menu / Tabs" wide>
+          <VertMSpace direction="horizontal" size="large" align="start" wrap>
+              <VertMMenu
+                mode="vertical"
+                selectedKeys={menuSelected}
+                openKeys={menuOpen}
+                onSelect={({ key }) => setMenuSelected([key])}
+                onOpenChange={setMenuOpen}
+                style={{ border: '1px solid var(--vertm-color-border)' }}
+                items={[
+                  { key: 'mail', label: 'ᠨᠢᠭᠡ ', icon: <Search vertical size="small" /> },
+                  {
+                    key: 'sub1',
+                    label: 'ᠬᠣᠶᠠᠷ ',
+                    icon: <Search vertical size="small" />,
+                    children: [
+                      { key: 'setting1', label: 'ᠳᠥᠷᠪᠡ ' },
+                      { key: 'setting2', label: 'ᠲᠠᠪᠤ  ' },
+                    ],
+                  },
+                  { key: 'team', label: 'ᠭᠤᠷᠪᠠ ' },
+                ]}
+              />
+
+            <VertMSpace direction="vertical" size="large" align="start" wrap>
+              <div style={{ minWidth: 220, height: 320 }}>
+                <VertMTabs
+                  activeKey={tabKey}
+                  onChange={setTabKey}
+                  tabPosition="left"
+                  items={[
+                    { key: '1', label: 'ᠨᠢᠭᠡ ', children: <VertMText text="ᠠᠭᠤᠯᠭ᠎ᠠ ᠨᠢᠭᠡ ᠁" fontSize={16} /> },
+                    { key: '2', label: 'ᠬᠣᠶᠠᠷ ', children: <VertMText text="ᠠᠭᠤᠯᠭ᠎ᠠ ᠬᠣᠶᠠᠷ ᠁" fontSize={16} /> },
+                    { key: '3', label: 'ᠭᠤᠷᠪᠠ ', children: <VertMText text="ᠠᠭᠤᠯᠭ᠎ᠠ ᠭᠤᠷᠪᠠ ᠁" fontSize={16} /> },
+                  ]}
+                />
+              </div>
+              <div style={{ minWidth: 220, height: 320 }}>
+                <VertMTabs
+                  type="card"
+                  editable={{
+                    onEdit: (action, key) => {
+                      if (action === 'add') {
+                        const next = String(Date.now());
+                        setCardTabs((tabs) => [
+                          ...tabs,
+                          { key: next, label: `ᠲᠠᠪ ${tabs.length + 1}`, children: <VertMText text={SAMPLE_TEXT} fontSize={16} /> },
+                        ]);
+                      } else if (key) {
+                        setCardTabs((tabs) => tabs.filter((t) => t.key !== key));
+                      }
+                    },
+                  }}
+                  items={cardTabs}
+                />
+              </div>
+            </VertMSpace>
+          </VertMSpace>
+        </Section>
+
+        <Section title="Dropdown / Breadcrumb / Pagination" wide>
+          <VertMSpace direction="horizontal" size="large" align="start" wrap>
+            <VertMSpace direction="vertical" size="middle" align="start">
+              <VertMDropdown
+                menu={{
+                  items: [
+                    { key: '1', label: 'ᠨᠢᠭᠡ ' },
+                    { key: '2', label: 'ᠬᠣᠶᠠᠷ ' },
+                    { type: 'divider', key: 'd1' },
+                    { key: '3', label: 'ᠭᠤᠷᠪᠠ ', disabled: true },
+                  ],
+                  onClick: ({ key }) => message.info(`ᠰᠣᠩᠭᠣᠯᠲᠠ : ${key}`),
+                }}
+              >
+                <VertMButton> Hover Me</VertMButton>
+              </VertMDropdown>
+
+              <VertMDropdown
+                trigger={['click']}
+                arrow
+                menu={{
+                  items: [
+                    { key: '1', label: 'ᠨᠢᠭᠡ ' },
+                    { key: '2', label: 'ᠬᠣᠶᠠᠷ ' },
+                  ],
+                  onClick: ({ key }) => message.success(key),
+                }}
+              >
+                <VertMButton>Click Me</VertMButton>
+              </VertMDropdown>
+
+              <VertMDropdown
+                menu={{
+                  items: [
+                    { key: '1', label: 'ᠨᠢᠭᠡ ' },
+                    {
+                      key: 'sub',
+                      label: 'ᠬᠣᠶᠠᠷ ',
+                      children: [
+                        { key: '2', label: 'ᠭᠤᠷᠪᠠ ' },
+                        { key: '3', label: 'ᠳᠥᠷᠪᠡ ' },
+                      ],
+                    },
+                  ],
+                  onClick: ({ key }) => message.info(`ᠰᠣᠩᠭᠣᠯᠲᠠ : ${key}`),
+                }}
+              >
+                <VertMButton>Cascading Menu</VertMButton>
+              </VertMDropdown>
+
+              <VertMDropdown
+                trigger={['contextMenu']}
+                menu={{
+                  items: [
+                    { key: 'copy', label: 'ᠬᠠᠭᠣᠯᠠᠬᠣ᠌ ' },
+                    { key: 'paste', label: 'ᠪᠤᠴᠠᠬᠤ ' },
+                  ],
+                }}
+              >
+                <div
+                  style={{
+                    padding: '12px 8px',
+                    border: '1px dashed var(--vertm-color-border)',
+                    borderRadius: 8,
+                  }}
+                >
+                  <VertMText text="Right Click Here" fontSize={14} />
+                </div>
+              </VertMDropdown>
+
+              <VertMDropdown.Button
+                type="primary"
+                menu={{
+                  items: [
+                    { key: '1', label: 'ᠨᠢᠭᠡ ' },
+                    { key: '2', label: 'ᠬᠣᠶᠠᠷ ' },
+                  ],
+                }}
+              >
+                ᠢᠯᠡᠭᠡᠬᠦ 
+              </VertMDropdown.Button>
+            </VertMSpace>
+
+            <VertMSpace direction="horizontal" size="small" align="start">
+              <VertMBreadcrumb
+                items={[
+                  { title: 'ᠨᠢᠭᠡ ', href: '#' },
+                  { title: 'ᠬᠣᠶᠠᠷ ', href: '#' },
+                  { title: 'ᠭᠤᠷᠪᠠ ' },
+                ]}
+              />
+
+              <VertMBreadcrumb
+                separator="-->"
+                items={[
+                  { title: 'ᠨᠢᠭᠡ ', href: '#' },
+                  { title: 'ᠬᠣᠶᠠᠷ ', href: '#' },
+                  { title: 'ᠭᠤᠷᠪᠠ ' },
+                ]}
+              />
+
+              <VertMBreadcrumb
+                items={[
+                  { title: 'ᠨᠢᠭᠡ ', path: '/index' },
+                  {
+                    title: 'ᠬᠣᠶᠠᠷ ',
+                    path: '/first',
+                    menu: {
+                      items: [
+                        { title: 'ᠬᠣᠶᠠᠷ ᠨᠢᠭᠡ ', path: '/general' },
+                        { title: 'ᠬᠣᠶᠠᠷ ᠬᠣᠶᠠᠷ ', path: '/layout' },
+                        { title: 'ᠬᠣᠶᠠᠷ ᠭᠤᠷᠪᠠ ', path: '/navigation' },
+                      ],
+                    },
+                  },
+                  { title: 'ᠭᠤᠷᠪᠠ ', path: '/second' },
+                ]}
+              />
+
+              <VertMBreadcrumb
+                items={[
+                  { title: 'ᠨᠢᠭᠡ ', href: '#' },
+                  { type: 'separator', separator: '·' },
+                  { title: 'ᠬᠣᠶᠠᠷ ', href: '#' },
+                  { title: 'ᠭᠤᠷᠪᠠ ' },
+                ]}
+              />
+            </VertMSpace>
+
+            <VertMSpace direction="horizontal" size="large" align="start" wrap>
+              <VertMPagination
+                current={page}
+                pageSize={pageSize}
+                total={128}
+                showSizeChanger
+                showQuickJumper
+                onChange={(p, size) => {
+                  setPage(p);
+                  setPageSize(size);
+                }}
+              />
+            </VertMSpace>
+          </VertMSpace>
+        </Section>
+
+        <Section title="Steps / Collapse" wide>
+          <VertMSpace direction="horizontal" size="large" align="start" wrap>
+            <VertMSteps
+              current={1}
+              items={[
+                { title: 'ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠠᠯᠬᠤᠮ ', description: 'ᠭᠦᠢᠴᠡᠳᠬᠡᠭᠰᠡᠨ ᠪᠠᠢᠨ᠎ᠠ ' },
+                { title: 'ᠬᠣᠶᠠᠳᠤᠭᠠᠷ ᠠᠯᠬᠤᠮ ', description: 'ᠭᠦᠢᠴᠡᠳᠬᠡᠵᠦ  ᠪᠠᠢᠨ᠎ᠠ' },
+                { title: 'ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ ᠠᠯᠬᠤᠮ ', description: 'ᠬᠦᠯᠢᠶᠡᠵᠦ  ᠪᠠᠢᠨ᠎ᠠ ' },
+              ]}
+            />
+
+            <VertMCollapse
+              height={240}
+              defaultActiveKey="1"
+              items={[
+                { key: '1', label: 'ᠨᠢᠭᠡ ', children: <VertMText text={SAMPLE_TEXT} fontSize={14} /> },
+                { key: '2', label: 'ᠬᠣᠶᠠᠷ ', children: <VertMText text={LONG_TEXT} fontSize={14} /> },
+                { key: '3', label: 'ᠭᠤᠷᠪᠠ ', children: <VertMText text={SAMPLE_TEXT} fontSize={14} /> },
+              ]}
+            />
           </VertMSpace>
         </Section>
 
