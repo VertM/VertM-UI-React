@@ -3,7 +3,7 @@
 [![CI](https://github.com/VertM/VertM-UI-React/actions/workflows/ci.yml/badge.svg)](https://github.com/VertM/VertM-UI-React/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-**VertM UI** 是对标 [Ant Design](https://ant.design/components/overview-cn/) 的传统蒙古文（竖排 `vertical-lr`）React 组件库。名称取 **Vert**(ical) + **M**(ongolian) 之意。
+**VertM UI** 是面向传统蒙古文竖排（`vertical-lr`）的 React 组件库，组件 API 尽量贴近 [Ant Design](https://ant.design/components/overview-cn/) 的使用习惯，便于上手。名称取 **Vert**(ical) + **M**(ongolian) 之意。
 
 采用 **CSS-native 渲染路径**（`writing-mode: vertical-lr`，符合 [W3C mlreq](https://www.w3.org/TR/mlreq/)），输入交互使用 Mirror Input 模式。
 
