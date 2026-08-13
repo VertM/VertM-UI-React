@@ -41,6 +41,12 @@ Menu、Tabs、Dropdown、Pagination、Steps、Collapse：
 ## 快速开始
 
 ```bash
+npm install @vertm/react @vertm/styles @vertm/tokens
+```
+
+本地开发：
+
+```bash
 npm install
 npm run build
 npm run dev   # 启动 Demo (http://localhost:5173)

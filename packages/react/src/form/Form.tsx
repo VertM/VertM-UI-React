@@ -26,6 +26,8 @@ interface FormStore {
   getValues: () => Record<string, unknown>;
   getRules: () => Record<string, Rule[]>;
   subscribe: (listener: () => void) => () => void;
+  /** Notified on `reset()` so the owning Form can drop its validation errors. */
+  subscribeReset: (listener: () => void) => () => void;
   setFieldValue: (name: string, value: unknown) => void;
   setFieldsValue: (values: Record<string, unknown>) => void;
   registerRules: (name: string, rules: Rule[]) => void;
@@ -47,6 +49,7 @@ function createFormStore(): FormStore {
   let values: Record<string, unknown> = {};
   let rules: Record<string, Rule[]> = {};
   const listeners = new Set<() => void>();
+  const resetListeners = new Set<() => void>();
   const notify = () => listeners.forEach((l) => l());
 
   return {
@@ -55,6 +58,10 @@ function createFormStore(): FormStore {
     subscribe: (listener) => {
       listeners.add(listener);
       return () => listeners.delete(listener);
+    },
+    subscribeReset: (listener) => {
+      resetListeners.add(listener);
+      return () => resetListeners.delete(listener);
     },
     setFieldValue(name, value) {
       values = { ...values, [name]: value };
@@ -95,6 +102,7 @@ function createFormStore(): FormStore {
     },
     reset() {
       values = {};
+      resetListeners.forEach((l) => l());
       notify();
     },
   };
@@ -157,6 +165,8 @@ export function VertMForm({
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   useFormStore(store);
+
+  useEffect(() => store.subscribeReset(() => setErrors({})), [store]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();

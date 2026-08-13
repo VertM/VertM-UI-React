@@ -4,14 +4,14 @@
   "description": "Direction-aware SVG icon components for VertM UI",
   "license": "MIT",
   "author": "dorren002",
-  "homepage": "https://github.com/dorren002/mongol-text-component/tree/main/packages/icons#readme",
+  "homepage": "https://github.com/VertM/VertM-UI-React/tree/main/packages/icons#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dorren002/mongol-text-component.git",
+    "url": "git+https://github.com/VertM/VertM-UI-React.git",
     "directory": "packages/icons"
   },
   "bugs": {
-    "url": "https://github.com/dorren002/mongol-text-component/issues"
+    "url": "https://github.com/VertM/VertM-UI-React/issues"
   },
   "keywords": [
     "vertm",
@@ -26,14 +26,21 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "react": ">=18"

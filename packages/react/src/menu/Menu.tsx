@@ -189,6 +189,7 @@ function SubMenu({
   const triggerRef = useRef<HTMLLIElement>(null);
   const popupRef = useRef<HTMLDivElement>(null);
   const closeTimerRef = useRef<number>();
+  const openedByHoverRef = useRef(false);
   const [pos, setPos] = useState({ top: 0, left: 0 });
 
   const arrowConfig = mergeArrowConfig(ctx.arrow, {
@@ -249,7 +250,14 @@ function SubMenu({
   };
 
   const closeSubMenu = () => {
+    openedByHoverRef.current = false;
     if (ctx.openKeys.includes(itemKey)) ctx.toggleOpenKey(itemKey);
+  };
+
+  const handleTitleMouseEnter = () => {
+    if (disabled) return;
+    if (!ctx.openKeys.includes(itemKey)) openedByHoverRef.current = true;
+    openSubMenu();
   };
 
   const scheduleClose = () => {
@@ -263,6 +271,12 @@ function SubMenu({
 
   const handleToggle = () => {
     if (disabled) return;
+    // A mouse click is preceded by mouseenter, which already opened the popup.
+    // Collapsing here would make the submenu impossible to open by clicking.
+    if (openedByHoverRef.current) {
+      openedByHoverRef.current = false;
+      return;
+    }
     ctx.toggleOpenKey(itemKey);
   };
 
@@ -290,7 +304,7 @@ function SubMenu({
       aria-expanded={open}
       aria-haspopup="menu"
       tabIndex={disabled ? -1 : 0}
-      onMouseEnter={openSubMenu}
+      onMouseEnter={handleTitleMouseEnter}
       onMouseLeave={scheduleClose}
       onKeyDown={(e) => {
         if (disabled) return;

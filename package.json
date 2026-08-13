@@ -31,7 +31,9 @@
     "build": "npm run build -w @vertm/tokens && npm run build -w @vertm/core && npm run build -w @vertm/icons && npm run build -w @vertm/react && npm run build -w @vertm/wasm && npm run build -w @vertm/react-demo --if-present",
     "dev": "npm run dev -w @vertm/react-demo",
     "test": "npm run test --workspaces --if-present",
-    "typecheck": "npm run typecheck --workspaces --if-present"
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "pack:check": "npm run build && npm pack -w @vertm/tokens --dry-run && npm pack -w @vertm/core --dry-run && npm pack -w @vertm/styles --dry-run && npm pack -w @vertm/icons --dry-run && npm pack -w @vertm/wasm --dry-run && npm pack -w @vertm/react --dry-run",
+    "publish:packages": "npm run build && npm publish -w @vertm/tokens && npm publish -w @vertm/core && npm publish -w @vertm/styles && npm publish -w @vertm/icons && npm publish -w @vertm/wasm && npm publish -w @vertm/react"
   },
   "devDependencies": {
     "typescript": "^5.4.5"
