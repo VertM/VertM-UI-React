@@ -15,12 +15,12 @@ export default defineConfig({
       exclude: ['src/**/*.test.{ts,tsx}', 'src/**/index.ts'],
       reporter: ['text', 'lcov'],
       // Ratchet only — raise these as more components gain tests.
-      thresholds: {
-        lines: 40,
-        statements: 40,
-        functions: 65,
-        branches: 74,
-      },
+        thresholds: {
+          lines: 48,
+          statements: 48,
+          functions: 74,
+          branches: 79,
+        },
     },
   },
 });

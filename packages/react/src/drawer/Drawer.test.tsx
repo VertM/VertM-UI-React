@@ -87,4 +87,47 @@ describe('VertMDrawer', () => {
     render(<VertMDrawer open />);
     expect(screen.getByRole('dialog')).toHaveFocus();
   });
+
+  it('keeps Tab focus inside the panel', async () => {
+    render(
+      <>
+        <button type="button">behind</button>
+        <VertMDrawer open>
+          <button type="button">inside</button>
+        </VertMDrawer>
+      </>
+    );
+
+    const close = screen.getByLabelText('Close');
+    const inside = screen.getByRole('button', { name: 'inside' });
+
+    close.focus();
+    await userEvent.tab();
+    expect(inside).toHaveFocus();
+
+    await userEvent.tab();
+    expect(close).toHaveFocus();
+  });
+
+  it('returns focus to the trigger after closing', async () => {
+    function Harness() {
+      const [open, setOpen] = useState(false);
+      return (
+        <>
+          <button type="button" onClick={() => setOpen(true)}>
+            open
+          </button>
+          <VertMDrawer open={open} onClose={() => setOpen(false)} />
+        </>
+      );
+    }
+    render(<Harness />);
+    const trigger = screen.getByRole('button', { name: 'open' });
+
+    await userEvent.click(trigger);
+    expect(screen.getByRole('dialog')).toHaveFocus();
+
+    await userEvent.keyboard('{Escape}');
+    expect(trigger).toHaveFocus();
+  });
 });

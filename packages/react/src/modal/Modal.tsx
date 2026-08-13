@@ -9,6 +9,7 @@ import { Close } from '@vertm/icons';
 import { Portal } from '../overlay/Portal.js';
 import { useVertMConfig } from '../config/context.js';
 import { useIsVertical } from '../config/context.js';
+import { useFocusTrap } from '../hooks/useFocusTrap.js';
 import { VertMText } from '../VertMText.js';
 
 export interface ModalProps {
@@ -48,6 +49,8 @@ export function VertMModal({
   const vertical = useIsVertical();
   const panelRef = useRef<HTMLDivElement>(null);
   const prevFocus = useRef<HTMLElement | null>(null);
+
+  useFocusTrap(panelRef, open);
 
   useEffect(() => {
     if (!open) return;

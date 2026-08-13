@@ -113,4 +113,44 @@ describe('VertMModal', () => {
     render(<VertMModal open width={800} />);
     expect(screen.getByRole('dialog')).toHaveStyle({ width: '800px' });
   });
+
+  it('keeps Tab focus inside the dialog', async () => {
+    render(
+      <>
+        <button type="button">behind</button>
+        <VertMModal open footer={null}>
+          <button type="button">first</button>
+          <button type="button">last</button>
+        </VertMModal>
+      </>
+    );
+
+    const close = screen.getByLabelText('Close');
+    const first = screen.getByRole('button', { name: 'first' });
+    const last = screen.getByRole('button', { name: 'last' });
+
+    close.focus();
+    await userEvent.tab();
+    expect(first).toHaveFocus();
+
+    await userEvent.tab();
+    expect(last).toHaveFocus();
+
+    // Past the last control it wraps to the first instead of reaching "behind".
+    await userEvent.tab();
+    expect(close).toHaveFocus();
+  });
+
+  it('wraps backwards with Shift+Tab', async () => {
+    render(
+      <VertMModal open footer={null}>
+        <button type="button">only</button>
+      </VertMModal>
+    );
+
+    const close = screen.getByLabelText('Close');
+    close.focus();
+    await userEvent.tab({ shift: true });
+    expect(screen.getByRole('button', { name: 'only' })).toHaveFocus();
+  });
 });

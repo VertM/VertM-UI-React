@@ -5,6 +5,7 @@ import {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   type ReactNode,
 } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
@@ -50,13 +51,28 @@ export interface MessageAPI {
   destroy: (id?: string) => void;
 }
 
+/** The holder accepts a caller-assigned id so queued calls keep their handle. */
+interface InternalMessageAPI extends MessageAPI {
+  open: (config: MessageConfig, id?: string) => string;
+}
+
 const MessageContext = createContext<MessageAPI | null>(null);
 
-let globalApi: MessageAPI | null = null;
+let globalApi: InternalMessageAPI | null = null;
 let holderRoot: Root | null = null;
+let pending: Array<(api: InternalMessageAPI) => void> = [];
 
-function MessageRenderer() {
+function MessageRenderer({ children }: { children?: ReactNode }) {
   const [items, setItems] = useState<MessageItem[]>([]);
+  const timers = useRef(new Set<ReturnType<typeof setTimeout>>());
+
+  useEffect(() => {
+    const pool = timers.current;
+    return () => {
+      pool.forEach(clearTimeout);
+      pool.clear();
+    };
+  }, []);
 
   const destroy = useCallback((id?: string) => {
     if (id) setItems((prev) => prev.filter((m) => m.id !== id));
@@ -64,21 +80,23 @@ function MessageRenderer() {
   }, []);
 
   const open = useCallback(
-    (config: MessageConfig) => {
-      const id = `msg-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    (config: MessageConfig, presetId?: string) => {
+      const id = presetId ?? `msg-${Date.now()}-${Math.random().toString(36).slice(2)}`;
       setItems((prev) => [...prev, { ...config, id }]);
       if (config.type !== 'loading' && (config.duration ?? 3) > 0) {
-        setTimeout(() => {
+        const timer = setTimeout(() => {
+          timers.current.delete(timer);
           destroy(id);
           config.onClose?.();
         }, (config.duration ?? 3) * 1000);
+        timers.current.add(timer);
       }
       return id;
     },
     [destroy]
   );
 
-  const api = useMemo<MessageAPI>(
+  const api = useMemo<InternalMessageAPI>(
     () => ({
       open,
       success: (c, d) => open({ type: 'success', content: c, duration: d }),
@@ -93,6 +111,10 @@ function MessageRenderer() {
 
   useEffect(() => {
     globalApi = api;
+    // Calls made before this holder finished mounting were parked, not dropped.
+    const queued = pending;
+    pending = [];
+    queued.forEach((fn) => fn(api));
     return () => {
       globalApi = null;
     };
@@ -100,6 +122,7 @@ function MessageRenderer() {
 
   return (
     <MessageContext.Provider value={api}>
+      {children}
       <div className="vertm-message-container vertm-vertical" aria-live="polite">
         {items.map((item) => {
           const Icon = ICONS[item.type ?? 'info'];
@@ -153,29 +176,33 @@ function ensureGlobalHolder() {
   );
 }
 
-const fallbackApi: MessageAPI = {
-  open: () => '',
-  success: () => '',
-  error: () => '',
-  info: () => '',
-  warning: () => '',
-  loading: () => '',
-  destroy: () => {},
-};
+let globalSeq = 0;
 
-function getApi(): MessageAPI {
+/**
+ * React renders the detached root asynchronously, so the first call of a
+ * session arrives before the holder exists. Queue instead of dropping it.
+ */
+function withApi(fn: (api: InternalMessageAPI) => void): void {
   ensureGlobalHolder();
-  return globalApi ?? fallbackApi;
+  if (globalApi) fn(globalApi);
+  else pending.push(fn);
+}
+
+function openGlobal(config: MessageConfig): string {
+  globalSeq += 1;
+  const id = `vertm-msg-global-${globalSeq}`;
+  withApi((api) => api.open(config, id));
+  return id;
 }
 
 export const message: MessageAPI = {
-  open: (c) => getApi().open(c),
-  success: (c, d) => getApi().success(c, d),
-  error: (c, d) => getApi().error(c, d),
-  info: (c, d) => getApi().info(c, d),
-  warning: (c, d) => getApi().warning(c, d),
-  loading: (c, d) => getApi().loading(c, d),
-  destroy: (id) => getApi().destroy(id),
+  open: (c) => openGlobal(c),
+  success: (c, d) => openGlobal({ type: 'success', content: c, duration: d }),
+  error: (c, d) => openGlobal({ type: 'error', content: c, duration: d }),
+  info: (c, d) => openGlobal({ type: 'info', content: c, duration: d }),
+  warning: (c, d) => openGlobal({ type: 'warning', content: c, duration: d }),
+  loading: (c, d = 0) => openGlobal({ type: 'loading', content: c, duration: d }),
+  destroy: (id) => withApi((api) => api.destroy(id)),
 };
 
 export function useMessage(): MessageAPI {
@@ -183,6 +210,10 @@ export function useMessage(): MessageAPI {
   return ctx ?? message;
 }
 
-export function MessageHolder() {
-  return <MessageRenderer />;
+/**
+ * Renders messages inside the app tree so they inherit theme, writing mode
+ * and locale from the nearest VertMConfigProvider.
+ */
+export function MessageHolder({ children }: { children?: ReactNode }) {
+  return <MessageRenderer>{children}</MessageRenderer>;
 }

@@ -1045,6 +1045,14 @@
   width: var(--vertm-result-icon-size);
   height: var(--vertm-result-icon-size);
 }
+.vertm-modal__confirm-title {
+  display: inline-flex; align-items: flex-start; gap: var(--vertm-margin-xs);
+}
+.vertm-modal--confirm-confirm .vertm-modal__confirm-icon,
+.vertm-modal--confirm-warning .vertm-modal__confirm-icon { color: var(--vertm-color-warning); }
+.vertm-modal--confirm-info .vertm-modal__confirm-icon { color: var(--vertm-color-info); }
+.vertm-modal--confirm-success .vertm-modal__confirm-icon { color: var(--vertm-color-success); }
+.vertm-modal--confirm-error .vertm-modal__confirm-icon { color: var(--vertm-color-error); }
 .vertm-drawer {
   position: fixed; background: var(--vertm-color-bg-container); box-shadow: var(--vertm-box-shadow-secondary);
   display: flex; flex-direction: column; z-index: 1;
