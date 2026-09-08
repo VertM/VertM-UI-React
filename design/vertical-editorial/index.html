@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Code-based interaction and visual design reference for VertM UI."
+    />
+    <title>VertM UI - Vertical Editorial Design Lab</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="vm-app">
+      <header class="vm-header">
+        <a class="vm-brand" href="#top" aria-label="VertM UI design lab home">
+          <span class="vm-brand__mark" aria-hidden="true">VM</span>
+          <span>
+            <strong>VertM UI</strong>
+            <small>Vertical Editorial / 01</small>
+          </span>
+        </a>
+
+        <nav class="vm-header__nav" aria-label="Component sections">
+          <a href="#actions">Actions</a>
+          <a href="#fields">Fields</a>
+          <a href="#selection">Selection</a>
+          <a href="#navigation">Navigation</a>
+          <a href="#form">Form</a>
+        </nav>
+
+        <div class="vm-status" aria-label="Design status">
+          <span class="vm-status__dot" aria-hidden="true"></span>
+          Code reference
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="vm-hero" aria-labelledby="hero-title">
+          <div class="vm-hero__copy">
+            <p class="vm-kicker">Traditional Mongolian interface system</p>
+            <h1 id="hero-title">Vertical is the interface.</h1>
+            <p class="vm-hero__summary">
+              Components follow the writing flow: top to bottom within a column,
+              then left to right across columns.
+            </p>
+            <div class="vm-axis-key" aria-label="Writing direction model">
+              <span><b>↓</b> inline progression</span>
+              <span><b>→</b> block progression</span>
+            </div>
+          </div>
+
+          <div class="vm-hero__script" aria-label="Traditional Mongolian sample">
+            <div class="vm-script-column vm-script-column--quiet" lang="mn-Mong">
+              ᠮᠣᠩᠭᠣᠯ
+            </div>
+            <div class="vm-script-column vm-script-column--primary" lang="mn-Mong">
+              ᠪᠢᠴᠢᠭ
+            </div>
+            <div class="vm-script-column" lang="mn-Mong">
+              ᠪᠣᠰᠣᠭ᠎ᠠ
+            </div>
+            <span class="vm-hero__column-index">01 / 03</span>
+          </div>
+        </section>
+
+        <section class="vm-token-strip" aria-label="Core design tokens">
+          <div>
+            <span>Column</span>
+            <strong>40 px</strong>
+          </div>
+          <div>
+            <span>Gap</span>
+            <strong>12 px</strong>
+          </div>
+          <div>
+            <span>Radius</span>
+            <strong>3 px</strong>
+          </div>
+          <div>
+            <span>Stroke</span>
+            <strong>1 px</strong>
+          </div>
+          <div>
+            <span>Flow</span>
+            <strong>vertical-lr</strong>
+          </div>
+        </section>
+
+        <section class="vm-band" id="actions" aria-labelledby="actions-title">
+          <header class="vm-band__header">
+            <p>01 / Actions</p>
+            <h2 id="actions-title">Command columns</h2>
+            <span>Icon and status sit at logical start or end.</span>
+          </header>
+
+          <div class="vm-stage vm-stage--actions">
+            <div class="vm-action-group" aria-label="Button variants">
+              <button class="vm-button vm-button--primary" type="button">
+                <span class="vm-button__cap" aria-hidden="true">●</span>
+                <span class="vm-vertical-text" lang="mn-Mong">ᠦᠷᠭᠦᠯᠵᠢᠯᠡᠭᠦᠯᠬᠦ</span>
+              </button>
+              <button class="vm-button" type="button">
+                <span class="vm-vertical-text" lang="mn-Mong">ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ</span>
+              </button>
+              <button class="vm-button vm-button--quiet" type="button">
+                <span class="vm-vertical-text" lang="mn-Mong">ᠪᠤᠴᠠᠬᠤ</span>
+              </button>
+              <button class="vm-button vm-button--danger" type="button">
+                <span class="vm-vertical-text" lang="mn-Mong">ᠤᠰᠠᠳᠬᠠᠬᠤ</span>
+              </button>
+              <button class="vm-button" type="button" disabled>
+                <span class="vm-vertical-text" lang="mn-Mong">ᠪᠣᠯᠤᠮᠵᠢ ᠦᠭᠡᠢ</span>
+              </button>
+            </div>
+
+            <aside class="vm-anatomy" aria-label="Button anatomy">
+              <span class="vm-anatomy__line"></span>
+              <ol>
+                <li><b>01</b> logical-start icon</li>
+                <li><b>02</b> vertical label</li>
+                <li><b>03</b> end-state marker</li>
+              </ol>
+            </aside>
+          </div>
+        </section>
+
+        <section class="vm-band" id="fields" aria-labelledby="fields-title">
+          <header class="vm-band__header">
+            <p>02 / Fields</p>
+            <h2 id="fields-title">Writing grows into columns</h2>
+            <span>Multiline fields expand to the right, then scroll horizontally.</span>
+          </header>
+
+          <div class="vm-stage vm-stage--fields">
+            <label class="vm-field-group">
+              <span class="vm-field-label vm-vertical-text" lang="mn-Mong">ᠭᠠᠷᠴᠠᠭ</span>
+              <span class="vm-field-shell">
+                <textarea
+                  class="vm-field-input vm-field-input--single"
+                  id="title-field"
+                  rows="1"
+                  maxlength="24"
+                  spellcheck="false"
+                  aria-describedby="title-count"
+                >ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ</textarea>
+                <span class="vm-field-marker" aria-hidden="true"></span>
+              </span>
+              <span class="vm-field-count" id="title-count">13 / 24</span>
+            </label>
+
+            <label class="vm-field-group vm-field-group--wide">
+              <span class="vm-field-label vm-vertical-text" lang="mn-Mong">ᠠᠭᠤᠯᠭ᠎ᠠ</span>
+              <span class="vm-field-shell vm-field-shell--multicolumn">
+                <textarea
+                  class="vm-field-input vm-field-input--multicolumn"
+                  id="body-field"
+                  maxlength="120"
+                  spellcheck="false"
+                  aria-describedby="body-count"
+                >ᠲᠠᠤᠯᠠᠢ ᠶᠢᠨ ᠭᠦᠶᠦᠳᠡᠯ ᠰᠢᠭ ᠰᠠᠯᠬᠢᠨ ᠳᠤ ᠲᠤᠤᠯᠠ ᠶᠢᠨ ᠰᠢᠭᠤᠢ ᠨᠠᠢᠢᠭᠤᠨ᠎ᠠ</textarea>
+                <span class="vm-field-marker" aria-hidden="true"></span>
+              </span>
+              <span class="vm-field-count" id="body-count">65 / 120</span>
+            </label>
+
+            <div class="vm-field-state" aria-label="Field states">
+              <span>Focus</span>
+              <i class="vm-state-line vm-state-line--focus"></i>
+              <span>Error</span>
+              <i class="vm-state-line vm-state-line--error"></i>
+              <span>Disabled</span>
+              <i class="vm-state-line vm-state-line--disabled"></i>
+            </div>
+          </div>
+        </section>
+
+        <section class="vm-band" id="selection" aria-labelledby="selection-title">
+          <header class="vm-band__header">
+            <p>03 / Selection</p>
+            <h2 id="selection-title">Reveal the next column</h2>
+            <span>Select opens on block-end: physically to the right.</span>
+          </header>
+
+          <div class="vm-stage vm-stage--selection">
+            <div class="vm-select" data-select>
+              <button
+                class="vm-select__trigger"
+                type="button"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+              >
+                <span class="vm-vertical-text vm-select__value" lang="mn-Mong">ᠰᠣᠩᠭᠣᠬᠤ</span>
+                <span class="vm-select__arrow" aria-hidden="true">→</span>
+              </button>
+              <div class="vm-select__popover" role="listbox" aria-label="Mongolian words">
+                <button type="button" role="option" aria-selected="false" data-value="ᠮᠣᠩᠭᠣᠯ">
+                  <span class="vm-vertical-text" lang="mn-Mong">ᠮᠣᠩᠭᠣᠯ</span>
+                </button>
+                <button type="button" role="option" aria-selected="false" data-value="ᠪᠢᠴᠢᠭ">
+                  <span class="vm-vertical-text" lang="mn-Mong">ᠪᠢᠴᠢᠭ</span>
+                </button>
+                <button type="button" role="option" aria-selected="false" data-value="ᠬᠡᠯᠡ">
+                  <span class="vm-vertical-text" lang="mn-Mong">ᠬᠡᠯᠡ</span>
+                </button>
+                <button type="button" role="option" aria-selected="false" data-value="ᠦᠰᠦᠭ">
+                  <span class="vm-vertical-text" lang="mn-Mong">ᠦᠰᠦᠭ</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="vm-choice-column" aria-label="Radio choices">
+              <label>
+                <input type="radio" name="script-choice" checked />
+                <span class="vm-vertical-text" lang="mn-Mong">ᠨᠢᠭᠡ</span>
+              </label>
+              <label>
+                <input type="radio" name="script-choice" />
+                <span class="vm-vertical-text" lang="mn-Mong">ᠬᠣᠶᠠᠷ</span>
+              </label>
+              <label>
+                <input type="checkbox" checked />
+                <span class="vm-vertical-text" lang="mn-Mong">ᠰᠣᠩᠭᠣᠯᠲᠠ</span>
+              </label>
+            </div>
+
+            <div class="vm-flow-note" aria-live="polite">
+              <b>↓</b>
+              <span>Up / down moves within the option column.</span>
+              <b>→</b>
+              <span>Right commits and advances to the next column.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="vm-band" id="navigation" aria-labelledby="navigation-title">
+          <header class="vm-band__header">
+            <p>04 / Navigation</p>
+            <h2 id="navigation-title">Progressive disclosure moves right</h2>
+            <span>Selection is a column-edge marker, not a filled blue block.</span>
+          </header>
+
+          <div class="vm-stage vm-stage--navigation">
+            <nav class="vm-column-menu" aria-label="Vertical product menu">
+              <button class="vm-column-menu__item is-active" type="button" aria-pressed="true">
+                <span class="vm-column-menu__index">01</span>
+                <span class="vm-vertical-text" lang="mn-Mong">ᠨᠢᠭᠤᠷ</span>
+              </button>
+              <button class="vm-column-menu__item" type="button" aria-pressed="false">
+                <span class="vm-column-menu__index">02</span>
+                <span class="vm-vertical-text" lang="mn-Mong">ᠪᠢᠴᠢᠭ</span>
+              </button>
+              <button class="vm-column-menu__item" type="button" aria-pressed="false">
+                <span class="vm-column-menu__index">03</span>
+                <span class="vm-vertical-text" lang="mn-Mong">ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ</span>
+              </button>
+            </nav>
+
+            <div class="vm-tabs" data-tabs>
+              <div class="vm-tabs__list" role="tablist" aria-label="Document tabs">
+                <button type="button" role="tab" aria-selected="true" data-tab="draft">
+                  <span class="vm-vertical-text" lang="mn-Mong">ᠡᠬᠡ ᠪᠢᠴᠢᠭ</span>
+                </button>
+                <button type="button" role="tab" aria-selected="false" data-tab="review">
+                  <span class="vm-vertical-text" lang="mn-Mong">ᠬᠢᠨᠠᠬᠤ</span>
+                </button>
+                <button type="button" role="tab" aria-selected="false" data-tab="publish">
+                  <span class="vm-vertical-text" lang="mn-Mong">ᠨᠡᠢᠲᠡᠯᠡᠬᠦ</span>
+                </button>
+              </div>
+              <div class="vm-tabs__panel" role="tabpanel" data-panel="draft">
+                <span class="vm-panel-number">01</span>
+                <p class="vm-vertical-copy" lang="mn-Mong">
+                  ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠪᠣᠯ ᠮᠣᠩᠭᠣᠯᠴᠤᠳ ᠤᠨ ᠡᠷᠲᠡᠨ ᠡᠴᠡ ᠬᠡᠷᠡᠭᠯᠡᠭᠰᠡᠨ ᠪᠢᠴᠢᠭ ᠮᠥᠨ᠃
+                </p>
+              </div>
+              <div class="vm-tabs__panel" role="tabpanel" data-panel="review" hidden>
+                <span class="vm-panel-number">02</span>
+                <p class="vm-vertical-copy" lang="mn-Mong">ᠦᠭᠡ ᠬᠡᠯᠡ ᠦᠰᠦᠭ ᠪᠢᠴᠢᠭ</p>
+              </div>
+              <div class="vm-tabs__panel" role="tabpanel" data-panel="publish" hidden>
+                <span class="vm-panel-number">03</span>
+                <p class="vm-vertical-copy" lang="mn-Mong">ᠪᠣᠰᠣᠭ᠎ᠠ ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="vm-band" id="form" aria-labelledby="form-title">
+          <header class="vm-band__header">
+            <p>05 / Form</p>
+            <h2 id="form-title">A form is a sequence of columns</h2>
+            <span>Labels precede fields; help and errors occupy block-end.</span>
+          </header>
+
+          <form class="vm-stage vm-form" id="profile-form" novalidate>
+            <label class="vm-form-column">
+              <span class="vm-form-column__label vm-vertical-text" lang="mn-Mong">ᠨᠡᠷ᠎ᠡ</span>
+              <textarea
+                class="vm-field-input vm-form-column__input"
+                name="name"
+                required
+                spellcheck="false"
+              >ᠪᠠᠲᠤ</textarea>
+              <span class="vm-form-column__help">01</span>
+            </label>
+
+            <label class="vm-form-column">
+              <span class="vm-form-column__label vm-vertical-text" lang="mn-Mong">ᠭᠠᠷᠴᠠᠭ</span>
+              <textarea
+                class="vm-field-input vm-form-column__input"
+                name="title"
+                required
+                spellcheck="false"
+                placeholder="ᠪᠢᠴᠢᠭᠯᠡᠬᠦ"
+              ></textarea>
+              <span class="vm-form-column__help">02</span>
+              <span class="vm-form-column__error" role="alert"></span>
+            </label>
+
+            <fieldset class="vm-form-column vm-form-column--choice">
+              <legend class="vm-form-column__label vm-vertical-text" lang="mn-Mong">ᠲᠥᠷᠥᠯ</legend>
+              <label>
+                <input type="radio" name="kind" value="public" checked />
+                <span class="vm-vertical-text" lang="mn-Mong">ᠨᠡᠢᠲᠡ</span>
+              </label>
+              <label>
+                <input type="radio" name="kind" value="private" />
+                <span class="vm-vertical-text" lang="mn-Mong">ᠨᠢᠭᠤᠴᠠ</span>
+              </label>
+              <span class="vm-form-column__help">03</span>
+            </fieldset>
+
+            <button class="vm-button vm-button--primary vm-form__submit" type="submit">
+              <span class="vm-vertical-text" lang="mn-Mong">ᠲᠤᠰᠢᠶᠠᠬᠤ</span>
+              <span class="vm-select__arrow" aria-hidden="true">→</span>
+            </button>
+
+            <output class="vm-form__result" id="form-result" aria-live="polite"></output>
+          </form>
+        </section>
+      </main>
+
+      <footer class="vm-footer">
+        <span>VertM UI / Design reference</span>
+        <span>Traditional Mongolian · vertical-lr · logical properties</span>
+        <a href="#top">Back to start ↑</a>
+      </footer>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
