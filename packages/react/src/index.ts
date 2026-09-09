@@ -63,11 +63,41 @@ export { VertMProgress, type ProgressProps, type ProgressStatus } from './progre
 export { VertMSkeleton, type SkeletonProps } from './skeleton/Skeleton.js';
 export { VertMResult, type ResultProps, type ResultStatus } from './result/Result.js';
 export { VertMEmpty, type EmptyProps } from './empty/Empty.js';
-export { message, useMessage, MessageHolder, type MessageConfig, type MessageType } from './message/Message.js';
-export { notification, type NotificationConfig, type NotificationPlacement } from './notification/Notification.js';
+export {
+  message,
+  useMessage,
+  MessageHolder,
+  type MessageAPI,
+  type MessageConfig,
+  type MessageType,
+} from './message/Message.js';
+export {
+  notification,
+  useNotification,
+  NotificationHolder,
+  type NotificationAPI,
+  type NotificationConfig,
+  type NotificationPlacement,
+} from './notification/Notification.js';
 export { VertMPopover, type PopoverProps } from './popover/Popover.js';
 export { VertMPopconfirm, type PopconfirmProps } from './popconfirm/Popconfirm.js';
-export { VertMModal, type ModalProps } from './modal/Modal.js';
+export {
+  VertMModal,
+  modal,
+  useModal,
+  ModalHolder,
+  type ModalProps,
+  type ModalAPI,
+  type ModalFuncConfig,
+  type ModalFuncReturn,
+  type ConfirmType,
+} from './modal/index.js';
+export {
+  VertMApp,
+  useApp,
+  type AppProps,
+  type AppContextValue,
+} from './app/App.js';
 export { VertMDrawer, type DrawerProps, type DrawerPlacement } from './drawer/Drawer.js';
 
 // ── Phase 2 components ──
@@ -161,3 +191,5 @@ export { VertMSplitter, type SplitterProps, type SplitterPanelProps } from './sp
 export { VertMConfigProvider as ConfigProvider } from './config/index.js';
 export { VertMButton as Button } from './button/index.js';
 export { VertMInput as Input } from './input/index.js';
+export { VertMModal as Modal } from './modal/index.js';
+export { VertMApp as App } from './app/App.js';

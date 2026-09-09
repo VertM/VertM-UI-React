@@ -2,6 +2,7 @@ import { useEffect, useRef, type ReactNode, type CSSProperties, type KeyboardEve
 import { Close } from '@vertm/icons';
 import { Portal } from '../overlay/Portal.js';
 import { useVertMConfig, useIsVertical } from '../config/context.js';
+import { useFocusTrap } from '../hooks/useFocusTrap.js';
 import { VertMText } from '../VertMText.js';
 
 export type DrawerPlacement = 'top' | 'right' | 'bottom' | 'left';
@@ -36,13 +37,18 @@ export function VertMDrawer({
   const config = useVertMConfig();
   const vertical = useIsVertical();
   const panelRef = useRef<HTMLDivElement>(null);
+  const prevFocus = useRef<HTMLElement | null>(null);
+
+  useFocusTrap(panelRef, open);
 
   useEffect(() => {
     if (!open) return;
+    prevFocus.current = document.activeElement as HTMLElement;
     document.body.style.overflow = 'hidden';
     panelRef.current?.focus();
     return () => {
       document.body.style.overflow = '';
+      prevFocus.current?.focus();
     };
   }, [open]);
 

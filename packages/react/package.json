@@ -4,14 +4,14 @@
   "description": "VertM UI — Traditional Mongolian vertical React component library",
   "license": "MIT",
   "author": "dorren002",
-  "homepage": "https://github.com/dorren002/mongol-text-component/tree/main/packages/react#readme",
+  "homepage": "https://github.com/VertM/VertM-UI-React/tree/main/packages/react#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dorren002/mongol-text-component.git",
+    "url": "git+https://github.com/VertM/VertM-UI-React.git",
     "directory": "packages/react"
   },
   "bugs": {
-    "url": "https://github.com/dorren002/mongol-text-component/issues"
+    "url": "https://github.com/VertM/VertM-UI-React/issues"
   },
   "keywords": [
     "vertm",
@@ -28,28 +28,42 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "vitest run"
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.test.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
   },
   "dependencies": {
-    "@vertm/core": "0.1.0",
-    "@vertm/icons": "0.1.0",
-    "@vertm/tokens": "0.1.0"
+    "@vertm/core": "^0.1.0",
+    "@vertm/icons": "^0.1.0",
+    "@vertm/tokens": "^0.1.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.4",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@vitest/coverage-v8": "^1.6.1",
+    "jsdom": "^30.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "typescript": "^5.4.5",

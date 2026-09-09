@@ -4,14 +4,14 @@
   "description": "CSS tokens and vertical layout presets for Mongolian text",
   "license": "MIT",
   "author": "dorren002",
-  "homepage": "https://github.com/dorren002/mongol-text-component/tree/main/packages/styles#readme",
+  "homepage": "https://github.com/VertM/VertM-UI-React/tree/main/packages/styles#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dorren002/mongol-text-component.git",
+    "url": "git+https://github.com/VertM/VertM-UI-React.git",
     "directory": "packages/styles"
   },
   "bugs": {
-    "url": "https://github.com/dorren002/mongol-text-component/issues"
+    "url": "https://github.com/VertM/VertM-UI-React/issues"
   },
   "keywords": [
     "mongolian",
@@ -21,10 +21,21 @@
   ],
   "type": "module",
   "exports": {
+    ".": "./src/index.css",
+    "./index.css": "./src/index.css",
     "./tokens.css": "./src/tokens.css",
     "./vertical.css": "./src/vertical.css",
-    "./index.css": "./src/index.css",
-    ".": "./src/index.css"
+    "./fonts.css": "./src/fonts.css",
+    "./components.css": "./src/components.css",
+    "./fonts/*": "./src/fonts/*"
   },
-  "files": ["src"]
+  "files": [
+    "src"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

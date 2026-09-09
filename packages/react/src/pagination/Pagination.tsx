@@ -95,6 +95,7 @@ export function VertMPagination({
   };
 
   const handleJump = () => {
+    if (jumpValue.trim() === '') return;
     const value = Number(jumpValue);
     if (!Number.isFinite(value)) return;
     goTo(value);

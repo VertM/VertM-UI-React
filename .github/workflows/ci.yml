@@ -32,3 +32,6 @@ jobs:
 
       - name: Test
         run: npm test
+
+      - name: Component test coverage
+        run: npm run test:coverage -w @vertm/react

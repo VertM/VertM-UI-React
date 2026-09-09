@@ -41,6 +41,12 @@ Menu、Tabs、Dropdown、Pagination、Steps、Collapse：
 ## 快速开始
 
 ```bash
+npm install @vertm/react @vertm/styles @vertm/tokens
+```
+
+本地开发：
+
+```bash
 npm install
 npm run build
 npm run dev   # 启动 Demo (http://localhost:5173)
@@ -63,6 +69,40 @@ import '@vertm/styles/index.css';
     rows={4}
   />
 </VertMConfigProvider>
+```
+
+### 命令式反馈（App）
+
+`message` / `notification` / `Modal.confirm` 的全局导出会各自挂载一个独立的 React 根，读不到外层 `VertMConfigProvider` 的主题、书写模式与 locale。用 `App` 包住应用，再通过 `App.useApp()` 取实例，就能让这些浮层跟随当前配置：
+
+```tsx
+import { VertMConfigProvider, App } from '@vertm/react';
+import { createTheme } from '@vertm/tokens';
+
+function Page() {
+  const { message, notification, modal } = App.useApp();
+
+  return (
+    <button
+      onClick={() =>
+        modal.confirm({
+          title: 'ᠤᠰᠠᠳᠬᠠᠬᠤ ᠤᠤ',
+          content: 'ᠡᠨᠡ ᠦᠢᠯᠡᠳᠦᠯ ᠢ ᠪᠤᠴᠠᠭᠠᠵᠤ ᠪᠣᠯᠬᠤ ᠦᠭᠡᠢ',
+          // 返回 Promise 时确认按钮进入 loading，reject 则保持弹窗打开
+          onOk: () => remove().then(() => message.success('ᠠᠮᠵᠢᠯᠲᠠ')),
+        })
+      }
+    >
+      ᠤᠰᠠᠳᠬᠠᠬᠤ
+    </button>
+  );
+}
+
+<VertMConfigProvider theme={createTheme({ colorPrimary: '#c0392b' })}>
+  <App>
+    <Page />
+  </App>
+</VertMConfigProvider>;
 ```
 
 ### 检索归一化（解决 O/U 搜索歧义）

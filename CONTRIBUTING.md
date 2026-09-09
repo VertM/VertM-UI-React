@@ -26,6 +26,31 @@ npm test
 npm run dev
 ```
 
+## 测试
+
+`@vertm/core`、`@vertm/tokens` 用 Vitest 测纯逻辑；`@vertm/react` 在 jsdom 环境下用
+[Testing Library](https://testing-library.com/docs/react-testing-library/intro/) 测组件的渲染与交互。
+
+```bash
+# 仅跑组件测试
+npm test -w @vertm/react
+
+# 监听模式
+npm run test:watch -w @vertm/react
+
+# 覆盖率（CI 会校验阈值）
+npm run test:coverage -w @vertm/react
+```
+
+写组件测试时请注意：
+
+- **按可访问性查询**，用 `getByRole` / `getByLabelText` 而不是 class 选择器，这样测试同时充当 a11y 约束。
+- **受控与非受控都要覆盖**，这是 antd 兼容性最容易回归的地方。
+- **键盘路径要单独测**，竖排下的方向键语义与横排不同，只测鼠标点击会漏掉问题。
+- jsdom 没有布局引擎，浮层定位、`ResizeObserver`、`Range` 测量的桩实现都在
+  `packages/react/vitest.setup.ts`，需要新桩时加在那里。
+- 覆盖率阈值是**防回退**用的下限，新增组件测试后请顺手抬高 `vitest.config.ts` 里的数值。
+
 ## 仓库结构
 
 ```

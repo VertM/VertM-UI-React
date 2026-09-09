@@ -189,7 +189,15 @@ export function VertMSelect({
   }, [open, filtered.length, placement, showSearch, multiple, updatePos, selectionKey]);
 
   useEffect(() => {
-    if (!open) setSearch('');
+    if (!open) {
+      setSearch('');
+      return;
+    }
+    const firstEnabled = filtered.findIndex((o) => !o.disabled);
+    setHighlight(firstEnabled === -1 ? 0 : firstEnabled);
+    // `filtered` is intentionally read only at open time; live filtering keeps
+    // its own highlight reset in the search handler.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   const dismissOpen = useCallback(() => {
@@ -259,16 +267,32 @@ export function VertMSelect({
     updateSelected((current as string[]).filter((v) => v !== val));
   };
 
+  /** Step to the next enabled option, staying put when none is available. */
+  const stepHighlight = useCallback(
+    (from: number, step: number) => {
+      for (let i = from + step; i >= 0 && i < filtered.length; i += step) {
+        if (!filtered[i]!.disabled) return i;
+      }
+      return from;
+    },
+    [filtered]
+  );
+
   const handleKeyDown = (e: KeyboardEvent) => {
     if (!open) {
       if (e.key === 'ArrowDown' || e.key === 'Enter') setOpen(true);
       return;
     }
-    if (e.key === 'ArrowDown') setHighlight((h) => Math.min(h + 1, filtered.length - 1));
-    if (e.key === 'ArrowUp') setHighlight((h) => Math.max(h - 1, 0));
-    if (e.key === 'ArrowRight') setHighlight((h) => Math.min(h + 1, filtered.length - 1));
-    if (e.key === 'ArrowLeft') setHighlight((h) => Math.max(h - 1, 0));
-    if (e.key === 'Enter' && filtered[highlight]) selectOption(filtered[highlight].value);
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+      setHighlight((h) => stepHighlight(h, 1));
+    }
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+      setHighlight((h) => stepHighlight(h, -1));
+    }
+    if (e.key === 'Enter') {
+      const opt = filtered[highlight];
+      if (opt && !opt.disabled) selectOption(opt.value);
+    }
     if (e.key === 'Escape') setOpen(false);
   };
 

@@ -1,4 +1,13 @@
-import { useState, useEffect, type ReactNode } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { Close } from '@vertm/icons';
 import { VertMConfigProvider } from '../config/VertMConfigProvider.js';
@@ -23,13 +32,27 @@ interface NotificationItem extends NotificationConfig {
   id: string;
 }
 
-let items: NotificationItem[] = [];
-let listeners: Array<() => void> = [];
-let notifRoot: Root | null = null;
-
-function notify() {
-  listeners.forEach((l) => l());
+export interface NotificationAPI {
+  open: (config: NotificationConfig) => string;
+  success: (config: Omit<NotificationConfig, 'type'>) => string;
+  error: (config: Omit<NotificationConfig, 'type'>) => string;
+  info: (config: Omit<NotificationConfig, 'type'>) => string;
+  warning: (config: Omit<NotificationConfig, 'type'>) => string;
+  destroy: (id?: string) => void;
 }
+
+const DEFAULT_DURATION = 4.5;
+
+/** The holder accepts a caller-assigned id so queued calls keep their handle. */
+interface InternalNotificationAPI extends NotificationAPI {
+  open: (config: NotificationConfig, id?: string) => string;
+}
+
+const NotificationContext = createContext<NotificationAPI | null>(null);
+
+let globalApi: InternalNotificationAPI | null = null;
+let globalRoot: Root | null = null;
+let pending: Array<(api: InternalNotificationAPI) => void> = [];
 
 function groupByPlacement(list: NotificationItem[]) {
   const map: Partial<Record<NotificationPlacement, NotificationItem[]>> = {};
@@ -40,21 +63,75 @@ function groupByPlacement(list: NotificationItem[]) {
   return map;
 }
 
-function NotificationContainer() {
-  const [list, setList] = useState<NotificationItem[]>([]);
+/**
+ * Renders notifications inside the app tree so they inherit theme, writing
+ * mode and locale from the nearest VertMConfigProvider.
+ */
+export function NotificationHolder({ children }: { children?: ReactNode }) {
+  const [items, setItems] = useState<NotificationItem[]>([]);
+  const seq = useRef(0);
+  const timers = useRef(new Set<ReturnType<typeof setTimeout>>());
 
   useEffect(() => {
-    const fn = () => setList([...items]);
-    listeners.push(fn);
+    const pool = timers.current;
     return () => {
-      listeners = listeners.filter((l) => l !== fn);
+      pool.forEach(clearTimeout);
+      pool.clear();
     };
   }, []);
 
-  const grouped = groupByPlacement(list);
+  const destroy = useCallback((id?: string) => {
+    setItems((prev) => (id ? prev.filter((n) => n.id !== id) : []));
+  }, []);
+
+  const open = useCallback(
+    (config: NotificationConfig, presetId?: string) => {
+      seq.current += 1;
+      const id = presetId ?? `vertm-notif-${seq.current}`;
+      setItems((prev) => [...prev, { ...config, id }]);
+
+      const duration = config.duration ?? DEFAULT_DURATION;
+      if (duration > 0) {
+        const timer = setTimeout(() => {
+          timers.current.delete(timer);
+          destroy(id);
+          config.onClose?.();
+        }, duration * 1000);
+        timers.current.add(timer);
+      }
+      return id;
+    },
+    [destroy]
+  );
+
+  const api = useMemo<InternalNotificationAPI>(
+    () => ({
+      open,
+      success: (cfg) => open({ ...cfg, type: 'success' }),
+      error: (cfg) => open({ ...cfg, type: 'error' }),
+      info: (cfg) => open({ ...cfg, type: 'info' }),
+      warning: (cfg) => open({ ...cfg, type: 'warning' }),
+      destroy,
+    }),
+    [open, destroy]
+  );
+
+  useEffect(() => {
+    globalApi = api;
+    // Calls made before this holder finished mounting were parked, not dropped.
+    const queued = pending;
+    pending = [];
+    queued.forEach((fn) => fn(api));
+    return () => {
+      globalApi = null;
+    };
+  }, [api]);
+
+  const grouped = groupByPlacement(items);
 
   return (
-    <>
+    <NotificationContext.Provider value={api}>
+      {children}
       {(Object.keys(grouped) as NotificationPlacement[]).map((placement) => (
         <div
           key={placement}
@@ -90,7 +167,7 @@ function NotificationContainer() {
                   className="vertm-notification__close"
                   aria-label="Close"
                   onClick={() => {
-                    removeNotification(item.id);
+                    destroy(item.id);
                     item.onClose?.();
                   }}
                 >
@@ -101,49 +178,52 @@ function NotificationContainer() {
           ))}
         </div>
       ))}
-    </>
+    </NotificationContext.Provider>
   );
 }
 
-function ensureNotifRoot() {
-  if (typeof document === 'undefined' || notifRoot) return;
+function ensureGlobalHolder() {
+  if (typeof document === 'undefined' || globalRoot) return;
   const el = document.createElement('div');
   el.id = 'vertm-notification-root';
   document.body.appendChild(el);
-  notifRoot = createRoot(el);
-  notifRoot.render(
+  globalRoot = createRoot(el);
+  globalRoot.render(
     <VertMConfigProvider>
-      <NotificationContainer />
+      <NotificationHolder />
     </VertMConfigProvider>
   );
 }
 
-function addNotification(config: NotificationConfig) {
-  ensureNotifRoot();
-  const id = `notif-${Date.now()}`;
-  items = [...items, { ...config, id }];
-  notify();
-  if ((config.duration ?? 4.5) > 0) {
-    setTimeout(() => removeNotification(id), (config.duration ?? 4.5) * 1000);
-  }
+let globalSeq = 0;
+
+/**
+ * React renders the detached root asynchronously, so the first call of a
+ * session arrives before the holder exists. Queue instead of dropping it.
+ */
+function withApi(fn: (api: InternalNotificationAPI) => void): void {
+  ensureGlobalHolder();
+  if (globalApi) fn(globalApi);
+  else pending.push(fn);
+}
+
+function openGlobal(config: NotificationConfig): string {
+  globalSeq += 1;
+  const id = `vertm-notif-global-${globalSeq}`;
+  withApi((api) => api.open(config, id));
   return id;
 }
 
-function removeNotification(id?: string) {
-  if (id) items = items.filter((n) => n.id !== id);
-  else items = [];
-  notify();
-}
-
-export const notification = {
-  open: addNotification,
-  success: (cfg: Omit<NotificationConfig, 'type'>) =>
-    addNotification({ ...cfg, type: 'success' }),
-  error: (cfg: Omit<NotificationConfig, 'type'>) =>
-    addNotification({ ...cfg, type: 'error' }),
-  info: (cfg: Omit<NotificationConfig, 'type'>) =>
-    addNotification({ ...cfg, type: 'info' }),
-  warning: (cfg: Omit<NotificationConfig, 'type'>) =>
-    addNotification({ ...cfg, type: 'warning' }),
-  destroy: removeNotification,
+export const notification: NotificationAPI = {
+  open: (cfg) => openGlobal(cfg),
+  success: (cfg) => openGlobal({ ...cfg, type: 'success' }),
+  error: (cfg) => openGlobal({ ...cfg, type: 'error' }),
+  info: (cfg) => openGlobal({ ...cfg, type: 'info' }),
+  warning: (cfg) => openGlobal({ ...cfg, type: 'warning' }),
+  destroy: (id) => withApi((api) => api.destroy(id)),
 };
+
+/** Context-aware notification API; falls back to the detached global holder. */
+export function useNotification(): NotificationAPI {
+  return useContext(NotificationContext) ?? notification;
+}
