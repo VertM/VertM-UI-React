@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { createTheme, defaultTheme, darkTheme, themeToCssVars } from '../src/index.js';
+import {
+  createTheme,
+  defaultTheme,
+  darkTheme,
+  editorialTheme,
+  themeToCssVars,
+} from '../src/index.js';
 
 describe('createTheme', () => {
   it('returns default theme when no overrides', () => {
@@ -32,5 +38,16 @@ describe('themeToCssVars', () => {
   it('dark theme has different text color', () => {
     const vars = themeToCssVars(darkTheme);
     expect(vars['--vertm-color-text']).toBe('#fafaf9');
+  });
+
+  it('editorial theme maps the Vertical Editorial palette', () => {
+    const vars = themeToCssVars(editorialTheme);
+    expect(vars['--vertm-color-primary']).toBe('#171a18');
+    expect(vars['--vertm-color-info']).toBe('#2155d6');
+    expect(vars['--vertm-color-bg-layout']).toBe('#f3f1ea');
+    expect(vars['--vertm-color-text']).toBe('#171a18');
+    expect(vars['--vertm-border-radius']).toBe('3px');
+    expect(vars['--vertm-column-size']).toBe('40px');
+    expect(vars['--vertm-column-gap']).toBe('12px');
   });
 });

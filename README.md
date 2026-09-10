@@ -105,6 +105,23 @@ function Page() {
 </VertMConfigProvider>;
 ```
 
+### Vertical Editorial 外观
+
+把设计参考 `design/vertical-editorial` 接进框架时，用预制主题承载颜色与间距，用 `appearance` 承载列式状态语言：
+
+```tsx
+import { ConfigProvider, Button, Input, Select, Menu, Tabs } from '@vertm/react';
+import '@vertm/styles/index.css';
+
+// appearance="editorial" 会自动采用 editorialTheme；也可显式传入覆盖。
+<ConfigProvider appearance="editorial">
+  <Button type="primary">ᠨᠡᠮᠡᠬᠦ</Button>
+  <Input placeholder="ᠪᠢᠴᠢᠭ" />
+</ConfigProvider>
+```
+
+`appearance="editorial"` 会给 Button / Input / Select / Menu / Tabs / Checkbox / Radio / Form 加上列式几何与 block-end 边缘 marker。主色是墨色（`#171a18`），钴蓝（`#2155d6`）只用于链接与 caret。键盘也按逻辑轴对齐：Select 上下移动、右键确认；Menu 上下同级、右进子菜单、左回退；Tabs 始终左右切换。
+
 ### 检索归一化（解决 O/U 搜索歧义）
 
 ```ts

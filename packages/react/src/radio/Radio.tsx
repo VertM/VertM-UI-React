@@ -31,8 +31,9 @@ export function VertMRadio({
       <input
         type="radio"
         className="vertm-radio__input"
-        checked={checked}
-        defaultChecked={defaultChecked}
+        {...(checked !== undefined
+          ? { checked }
+          : { defaultChecked })}
         value={value}
         disabled={disabled}
         onChange={onChange}

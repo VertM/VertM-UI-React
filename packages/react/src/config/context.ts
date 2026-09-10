@@ -7,8 +7,13 @@ export interface VertMLocale {
   locale: string;
 }
 
+/** Visual / interaction skin layered on top of theme tokens. */
+export type VertMAppearance = 'default' | 'editorial';
+
 export interface VertMConfig {
   theme: VertMTheme;
+  /** Structural skin: editorial adds column markers and ink-primary fills. */
+  appearance: VertMAppearance;
   writingMode: WritingMode;
   direction: 'ltr' | 'rtl';
   size: VertMSize;
@@ -21,6 +26,7 @@ const defaultLocale: VertMLocale = { locale: 'mn-MN' };
 
 export const defaultVertMConfig: VertMConfig = {
   theme: defaultTheme,
+  appearance: 'default',
   writingMode: 'vertical-lr',
   direction: 'ltr',
   size: 'middle',

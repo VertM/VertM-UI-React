@@ -25,6 +25,7 @@
     "./index.css": "./src/index.css",
     "./tokens.css": "./src/tokens.css",
     "./vertical.css": "./src/vertical.css",
+    "./editorial.css": "./src/editorial.css",
     "./fonts.css": "./src/fonts.css",
     "./components.css": "./src/components.css",
     "./fonts/*": "./src/fonts/*"

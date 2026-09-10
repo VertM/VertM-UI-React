@@ -86,6 +86,7 @@ export function VertMSelect({
 }: SelectProps) {
   const config = useVertMConfig();
   const vertical = useIsVertical();
+  const editorial = config.appearance === 'editorial';
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
   const [highlight, setHighlight] = useState(0);
@@ -280,16 +281,53 @@ export function VertMSelect({
 
   const handleKeyDown = (e: KeyboardEvent) => {
     if (!open) {
-      if (e.key === 'ArrowDown' || e.key === 'Enter') setOpen(true);
+      if (e.key === 'ArrowDown' || e.key === 'Enter' || (editorial && e.key === 'ArrowRight')) {
+        e.preventDefault();
+        setOpen(true);
+      }
       return;
     }
-    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
       setHighlight((h) => stepHighlight(h, 1));
+      return;
     }
-    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
       setHighlight((h) => stepHighlight(h, -1));
+      return;
     }
+
+    // Editorial: options are peer columns; ArrowRight commits the highlight.
+    // Default keeps Left/Right as alternate navigation for the horizontal list.
+    if (editorial) {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        const opt = filtered[highlight];
+        if (opt && !opt.disabled) selectOption(opt.value);
+        return;
+      }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        setHighlight((h) => stepHighlight(h, -1));
+        return;
+      }
+    } else {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        setHighlight((h) => stepHighlight(h, 1));
+        return;
+      }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        setHighlight((h) => stepHighlight(h, -1));
+        return;
+      }
+    }
+
     if (e.key === 'Enter') {
+      e.preventDefault();
       const opt = filtered[highlight];
       if (opt && !opt.disabled) selectOption(opt.value);
     }

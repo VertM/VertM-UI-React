@@ -1,0 +1,530 @@
+/**
+ * Vertical Editorial appearance.
+ *
+ * Activated by `ConfigProvider appearance="editorial"` (sets
+ * `data-appearance="editorial"`). Theme tokens come from `editorialTheme`;
+ * this file owns the structural differences the design reference requires:
+ * column-edge markers, ink-filled primaries, and quieter surfaces.
+ */
+
+[data-appearance='editorial'] {
+  --vertm-marker-width: 3px;
+  --vertm-marker-inset: -1px;
+  /* Cobalt kept for focus rings / links only — not selected fills. */
+  --vertm-color-accent: var(--vertm-color-info);
+  --vertm-color-primary-soft: color-mix(in srgb, var(--vertm-color-text) 8%, transparent);
+  --vertm-control-column: 48px;
+  --vertm-field-column: 56px;
+  color: var(--vertm-color-text);
+  background: var(--vertm-color-bg-layout);
+}
+
+/* ── Button ── */
+[data-appearance='editorial'] .vertm-btn {
+  position: relative;
+  width: var(--vertm-control-column);
+  min-width: var(--vertm-control-column);
+  min-height: 160px;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 14px 7px;
+  box-shadow: none;
+  transition:
+    border-color var(--vertm-motion-duration-fast),
+    color var(--vertm-motion-duration-fast),
+    transform var(--vertm-motion-duration-fast);
+}
+
+[data-appearance='editorial'] .vertm-btn::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 14px;
+  inset-inline-end: var(--vertm-marker-inset);
+  width: 2px;
+  height: 0;
+  background: currentColor;
+  transition: height var(--vertm-motion-duration-fast);
+  pointer-events: none;
+}
+
+[data-appearance='editorial'] .vertm-btn:hover:not(:disabled):not(.vertm-btn--loading)::after,
+[data-appearance='editorial'] .vertm-btn:focus-visible::after {
+  height: 32px;
+}
+
+[data-appearance='editorial'] .vertm-btn:hover:not(:disabled):not(.vertm-btn--loading) {
+  border-color: var(--vertm-color-text);
+  color: var(--vertm-color-text);
+  transform: translateY(-2px);
+}
+
+[data-appearance='editorial'] .vertm-btn--primary {
+  border-color: var(--vertm-color-text);
+  background: var(--vertm-color-text);
+  color: var(--vertm-color-bg-container);
+}
+
+[data-appearance='editorial'] .vertm-btn--primary .vertm-btn__text,
+[data-appearance='editorial'] .vertm-btn--primary .vertm-text {
+  color: var(--vertm-color-bg-container);
+}
+
+[data-appearance='editorial'] .vertm-btn--primary::after {
+  background: var(--vertm-color-text);
+}
+
+[data-appearance='editorial'] .vertm-btn--primary:hover:not(:disabled):not(.vertm-btn--loading) {
+  background: var(--vertm-color-text);
+  border-color: var(--vertm-color-text);
+  color: var(--vertm-color-bg-container);
+  filter: none;
+}
+
+[data-appearance='editorial'] .vertm-btn--primary:hover:not(:disabled):not(.vertm-btn--loading) .vertm-btn__text,
+[data-appearance='editorial'] .vertm-btn--primary:hover:not(:disabled):not(.vertm-btn--loading) .vertm-text {
+  color: var(--vertm-color-bg-container);
+}
+
+[data-appearance='editorial'] .vertm-btn--text,
+[data-appearance='editorial'] .vertm-btn--link {
+  color: var(--vertm-color-text-secondary);
+}
+
+[data-appearance='editorial'] .vertm-btn--danger:not(.vertm-btn--primary) {
+  color: var(--vertm-color-error);
+}
+
+[data-appearance='editorial'] .vertm-btn:disabled,
+[data-appearance='editorial'] .vertm-btn--loading {
+  opacity: 1;
+  border-color: var(--vertm-color-border-secondary);
+  color: var(--vertm-color-text-disabled);
+}
+
+[data-appearance='editorial'] .vertm-btn:active:not(:disabled):not(.vertm-btn--loading) {
+  transform: none;
+}
+
+[data-appearance='editorial'] .vertm-btn--small {
+  width: 40px;
+  min-width: 40px;
+  min-height: 120px;
+  padding: 10px 6px;
+}
+
+[data-appearance='editorial'] .vertm-btn--large {
+  width: 56px;
+  min-width: 56px;
+  min-height: 180px;
+}
+
+/* ── Input / Field ── */
+[data-appearance='editorial'] .vertm-input--vertical .vertm-field,
+[data-appearance='editorial'] .vertm-field {
+  position: relative;
+  box-shadow: none;
+}
+
+[data-appearance='editorial'] .vertm-input--vertical .vertm-field::after,
+[data-appearance='editorial'] .vertm-field:focus-within::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 22px;
+  inset-inline-end: var(--vertm-marker-inset);
+  width: var(--vertm-marker-width);
+  height: 0;
+  background: var(--vertm-color-text);
+  transition: height var(--vertm-motion-duration-mid);
+  pointer-events: none;
+  z-index: 2;
+}
+
+[data-appearance='editorial'] .vertm-field:focus-within {
+  border-color: var(--vertm-color-text);
+}
+
+[data-appearance='editorial'] .vertm-field:focus-within::after {
+  height: 48px;
+}
+
+[data-appearance='editorial'] .vertm-input--vertical .vertm-field--single,
+[data-appearance='editorial'] .vertm-input--vertical .vertm-field--boxed {
+  width: var(--vertm-field-column);
+  min-width: var(--vertm-field-column);
+}
+
+[data-appearance='editorial'] .vertm-input--error .vertm-field::after,
+[data-appearance='editorial'] .vertm-form-item--error .vertm-field::after {
+  background: var(--vertm-color-error);
+  height: 48px;
+}
+
+/* ── Select ── */
+[data-appearance='editorial'] .vertm-select--single {
+  width: var(--vertm-field-column);
+}
+
+[data-appearance='editorial'] .vertm-select__selector {
+  position: relative;
+  box-shadow: none;
+}
+
+[data-appearance='editorial'] .vertm-select--open .vertm-select__selector {
+  border-color: var(--vertm-color-text);
+  box-shadow: none;
+}
+
+[data-appearance='editorial'] .vertm-select--open .vertm-select__selector::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 16px;
+  inset-inline-end: var(--vertm-marker-inset);
+  width: var(--vertm-marker-width);
+  height: 44px;
+  background: var(--vertm-color-text);
+  pointer-events: none;
+}
+
+[data-appearance='editorial'] .vertm-select__arrow {
+  color: var(--vertm-color-text-secondary);
+}
+
+/* ── Menu ── */
+[data-appearance='editorial'] .vertm-menu {
+  border: 1px solid var(--vertm-color-border);
+  box-shadow: none;
+}
+
+[data-appearance='editorial'] .vertm-menu__list {
+  padding: 0;
+  gap: 0;
+}
+
+[data-appearance='editorial'] .vertm-menu[data-vertical-writing]:not(.vertm-menu--horizontal) .vertm-menu__list {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+[data-appearance='editorial'] .vertm-menu[data-vertical-writing]:not(.vertm-menu--horizontal) .vertm-menu-item,
+[data-appearance='editorial'] .vertm-menu[data-vertical-writing]:not(.vertm-menu--horizontal) .vertm-submenu__title {
+  position: relative;
+  width: var(--vertm-field-column);
+  min-width: var(--vertm-field-column);
+  min-height: 260px;
+  border-radius: 0;
+  border-inline-end: 1px solid var(--vertm-color-border-secondary);
+  color: var(--vertm-color-text-secondary);
+  padding: 12px 8px;
+}
+
+[data-appearance='editorial'] .vertm-menu[data-vertical-writing]:not(.vertm-menu--horizontal) .vertm-menu-item:last-child,
+[data-appearance='editorial'] .vertm-menu[data-vertical-writing]:not(.vertm-menu--horizontal) .vertm-submenu:last-child .vertm-submenu__title {
+  border-inline-end: 0;
+}
+
+[data-appearance='editorial'] .vertm-menu-item:hover:not(.vertm-menu-item--disabled),
+[data-appearance='editorial'] .vertm-submenu__title:hover {
+  background: transparent;
+  color: var(--vertm-color-text);
+}
+
+[data-appearance='editorial'] .vertm-menu[data-vertical-writing]:not(.vertm-menu--horizontal) .vertm-menu-item--selected,
+[data-appearance='editorial'] .vertm-menu[data-vertical-writing]:not(.vertm-menu--horizontal) .vertm-menu-item--selected:hover {
+  background: transparent;
+  color: var(--vertm-color-text);
+}
+
+[data-appearance='editorial'] .vertm-menu[data-vertical-writing]:not(.vertm-menu--horizontal) .vertm-menu-item--selected .vertm-text,
+[data-appearance='editorial'] .vertm-menu-item--selected .vertm-text {
+  color: var(--vertm-color-text);
+}
+
+[data-appearance='editorial'] .vertm-menu-item--selected::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 14px;
+  inset-inline-end: var(--vertm-marker-inset);
+  width: var(--vertm-marker-width);
+  height: 52px;
+  background: var(--vertm-color-text);
+  pointer-events: none;
+}
+
+/* ── Tabs ──
+ * Peer columns arranged left-to-right; panel sits at block-end.
+ * Keyboard uses ArrowLeft/ArrowRight (see Tabs.tsx editorial branch).
+ */
+[data-appearance='editorial'] .vertm-tabs,
+[data-appearance='editorial'] .vertm-tabs--editorial {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: 0;
+  border-block: 1px solid var(--vertm-color-border);
+}
+
+[data-appearance='editorial'] .vertm-tabs__ink-bar {
+  display: none;
+}
+
+[data-appearance='editorial'] .vertm-tabs__nav-wrap {
+  flex-direction: row;
+  align-items: stretch;
+  border-inline-end: 1px solid var(--vertm-color-border);
+  border-bottom: none;
+  border-top: none;
+}
+
+[data-appearance='editorial'] .vertm-tabs__tab {
+  position: relative;
+  width: 52px;
+  min-width: 52px;
+  min-height: 200px;
+  border-radius: 0;
+  padding: 16px 8px;
+  color: var(--vertm-color-text-secondary);
+  border-inline-end: 1px solid var(--vertm-color-border-secondary);
+}
+
+[data-appearance='editorial'] .vertm-tabs__tab:last-child {
+  border-inline-end: 0;
+}
+
+[data-appearance='editorial'] .vertm-tabs__tab:hover:not(.vertm-tabs__tab--disabled):not(.vertm-tabs__tab--active) {
+  color: var(--vertm-color-text);
+  background: transparent;
+}
+
+[data-appearance='editorial'] .vertm-tabs__tab--active {
+  color: var(--vertm-color-text);
+  font-weight: 400;
+}
+
+[data-appearance='editorial'] .vertm-tabs__tab--active::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 18px;
+  inset-inline-end: var(--vertm-marker-inset);
+  width: var(--vertm-marker-width);
+  height: 48px;
+  background: var(--vertm-color-text);
+  pointer-events: none;
+}
+
+[data-appearance='editorial'] .vertm-tabs--card .vertm-tabs__tab {
+  border-color: var(--vertm-color-border-secondary);
+  background: transparent;
+}
+
+[data-appearance='editorial'] .vertm-tabs--card .vertm-tabs__tab--active {
+  background: var(--vertm-color-bg-container);
+}
+
+[data-appearance='editorial'] .vertm-tabs__content {
+  min-height: 200px;
+  padding: 28px 34px;
+}
+
+/* ── Checkbox / Radio ──
+ * Control at inline-start (above the label). Groups progress on the block
+ * axis as peer columns. Shell stays horizontal-tb; only the label text is
+ * vertical so flex does not fight writing-mode.
+ */
+[data-appearance='editorial'] .vertm-checkbox-group,
+[data-appearance='editorial'] .vertm-radio-group {
+  writing-mode: horizontal-tb;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+[data-appearance='editorial'] .vertm-checkbox,
+[data-appearance='editorial'] .vertm-radio {
+  writing-mode: horizontal-tb;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 4px 0;
+}
+
+[data-appearance='editorial'] .vertm-checkbox__box,
+[data-appearance='editorial'] .vertm-radio__dot {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--vertm-color-text);
+}
+
+[data-appearance='editorial'] .vertm-checkbox__input:checked + .vertm-checkbox__box {
+  background: var(--vertm-color-text);
+  border-color: var(--vertm-color-text);
+}
+
+[data-appearance='editorial'] .vertm-radio__input:checked + .vertm-radio__dot {
+  border-color: var(--vertm-color-text);
+  box-shadow: inset 0 0 0 4px var(--vertm-color-text);
+}
+
+[data-appearance='editorial'] .vertm-checkbox__label,
+[data-appearance='editorial'] .vertm-radio__label {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  font-family: var(--vertm-font-family);
+  font-size: var(--vertm-font-size-sm);
+  line-height: 1.45;
+  max-height: 160px;
+  overflow: hidden;
+}
+
+[data-appearance='editorial'] .vertm-checkbox--disabled,
+[data-appearance='editorial'] .vertm-radio--disabled {
+  color: var(--vertm-color-text-disabled);
+  cursor: not-allowed;
+}
+
+[data-appearance='editorial'] .vertm-radio-group--button {
+  gap: 0;
+  border: 1px solid var(--vertm-color-border);
+  border-radius: var(--vertm-border-radius);
+  overflow: hidden;
+}
+
+[data-appearance='editorial'] .vertm-radio-button {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  min-width: 48px;
+  min-height: 160px;
+  border: 0;
+  border-inline-end: 1px solid var(--vertm-color-border-secondary);
+  border-radius: 0;
+  background: transparent;
+  color: var(--vertm-color-text-secondary);
+}
+
+[data-appearance='editorial'] .vertm-radio-button:last-child {
+  border-inline-end: 0;
+}
+
+[data-appearance='editorial'] .vertm-radio-button--checked {
+  color: var(--vertm-color-text);
+  border-color: transparent;
+  box-shadow: inset -3px 0 0 var(--vertm-color-text);
+}
+
+/* ── Form ──
+ * Form is a block-axis sequence of field columns. Label sits at block-start,
+ * control in the middle, help/error at block-end of the field group.
+ */
+[data-appearance='editorial'] .vertm-form {
+  writing-mode: horizontal-tb;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 28px;
+  overflow-x: auto;
+  padding-block-end: var(--vertm-padding-sm);
+}
+
+[data-appearance='editorial'] .vertm-form-item {
+  writing-mode: horizontal-tb;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  align-items: start;
+  column-gap: 8px;
+  row-gap: 8px;
+  min-width: 84px;
+}
+
+[data-appearance='editorial'] .vertm-form-item__label {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  font-family: var(--vertm-font-family);
+  min-height: 90px;
+  padding-top: 10px;
+  color: var(--vertm-color-text-secondary);
+  font-size: 14px;
+  font-weight: 400;
+  align-items: flex-start;
+}
+
+[data-appearance='editorial'] .vertm-form-item__required {
+  color: var(--vertm-color-error);
+  writing-mode: horizontal-tb;
+}
+
+[data-appearance='editorial'] .vertm-form-item__control {
+  min-width: var(--vertm-field-column);
+}
+
+[data-appearance='editorial'] .vertm-form-item__error {
+  grid-column: 1 / -1;
+  max-width: 84px;
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  font-family: var(--vertm-font-family);
+  color: var(--vertm-color-error);
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+[data-appearance='editorial'] .vertm-form > .vertm-btn {
+  align-self: flex-start;
+  margin-inline-start: 16px;
+}
+
+/* ── Select dropdown columns ── */
+[data-appearance='editorial'] .vertm-select__dropdown {
+  border-color: var(--vertm-color-text);
+  box-shadow: var(--vertm-box-shadow-secondary);
+  border-radius: var(--vertm-border-radius);
+  padding: 8px;
+  gap: 0;
+}
+
+[data-appearance='editorial'] .vertm-select__list {
+  padding: 0;
+  gap: 0;
+}
+
+[data-appearance='editorial'] .vertm-select__option {
+  position: relative;
+  min-width: var(--vertm-control-column);
+  border-radius: 0;
+  border-inline-end: 1px solid var(--vertm-color-border-secondary);
+  padding: 12px 7px;
+}
+
+[data-appearance='editorial'] .vertm-select__option:last-child {
+  border-inline-end: 0;
+}
+
+[data-appearance='editorial'] .vertm-select__option--active,
+[data-appearance='editorial'] .vertm-select__option:hover {
+  background: var(--vertm-color-primary-soft);
+}
+
+[data-appearance='editorial'] .vertm-select__option--selected {
+  background: transparent;
+  color: var(--vertm-color-text);
+}
+
+[data-appearance='editorial'] .vertm-select__option--selected::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 12px;
+  inset-inline-end: 0;
+  width: var(--vertm-marker-width);
+  height: 38px;
+  background: var(--vertm-color-text);
+  pointer-events: none;
+}
+
+[data-appearance='editorial'] .vertm-select__option-check {
+  display: none;
+}
+
+[data-appearance='editorial'] .vertm-select__search {
+  border-inline-end-color: var(--vertm-color-border-secondary);
+}

@@ -7,6 +7,7 @@ export {
   type VertMConfigProviderProps,
   type VertMConfig,
   type VertMLocale,
+  type VertMAppearance,
 } from './config/index.js';
 
 export {
@@ -32,6 +33,10 @@ export {
   FONT_PRESETS,
   DEFAULT_FONT_FAMILY,
   resolveFontFamily,
+  editorialTheme,
+  darkTheme,
+  defaultTheme,
+  createTheme,
   type FontPreset,
   type FontPresetId,
 } from '@vertm/tokens';

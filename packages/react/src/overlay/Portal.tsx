@@ -37,6 +37,7 @@ export function Portal({ children, container }: PortalProps) {
       style={scopeStyle}
       data-writing-mode={config.writingMode}
       data-direction={config.direction}
+      data-appearance={config.appearance}
     >
       {children}
     </div>,

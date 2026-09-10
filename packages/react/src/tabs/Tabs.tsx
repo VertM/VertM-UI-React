@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from 'react';
 import { Close, Plus } from '@vertm/icons';
-import { useIsVertical } from '../config/context.js';
+import { useIsVertical, useVertMConfig } from '../config/context.js';
 import { useControlled } from '../hooks/useControlled.js';
 import { VertMText } from '../VertMText.js';
 
@@ -65,8 +65,13 @@ export function VertMTabs({
   style,
 }: TabsProps) {
   const isVerticalWriting = useIsVertical();
+  const { appearance } = useVertMConfig();
+  const editorial = appearance === 'editorial';
   const resolvedPosition = tabPosition ?? resolveDefaultTabPosition(isVerticalWriting);
   const verticalBar = isVerticalBar(resolvedPosition);
+  // Editorial tabs are peer columns: Left/Right always move between them,
+  // even when the tab bar sits on the left/right edge of the panel.
+  const useBlockAxisKeys = editorial || !verticalBar;
 
   const firstKey = items[0]?.key ?? '';
   const [active, setActive] = useControlled(activeKey, defaultActiveKey || firstKey, onChange);
@@ -139,8 +144,9 @@ export function VertMTabs({
 
     // Roving tabindex leaves inactive tabs out of the tab order, so the arrow
     // keys along the tab bar's own axis are the only way to reach them.
-    const prevKey = verticalBar ? 'ArrowUp' : 'ArrowLeft';
-    const nextKey = verticalBar ? 'ArrowDown' : 'ArrowRight';
+    // Editorial appearance always treats tabs as peer columns (Left/Right).
+    const prevKey = useBlockAxisKeys ? 'ArrowLeft' : 'ArrowUp';
+    const nextKey = useBlockAxisKeys ? 'ArrowRight' : 'ArrowDown';
     const index = items.findIndex((item) => item.key === key);
     if (index === -1) return;
 
@@ -167,13 +173,18 @@ export function VertMTabs({
         'vertm-tabs',
         `vertm-tabs--${type}`,
         `vertm-tabs--${resolvedPosition}`,
+        editorial && 'vertm-tabs--editorial',
         className,
       ]
         .filter(Boolean)
         .join(' ')}
       style={style}
     >
-      <div className="vertm-tabs__nav" role="tablist" aria-orientation={verticalBar ? 'vertical' : 'horizontal'}>
+      <div
+        className="vertm-tabs__nav"
+        role="tablist"
+        aria-orientation={useBlockAxisKeys ? 'horizontal' : 'vertical'}
+      >
         <div className="vertm-tabs__nav-wrap" ref={tabListRef}>
           {type === 'line' && <span className="vertm-tabs__ink-bar" style={inkStyle} aria-hidden />}
           {items.map((item) => {

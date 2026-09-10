@@ -22,6 +22,7 @@ import {
   type MenuExpandIconRender,
   type MenuItemType,
 } from './context.js';
+import { focusFirstMenuControl, focusSiblingMenuControl } from './menuKeyboard.js';
 import type { MenuMode, MenuSelectInfo } from './types.js';
 
 export interface MenuProps extends MenuArrowConfig {
@@ -140,6 +141,29 @@ function MenuItem({
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       handleClick();
+      return;
+    }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      focusSiblingMenuControl(e.currentTarget, 1);
+      return;
+    }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      focusSiblingMenuControl(e.currentTarget, -1);
+      return;
+    }
+    // Nested items live under a portalled popup; ArrowLeft closes that level.
+    if (e.key === 'ArrowLeft') {
+      const parentKey = ctx.keyPathPrefix[ctx.keyPathPrefix.length - 1];
+      if (!parentKey) return;
+      e.preventDefault();
+      if (ctx.openKeys.includes(parentKey)) ctx.toggleOpenKey(parentKey);
+      document
+        .querySelector<HTMLElement>(
+          `.vertm-submenu[data-menu-key="${CSS.escape(parentKey)}"] > .vertm-submenu__title`
+        )
+        ?.focus();
     }
   };
 
@@ -190,6 +214,7 @@ function SubMenu({
   const popupRef = useRef<HTMLDivElement>(null);
   const closeTimerRef = useRef<number>();
   const openedByHoverRef = useRef(false);
+  const focusChildOnOpenRef = useRef(false);
   const [pos, setPos] = useState({ top: 0, left: 0 });
 
   const arrowConfig = mergeArrowConfig(ctx.arrow, {
@@ -282,19 +307,48 @@ function SubMenu({
 
   const handleKeyDown = (e: KeyboardEvent<HTMLLIElement>) => {
     if (disabled) return;
+    const target = (e.target as HTMLElement).closest<HTMLElement>(
+      '.vertm-submenu__title, [role="menuitem"]'
+    );
+    const focusFrom = target ?? e.currentTarget.querySelector<HTMLElement>('.vertm-submenu__title');
+
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       handleToggle();
+      return;
+    }
+    if (e.key === 'ArrowDown' && focusFrom) {
+      e.preventDefault();
+      focusSiblingMenuControl(focusFrom, 1);
+      return;
+    }
+    if (e.key === 'ArrowUp' && focusFrom) {
+      e.preventDefault();
+      focusSiblingMenuControl(focusFrom, -1);
+      return;
     }
     if (e.key === 'ArrowRight' && !open) {
       e.preventDefault();
+      focusChildOnOpenRef.current = true;
       openSubMenu();
+      return;
     }
     if (e.key === 'ArrowLeft' && open) {
       e.preventDefault();
       closeSubMenu();
+      triggerRef.current?.querySelector<HTMLElement>('.vertm-submenu__title')?.focus();
     }
   };
+
+  useEffect(() => {
+    if (!open || !focusChildOnOpenRef.current) return;
+    focusChildOnOpenRef.current = false;
+    // Portal content mounts after open flips; wait a frame for the list.
+    const id = requestAnimationFrame(() => {
+      focusFirstMenuControl(popupRef.current);
+    });
+    return () => cancelAnimationFrame(id);
+  }, [open]);
 
   const titleNode = (
     <div
@@ -310,8 +364,10 @@ function SubMenu({
         if (disabled) return;
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
+          e.stopPropagation();
           handleToggle();
         }
+        // Arrow keys bubble to the submenu li handler.
       }}
     >
       {icon && <span className="vertm-menu-item__icon">{icon}</span>}

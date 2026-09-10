@@ -11,4 +11,5 @@ export {
   defaultVertMConfig as defaultConfig,
   type VertMConfig,
   type VertMLocale,
+  type VertMAppearance,
 } from './context.js';

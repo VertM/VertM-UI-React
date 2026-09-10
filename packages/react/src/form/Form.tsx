@@ -255,7 +255,11 @@ export function FormItem({
         </label>
       )}
       <div className="vertm-form-item__control">{control}</div>
-      {error && <div className="vertm-form-item__error">{error}</div>}
+      {error && (
+        <div className="vertm-form-item__error" role="alert">
+          {typeof error === 'string' ? <VertMText as="span" text={error} /> : error}
+        </div>
+      )}
     </div>
   );
 }

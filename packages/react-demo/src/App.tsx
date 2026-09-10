@@ -44,8 +44,9 @@ import {
   message,
   notification,
   MessageHolder,
+  type VertMAppearance,
 } from '@vertm/react';
-import { createTheme, FONT_PRESETS, type FontPresetId } from '@vertm/tokens';
+import { createTheme, editorialTheme, FONT_PRESETS, type FontPresetId } from '@vertm/tokens';
 import {
   ChevronRight,
   Loading,
@@ -129,25 +130,28 @@ export default function App() {
   const [fonts, setFonts] = useState('');
   const [query, setQuery] = useState('');
   const [dark, setDark] = useState(false);
+  const [appearance, setAppearance] = useState<VertMAppearance>('default');
   const [fontId, setFontId] = useState<FontPresetId>('notoSansMongolian');
   const [form] = useForm();
 
   const theme = useMemo(
     () =>
-      dark
-        ? createTheme({
-            colorPrimary: '#2d77db',
-            colorLink: '#2d77db',
-            colorLinkHover: '#4d94eb',
-            caretColor: '#2d77db',
-            colorBgContainer: '#1c1917',
-            colorBgLayout: '#0c0a09',
-            colorText: '#fafaf9',
-            colorTextSecondary: '#a8a29e',
-            colorBorder: '#44403c',
-          })
-        : createTheme(),
-    [dark]
+      appearance === 'editorial'
+        ? editorialTheme
+        : dark
+          ? createTheme({
+              colorPrimary: '#2d77db',
+              colorLink: '#2d77db',
+              colorLinkHover: '#4d94eb',
+              caretColor: '#2d77db',
+              colorBgContainer: '#1c1917',
+              colorBgLayout: '#0c0a09',
+              colorText: '#fafaf9',
+              colorTextSecondary: '#a8a29e',
+              colorBorder: '#44403c',
+            })
+          : createTheme(),
+    [dark, appearance]
   );
 
   useEffect(() => {
@@ -174,19 +178,37 @@ export default function App() {
   );
 
   return (
-    <VertMConfigProvider theme={theme} fontFamily={FONT_PRESETS[fontId].fontFamily}>
+    <VertMConfigProvider
+      theme={theme}
+      appearance={appearance}
+      fontFamily={FONT_PRESETS[fontId].fontFamily}
+    >
       <MessageHolder />
       <div
         className="demo-page"
         style={{
           fontFamily: 'system-ui, sans-serif',
-          background: dark ? '#0c0a09' : '#faf9f7',
-          color: dark ? '#fafaf9' : '#1c1917',
+          background:
+            appearance === 'editorial'
+              ? theme.colorBgLayout
+              : dark
+                ? '#0c0a09'
+                : '#faf9f7',
+          color:
+            appearance === 'editorial'
+              ? theme.colorText
+              : dark
+                ? '#fafaf9'
+                : '#1c1917',
         }}
       >
         <aside className="demo-rail">
           <div className="demo-rail__title">
-            <VertMIcon size={24} color={theme.colorPrimary} vertical />
+            <VertMIcon
+              size={24}
+              color={appearance === 'editorial' ? theme.colorInfo : theme.colorPrimary}
+              vertical
+            />
             <h1 style={{ margin: 0, fontSize: '1.25rem' }}>VertM UI Demo</h1>
           </div>
           <p className="demo-rail__desc">
@@ -196,7 +218,24 @@ export default function App() {
           </p>
 
           <div className="demo-rail__controls">
-            <VertMButton onClick={() => setDark((d) => !d)} block>
+            <VertMButton
+              onClick={() => {
+                setAppearance((a) => (a === 'editorial' ? 'default' : 'editorial'));
+                if (appearance !== 'editorial') setDark(false);
+              }}
+              block
+              type={appearance === 'editorial' ? 'primary' : 'default'}
+            >
+              {appearance === 'editorial' ? 'Editorial on' : 'Try editorial'}
+            </VertMButton>
+            <VertMButton
+              onClick={() => {
+                setDark((d) => !d);
+                setAppearance('default');
+              }}
+              block
+              disabled={appearance === 'editorial'}
+            >
               Switch to {dark ? 'light' : 'dark'} theme
             </VertMButton>
             <label className="demo-rail__font">
