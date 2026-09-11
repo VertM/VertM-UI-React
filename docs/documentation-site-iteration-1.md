@@ -125,9 +125,9 @@ group:
 3. 命令式 API 页(App / message / notification / Modal.confirm)套同一骨架。
 
 ### 验收
-- [ ] 抽查 10 页,frontmatter、小节顺序、demo 数量、`## API` 均符合模板。
-- [ ] 侧边栏分组/顺序与 `.dumirc.ts` 一致,无孤页、无死链。
-- [ ] `npm run docs:build` 通过。
+- [x] 抽查 10 页,frontmatter、小节顺序、demo 数量、`## API` 均符合模板。
+- [x] 侧边栏分组/顺序与 `.dumirc.ts` 一致,无孤页、无死链。
+- [x] `npm run docs:build` 通过。
 
 ---
 
