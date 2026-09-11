@@ -1,16 +1,20 @@
-# Changelog
+---
+title: 更新日志
+nav:
+  title: 更新日志
+  order: 5
+---
 
-All notable changes to VertM UI are documented in this file.
+# 更新日志
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+完整变更记录见仓库根目录 [`CHANGELOG.md`](https://github.com/VertM/VertM-UI-React/blob/main/CHANGELOG.md)。
 
 ## [Unreleased]
 
 ### Added
 
-- Full documentation site component coverage (guides, core demos, theme swatches, all major `@vertm/react` / `@vertm/icons` pages, imperative App/message/notification/Modal docs).
 - Documentation site scaffold (`@vertm/docs`, dumi 2) with guide / core / theme pages and component sample docs.
+- Full documentation site component coverage (guides, core demos, theme swatches, all major `@vertm/react` / `@vertm/icons` pages, imperative App/message/notification/Modal docs).
 - `appearance="editorial"` preset theme and structural skin.
 - `WritingMode` now includes `horizontal-tb` for docs / preview toggles.
 

@@ -4,7 +4,6 @@ import path from 'node:path';
 const pkg = (rel: string) => path.join(__dirname, rel);
 
 export default defineConfig({
-  // GitHub Pages project site
   base: '/VertM-UI-React/',
   publicPath: '/VertM-UI-React/',
   outputPath: 'dist',
@@ -17,11 +16,9 @@ export default defineConfig({
     '@vertm/icons': pkg('../icons/src'),
     '@vertm/styles': pkg('../styles/src'),
     '@vertm/styles/index.css': pkg('../styles/src/index.css'),
-    // Demo codeblocks import this by bare name.
     VertMDemoFrame: pkg('src/components/VertMDemoFrame.tsx'),
   },
   monorepoRedirect: {},
-  // Workspace packages use ESM `.js` import specifiers that map to `.ts` sources.
   chainWebpack(memo: any) {
     memo.resolve.merge({
       extensionAlias: {
@@ -53,6 +50,7 @@ export default defineConfig({
       { title: '组件', link: '/components/button' },
       { title: '核心能力', link: '/core/normalize' },
       { title: '主题', link: '/theme/tokens' },
+      { title: '更新日志', link: '/changelog' },
       {
         title: 'GitHub',
         link: 'https://github.com/VertM/VertM-UI-React',
@@ -99,13 +97,22 @@ export default defineConfig({
       '/components': [
         {
           title: '通用',
-          children: [{ title: 'Button', link: '/components/button' }],
+          children: [
+            { title: 'Button', link: '/components/button' },
+            { title: 'Icon', link: '/components/icon' },
+            { title: 'Typography', link: '/components/typography' },
+            { title: 'ConfigProvider', link: '/components/config' },
+          ],
         },
         {
-          title: '数据录入',
+          title: '布局',
           children: [
-            { title: 'Input', link: '/components/input' },
-            { title: 'Form', link: '/components/form' },
+            { title: 'Layout', link: '/components/layout' },
+            { title: 'Grid', link: '/components/grid' },
+            { title: 'Flex', link: '/components/flex' },
+            { title: 'Space', link: '/components/space' },
+            { title: 'Divider', link: '/components/divider' },
+            { title: 'Splitter', link: '/components/splitter' },
           ],
         },
         {
@@ -113,11 +120,64 @@ export default defineConfig({
           children: [
             { title: 'Menu', link: '/components/menu' },
             { title: 'Tabs', link: '/components/tabs' },
+            { title: 'Dropdown', link: '/components/dropdown' },
+            { title: 'Breadcrumb', link: '/components/breadcrumb' },
+            { title: 'Pagination', link: '/components/pagination' },
+            { title: 'Steps', link: '/components/steps' },
+            { title: 'Anchor', link: '/components/anchor' },
+          ],
+        },
+        {
+          title: '数据录入',
+          children: [
+            { title: 'Input', link: '/components/input' },
+            { title: 'Select', link: '/components/select' },
+            { title: 'Checkbox', link: '/components/checkbox' },
+            { title: 'Radio', link: '/components/radio' },
+            { title: 'Switch', link: '/components/switch' },
+            { title: 'Form', link: '/components/form' },
+            { title: 'Segmented', link: '/components/segmented' },
+          ],
+        },
+        {
+          title: '数据展示',
+          children: [
+            { title: 'Card', link: '/components/card' },
+            { title: 'List', link: '/components/list' },
+            { title: 'Descriptions', link: '/components/descriptions' },
+            { title: 'Tag', link: '/components/tag' },
+            { title: 'Avatar', link: '/components/avatar' },
+            { title: 'Badge', link: '/components/badge' },
+            { title: 'Collapse', link: '/components/collapse' },
+            { title: 'Timeline', link: '/components/timeline' },
+            { title: 'Statistic', link: '/components/statistic' },
+            { title: 'Tooltip', link: '/components/overlay' },
+            { title: 'Popover', link: '/components/popover' },
+          ],
+        },
+        {
+          title: '反馈',
+          children: [
+            { title: 'Alert', link: '/components/alert' },
+            { title: 'Modal', link: '/components/modal' },
+            { title: 'Drawer', link: '/components/drawer' },
+            { title: 'Popconfirm', link: '/components/popconfirm' },
+            { title: 'Progress', link: '/components/progress' },
+            { title: 'Spin', link: '/components/spin' },
+            { title: 'Skeleton', link: '/components/skeleton' },
+            { title: 'Result', link: '/components/result' },
+            { title: 'Empty', link: '/components/empty' },
+            { title: 'Message', link: '/components/message' },
+            { title: 'Notification', link: '/components/notification' },
+            { title: 'App', link: '/components/app' },
           ],
         },
         {
           title: '竖排专属',
-          children: [{ title: 'VertMText', link: '/components/vertm-text' }],
+          children: [
+            { title: 'VertMText', link: '/components/vertm-text' },
+            { title: 'VertMTextField', link: '/components/vertm-text-field' },
+          ],
         },
       ],
     },

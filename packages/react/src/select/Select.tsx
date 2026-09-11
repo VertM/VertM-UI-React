@@ -24,14 +24,20 @@ export interface SelectOption {
 }
 
 export interface SelectProps {
+  /** Option list. */
   options?: SelectOption[];
+  /** Controlled value (`string[]` when `multiple`). */
   value?: string | string[];
+  /** Uncontrolled initial value. */
   defaultValue?: string | string[];
   onChange?: (value: string | string[]) => void;
+  /** Enable multi-select. */
   multiple?: boolean;
+  /** Show search box; filters via `normalizeForSearch`. */
   showSearch?: boolean;
   placeholder?: string;
   disabled?: boolean;
+  /** Show clear button when there is a value. */
   allowClear?: boolean;
   className?: string;
   style?: CSSProperties;

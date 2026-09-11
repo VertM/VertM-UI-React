@@ -3,10 +3,15 @@ import { useControlled } from '../hooks/useControlled.js';
 import { VertMText } from '../VertMText.js';
 
 export interface CheckboxProps {
+  /** Controlled checked state. */
   checked?: boolean;
+  /** Uncontrolled initial checked state. */
   defaultChecked?: boolean;
+  /** Fires with the next boolean checked value. */
   onChange?: (checked: boolean) => void;
+  /** Visual indeterminate state (does not change `checked`). */
   indeterminate?: boolean;
+  /** Disable interaction. */
   disabled?: boolean;
   children?: ReactNode;
   className?: string;

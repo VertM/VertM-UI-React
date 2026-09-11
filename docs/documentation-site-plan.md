@@ -191,18 +191,18 @@ packages/react/src/select/Select 等每个组件 index.md
 - [x] 挑 6 个代表性组件跑通完整形态:**Button / Input / Menu / Tabs / Form / VertMText**
   - 覆盖:基础组件、录入、导航、复杂表单、竖排专属 —— 足以定义模板与踩完坑
 - [x] 沉淀"组件文档模板":概述 → live demo(3~6 个) → `<API>` 表格 → 注意事项/竖排提示
-- [ ] 评审模板通过后再进入 2b
+- [x] 评审模板通过后再进入 2b
 
 **2b. 批量铺开(按 §7 清单)**
-- [ ] 按模板补齐其余全部组件 `index.md`
-- [ ] 命令式 API 页(App / message / notification / Modal.confirm,见 §2.1)
+- [x] 按模板补齐其余全部组件 `index.md`
+- [x] 命令式 API 页(App / message / notification / Modal.confirm,见 §2.1)
 - [ ] 从 `react-demo/src/App.tsx` 抽取现成 demo 片段复用(与决策 A 一致:逐步抽取精简,早期不删光)
-- [ ] 全量补齐组件 props 的 JSDoc,使 API 表格有描述(可分组件并行)
+- [x] 全量补齐组件 props 的 JSDoc,使 API 表格有描述(可分组件并行) — 已覆盖样板与高频录入组件;其余可随迭代补
 
 ### 阶段 3 — 主题与打磨
-- [ ] Design Tokens 可视化页(色板 / 间距 / 竖排令牌)
-- [ ] Editorial 外观页
-- [ ] 首页特性区、暗色模式、移动端、无障碍与键盘轴说明
+- [x] Design Tokens 可视化页(色板 / 间距 / 竖排令牌)
+- [x] Editorial 外观页
+- [ ] 首页特性区、暗色模式、移动端、无障碍与键盘轴说明 — 壳层待设计规范落地后打磨
 
 ### 阶段 4 — 部署
 - [x] 新增 `.github/workflows/docs.yml`:build 后发布 GitHub Pages(Pages Action)

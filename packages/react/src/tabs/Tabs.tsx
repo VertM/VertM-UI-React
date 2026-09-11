@@ -29,12 +29,17 @@ export interface TabsEditableConfig {
 }
 
 export interface TabsProps {
+  /** Controlled active tab key. */
   activeKey?: string;
   defaultActiveKey?: string;
   onChange?: (key: string) => void;
+  /** Visual style. */
   type?: TabsType;
+  /** Where the tab list sits relative to the panel. */
   tabPosition?: TabPosition;
+  /** Tab definitions. */
   items?: TabItem[];
+  /** Enable add/remove of tabs. */
   editable?: boolean | TabsEditableConfig;
   className?: string;
   style?: CSSProperties;

@@ -26,15 +26,19 @@ import { focusFirstMenuControl, focusSiblingMenuControl } from './menuKeyboard.j
 import type { MenuMode, MenuSelectInfo } from './types.js';
 
 export interface MenuProps extends MenuArrowConfig {
+  /** Menu layout mode. */
   mode?: MenuMode;
+  /** Controlled selected keys. */
   selectedKeys?: string[];
   defaultSelectedKeys?: string[];
+  /** Controlled open submenu keys. */
   openKeys?: string[];
   defaultOpenKeys?: string[];
   onSelect?: (info: MenuSelectInfo) => void;
   onOpenChange?: (openKeys: string[]) => void;
   /** Default popup placement for submenus. */
   defaultPopupPlacement?: Placement;
+  /** Declarative item tree (preferred over children for docs). */
   items?: MenuItemType[];
   className?: string;
   style?: CSSProperties;

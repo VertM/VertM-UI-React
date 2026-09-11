@@ -9,16 +9,23 @@ import { VertMButton } from '../button/Button.js';
 export type InputStatus = 'error' | 'warning';
 
 export interface InputProps extends Omit<VertMTextFieldProps, 'onChange'> {
+  /** Controlled value. */
   value?: string;
+  /** Uncontrolled initial value. */
   defaultValue?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  /** Content before the input (inline-start). */
   prefix?: ReactNode;
+  /** Content after the input (inline-end). */
   suffix?: ReactNode;
   addonBefore?: ReactNode;
   addonAfter?: ReactNode;
+  /** Show clear control when value is non-empty. */
   allowClear?: boolean;
   maxLength?: number;
+  /** Validation status styling. */
   status?: InputStatus;
+  /** Show character count. */
   showCount?: boolean;
   /** Transform input value before commit (e.g. password charset filter). */
   sanitize?: (value: string) => string;
