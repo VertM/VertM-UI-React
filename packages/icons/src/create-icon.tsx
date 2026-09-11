@@ -9,18 +9,18 @@ const SIZE_MAP: Record<Exclude<IconSize, number>, number> = {
 };
 
 export interface VertMIconProps extends Omit<SVGProps<SVGSVGElement>, 'color'> {
-  /** Icon size in px or preset. */
+  /** 图标尺寸（px 或预设） @default 'middle' */
   size?: IconSize;
-  /** Icon color; defaults to `currentColor`. */
+  /** 图标颜色 @default 'currentColor' */
   color?: string;
-  /** Enable spin animation (for loading states). */
+  /** 是否旋转动画（加载态） @default false */
   spin?: boolean;
   /**
-   * Rotate directional icons 90° for vertical-lr layout.
-   * @default true when used inside VertM vertical context.
+   * 竖排时是否将方向性图标旋转 90°
+   * @default true
    */
   rotateForVertical?: boolean;
-  /** Whether the current writing mode is vertical. */
+  /** 当前书写模式是否为竖排 @default false */
   vertical?: boolean;
 }
 

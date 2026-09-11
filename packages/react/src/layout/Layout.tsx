@@ -11,43 +11,65 @@ import { useIsVertical } from '../config/context.js';
 import { useControlled } from '../hooks/useControlled.js';
 
 export interface LayoutProps {
+  /** 布局子节点 */
   children?: ReactNode;
-  /** Force has-sider layout class when Sider is not a direct child. */
+  /** 强制应用含侧栏布局类（Sider 非直接子节点时） */
   hasSider?: boolean;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 
 export interface HeaderProps {
+  /** 顶栏内容 */
   children?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 
 export interface FooterProps {
+  /** 底栏内容 */
   children?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 
 export interface ContentProps {
+  /** 内容区子节点 */
   children?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 
 export interface SiderProps {
+  /** 侧栏内容 */
   children?: ReactNode;
+  /** 展开时宽度 */
   width?: number | string;
+  /** 收起时宽度 */
   collapsedWidth?: number | string;
+  /** 是否可收起 */
   collapsible?: boolean;
+  /** 受控收起状态 */
   collapsed?: boolean;
+  /** 非受控初始收起状态 */
   defaultCollapsed?: boolean;
+  /** 收起状态变化回调 */
   onCollapse?: (collapsed: boolean) => void;
-  /** Custom collapse trigger; `null` hides the trigger. */
+  /** 自定义收起触发器；传 null 隐藏 */
   trigger?: ReactNode | null;
+  /** 侧栏位置 */
   placement?: 'left' | 'right';
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

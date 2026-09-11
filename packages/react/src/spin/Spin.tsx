@@ -4,11 +4,17 @@ import { useIsVertical } from '../config/context.js';
 import { VertMText } from '../VertMText.js';
 
 export interface SpinProps {
+  /** 是否处于加载中 @default true */
   spinning?: boolean;
+  /** 指示器尺寸 @default 'default' */
   size?: 'small' | 'default' | 'large';
+  /** 加载提示文案 */
   tip?: ReactNode;
+  /** 被包裹的内容；无 children 时仅渲染指示器 */
   children?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

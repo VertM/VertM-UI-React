@@ -28,6 +28,53 @@ export default () => (
 );
 ```
 
+## 自定义分隔符
+
+```tsx
+import { VertMBreadcrumb } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={240}>
+    <VertMBreadcrumb
+      separator="›"
+      items={[
+        { title: 'ᠭᠡᠷ', href: '#' },
+        { title: 'ᠠᠩᠭᠢ', href: '#' },
+        { title: 'ᠬᠤᠤᠳᠠᠰᠤ' },
+      ]}
+    />
+  </VertMDemoFrame>
+);
+```
+
+## 带下拉
+
+```tsx
+import { VertMBreadcrumb } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={260}>
+    <VertMBreadcrumb
+      items={[
+        { title: 'ᠨᠢᠭᠡ', href: '#' },
+        {
+          title: 'ᠬᠣᠶᠠᠷ',
+          menu: {
+            items: [
+              { key: 'a', label: 'A' },
+              { key: 'b', label: 'B' },
+            ],
+          },
+        },
+        { title: 'ᠭᠤᠷᠪᠠ' },
+      ]}
+    />
+  </VertMDemoFrame>
+);
+```
+
 ## 竖排提示
 
 - 单项可挂 `menu` 做下拉分支

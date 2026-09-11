@@ -7,7 +7,7 @@ group:
 
 # Dropdown
 
-下拉菜单。通过 `menu.items` 配置项。
+下拉菜单，触发器包裹子元素。
 
 ## 基本用法
 
@@ -16,19 +16,63 @@ import { VertMDropdown, VertMButton } from '@vertm/react';
 import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
-  <VertMDemoFrame minHeight={280}>
+  <VertMDemoFrame minHeight={260}>
     <VertMDropdown
       menu={{
         items: [
           { key: '1', label: 'ᠨᠢᠭᠡ' },
           { key: '2', label: 'ᠬᠣᠶᠠᠷ' },
-          { type: 'divider', key: 'd1' },
           { key: '3', label: 'ᠭᠤᠷᠪᠠ', disabled: true },
         ],
       }}
     >
-      <VertMButton type="primary">ᠨᠡᠮᠡᠬᠦ</VertMButton>
+      <VertMButton>ᠰᠣᠩᠭᠣᠬᠤ</VertMButton>
     </VertMDropdown>
+  </VertMDemoFrame>
+);
+```
+
+## 点击触发
+
+```tsx
+import { VertMDropdown, VertMButton } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={260}>
+    <VertMDropdown
+      trigger={['click']}
+      menu={{
+        items: [
+          { key: 'a', label: 'ᠨᠡᠮᠡᠬᠦ' },
+          { key: 'b', label: 'ᠬᠠᠰᠠᠬᠤ' },
+        ],
+      }}
+    >
+      <VertMButton type="primary">click</VertMButton>
+    </VertMDropdown>
+  </VertMDemoFrame>
+);
+```
+
+## Dropdown.Button
+
+```tsx
+import { VertMDropdown } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={260}>
+    <VertMDropdown.Button
+      menu={{
+        items: [
+          { key: '1', label: 'ᠨᠢᠭᠡ' },
+          { key: '2', label: 'ᠬᠣᠶᠠᠷ' },
+        ],
+      }}
+    >
+      ᠦᠢᠯᠡᠳᠦᠯ
+    </VertMDropdown.Button>
   </VertMDemoFrame>
 );
 ```

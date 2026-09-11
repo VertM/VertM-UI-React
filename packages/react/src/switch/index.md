@@ -2,14 +2,31 @@
 title: Switch
 group:
   title: 数据录入
-  order: 6
+  order: 5
 ---
 
 # Switch
 
-开关。可配 `checkedChildren` / `unCheckedChildren`。
+开关选择器。
 
 ## 基本用法
+
+```tsx
+import { VertMSwitch, VertMSpace } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={220}>
+    <VertMSpace align="center" size="middle">
+      <VertMSwitch defaultChecked />
+      <VertMSwitch />
+      <VertMSwitch disabled defaultChecked />
+    </VertMSpace>
+  </VertMDemoFrame>
+);
+```
+
+## 带文案
 
 ```tsx
 import { VertMSwitch } from '@vertm/react';
@@ -19,9 +36,25 @@ export default () => (
   <VertMDemoFrame minHeight={220}>
     <VertMSwitch
       defaultChecked
-      checkedChildren="ᠨᠡᠭᠡᠭᠡᠬᠦ"
-      unCheckedChildren="ᠬᠠᠭᠠᠬᠤ"
+      checkedChildren="ᠣᠨ"
+      unCheckedChildren="ᠣᠯᠢ"
     />
+  </VertMDemoFrame>
+);
+```
+
+## 加载与尺寸
+
+```tsx
+import { VertMSwitch, VertMSpace } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={220}>
+    <VertMSpace align="center" size="middle">
+      <VertMSwitch size="small" defaultChecked />
+      <VertMSwitch loading defaultChecked />
+    </VertMSpace>
   </VertMDemoFrame>
 );
 ```

@@ -11,13 +11,21 @@ export interface SegmentedOption {
 }
 
 export interface SegmentedProps {
+  /** 选项列表 @default [] */
   options?: SegmentedOption[];
+  /** 受控选中值 */
   value?: string;
+  /** 非受控初始值，默认取首项 */
   defaultValue?: string;
+  /** 选中值变化回调 */
   onChange?: (value: string) => void;
+  /** 是否撑满父容器宽度 @default false */
   block?: boolean;
+  /** 是否禁用 @default false */
   disabled?: boolean;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

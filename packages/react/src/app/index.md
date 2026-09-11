@@ -51,6 +51,58 @@ export default () => (
 );
 ```
 
+## 仅 message
+
+```tsx
+import { VertMApp, VertMButton } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+const Demo = () => {
+  const { message } = VertMApp.useApp();
+  return (
+    <VertMButton type="primary" onClick={() => message.info('ᠮᠡᠳᠡᠭᠡ')}>
+      info
+    </VertMButton>
+  );
+};
+
+export default () => (
+  <VertMDemoFrame minHeight={200}>
+    <VertMApp>
+      <Demo />
+    </VertMApp>
+  </VertMDemoFrame>
+);
+```
+
+## 仅 modal
+
+```tsx
+import { VertMApp, VertMButton } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+const Demo = () => {
+  const { modal } = VertMApp.useApp();
+  return (
+    <VertMButton
+      onClick={() =>
+        modal.confirm({ title: 'ᠵᠥᠪᠰᠢᠶᠡᠷᠡᠬᠦ ᠦᠦ ?', content: 'ᠠᠭᠤᠯᠭ᠎ᠠ' })
+      }
+    >
+      confirm
+    </VertMButton>
+  );
+};
+
+export default () => (
+  <VertMDemoFrame minHeight={200}>
+    <VertMApp>
+      <Demo />
+    </VertMApp>
+  </VertMDemoFrame>
+);
+```
+
 ## 竖排提示
 
 - 推荐结构：`VertMConfigProvider` → `VertMApp` → 页面

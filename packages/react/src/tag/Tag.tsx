@@ -27,16 +27,27 @@ const PRESET_COLORS: PresetTagColor[] = [
 ];
 
 export interface TagProps {
+  /** 标签内容 */
   children?: ReactNode;
+  /** 颜色：预设名或自定义色值 @default 'default' */
   color?: PresetTagColor | string;
+  /** 是否可关闭 @default false */
   closable?: boolean;
+  /** 点击关闭按钮的回调 */
   onClose?: (e: MouseEvent<HTMLElement>) => void;
+  /** 是否可勾选切换 @default false */
   checkable?: boolean;
+  /** 受控勾选状态 */
   checked?: boolean;
+  /** 非受控初始勾选状态 @default false */
   defaultChecked?: boolean;
+  /** 勾选状态变化回调 */
   onChange?: (checked: boolean) => void;
+  /** 标签前图标 */
   icon?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

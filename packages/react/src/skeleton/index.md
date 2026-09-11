@@ -17,7 +17,33 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={240}>
-    <VertMSkeleton active paragraph={{ rows: 3 }} />
+    <VertMSkeleton />
+  </VertMDemoFrame>
+);
+```
+
+## 头像与段落
+
+```tsx
+import { VertMSkeleton } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={260}>
+    <VertMSkeleton avatar paragraph={{ rows: 3 }} />
+  </VertMDemoFrame>
+);
+```
+
+## 动画
+
+```tsx
+import { VertMSkeleton } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={240}>
+    <VertMSkeleton active round paragraph={{ rows: 2 }} />
   </VertMDemoFrame>
 );
 ```

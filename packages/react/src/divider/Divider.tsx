@@ -11,18 +11,23 @@ export type DividerPlacement = 'top' | 'center' | 'bottom';
 export type DividerOrientation = 'left' | 'right' | 'center';
 
 export interface DividerProps {
+  /** 分割线中间的文字内容 */
   children?: ReactNode;
-  /** Text position: top / center / bottom along the divider line. */
+  /** 文字沿分割线的位置 @default 'center' */
   placement?: DividerPlacement;
-  /** @deprecated Use `placement` (`left`→`top`, `right`→`bottom`). */
+  /** @deprecated 请改用 placement（left→top，right→bottom） */
   orientation?: DividerOrientation;
-  /** Allow editing label text (string children only). */
+  /** 是否允许编辑标签文字（仅 string children） */
   editable?: boolean;
-  /** Called when editable label changes. */
+  /** 可编辑标签文字变化时的回调 */
   onTextChange?: (text: string) => void;
+  /** 是否虚线 */
   dashed?: boolean;
+  /** 是否使用更轻的正文样式 */
   plain?: boolean;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

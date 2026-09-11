@@ -14,15 +14,21 @@ export type ButtonType = 'primary' | 'default' | 'dashed' | 'text' | 'link';
 export type ButtonSize = 'small' | 'middle' | 'large';
 
 export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
-  /** Button variant (antd-compatible `type` prop). */
+  /** 按钮类型 @default 'default' */
   type?: ButtonType;
+  /** 按钮尺寸，未设时跟随 ConfigProvider */
   size?: ButtonSize;
+  /** 载入中，禁用点击并显示 spinner @default false */
   loading?: boolean;
+  /** 危险态，用于删除等破坏性操作 @default false */
   danger?: boolean;
+  /** 按钮图标，显示在文字前 */
   icon?: ReactNode;
+  /** 是否撑满父容器宽度 @default false */
   block?: boolean;
-  /** Max lines per column before wrapping to the next column (vertical writing). */
+  /** 竖排时单列最大行数，超出换到下一列 */
   columnDepth?: number;
+  /** 原生 button 的 type @default 'button' */
   htmlType?: 'button' | 'submit' | 'reset';
 }
 
@@ -105,8 +111,11 @@ const VertMButtonBase = forwardRef<HTMLButtonElement, ButtonProps>(function Vert
 });
 
 export interface ButtonGroupProps {
+  /** 按钮组成员 */
   children: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 组内按钮统一尺寸 */
   size?: ButtonSize;
 }
 

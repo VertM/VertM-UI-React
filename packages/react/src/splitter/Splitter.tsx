@@ -12,20 +12,32 @@ import {
 import { useIsVertical } from '../config/context.js';
 
 export interface SplitterPanelProps {
+  /** 面板默认尺寸 */
   defaultSize?: number | string;
+  /** 面板最小尺寸 */
   min?: number | string;
+  /** 面板最大尺寸 */
   max?: number | string;
+  /** 是否可折叠 */
   collapsible?: boolean;
+  /** 面板内容 */
   children?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 
 export interface SplitterProps {
+  /** 分割方向；未设时跟随书写模式 */
   layout?: 'horizontal' | 'vertical';
+  /** 面板子节点 */
   children?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
+  /** 拖拽调整尺寸时的回调 */
   onResize?: (sizes: number[]) => void;
 }
 

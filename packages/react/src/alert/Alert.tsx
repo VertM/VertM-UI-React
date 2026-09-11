@@ -20,14 +20,23 @@ const ICONS: Record<AlertType, typeof InfoCircle> = {
 };
 
 export interface AlertProps {
+  /** 警告类型 @default 'info' */
   type?: AlertType;
+  /** 警告标题/主文案 */
   message: ReactNode;
+  /** 辅助说明文案 */
   description?: ReactNode;
+  /** 是否显示类型图标 @default true */
   showIcon?: boolean;
+  /** 是否可关闭 @default false */
   closable?: boolean;
+  /** 是否以顶部横幅样式展示 @default false */
   banner?: boolean;
+  /** 关闭时的回调 */
   onClose?: () => void;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

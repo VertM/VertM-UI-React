@@ -4,9 +4,11 @@ import { Overlay, type OverlayProps, type TriggerType } from '../overlay/Overlay
 import { VertMText } from '../VertMText.js';
 
 export interface PopoverProps extends Omit<OverlayProps, 'content'> {
+  /** 气泡标题 */
   title?: ReactNode;
+  /** 气泡内容 */
   content: ReactNode;
-  /** Show close button. Default false. */
+  /** 是否显示关闭按钮 @default false */
   closable?: boolean;
 }
 

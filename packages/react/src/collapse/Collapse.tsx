@@ -13,15 +13,23 @@ export interface CollapsePanel {
 }
 
 export interface CollapseProps {
+  /** 面板列表 @default [] */
   items?: CollapsePanel[];
+  /** 受控展开面板 key */
   activeKey?: string | string[];
+  /** 非受控初始展开 key @default [] */
   defaultActiveKey?: string | string[];
+  /** 展开面板变化回调 */
   onChange?: (key: string | string[]) => void;
+  /** 手风琴模式，同时仅展开一项 @default false */
   accordion?: boolean;
-  /** Fixed height of the collapse container (px or CSS length). */
+  /** 折叠容器固定高度（px 或 CSS 长度） */
   height?: number | string;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
+  /** 子节点方式定义面板（较少使用） */
   children?: ReactNode;
 }
 

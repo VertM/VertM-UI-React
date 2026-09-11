@@ -16,22 +16,30 @@ import {
 } from './context.js';
 
 export interface VertMConfigProviderProps {
+  /** 子树内容 */
   children: ReactNode;
+  /** 主题 token；editorial appearance 且未指定时自动用 editorialTheme */
   theme?: VertMTheme;
   /**
-   * Structural skin layered on theme tokens.
-   * `editorial` turns on column-edge markers and ink-filled primaries from the
-   * Vertical Editorial design reference. When set without an explicit `theme`,
-   * the provider also adopts `editorialTheme`.
+   * 结构皮肤，叠在主题 token 之上。
+   * `editorial` 开启栏目边线与墨色主按钮等 Vertical Editorial 样式。
    */
   appearance?: VertMAppearance;
+  /** 书写模式（竖排/横排） */
   writingMode?: WritingMode;
+  /** 文本方向 @default 'ltr' */
   direction?: 'ltr' | 'rtl';
+  /** 组件默认尺寸 */
   size?: VertMSize;
+  /** 默认字体族 */
   fontFamily?: string;
+  /** 文案与区域设置 */
   locale?: VertMLocale;
+  /** 弹出层挂载容器 */
   getPopupContainer?: () => HTMLElement;
+  /** 根节点自定义类名 */
   className?: string;
+  /** 根节点自定义样式 */
   style?: CSSProperties;
 }
 

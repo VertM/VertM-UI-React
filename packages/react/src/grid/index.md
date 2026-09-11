@@ -32,6 +32,49 @@ export default () => (
 );
 ```
 
+## 偏移
+
+```tsx
+import { VertMRow, VertMCol, VertMText } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={240}>
+    <VertMRow gutter={12}>
+      <VertMCol span={6} offset={6}>
+        <VertMText text="offset 6" fontSize={14} />
+      </VertMCol>
+      <VertMCol span={6}>
+        <VertMText text="ᠪᠠᠷᠠᠭᠤᠨ" fontSize={14} />
+      </VertMCol>
+    </VertMRow>
+  </VertMDemoFrame>
+);
+```
+
+## 对齐
+
+```tsx
+import { VertMRow, VertMCol, VertMText } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={260}>
+    <VertMRow gutter={8} justify="space-between" align="middle">
+      <VertMCol span={6}>
+        <VertMText text="ᠠ" fontSize={18} />
+      </VertMCol>
+      <VertMCol span={6}>
+        <VertMText text="ᠪ" fontSize={14} />
+      </VertMCol>
+      <VertMCol span={6}>
+        <VertMText text="ᠴ" fontSize={18} />
+      </VertMCol>
+    </VertMRow>
+  </VertMDemoFrame>
+);
+```
+
 ## 竖排提示
 
 - `gutter` 在竖排下会交换行列间距语义

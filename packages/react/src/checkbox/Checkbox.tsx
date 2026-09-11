@@ -3,18 +3,21 @@ import { useControlled } from '../hooks/useControlled.js';
 import { VertMText } from '../VertMText.js';
 
 export interface CheckboxProps {
-  /** Controlled checked state. */
+  /** 受控选中状态 */
   checked?: boolean;
-  /** Uncontrolled initial checked state. */
+  /** 非受控初始选中状态 @default false */
   defaultChecked?: boolean;
-  /** Fires with the next boolean checked value. */
+  /** 选中状态变化回调 */
   onChange?: (checked: boolean) => void;
-  /** Visual indeterminate state (does not change `checked`). */
+  /** 半选外观（不影响 checked） @default false */
   indeterminate?: boolean;
-  /** Disable interaction. */
+  /** 是否禁用 @default false */
   disabled?: boolean;
+  /** 选项标签内容 */
   children?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 
@@ -69,11 +72,17 @@ export interface CheckboxOption {
 }
 
 export interface CheckboxGroupProps {
+  /** 选项列表 @default [] */
   options?: CheckboxOption[];
+  /** 受控选中值数组 */
   value?: string[];
+  /** 非受控初始选中值 @default [] */
   defaultValue?: string[];
+  /** 选中值变化回调 */
   onChange?: (value: string[]) => void;
+  /** 是否整组禁用 */
   disabled?: boolean;
+  /** 自定义类名 */
   className?: string;
 }
 

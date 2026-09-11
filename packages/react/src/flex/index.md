@@ -7,7 +7,7 @@ group:
 
 # Flex
 
-弹性布局容器。竖排书写模式下默认沿 block 轴堆叠。
+弹性布局容器，默认跟随书写模式取向。
 
 ## 基本用法
 
@@ -21,6 +21,45 @@ export default () => (
       <VertMButton type="primary">ᠨᠡᠮᠡᠬᠦ</VertMButton>
       <VertMButton>ᠬᠠᠰᠠᠬᠤ</VertMButton>
       <VertMButton type="dashed">ᠵᠠᠰᠠᠬᠤ</VertMButton>
+    </VertMFlex>
+  </VertMDemoFrame>
+);
+```
+
+## 主轴方向
+
+```tsx
+import { VertMFlex, VertMButton } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={260}>
+    <VertMFlex vertical gap={8}>
+      <VertMButton>ᠨᠢᠭᠡ</VertMButton>
+      <VertMButton>ᠬᠣᠶᠠᠷ</VertMButton>
+      <VertMButton>ᠭᠤᠷᠪᠠ</VertMButton>
+    </VertMFlex>
+  </VertMDemoFrame>
+);
+```
+
+## 分布对齐
+
+```tsx
+import { VertMFlex, VertMButton } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={240}>
+    <VertMFlex
+      justify="space-between"
+      align="center"
+      gap={8}
+      style={{ width: '100%', minHeight: 120 }}
+    >
+      <VertMButton type="primary">ᠡᠬᠢᠯᠡ</VertMButton>
+      <VertMButton>ᠳᠤᠮᠳᠠ</VertMButton>
+      <VertMButton>ᠲᠡᠭᠦᠰ</VertMButton>
     </VertMFlex>
   </VertMDemoFrame>
 );

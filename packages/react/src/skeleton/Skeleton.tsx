@@ -2,12 +2,19 @@ import { type CSSProperties } from 'react';
 import { useIsVertical } from '../config/context.js';
 
 export interface SkeletonProps {
+  /** 是否展示动画效果 @default false */
   active?: boolean;
+  /** 是否显示头像占位；可为尺寸/形状配置 @default false */
   avatar?: boolean | { size?: number; shape?: 'circle' | 'square' };
+  /** 是否显示标题占位；可配置宽度 @default true */
   title?: boolean | { width?: number | string };
+  /** 是否显示段落占位；可配置行数与宽度 @default true */
   paragraph?: boolean | { rows?: number; width?: number | string | (number | string)[] };
+  /** 段落是否圆角 @default false */
   round?: boolean;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

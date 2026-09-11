@@ -24,25 +24,32 @@ export interface TabItem {
 }
 
 export interface TabsEditableConfig {
+  /** 增删页签时的回调 */
   onEdit?: (action: 'add' | 'remove', key?: string) => void;
+  /** 是否显示新增按钮 */
   showAdd?: boolean;
 }
 
 export interface TabsProps {
-  /** Controlled active tab key. */
+  /** 受控当前激活 tab 的 key */
   activeKey?: string;
+  /** 非受控初始激活 key @default '' */
   defaultActiveKey?: string;
+  /** 切换 tab 时的回调 */
   onChange?: (key: string) => void;
-  /** Visual style. */
+  /** 视觉样式 @default 'line' */
   type?: TabsType;
-  /** Where the tab list sits relative to the panel. */
+  /** 页签栏相对面板的位置；竖排默认 left，横排默认 top */
   tabPosition?: TabPosition;
-  /** Tab definitions. */
+  /** 页签定义列表 @default [] */
   items?: TabItem[];
-  /** Enable add/remove of tabs. */
+  /** 是否可增删页签；可为配置对象 @default false */
   editable?: boolean | TabsEditableConfig;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
+  /** 子节点方式定义页签（较少使用） */
   children?: ReactNode;
 }
 

@@ -12,16 +12,56 @@ group:
 ## 基本用法
 
 ```tsx
-import { VertMPopconfirm, VertMButton, message } from '@vertm/react';
+import { VertMPopconfirm, VertMButton } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={240}>
+    <VertMPopconfirm
+      title="ᠤᠰᠤᠳᠬᠠᠬᠤ ᠦᠦ ?"
+      onConfirm={() => console.log('ok')}
+    >
+      <VertMButton danger>ᠤᠰᠤᠳᠬᠠᠬᠤ</VertMButton>
+    </VertMPopconfirm>
+  </VertMDemoFrame>
+);
+```
+
+## 带描述
+
+```tsx
+import { VertMPopconfirm, VertMButton } from '@vertm/react';
 import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={240}>
     <VertMPopconfirm
       title="ᠵᠥᠪᠰᠢᠶᠡᠷᠡᠬᠦ ᠦᠦ ?"
-      onConfirm={() => message.success('ᠵᠥᠪᠰᠢᠶᠡᠷᠡᠪᠡ')}
+      description="ᠡᠨᠡ ᠦᠢᠯᠡᠳᠦᠯ ᠪᠤᠴᠠᠵᠤ ᠪᠣᠯᠬᠤ ᠦᠭᠡᠢ"
+      onConfirm={() => console.log('ok')}
+      onCancel={() => console.log('cancel')}
     >
-      <VertMButton danger>ᠤᠰᠤᠳᠬᠠᠬᠤ</VertMButton>
+      <VertMButton type="primary">ᠢᠯᠭᠡᠬᠦ</VertMButton>
+    </VertMPopconfirm>
+  </VertMDemoFrame>
+);
+```
+
+## 自定义文案
+
+```tsx
+import { VertMPopconfirm, VertMButton } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={240}>
+    <VertMPopconfirm
+      title="?"
+      okText="ᠵᠥᠪ"
+      cancelText="ᠪᠣᠯᠢᠬᠤ"
+      onConfirm={() => {}}
+    >
+      <VertMButton>custom</VertMButton>
     </VertMPopconfirm>
   </VertMDemoFrame>
 );

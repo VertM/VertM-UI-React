@@ -1,8 +1,8 @@
 ---
 title: ConfigProvider
 group:
-  title: 竖排专属
-  order: 3
+  title: 通用
+  order: 4
 ---
 
 # ConfigProvider
@@ -21,6 +21,44 @@ export default () => (
       <VertMSpace align="start">
         <VertMButton type="primary">ᠨᠡᠮᠡᠬᠦ</VertMButton>
         <VertMButton>ᠬᠠᠰᠠᠬᠤ</VertMButton>
+      </VertMSpace>
+    </VertMConfigProvider>
+  </VertMDemoFrame>
+);
+```
+
+## 字号与尺寸
+
+```tsx
+import { VertMConfigProvider, VertMButton, VertMSpace } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={240}>
+    <VertMConfigProvider size="large">
+      <VertMSpace align="start">
+        <VertMButton type="primary">ᠶᠡᠬᠡ</VertMButton>
+        <VertMButton>ᠬᠠᠰᠠᠬᠤ</VertMButton>
+      </VertMSpace>
+    </VertMConfigProvider>
+  </VertMDemoFrame>
+);
+```
+
+## 嵌套覆盖
+
+```tsx
+import { VertMConfigProvider, VertMButton, VertMSpace } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={260}>
+    <VertMConfigProvider appearance="default">
+      <VertMSpace align="start">
+        <VertMButton type="primary">ᠭᠠᠳᠠᠭᠠ</VertMButton>
+        <VertMConfigProvider appearance="editorial">
+          <VertMButton type="primary">ᠳᠣᠲᠣᠷ᠎ᠠ</VertMButton>
+        </VertMConfigProvider>
       </VertMSpace>
     </VertMConfigProvider>
   </VertMDemoFrame>

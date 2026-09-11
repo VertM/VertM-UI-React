@@ -79,10 +79,41 @@ export default () => (
 );
 ```
 
-静态方法：`VertMModal.confirm` / `info` / `success` / `error` / `warning`（等同 `modal.*`）。要跟随主题与竖排，请用 `App.useApp().modal`（见 App 页）。
+## 自定义页脚
+
+```tsx
+import { useState } from 'react';
+import { VertMModal, VertMButton, VertMText, VertMSpace } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <VertMDemoFrame minHeight={240}>
+      <VertMButton onClick={() => setOpen(true)}>footer</VertMButton>
+      <VertMModal
+        open={open}
+        title="ᠭᠠᠷᠴᠠᠭ"
+        onCancel={() => setOpen(false)}
+        footer={
+          <VertMSpace>
+            <VertMButton onClick={() => setOpen(false)}>ᠪᠣᠯᠢᠬᠤ</VertMButton>
+            <VertMButton type="primary" onClick={() => setOpen(false)}>
+              ᠵᠥᠪ
+            </VertMButton>
+          </VertMSpace>
+        }
+      >
+        <VertMText text="custom footer" />
+      </VertMModal>
+    </VertMDemoFrame>
+  );
+};
+```
 
 ## 竖排提示
 
+- 静态方法：`VertMModal.confirm` / `info` / `success` / `error` / `warning`；跟随主题请用 `App.useApp().modal`
 - 标题与内容字符串自动竖排
 - 独立 `modal.*` 根节点读不到外层 ConfigProvider
 

@@ -7,7 +7,7 @@ group:
 
 # Descriptions
 
-描述列表。
+描述列表，展示字段键值对。
 
 ## 基本用法
 
@@ -19,11 +19,51 @@ export default () => (
   <VertMDemoFrame minHeight={280}>
     <VertMDescriptions
       title="ᠮᠡᠳᠡᠭᠡᠯᠡᠯ"
-      bordered
       items={[
         { key: '1', label: 'ᠨᠡᠷ᠎ᠡ', children: 'ᠪᠠᠲᠤ' },
-        { key: '2', label: 'ᠨᠠᠰᠤ', children: 'ᠬᠤᠶᠢᠨ' },
-        { key: '3', label: 'ᠣᠷᠤᠨ', children: 'ᠬᠥᠬᠡᠬᠣᠲᠠ' },
+        { key: '2', label: 'ᠨᠠᠰᠤ', children: '28' },
+        { key: '3', label: 'ᠬᠣᠲᠠ', children: 'ᠬᠥᠬᠡᠬᠣᠲᠠ' },
+      ]}
+    />
+  </VertMDemoFrame>
+);
+```
+
+## 边框与列数
+
+```tsx
+import { VertMDescriptions } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={280}>
+    <VertMDescriptions
+      bordered
+      column={2}
+      items={[
+        { key: 'a', label: 'A', children: '1' },
+        { key: 'b', label: 'B', children: '2' },
+        { key: 'c', label: 'C', children: '3' },
+        { key: 'd', label: 'D', children: '4' },
+      ]}
+    />
+  </VertMDemoFrame>
+);
+```
+
+## 单列
+
+```tsx
+import { VertMDescriptions } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={260}>
+    <VertMDescriptions
+      column={1}
+      items={[
+        { key: '1', label: 'ᠨᠡᠷ᠎ᠡ', children: 'ᠰᠠᠷᠠ' },
+        { key: '2', label: 'ᠤᠲᠠᠰᠤ', children: '138****0000' },
       ]}
     />
   </VertMDemoFrame>

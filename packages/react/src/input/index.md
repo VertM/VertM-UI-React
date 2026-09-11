@@ -40,6 +40,24 @@ export default () => (
 );
 ```
 
+## 多行 TextArea
+
+```tsx
+import { VertMInput } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={300}>
+    <VertMInput.TextArea
+      placeholder="ᠠᠭᠤᠯᠭ᠎ᠠ"
+      rows={3}
+      columnDepth={4}
+      style={{ width: 56 }}
+    />
+  </VertMDemoFrame>
+);
+```
+
 ## 竖排提示
 
 - 焦点态使用 block-end marker（Editorial）

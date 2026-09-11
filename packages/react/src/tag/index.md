@@ -7,9 +7,43 @@ group:
 
 # Tag
 
-标签。可用 `checkable` 或独立 `CheckableTag` / `VertMTag.Checkable`。
+标签，支持关闭与可选中。
 
 ## 基本用法
+
+```tsx
+import { VertMTag, VertMSpace } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={220}>
+    <VertMSpace align="start" size="middle">
+      <VertMTag>ᠡᠩ</VertMTag>
+      <VertMTag color="primary">ᠥᠩᠭᠡ</VertMTag>
+      <VertMTag color="success">ᠵᠥᠪ</VertMTag>
+      <VertMTag color="warning">ᠠᠩᠬᠠᠷ</VertMTag>
+      <VertMTag color="error">ᠠᠯᠳᠠᠭ᠎ᠠ</VertMTag>
+    </VertMSpace>
+  </VertMDemoFrame>
+);
+```
+
+## 可关闭
+
+```tsx
+import { VertMTag } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={220}>
+    <VertMTag closable onClose={() => console.log('closed')}>
+      ᠬᠠᠭᠠᠴᠢᠬᠠᠯ᠎ᠠ
+    </VertMTag>
+  </VertMDemoFrame>
+);
+```
+
+## 可选中
 
 ```tsx
 import { useState } from 'react';
@@ -19,13 +53,13 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => {
   const [checked, setChecked] = useState(true);
   return (
-    <VertMDemoFrame minHeight={240}>
+    <VertMDemoFrame minHeight={220}>
       <VertMSpace align="start">
-        <VertMTag>ᠡᠩ ᠤᠨ</VertMTag>
-        <VertMTag color="primary">ᠥᠩᠭᠡ</VertMTag>
-        <VertMTag closable>ᠬᠠᠭᠠᠬᠤ</VertMTag>
         <VertMTag checkable checked={checked} onChange={setChecked}>
-          ᠰᠣᠩᠭᠣᠬᠤ
+          ᠰᠣᠩᠭᠣᠭᠳᠠᠭᠰᠠᠨ
+        </VertMTag>
+        <VertMTag checkable defaultChecked={false}>
+          ᠪᠤᠰᠤᠳ
         </VertMTag>
       </VertMSpace>
     </VertMDemoFrame>

@@ -12,26 +12,37 @@ import {
 import { useVertMConfig } from './config/context.js';
 
 export interface VertMTextProps extends HTMLAttributes<HTMLElement> {
+  /** 要渲染的文本内容 */
   text: string;
-  /** Render as a different HTML element (default: span). Ignored when `href` is set. */
+  /** 渲染为的 HTML 元素 @default 'span'；设置 href 时忽略 */
   as?: ElementType;
-  /** When set, renders as `<a>` with link styles. */
+  /** 有值时渲染为带链接样式的 `<a>` */
   href?: string;
+  /** 链接打开方式 */
   target?: string;
+  /** 链接 rel 属性 */
   rel?: string;
+  /** 是否禁用交互 @default false */
   disabled?: boolean;
+  /** 字体族，覆盖 ConfigProvider */
   fontFamily?: string;
+  /** 字号（px） */
   fontSize?: number;
+  /** 行高倍数 */
   lineHeight?: number;
+  /** 最大显示行数，超出截断 */
   maxLines?: number;
+  /** 书写模式，覆盖 ConfigProvider */
   writingMode?: WritingMode;
-  /** When false, use upright orientation for Latin. Default true (mixed). */
+  /** 是否对拉丁字母使用 mixed 朝向 @default true */
   showLatin?: boolean;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
-  /** Skip NFC normalization (render raw text). */
+  /** 跳过 NFC 规范化，直接渲染原文 @default false */
   raw?: boolean;
-  /** Read font-size / line-height / writing-mode from parent CSS variables. */
+  /** 从父级 CSS 变量继承字号/行高/书写模式 @default false */
   inheritTypography?: boolean;
 }
 

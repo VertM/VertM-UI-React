@@ -2,7 +2,7 @@
 title: Select
 group:
   title: 数据录入
-  order: 3
+  order: 2
 ---
 
 # Select
@@ -27,6 +27,56 @@ export default () => (
         { label: 'ᠭᠤᠷᠪᠠ', value: '3' },
       ]}
     />
+  </VertMDemoFrame>
+);
+```
+
+## 多选
+
+```tsx
+import { VertMSelect } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={280}>
+    <VertMSelect
+      multiple
+      allowClear
+      placeholder="ᠣᠯᠠᠨ"
+      defaultValue={['1']}
+      options={[
+        { label: 'ᠨᠢᠭᠡ', value: '1' },
+        { label: 'ᠬᠣᠶᠠᠷ', value: '2' },
+        { label: 'ᠭᠤᠷᠪᠠ', value: '3' },
+      ]}
+    />
+  </VertMDemoFrame>
+);
+```
+
+## 禁用与清空
+
+```tsx
+import { VertMSelect, VertMSpace } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={280}>
+    <VertMSpace direction="horizontal" size="middle" align="start">
+      <VertMSelect
+        disabled
+        defaultValue="1"
+        options={[{ label: 'ᠨᠢᠭᠡ', value: '1' }]}
+      />
+      <VertMSelect
+        allowClear
+        defaultValue="2"
+        options={[
+          { label: 'ᠨᠢᠭᠡ', value: '1' },
+          { label: 'ᠬᠣᠶᠠᠷ', value: '2' },
+        ]}
+      />
+    </VertMSpace>
   </VertMDemoFrame>
 );
 ```

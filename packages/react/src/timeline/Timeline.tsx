@@ -11,10 +11,15 @@ export interface TimelineItem {
 }
 
 export interface TimelineProps {
+  /** 时间轴线项列表 @default [] */
   items?: TimelineItem[];
+  /** 时间轴模式 @default 'left' */
   mode?: 'left' | 'alternate' | 'right';
+  /** 末尾待定节点内容 */
   pending?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

@@ -5,21 +5,34 @@ export type AvatarSize = 'small' | 'default' | 'large' | number;
 export type AvatarShape = 'circle' | 'square';
 
 export interface AvatarProps {
+  /** 头像尺寸 @default 'default' */
   size?: AvatarSize;
+  /** 头像形状 @default 'circle' */
   shape?: AvatarShape;
+  /** 图片地址 */
   src?: string;
+  /** 图片 alt 文案 @default '' */
   alt?: string;
+  /** 图标，无图片时显示 */
   icon?: ReactNode;
+  /** 文字内容，无图片/图标时显示 */
   children?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 
 export interface AvatarGroupProps {
+  /** 头像组成员 */
   children?: ReactNode;
+  /** 最多显示个数，超出折叠 */
   maxCount?: number;
+  /** 组内头像统一尺寸 */
   size?: AvatarSize;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

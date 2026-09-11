@@ -42,6 +42,80 @@ export default () => (
 );
 ```
 
+## 类型快捷方法
+
+```tsx
+import { VertMApp, VertMButton, VertMSpace } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+const Demo = () => {
+  const { notification } = VertMApp.useApp();
+  return (
+    <VertMSpace align="start">
+      <VertMButton
+        type="primary"
+        onClick={() =>
+          notification.success({ message: 'ᠵᠥᠪ', description: 'ok' })
+        }
+      >
+        success
+      </VertMButton>
+      <VertMButton
+        danger
+        onClick={() =>
+          notification.error({ message: 'ᠠᠯᠳᠠᠭ᠎ᠠ', description: 'fail' })
+        }
+      >
+        error
+      </VertMButton>
+    </VertMSpace>
+  );
+};
+
+export default () => (
+  <VertMDemoFrame minHeight={220}>
+    <VertMApp>
+      <Demo />
+    </VertMApp>
+  </VertMDemoFrame>
+);
+```
+
+## 销毁
+
+```tsx
+import { VertMApp, VertMButton, VertMSpace } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+const Demo = () => {
+  const { notification } = VertMApp.useApp();
+  return (
+    <VertMSpace align="start">
+      <VertMButton
+        onClick={() =>
+          notification.info({
+            message: 'info',
+            description: 'ᠮᠡᠳᠡᠭᠡ',
+            duration: 0,
+          })
+        }
+      >
+        sticky
+      </VertMButton>
+      <VertMButton onClick={() => notification.destroy()}>destroy</VertMButton>
+    </VertMSpace>
+  );
+};
+
+export default () => (
+  <VertMDemoFrame minHeight={220}>
+    <VertMApp>
+      <Demo />
+    </VertMApp>
+  </VertMDemoFrame>
+);
+```
+
 ## 竖排提示
 
 - 全局 `notification.*` 挂独立根，不继承外层主题 / 书写模式

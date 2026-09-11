@@ -3,22 +3,36 @@ import { useIsVertical } from '../config/context.js';
 import { VertMText } from '../VertMText.js';
 
 export interface StatisticProps {
+  /** 统计标题 */
   title?: ReactNode;
+  /** 统计数值 */
   value?: ReactNode;
+  /** 数值前缀 */
   prefix?: ReactNode;
+  /** 数值后缀 */
   suffix?: ReactNode;
+  /** 数值精度（小数位数） */
   precision?: number;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 
 export interface CountdownProps {
+  /** 目标时间戳或 Date */
   value: number | Date;
+  /** 倒计时格式 */
   format?: string;
+  /** 倒计时结束回调 */
   onFinish?: () => void;
+  /** 数值前缀 */
   prefix?: ReactNode;
+  /** 数值后缀 */
   suffix?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

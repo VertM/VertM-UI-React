@@ -6,13 +6,21 @@ export type SpaceSize = VertMSize | number;
 export type SpaceDirection = 'vertical' | 'horizontal';
 
 export interface SpaceProps {
+  /** 间距内的子元素 */
   children?: ReactNode;
+  /** 间距大小，未设时跟随 ConfigProvider；可为 [水平, 垂直] */
   size?: SpaceSize | [SpaceSize, SpaceSize];
+  /** 排列方向；未设时竖排为 vertical，横排为 horizontal */
   direction?: SpaceDirection;
+  /** 是否自动换行 @default false */
   wrap?: boolean;
+  /** 分隔符，插在相邻子元素之间 */
   split?: ReactNode;
+  /** 交叉轴对齐方式 @default 'center' */
   align?: 'start' | 'end' | 'center' | 'baseline';
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

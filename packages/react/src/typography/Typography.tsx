@@ -12,16 +12,19 @@ import { VertMText } from '../VertMText.js';
 export type TypographyType = 'secondary' | 'success' | 'warning' | 'danger';
 
 export interface BaseTypographyProps extends HTMLAttributes<HTMLElement> {
+  /** 文本内容 */
   children?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
-  /** Semantic color variant. */
+  /** 语义色类型 */
   type?: TypographyType;
-  /** Enable single/multi-line ellipsis truncation. */
+  /** 是否省略；对象可指定行数 */
   ellipsis?: boolean | { rows?: number };
-  /** Show copy-to-clipboard button; copies original NFC text. */
+  /** 是否可复制；对象可指定复制文本与回调 */
   copyable?: boolean | { text?: string; onCopy?: () => void };
-  /** Disable text normalization (render children as-is). */
+  /** 跳过文本规范化，按原文渲染 */
   raw?: boolean;
 }
 
@@ -88,6 +91,7 @@ function resolveCopyText(
 // ── Title ──
 
 export interface TitleProps extends BaseTypographyProps {
+  /** 标题级别 @default 1 */
   level?: 1 | 2 | 3 | 4 | 5;
 }
 
@@ -159,7 +163,7 @@ export function Title({
 // ── Text ──
 
 export interface TextProps extends BaseTypographyProps {
-  /** Render as inline or block. */
+  /** 是否块级显示 */
   block?: boolean;
 }
 
@@ -277,9 +281,13 @@ export function Paragraph({
 // ── Link ──
 
 export interface LinkProps extends BaseTypographyProps {
+  /** 链接地址 */
   href?: string;
+  /** 链接打开方式 */
   target?: string;
+  /** 链接 rel 属性 */
   rel?: string;
+  /** 是否禁用 */
   disabled?: boolean;
 }
 

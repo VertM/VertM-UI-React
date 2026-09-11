@@ -32,6 +32,52 @@ export default () => {
 };
 ```
 
+## bare 变体
+
+```tsx
+import { useState } from 'react';
+import { VertMTextField } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => {
+  const [value, setValue] = useState('ᠪᠠᠷᠡ');
+  return (
+    <VertMDemoFrame minHeight={240} forceWritingMode="vertical-lr">
+      <VertMTextField
+        variant="bare"
+        value={value}
+        onChange={setValue}
+        placeholder="bare"
+        columnDepth={3}
+      />
+    </VertMDemoFrame>
+  );
+};
+```
+
+## 密码掩码
+
+```tsx
+import { useState } from 'react';
+import { VertMTextField } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => {
+  const [value, setValue] = useState('secret');
+  return (
+    <VertMDemoFrame minHeight={240}>
+      <VertMTextField
+        masked
+        value={value}
+        onChange={setValue}
+        placeholder="password"
+        columnDepth={4}
+      />
+    </VertMDemoFrame>
+  );
+};
+```
+
 ## 竖排提示
 
 - `columnDepth`：单列可见行数；超出后向下一列扩展直至 `maxColumns`

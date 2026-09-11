@@ -16,23 +16,37 @@ export interface ListGrid {
 }
 
 export interface VertMListProps<T = VertMListItem> {
-  /** Legacy tree list items. */
+  /** 旧版树形列表数据 */
   items?: VertMListItem[];
-  /** Ant Design style data source. */
+  /** Ant Design 风格数据源 */
   dataSource?: T[];
+  /** 是否有序列表 */
   ordered?: boolean;
+  /** 字体族 */
   fontFamily?: string;
+  /** 字号（px） */
   fontSize?: number;
+  /** 行高倍数 */
   lineHeight?: number;
+  /** 书写模式 */
   writingMode?: WritingMode;
+  /** 自定义渲染每一项 */
   renderItem?: (item: T, index: number) => ReactNode;
+  /** 列表头部 */
   header?: ReactNode;
+  /** 列表底部 */
   footer?: ReactNode;
+  /** 分页配置；false 关闭分页 */
   pagination?: false | PaginationProps;
+  /** 栅格列表配置 */
   grid?: ListGrid;
+  /** 是否显示边框 */
   bordered?: boolean;
+  /** 是否显示加载态 */
   loading?: boolean;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

@@ -41,6 +41,54 @@ export default () => (
 );
 ```
 
+## 点击回调
+
+```tsx
+import { VertMAnchor } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={240}>
+    <VertMAnchor
+      items={[
+        { key: 'x', href: '#x', title: 'X' },
+        { key: 'y', href: '#y', title: 'Y' },
+      ]}
+      onClick={(e, link) => {
+        e.preventDefault();
+        console.log(link);
+      }}
+    />
+  </VertMDemoFrame>
+);
+```
+
+## 偏移高亮
+
+```tsx
+import { VertMAnchor, VertMText } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={300}>
+    <VertMAnchor
+      offsetTop={12}
+      bounds={8}
+      items={[
+        { key: 'p1', href: '#p1', title: 'ᠨᠢᠭᠡ' },
+        { key: 'p2', href: '#p2', title: 'ᠬᠣᠶᠠᠷ' },
+      ]}
+    />
+    <div id="p1" style={{ marginBlockStart: 24 }}>
+      <VertMText text="p1" />
+    </div>
+    <div id="p2" style={{ marginBlockStart: 80 }}>
+      <VertMText text="p2" />
+    </div>
+  </VertMDemoFrame>
+);
+```
+
 ## 竖排提示
 
 - `offsetTop` / `bounds` 控制高亮判定

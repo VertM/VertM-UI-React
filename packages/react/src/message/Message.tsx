@@ -23,9 +23,13 @@ import { VertMText } from '../VertMText.js';
 export type MessageType = 'success' | 'error' | 'info' | 'warning' | 'loading';
 
 export interface MessageConfig {
+  /** 消息内容 */
   content: ReactNode;
+  /** 消息类型 */
   type?: MessageType;
+  /** 自动关闭延时（秒）；0 表示不自动关闭 @default 3 */
   duration?: number;
+  /** 关闭时的回调 */
   onClose?: () => void;
 }
 

@@ -17,27 +17,46 @@ export type RowJustify =
 export type RowAlign = 'top' | 'middle' | 'bottom' | 'stretch';
 
 export interface RowProps {
+  /** 行内列 */
   children?: ReactNode;
+  /** 栅格间隔；数组为 [水平, 垂直] */
   gutter?: number | [number, number];
+  /** 是否自动换行 */
   wrap?: boolean;
+  /** 主轴对齐方式 */
   justify?: RowJustify;
+  /** 交叉轴对齐方式 */
   align?: RowAlign;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 
 export interface ColProps {
+  /** 列内容 */
   children?: ReactNode;
+  /** 栅格占位格数（24 栅格） */
   span?: number;
+  /** 栅格左侧间隔格数 */
   offset?: number;
+  /** flex 布局填充 */
   flex?: number | string;
+  /** <576px 响应式占位 */
   xs?: number;
+  /** ≥576px 响应式占位 */
   sm?: number;
+  /** ≥768px 响应式占位 */
   md?: number;
+  /** ≥992px 响应式占位 */
   lg?: number;
+  /** ≥1200px 响应式占位 */
   xl?: number;
+  /** ≥1600px 响应式占位 */
   xxl?: number;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

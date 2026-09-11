@@ -24,30 +24,35 @@ export interface SelectOption {
 }
 
 export interface SelectProps {
-  /** Option list. */
+  /** 选项列表 @default [] */
   options?: SelectOption[];
-  /** Controlled value (`string[]` when `multiple`). */
+  /** 受控值；多选时为 string[] */
   value?: string | string[];
-  /** Uncontrolled initial value. */
+  /** 非受控初始值 @default '' */
   defaultValue?: string | string[];
+  /** 选中值变化回调 */
   onChange?: (value: string | string[]) => void;
-  /** Enable multi-select. */
+  /** 是否多选 @default false */
   multiple?: boolean;
-  /** Show search box; filters via `normalizeForSearch`. */
+  /** 是否可搜索过滤选项 @default false */
   showSearch?: boolean;
+  /** 占位文案 @default 'Please select' */
   placeholder?: string;
+  /** 是否禁用 @default false */
   disabled?: boolean;
-  /** Show clear button when there is a value. */
+  /** 有值时显示清除按钮 @default false */
   allowClear?: boolean;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
-  /** Trigger height (px or CSS length). Default `160px` via `--vertm-select-height`. */
+  /** 触发器高度（px 或 CSS 长度） */
   height?: number | string;
-  /** Dropdown panel height. Defaults to `height`. */
+  /** 下拉面板高度，默认与 height 相同 */
   listHeight?: number | string;
-  /** Dropdown list viewport width; extra options scroll horizontally. */
+  /** 下拉列表可视宽度，超出横向滚动 */
   listWidth?: number | string;
-  /** Popup placement relative to trigger. Default `rightTop` for vertical Select. */
+  /** 弹出层相对触发器的位置 @default 'rightTop' */
   placement?: Placement;
 }
 

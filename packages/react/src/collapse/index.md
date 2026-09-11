@@ -12,24 +12,59 @@ group:
 ## 基本用法
 
 ```tsx
-import { VertMCollapse, VertMText } from '@vertm/react';
+import { VertMCollapse } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={320}>
+    <VertMCollapse
+      defaultActiveKey={['1']}
+      items={[
+        { key: '1', label: 'ᠨᠢᠭᠡ', children: 'ᠠᠭᠤᠯᠭ᠎ᠠ ᠁' },
+        { key: '2', label: 'ᠬᠣᠶᠠᠷ', children: 'ᠬᠣᠶᠠᠳᠤᠭᠠᠷ' },
+        { key: '3', label: 'ᠭᠤᠷᠪᠠ', children: 'ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ' },
+      ]}
+    />
+  </VertMDemoFrame>
+);
+```
+
+## 手风琴
+
+```tsx
+import { VertMCollapse } from '@vertm/react';
 import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={300}>
     <VertMCollapse
-      height={240}
+      accordion
       defaultActiveKey="1"
+      items={[
+        { key: '1', label: 'A', children: 'only one open' },
+        { key: '2', label: 'B', children: 'panel B' },
+      ]}
+    />
+  </VertMDemoFrame>
+);
+```
+
+## 固定高度
+
+```tsx
+import { VertMCollapse } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={280}>
+    <VertMCollapse
+      height={200}
+      defaultActiveKey={['1']}
       items={[
         {
           key: '1',
-          label: 'ᠨᠢᠭᠡ',
-          children: <VertMText text="ᠠᠭᠤᠯᠭ᠎ᠠ ᠁" fontSize={14} />,
-        },
-        {
-          key: '2',
-          label: 'ᠬᠣᠶᠠᠷ',
-          children: <VertMText text="ᠬᠣᠶᠠᠳᠤᠭᠠᠷ ᠬᠠᠪᠲᠠᠰᠤ" fontSize={14} />,
+          label: 'ᠤᠷᠲᠤ',
+          children: 'ᠠᠭᠤᠯᠭ᠎ᠠ ᠠᠭᠤᠯᠭ᠎ᠠ ᠠᠭᠤᠯᠭ᠎ᠠ ᠠᠭᠤᠯᠭ᠎ᠠ',
         },
       ]}
     />

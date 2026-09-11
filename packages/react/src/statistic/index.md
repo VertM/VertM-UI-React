@@ -7,7 +7,7 @@ group:
 
 # Statistic
 
-统计数值。另含 `VertMStatistic.Countdown`。
+统计数值与倒计时。
 
 ## 基本用法
 
@@ -18,9 +18,39 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={240}>
     <VertMSpace size="large" align="start">
-      <VertMStatistic title="ᠲᠣᠭ᠎ᠠ" value={112893} />
+      <VertMStatistic title="ᠨᠡᠭᠡᠭᠳᠡᠯ" value={112893} />
       <VertMStatistic title="ᠬᠤᠪᠢ" value={93.2} precision={1} suffix="%" />
     </VertMSpace>
+  </VertMDemoFrame>
+);
+```
+
+## 前后缀
+
+```tsx
+import { VertMStatistic } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={220}>
+    <VertMStatistic title="¥" value={1128} prefix="¥" suffix="CNY" />
+  </VertMDemoFrame>
+);
+```
+
+## 倒计时
+
+```tsx
+import { VertMStatistic } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={220}>
+    <VertMStatistic.Countdown
+      value={Date.now() + 1000 * 60 * 60 * 24}
+      format="HH:mm:ss"
+      onFinish={() => console.log('done')}
+    />
   </VertMDemoFrame>
 );
 ```

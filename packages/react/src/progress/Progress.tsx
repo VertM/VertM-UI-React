@@ -5,13 +5,21 @@ import { VertMText } from '../VertMText.js';
 export type ProgressStatus = 'success' | 'exception' | 'normal' | 'active';
 
 export interface ProgressProps {
+  /** 进度百分比 0–100 @default 0 */
   percent?: number;
+  /** 进度条类型 @default 'line' */
   type?: 'line' | 'circle';
+  /** 状态样式 @default 'normal' */
   status?: ProgressStatus;
+  /** 分段进度条的段数 */
   steps?: number;
+  /** 是否显示进度数值 @default true */
   showInfo?: boolean;
+  /** 进度条颜色 */
   strokeColor?: string;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

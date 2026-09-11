@@ -3,7 +3,9 @@ import { Overlay, type OverlayProps, type TriggerType } from './Overlay.js';
 import type { Placement } from './placement.js';
 
 export interface TooltipProps extends Omit<OverlayProps, 'content' | 'overlayClassName'> {
+  /** 提示文案 */
   title: ReactNode;
+  /** 提示背景色 */
   color?: string;
 }
 

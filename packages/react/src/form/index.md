@@ -2,12 +2,12 @@
 title: Form
 group:
   title: 数据录入
-  order: 2
+  order: 6
 ---
 
 # Form
 
-竖排表单，API 对标 antd Form（`useForm` / `Form.Item` / rules）。
+竖排表单。API 对标 antd（`useForm` / `Form.Item` / rules）；Editorial 下按列几何排布 label、控件与错误。
 
 ## 基本用法
 
@@ -24,13 +24,57 @@ export default () => {
         onFinish={(v) => console.log(v)}
         style={{ display: 'flex', gap: 16 }}
       >
-        <VertMForm.Item name="name" label="ᠨᠡᠷ᠎ᠡ" rules={[{ required: true, message: 'ᠣᠷᠤᠭᠤᠯ' }]}>
+        <VertMForm.Item
+          name="name"
+          label="ᠨᠡᠷ᠎ᠡ"
+          rules={[{ required: true, message: 'ᠣᠷᠤᠭᠤᠯ' }]}
+        >
           <VertMInput style={{ width: 48 }} />
         </VertMForm.Item>
         <VertMForm.Item>
           <VertMButton type="primary" htmlType="submit">
             ᠢᠯᠭᠡᠬᠦ
           </VertMButton>
+        </VertMForm.Item>
+      </VertMForm>
+    </VertMDemoFrame>
+  );
+};
+```
+
+## 校验与重置
+
+```tsx
+import { VertMForm, VertMInput, VertMButton, VertMSpace, useForm } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => {
+  const [form] = useForm();
+  return (
+    <VertMDemoFrame minHeight={400}>
+      <VertMForm form={form} style={{ display: 'flex', gap: 16 }}>
+        <VertMForm.Item
+          name="email"
+          label="ᠢᠮᠡᠶᠢᠯ"
+          rules={[
+            { required: true, message: 'ᠣᠷᠤᠭᠤᠯ' },
+            { pattern: /.+@.+\..+/, message: 'ᠪᠤᠷᠤᠭᠤ' },
+          ]}
+        >
+          <VertMInput style={{ width: 48 }} />
+        </VertMForm.Item>
+        <VertMForm.Item>
+          <VertMSpace>
+            <VertMButton type="primary" htmlType="submit">
+              ᠢᠯᠭᠡᠬᠦ
+            </VertMButton>
+            <VertMButton
+              htmlType="button"
+              onClick={() => form.resetFields()}
+            >
+              ᠰᠡᠷᠭᠡᠭᠡᠬᠦ
+            </VertMButton>
+          </VertMSpace>
         </VertMForm.Item>
       </VertMForm>
     </VertMDemoFrame>

@@ -2,10 +2,15 @@ import { type ReactNode, type CSSProperties } from 'react';
 import { VertMText } from '../VertMText.js';
 
 export interface EmptyProps {
+  /** 描述文案 @default 'No data' */
   description?: ReactNode;
+  /** 空状态图片：预设名或自定义节点 @default 'default' */
   image?: ReactNode | 'default' | 'simple';
+  /** 底部附加内容 */
   children?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

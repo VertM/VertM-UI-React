@@ -30,15 +30,25 @@ function measureLabel(el: HTMLElement | null): { w: number; h: number } {
 }
 
 export interface SwitchProps {
+  /** 受控开关状态 */
   checked?: boolean;
+  /** 非受控初始状态 @default false */
   defaultChecked?: boolean;
+  /** 状态变化回调 */
   onChange?: (checked: boolean) => void;
+  /** 载入中，禁用切换 @default false */
   loading?: boolean;
+  /** 是否禁用 @default false */
   disabled?: boolean;
+  /** 开关尺寸 @default 'default' */
   size?: 'small' | 'default';
+  /** 打开时显示的内容 */
   checkedChildren?: ReactNode;
+  /** 关闭时显示的内容 */
   unCheckedChildren?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

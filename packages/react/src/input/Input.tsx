@@ -9,27 +9,31 @@ import { VertMButton } from '../button/Button.js';
 export type InputStatus = 'error' | 'warning';
 
 export interface InputProps extends Omit<VertMTextFieldProps, 'onChange'> {
-  /** Controlled value. */
+  /** 受控值 */
   value?: string;
-  /** Uncontrolled initial value. */
+  /** 非受控初始值 @default '' */
   defaultValue?: string;
+  /** 值变化回调，参数为 ChangeEvent */
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  /** Content before the input (inline-start). */
+  /** 输入框前缀内容（行首侧） */
   prefix?: ReactNode;
-  /** Content after the input (inline-end). */
+  /** 输入框后缀内容（行尾侧） */
   suffix?: ReactNode;
+  /** 前置标签，显示在输入框外侧前方 */
   addonBefore?: ReactNode;
+  /** 后置标签，显示在输入框外侧后方 */
   addonAfter?: ReactNode;
-  /** Show clear control when value is non-empty. */
+  /** 有内容时显示清除按钮 */
   allowClear?: boolean;
+  /** 最大输入字符数 */
   maxLength?: number;
-  /** Validation status styling. */
+  /** 校验状态样式（错误/警告） */
   status?: InputStatus;
-  /** Show character count. */
+  /** 是否显示字数统计 */
   showCount?: boolean;
-  /** Transform input value before commit (e.g. password charset filter). */
+  /** 提交前过滤输入值（如密码半角字符） */
   sanitize?: (value: string) => string;
-  /** Fired when sanitize rejects or strips disallowed input. */
+  /** 非法输入被拒绝或剥离时触发 */
   onSanitizeReject?: () => void;
 }
 
@@ -186,6 +190,7 @@ const VertMInputBase = forwardRef<HTMLDivElement, InputProps>(function VertMInpu
 // ── TextArea ──
 
 export interface TextAreaProps extends InputProps {
+  /** 自适应高度；对象可指定 minRows / maxRows */
   autoSize?: boolean | { minRows?: number; maxRows?: number };
 }
 
@@ -212,7 +217,9 @@ function TextArea({ autoSize, rows = 3, columnDepth, ...rest }: TextAreaProps) {
 // ── Search ──
 
 export interface SearchProps extends InputProps {
+  /** 点击搜索或回车时触发 */
   onSearch?: (value: string) => void;
+  /** 是否显示搜索按钮；可为自定义节点 */
   enterButton?: boolean | ReactNode;
 }
 
@@ -246,7 +253,7 @@ function sanitizePasswordInput(value: string): string {
 }
 
 export interface PasswordProps extends InputProps {
-  /** Shown when the user enters a disallowed character. */
+  /** 输入非法字符时的提示文案 */
   invalidCharMessage?: string;
 }
 

@@ -36,6 +36,22 @@ export default () => (
 );
 ```
 
+## 列深与字号
+
+```tsx
+import { VertMText, VertMSpace } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={280}>
+    <VertMSpace direction="horizontal" size="large" align="start">
+      <VertMText text="ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠁" fontSize={18} maxLines={4} />
+      <VertMText text="raw Latin ABC" raw fontSize={14} />
+    </VertMSpace>
+  </VertMDemoFrame>
+);
+```
+
 ## 竖排提示
 
 - `maxLines` 控制单列行数

@@ -14,10 +14,15 @@ export interface StepItem {
 }
 
 export interface StepsProps {
+  /** 当前步骤索引（从 0 开始） @default 0 */
   current?: number;
+  /** 步骤条方向；未设时跟随书写模式 */
   direction?: StepsDirection;
+  /** 步骤项列表 @default [] */
   items?: StepItem[];
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

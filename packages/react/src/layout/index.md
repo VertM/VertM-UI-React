@@ -7,7 +7,7 @@ group:
 
 # Layout
 
-页面骨架布局，含 `Header` / `Sider` / `Content` / `Footer`。
+页面骨架布局，含 Header / Sider / Content / Footer。
 
 ## 基本用法
 
@@ -15,25 +15,74 @@ group:
 import { VertMLayout, VertMText } from '@vertm/react';
 import VertMDemoFrame from 'VertMDemoFrame';
 
-const { Header, Sider, Content, Footer } = VertMLayout;
+export default () => (
+  <VertMDemoFrame minHeight={320}>
+    <VertMLayout style={{ minHeight: 280 }}>
+      <VertMLayout.Header>
+        <VertMText text="ᠲᠣᠯᠣᠭᠠᠢ" />
+      </VertMLayout.Header>
+      <VertMLayout>
+        <VertMLayout.Sider width={72}>
+          <VertMText text="ᠬᠠᠵᠠᠭᠤ" />
+        </VertMLayout.Sider>
+        <VertMLayout.Content>
+          <VertMText text="ᠠᠭᠤᠯᠭ᠎ᠠ" />
+        </VertMLayout.Content>
+      </VertMLayout>
+      <VertMLayout.Footer>
+        <VertMText text="ᠬᠥᠯ" />
+      </VertMLayout.Footer>
+    </VertMLayout>
+  </VertMDemoFrame>
+);
+```
+
+## 可折叠侧栏
+
+```tsx
+import { useState } from 'react';
+import { VertMLayout, VertMText, VertMButton } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => {
+  const [collapsed, setCollapsed] = useState(false);
+  return (
+    <VertMDemoFrame minHeight={300}>
+      <VertMLayout style={{ minHeight: 260 }}>
+        <VertMLayout.Sider
+          collapsible
+          collapsed={collapsed}
+          onCollapse={setCollapsed}
+          width={96}
+        >
+          <VertMText text="ᠬᠠᠵᠠᠭᠤ" />
+        </VertMLayout.Sider>
+        <VertMLayout.Content>
+          <VertMButton onClick={() => setCollapsed((v) => !v)}>
+            ᠰᠣᠯᠢᠬᠤ
+          </VertMButton>
+        </VertMLayout.Content>
+      </VertMLayout>
+    </VertMDemoFrame>
+  );
+};
+```
+
+## 仅内容区
+
+```tsx
+import { VertMLayout, VertMText } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
-  <VertMDemoFrame minHeight={360}>
-    <VertMLayout style={{ minHeight: 300, border: '1px solid var(--vertm-color-border)' }}>
-      <Header>
-        <VertMText text="ᠲᠣᠯᠣᠭᠠᠢ" fontSize={16} />
-      </Header>
-      <VertMLayout>
-        <Sider width={72} collapsible defaultCollapsed={false}>
-          <VertMText text="ᠬᠠᠵᠠᠭᠤ" fontSize={14} />
-        </Sider>
-        <Content style={{ padding: 12 }}>
-          <VertMText text="ᠠᠭᠤᠯᠭ᠎ᠠ" fontSize={16} />
-        </Content>
-      </VertMLayout>
-      <Footer>
-        <VertMText text="ᠬᠥᠯ" fontSize={14} />
-      </Footer>
+  <VertMDemoFrame minHeight={240}>
+    <VertMLayout style={{ minHeight: 200 }}>
+      <VertMLayout.Header>
+        <VertMText text="ᠲᠣᠯᠣᠭᠠᠢ" />
+      </VertMLayout.Header>
+      <VertMLayout.Content style={{ padding: 16 }}>
+        <VertMText text="ᠠᠭᠤᠯᠭ᠎ᠠ ᠁" fontSize={16} />
+      </VertMLayout.Content>
     </VertMLayout>
   </VertMDemoFrame>
 );

@@ -30,6 +30,37 @@ export default () => (
 );
 ```
 
+## 类型
+
+```tsx
+import { VertMAlert, VertMSpace } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={300}>
+    <VertMSpace direction="horizontal" size="middle" align="start">
+      <VertMAlert type="success" message="success" showIcon />
+      <VertMAlert type="info" message="info" showIcon />
+      <VertMAlert type="warning" message="warning" showIcon />
+      <VertMAlert type="error" message="error" showIcon />
+    </VertMSpace>
+  </VertMDemoFrame>
+);
+```
+
+## 横幅
+
+```tsx
+import { VertMAlert } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={220}>
+    <VertMAlert banner type="info" message="ᠮᠡᠳᠡᠭᠡ ᠁" showIcon />
+  </VertMDemoFrame>
+);
+```
+
 ## 竖排提示
 
 - `message` / `description` 字符串走 `VertMText`

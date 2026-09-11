@@ -7,7 +7,7 @@ group:
 
 # Tooltip
 
-悬停提示。底层基于 `Overlay` / `Portal`（定位与挂载工具，一般直接用 Tooltip 即可）。
+文字提示气泡。
 
 ## 基本用法
 
@@ -17,8 +17,43 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={220}>
-    <Tooltip title="ᠠᠭᠤᠯᠭ᠎ᠠ ᠁">
-      <VertMButton>Tooltip</VertMButton>
+    <Tooltip title="ᠲᠠᠢᠯᠪᠤᠷᠢ">
+      <VertMButton>hover</VertMButton>
+    </Tooltip>
+  </VertMDemoFrame>
+);
+```
+
+## 位置
+
+```tsx
+import { Tooltip, VertMButton, VertMSpace } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={240}>
+    <VertMSpace>
+      <Tooltip title="top" placement="top">
+        <VertMButton>top</VertMButton>
+      </Tooltip>
+      <Tooltip title="bottom" placement="bottom">
+        <VertMButton>bottom</VertMButton>
+      </Tooltip>
+    </VertMSpace>
+  </VertMDemoFrame>
+);
+```
+
+## 点击触发
+
+```tsx
+import { Tooltip, VertMButton } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={220}>
+    <Tooltip title="ᠲᠠᠢᠯᠪᠤᠷᠢ" trigger="click">
+      <VertMButton type="primary">click</VertMButton>
     </Tooltip>
   </VertMDemoFrame>
 );

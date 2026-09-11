@@ -27,19 +27,33 @@ type TriggerProps = {
 };
 
 export interface OverlayProps {
+  /** 触发弹出层的子元素 */
   children: ReactElement;
+  /** 弹出层内容 */
   content: ReactNode;
+  /** 受控显示状态 */
   open?: boolean;
+  /** 非受控初始显示状态 @default false */
   defaultOpen?: boolean;
+  /** 显示状态变化回调 */
   onOpenChange?: (open: boolean) => void;
+  /** 弹出位置 @default 'top' */
   placement?: Placement;
+  /** 触发方式 @default 'hover' */
   trigger?: TriggerType | TriggerType[];
+  /** 触发器自定义类名 */
   className?: string;
+  /** 弹出层自定义类名 */
   overlayClassName?: string;
+  /** 弹出层自定义样式 */
   overlayStyle?: CSSProperties;
+  /** 是否显示箭头 @default true */
   showArrow?: boolean;
+  /** 是否显示关闭按钮 @default false */
   closable?: boolean;
+  /** 是否禁用 @default false */
   disabled?: boolean;
+  /** 弹出层 z-index */
   zIndex?: number;
 }
 

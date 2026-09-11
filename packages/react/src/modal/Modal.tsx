@@ -13,19 +13,33 @@ import { useFocusTrap } from '../hooks/useFocusTrap.js';
 import { VertMText } from '../VertMText.js';
 
 export interface ModalProps {
+  /** 是否显示对话框 @default false */
   open?: boolean;
+  /** 标题 */
   title?: ReactNode;
+  /** 对话框内容 */
   children?: ReactNode;
+  /** 底部内容；传 null 隐藏默认按钮 */
   footer?: ReactNode | null;
+  /** 点击取消或遮罩/ESC 时的回调 */
   onCancel?: () => void;
+  /** 点击确定按钮的回调 */
   onOk?: () => void;
+  /** 确定按钮文案 */
   okText?: string;
+  /** 取消按钮文案 */
   cancelText?: string;
+  /** 是否显示遮罩 @default true */
   mask?: boolean;
+  /** 点击遮罩是否关闭 @default true */
   maskClosable?: boolean;
+  /** 对话框宽度 @default 520 */
   width?: number | string;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
+  /** 关闭时是否销毁子节点 @default false */
   destroyOnClose?: boolean;
 }
 

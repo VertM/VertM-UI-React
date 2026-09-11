@@ -7,34 +7,55 @@ group:
 
 # Pagination
 
-分页器。竖排下页码沿书写方向排布。
+分页器。竖排下默认列向排列页码。
 
 ## 基本用法
 
 ```tsx
-import { useState } from 'react';
 import { VertMPagination } from '@vertm/react';
 import VertMDemoFrame from 'VertMDemoFrame';
 
-export default () => {
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
-  return (
-    <VertMDemoFrame minHeight={280}>
-      <VertMPagination
-        current={page}
-        pageSize={pageSize}
-        total={128}
-        showSizeChanger
-        showQuickJumper
-        onChange={(p, size) => {
-          setPage(p);
-          setPageSize(size);
-        }}
-      />
-    </VertMDemoFrame>
-  );
-};
+export default () => (
+  <VertMDemoFrame minHeight={320}>
+    <VertMPagination defaultCurrent={1} total={50} pageSize={10} />
+  </VertMDemoFrame>
+);
+```
+
+## 尺寸切换
+
+```tsx
+import { VertMPagination } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={360}>
+    <VertMPagination
+      defaultCurrent={2}
+      total={200}
+      showSizeChanger
+      pageSizeOptions={[10, 20, 50]}
+    />
+  </VertMDemoFrame>
+);
+```
+
+## 横向布局
+
+```tsx
+import { VertMPagination } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={200}>
+    <VertMPagination
+      layout="horizontal"
+      defaultCurrent={3}
+      total={80}
+      pageSize={10}
+    />
+  </VertMDemoFrame>
+);
 ```
 
 ## 竖排提示

@@ -70,40 +70,60 @@ export interface BreadcrumbSemanticStyles {
 }
 
 export interface BreadcrumbProps {
+  /** 面包屑项列表 */
   items?: BreadcrumbItemType[];
-  /** @deprecated use `items` */
+  /** @deprecated 请改用 items */
   routes?: BreadcrumbItemType[];
+  /** 分隔符 */
   separator?: ReactNode;
+  /** 路由参数，用于替换 path 中的 :param */
   params?: Record<string, string>;
+  /** 自定义渲染每一项 */
   itemRender?: (
     route: BreadcrumbRouteItem,
     params: Record<string, string>,
     routes: BreadcrumbRouteItem[],
     paths: string[]
   ) => ReactNode;
+  /** 下拉菜单触发图标 */
   dropdownIcon?: ReactNode;
+  /** 语义化类名 */
   classNames?: BreadcrumbSemanticClassNames;
+  /** 语义化样式 */
   styles?: BreadcrumbSemanticStyles;
-  /** Layout direction; defaults to `vertical` in vertical writing mode. */
+  /** 排列方向；竖排书写模式下默认 vertical */
   direction?: BreadcrumbDirection;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
+  /** 子节点方式定义项（较少使用） */
   children?: ReactNode;
 }
 
 export interface BreadcrumbItemProps {
+  /** 链接地址 */
   href?: string;
+  /** 下拉菜单配置 */
   menu?: BreadcrumbMenuConfig;
+  /** 透传给 Dropdown 的属性 */
   dropdownProps?: Partial<Omit<DropdownProps, 'menu' | 'children'>>;
+  /** 下拉触发图标 */
   dropdownIcon?: ReactNode;
+  /** 该项后的分隔符 */
   separator?: ReactNode;
+  /** 点击回调 */
   onClick?: (event: MouseEvent<HTMLElement>) => void;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
+  /** 项内容 */
   children?: ReactNode;
 }
 
 export interface BreadcrumbSeparatorProps {
+  /** 分隔符内容 */
   children?: ReactNode;
 }
 

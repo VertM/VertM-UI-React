@@ -14,10 +14,13 @@ export interface AppContextValue {
 }
 
 export interface AppProps {
+  /** 应用内容 */
   children?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
-  /** Render a plain wrapper instead of a `<div>`; useful at the page root. */
+  /** 渲染为普通包装；false 时不额外包 div @default 'div' */
   component?: 'div' | false;
 }
 

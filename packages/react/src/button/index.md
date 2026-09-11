@@ -7,7 +7,7 @@ group:
 
 # Button
 
-竖排按钮。字符串子节点会走 `VertMText` 渲染。
+竖排按钮。字符串子节点经 `VertMText` 渲染；支持列深换列与 Editorial 墨色主按钮。
 
 ## 基本用法
 
@@ -26,6 +26,24 @@ export default () => (
 );
 ```
 
+## 尺寸与块级
+
+```tsx
+import { VertMButton } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame>
+    <VertMButton size="small">ᠪᠠᠭ᠎ᠠ</VertMButton>
+    <VertMButton size="middle">ᠳᠤᠮᠳᠠ</VertMButton>
+    <VertMButton size="large">ᠶᠡᠬᠡ</VertMButton>
+    <VertMButton type="primary" block>
+      ᠪᠦᠷᠢᠨ ᠥᠷᠭᠡᠨ
+    </VertMButton>
+  </VertMDemoFrame>
+);
+```
+
 ## 危险 / 加载
 
 ```tsx
@@ -40,6 +58,7 @@ export default () => (
     <VertMButton loading type="primary">
       ᠠᠴᠢᠶᠠᠯᠠᠵᠤ
     </VertMButton>
+    <VertMButton disabled>ᠬᠤᠷᠢᠭᠯᠠᠭᠳᠠᠭᠰᠠᠨ</VertMButton>
   </VertMDemoFrame>
 );
 ```

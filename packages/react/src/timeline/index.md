@@ -19,9 +19,48 @@ export default () => (
   <VertMDemoFrame minHeight={300}>
     <VertMTimeline
       items={[
-        { children: 'ᠡᠬᠢᠯᠡᠪᠡ', color: 'green' },
-        { children: 'ᠭᠦᠢᠴᠡᠳᠬᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ' },
-        { children: 'ᠬᠦᠯᠢᠶᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ', color: 'gray' },
+        { children: 'ᠡᠬᠢᠯᠡᠭᠰᠡᠨ' },
+        { children: 'ᠶᠠᠪᠤᠵᠤ ᠪᠠᠢᠨ᠎ᠠ' },
+        { children: 'ᠲᠡᠭᠦᠰᠪᠡ' },
+      ]}
+    />
+  </VertMDemoFrame>
+);
+```
+
+## 交替模式
+
+```tsx
+import { VertMTimeline } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={300}>
+    <VertMTimeline
+      mode="alternate"
+      items={[
+        { children: 'A' },
+        { children: 'B' },
+        { children: 'C' },
+      ]}
+    />
+  </VertMDemoFrame>
+);
+```
+
+## 进行中
+
+```tsx
+import { VertMTimeline } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={300}>
+    <VertMTimeline
+      pending="ᠬᠦᠯᠢᠶᠡᠵᠦ..."
+      items={[
+        { children: 'ᠨᠢᠭᠡ' },
+        { children: 'ᠬᠣᠶᠠᠷ' },
       ]}
     />
   </VertMDemoFrame>

@@ -7,7 +7,7 @@ group:
 
 # Menu
 
-竖排导航菜单，支持子菜单浮层。
+竖排导航菜单，支持子菜单浮层与逻辑轴键盘（Editorial）。
 
 ## 基本用法
 
@@ -34,6 +34,31 @@ export default () => (
     />
   </VertMDemoFrame>
 );
+```
+
+## 受控选中
+
+```tsx
+import { useState } from 'react';
+import { VertMMenu } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => {
+  const [selectedKeys, setSelectedKeys] = useState(['2']);
+  return (
+    <VertMDemoFrame minHeight={280}>
+      <VertMMenu
+        selectedKeys={selectedKeys}
+        onSelect={({ key }) => setSelectedKeys([key])}
+        items={[
+          { key: '1', label: 'ᠨᠢᠭᠡ' },
+          { key: '2', label: 'ᠬᠣᠶᠠᠷ' },
+          { key: '3', label: 'ᠭᠤᠷᠪᠠ', disabled: true },
+        ]}
+      />
+    </VertMDemoFrame>
+  );
+};
 ```
 
 ## 竖排提示

@@ -2,30 +2,49 @@ import { type CSSProperties, type ReactNode } from 'react';
 import { VertMText } from '../VertMText.js';
 
 export interface CardProps {
+  /** 卡片标题 */
   title?: ReactNode;
+  /** 标题栏右侧额外内容 */
   extra?: ReactNode;
+  /** 封面区域 */
   cover?: ReactNode;
+  /** 底部操作区列表 */
   actions?: ReactNode[];
+  /** 鼠标悬停是否浮起 */
   hoverable?: boolean;
+  /** 是否显示边框 */
   bordered?: boolean;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
+  /** 卡片主体内容 */
   children?: ReactNode;
+  /** 点击卡片回调 */
   onClick?: () => void;
 }
 
 export interface CardMetaProps {
+  /** 头像/图标 */
   avatar?: ReactNode;
+  /** 元信息标题 */
   title?: ReactNode;
+  /** 元信息描述 */
   description?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 
 export interface CardGridProps {
+  /** 网格单元内容 */
   children?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
+  /** 鼠标悬停是否浮起 */
   hoverable?: boolean;
 }
 

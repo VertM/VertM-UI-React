@@ -1,8 +1,23 @@
 /**
- * Site-level CSS: load VertM styles once, plus demo frame chrome.
+ * Site-level CSS: load VertM styles once, plus global controls + demo frame chrome.
  * Design shell (header/sidebar) still uses dumi defaults until §9 design lands.
  */
 @import '@vertm/styles/index.css';
+
+.vertm-global-controls {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #e7e5e4;
+  background: color-mix(in srgb, #fafaf9 92%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.vertm-global-controls__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px 24px;
+}
 
 .vertm-site-controls {
   display: flex;
@@ -49,12 +64,6 @@
   background: #fff;
 }
 
-.vertm-demo-frame__toolbar {
-  padding: 10px 14px;
-  border-bottom: 1px solid #e7e5e4;
-  background: #fafaf9;
-}
-
 .vertm-demo-frame__stage {
   padding: 20px 24px;
   overflow: auto;
@@ -65,7 +74,6 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 16px;
-  /* Stage itself is vertical-lr; children flow as columns left→right. */
 }
 
 .vertm-demo-frame__stage--horizontal {

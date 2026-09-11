@@ -7,15 +7,15 @@ export type MenuExpandIconRender = (info: {
   isVerticalWriting: boolean;
 }) => ReactNode;
 
-/** Arrow / expand icon configuration (Menu or SubMenu level). */
+/** 箭头 / 展开图标配置（Menu 或 SubMenu 级） */
 export interface MenuArrowConfig {
-  /** Custom expand icon; function receives open state. */
+  /** 自定义展开图标；函数可接收 open 状态 */
   expandIcon?: ReactNode | MenuExpandIconRender;
-  /** Default chevron rotation (deg) when closed. */
+  /** 收起时默认箭头旋转角度（度） */
   arrowRotate?: number;
-  /** Default chevron rotation (deg) when open. */
+  /** 展开时默认箭头旋转角度（度） */
   arrowRotateOpen?: number;
-  /** Pass `vertical` to the default ChevronRight icon. */
+  /** 是否将 vertical 传给默认 ChevronRight 图标 */
   arrowVertical?: boolean;
 }
 

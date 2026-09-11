@@ -1,34 +1,45 @@
 import type { CSSProperties, ReactNode } from 'react';
 import { VertMConfigProvider } from '@vertm/react';
-import { SiteControls } from './SiteControls';
-import { SiteControlsProvider, useSiteControls } from './SiteContext';
+import type { WritingMode } from '@vertm/core';
+import {
+  resolveTheme,
+  useSiteControls,
+  type SiteThemeId,
+} from './SiteContext';
 
 export interface VertMDemoFrameProps {
   children: ReactNode;
-  /** Hide the local theme/writing-mode toolbar. */
-  hideControls?: boolean;
   minHeight?: number | string;
   className?: string;
   style?: CSSProperties;
+  /** Override global theme for this demo only (e.g. editorial showcase). */
+  forceTheme?: SiteThemeId;
+  /** Override global writing mode for this demo only. */
+  forceWritingMode?: WritingMode;
 }
 
-function DemoStage({
+/**
+ * Live-demo shell. Reads theme/writing-mode from the global SiteControlsProvider
+ * (see `.dumi/app.tsx`). Optional force* props pin a demo to a specific skin.
+ */
+export function VertMDemoFrame({
   children,
-  hideControls,
-  minHeight,
-  className,
+  minHeight = 220,
+  className = '',
   style,
+  forceTheme,
+  forceWritingMode,
 }: VertMDemoFrameProps) {
-  const { theme, appearance, writingMode } = useSiteControls();
+  const global = useSiteControls();
+  const themeId = forceTheme ?? global.themeId;
+  const writingMode = forceWritingMode ?? global.writingMode;
+  const resolved = forceTheme ? resolveTheme(forceTheme) : global;
+  const theme = forceTheme ? resolved.theme : global.theme;
+  const appearance = forceTheme ? resolved.appearance : global.appearance;
   const vertical = writingMode === 'vertical-lr' || writingMode === 'vertical-rl';
 
   return (
-    <div className={`vertm-demo-frame ${className ?? ''}`.trim()} style={style}>
-      {!hideControls && (
-        <div className="vertm-demo-frame__toolbar">
-          <SiteControls />
-        </div>
-      )}
+    <div className={`vertm-demo-frame ${className}`.trim()} style={style}>
       <VertMConfigProvider theme={theme} appearance={appearance} writingMode={writingMode}>
         <div
           className={
@@ -36,6 +47,7 @@ function DemoStage({
               ? 'vertm-demo-frame__stage vertm-demo-frame__stage--vertical'
               : 'vertm-demo-frame__stage vertm-demo-frame__stage--horizontal'
           }
+          data-docs-theme={themeId}
           style={{
             minHeight,
             writingMode,
@@ -47,18 +59,6 @@ function DemoStage({
         </div>
       </VertMConfigProvider>
     </div>
-  );
-}
-
-/**
- * Unified live-demo shell. Each frame owns theme/writing-mode state so demos
- * work without a global layout provider.
- */
-export function VertMDemoFrame(props: VertMDemoFrameProps) {
-  return (
-    <SiteControlsProvider>
-      <DemoStage {...props} />
-    </SiteControlsProvider>
   );
 }
 

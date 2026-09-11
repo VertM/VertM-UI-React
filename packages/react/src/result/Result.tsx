@@ -13,12 +13,19 @@ const ICONS: Record<string, typeof InfoCircle> = {
 };
 
 export interface ResultProps {
+  /** 结果状态，决定默认图标 @default 'info' */
   status?: ResultStatus;
+  /** 标题 */
   title?: ReactNode;
+  /** 副标题 */
   subTitle?: ReactNode;
+  /** 操作区，通常放按钮 */
   extra?: ReactNode;
+  /** 自定义图标，覆盖 status 默认图标 */
   icon?: ReactNode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

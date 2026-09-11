@@ -2,12 +2,12 @@
 title: Radio
 group:
   title: 数据录入
-  order: 5
+  order: 4
 ---
 
 # Radio
 
-单选与 `Radio.Group`。`optionType="button"` 可切按钮样式。
+竖排单选框与单选组。
 
 ## 基本用法
 
@@ -16,13 +16,53 @@ import { VertMRadio } from '@vertm/react';
 import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
-  <VertMDemoFrame minHeight={260}>
+  <VertMDemoFrame minHeight={240}>
+    <VertMRadio.Group defaultValue="a">
+      <VertMRadio value="a">ᠨᠢᠭᠡ</VertMRadio>
+      <VertMRadio value="b">ᠬᠣᠶᠠᠷ</VertMRadio>
+      <VertMRadio value="c" disabled>
+        ᠬᠤᠷᠢᠭᠯᠠᠭᠳᠠᠭᠰᠠᠨ
+      </VertMRadio>
+    </VertMRadio.Group>
+  </VertMDemoFrame>
+);
+```
+
+## 选项配置
+
+```tsx
+import { VertMRadio } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={240}>
     <VertMRadio.Group
+      defaultValue="1"
+      options={[
+        { label: 'ᠨᠢᠭᠡ', value: '1' },
+        { label: 'ᠬᠣᠶᠠᠷ', value: '2' },
+        { label: 'ᠭᠤᠷᠪᠠ', value: '3' },
+      ]}
+    />
+  </VertMDemoFrame>
+);
+```
+
+## 按钮样式
+
+```tsx
+import { VertMRadio } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={240}>
+    <VertMRadio.Group
+      optionType="button"
       defaultValue="a"
       options={[
-        { label: 'ᠨᠢᠭᠡ', value: 'a' },
-        { label: 'ᠬᠣᠶᠠᠷ', value: 'b' },
-        { label: 'ᠭᠤᠷᠪᠠ', value: 'c' },
+        { label: 'A', value: 'a' },
+        { label: 'B', value: 'b' },
+        { label: 'C', value: 'c' },
       ]}
     />
   </VertMDemoFrame>

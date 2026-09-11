@@ -20,11 +20,17 @@ export type NotificationPlacement =
   | 'bottomRight';
 
 export interface NotificationConfig {
+  /** 通知标题 */
   message: ReactNode;
+  /** 通知描述 */
   description?: ReactNode;
+  /** 通知类型 */
   type?: 'success' | 'info' | 'warning' | 'error';
+  /** 自动关闭延时（秒） @default 4.5 */
   duration?: number;
+  /** 弹出位置 @default 'topRight' */
   placement?: NotificationPlacement;
+  /** 关闭时的回调 */
   onClose?: () => void;
 }
 

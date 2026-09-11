@@ -10,11 +10,17 @@ export interface DescriptionItem {
 }
 
 export interface DescriptionsProps {
+  /** 描述列表标题 */
   title?: ReactNode;
+  /** 描述项列表 @default [] */
   items?: DescriptionItem[];
+  /** 一行的描述列数 @default 1 */
   column?: number;
+  /** 是否展示边框 @default false */
   bordered?: boolean;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

@@ -5,13 +5,21 @@ import { VertMButton } from '../button/Button.js';
 import { VertMText } from '../VertMText.js';
 
 export interface PopconfirmProps {
+  /** 确认框标题 */
   title: ReactNode;
+  /** 确认框描述 */
   description?: ReactNode;
+  /** 点击确认的回调，可返回 Promise */
   onConfirm?: () => void | Promise<void>;
+  /** 点击取消的回调 */
   onCancel?: () => void;
+  /** 确认按钮文案 */
   okText?: string;
+  /** 取消按钮文案 */
   cancelText?: string;
+  /** 触发确认框的子元素 */
   children: ReactElement;
+  /** 是否禁用 */
   disabled?: boolean;
 }
 

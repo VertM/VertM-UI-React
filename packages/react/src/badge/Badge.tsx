@@ -5,15 +5,25 @@ import { VertMText } from '../VertMText.js';
 export type BadgeStatus = 'success' | 'processing' | 'default' | 'error' | 'warning';
 
 export interface BadgeProps {
+  /** 展示的数字或自定义节点 */
   count?: ReactNode;
+  /** 不展示数字，仅显示小红点 @default false */
   dot?: boolean;
+  /** 为 0 时是否显示数字 @default false */
   showZero?: boolean;
+  /** 封顶数字，超出显示为 `${overflowCount}+` @default 99 */
   overflowCount?: number;
+  /** 状态点类型（独立使用时） */
   status?: BadgeStatus;
+  /** 状态点旁的文字 */
   text?: ReactNode;
+  /** 徽标相对位置偏移 [x, y] */
   offset?: [number, number];
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
+  /** 被包裹的子元素 */
   children?: ReactNode;
 }
 

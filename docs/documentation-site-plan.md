@@ -197,12 +197,14 @@ packages/react/src/select/Select 等每个组件 index.md
 - [x] 按模板补齐其余全部组件 `index.md`
 - [x] 命令式 API 页(App / message / notification / Modal.confirm,见 §2.1)
 - [ ] 从 `react-demo/src/App.tsx` 抽取现成 demo 片段复用(与决策 A 一致:逐步抽取精简,早期不删光)
-- [x] 全量补齐组件 props 的 JSDoc,使 API 表格有描述(可分组件并行) — 已覆盖样板与高频录入组件;其余可随迭代补
+- [x] 全量补齐组件 props 的 JSDoc,使 API 表格有描述(可分组件并行)
 
 ### 阶段 3 — 主题与打磨
 - [x] Design Tokens 可视化页(色板 / 间距 / 竖排令牌)
 - [x] Editorial 外观页
 - [ ] 首页特性区、暗色模式、移动端、无障碍与键盘轴说明 — 壳层待设计规范落地后打磨
+
+> 迭代一已落地:全局切换器(见 `documentation-site-iteration-1.md`)、组件页模板对齐、Props 中文 JSDoc。
 
 ### 阶段 4 — 部署
 - [x] 新增 `.github/workflows/docs.yml`:build 后发布 GitHub Pages(Pages Action)

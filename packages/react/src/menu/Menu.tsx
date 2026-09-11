@@ -26,43 +26,65 @@ import { focusFirstMenuControl, focusSiblingMenuControl } from './menuKeyboard.j
 import type { MenuMode, MenuSelectInfo } from './types.js';
 
 export interface MenuProps extends MenuArrowConfig {
-  /** Menu layout mode. */
+  /** 菜单布局模式 @default 'vertical' */
   mode?: MenuMode;
-  /** Controlled selected keys. */
+  /** 受控选中项 key 列表 */
   selectedKeys?: string[];
+  /** 非受控初始选中项 @default [] */
   defaultSelectedKeys?: string[];
-  /** Controlled open submenu keys. */
+  /** 受控展开的子菜单 key 列表 */
   openKeys?: string[];
+  /** 非受控初始展开项 @default [] */
   defaultOpenKeys?: string[];
+  /** 选中项变化回调 */
   onSelect?: (info: MenuSelectInfo) => void;
+  /** 展开项变化回调 */
   onOpenChange?: (openKeys: string[]) => void;
-  /** Default popup placement for submenus. */
+  /** 子菜单默认弹出位置 */
   defaultPopupPlacement?: Placement;
-  /** Declarative item tree (preferred over children for docs). */
+  /** 声明式菜单树，文档场景优先于 children */
   items?: MenuItemType[];
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
+  /** 子节点方式定义菜单项 */
   children?: ReactNode;
 }
 
 export interface MenuItemProps {
+  /** 菜单项唯一 key */
   itemKey: string;
+  /** 菜单项图标 */
   icon?: ReactNode;
+  /** 是否禁用 */
   disabled?: boolean;
+  /** 危险态样式 */
   danger?: boolean;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
+  /** 菜单项内容 */
   children?: ReactNode;
 }
 
 export interface SubMenuProps extends MenuArrowConfig {
+  /** 子菜单唯一 key */
   itemKey: string;
+  /** 子菜单标题 */
   title: ReactNode;
+  /** 子菜单图标 */
   icon?: ReactNode;
+  /** 是否禁用 */
   disabled?: boolean;
+  /** 弹出层位置，覆盖默认 */
   popupPlacement?: Placement;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
+  /** 子菜单项 */
   children?: ReactNode;
 }
 

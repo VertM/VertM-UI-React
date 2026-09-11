@@ -39,36 +39,61 @@ export type DropdownMenuConfig = Pick<
 };
 
 export interface DropdownArrowConfig {
+  /** 箭头是否指向触发器中心 */
   pointAtCenter?: boolean;
 }
 
 export interface DropdownProps {
+  /** 下拉菜单配置 */
   menu: DropdownMenuConfig;
+  /** 触发下拉的子元素 */
   children: ReactElement;
+  /** 触发方式 @default ['hover'] */
   trigger?: TriggerType | TriggerType[];
+  /** 弹出位置；竖排默认 rightTop，横排默认 bottomLeft */
   placement?: Placement;
+  /** 是否显示箭头；可为配置对象 @default false */
   arrow?: boolean | DropdownArrowConfig;
+  /** 受控展开状态 */
   open?: boolean;
+  /** 非受控初始展开状态 @default false */
   defaultOpen?: boolean;
+  /** 展开状态变化回调 */
   onOpenChange?: (open: boolean, info?: DropdownOpenChangeInfo) => void;
+  /** 是否禁用 */
   disabled?: boolean;
+  /** 关闭时是否销毁菜单节点 */
   destroyOnHidden?: boolean;
+  /** 是否自动调整溢出位置 */
   autoAdjustOverflow?: boolean;
+  /** 弹出层挂载容器 */
   getPopupContainer?: () => HTMLElement;
+  /** 自定义渲染弹出层内容 */
   popupRender?: (menu: ReactNode) => ReactNode;
+  /** 点击菜单项后是否关闭 @default true */
   menuCloseOnClick?: boolean;
+  /** 触发器自定义类名 */
   className?: string;
+  /** 弹出层自定义类名 */
   overlayClassName?: string;
+  /** 弹出层自定义样式 */
   overlayStyle?: CSSProperties;
 }
 
 export interface DropdownButtonProps extends Omit<DropdownProps, 'children'> {
+  /** 主按钮内容 */
   children?: ReactNode;
+  /** 按钮类型 */
   type?: ButtonProps['type'];
+  /** 按钮尺寸 */
   size?: ButtonProps['size'];
+  /** 是否载入中 */
   loading?: boolean;
+  /** 危险态 */
   danger?: boolean;
+  /** 下拉触发按钮图标 */
   icon?: ReactNode;
+  /** 自定义渲染左右按钮 */
   buttonsRender?: (buttons: ReactNode[]) => ReactNode[];
 }
 

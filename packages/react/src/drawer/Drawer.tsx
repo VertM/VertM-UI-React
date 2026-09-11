@@ -8,16 +8,27 @@ import { VertMText } from '../VertMText.js';
 export type DrawerPlacement = 'top' | 'right' | 'bottom' | 'left';
 
 export interface DrawerProps {
+  /** 是否显示抽屉 @default false */
   open?: boolean;
+  /** 标题 */
   title?: ReactNode;
+  /** 抽屉内容 */
   children?: ReactNode;
+  /** 底部内容 */
   footer?: ReactNode;
+  /** 抽屉出现方向 @default 'right' */
   placement?: DrawerPlacement;
+  /** 抽屉宽度或高度 @default 378 */
   size?: number | string;
+  /** 是否显示遮罩 @default true */
   mask?: boolean;
+  /** 点击遮罩是否关闭 @default true */
   maskClosable?: boolean;
+  /** 关闭时的回调 */
   onClose?: () => void;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

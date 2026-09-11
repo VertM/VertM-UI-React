@@ -143,11 +143,17 @@ function useFormStore(store: FormStore) {
 }
 
 export interface FormProps {
+  /** 表单实例，由 useForm 创建 */
   form?: FormInstance;
+  /** 表单项布局方向 @default 'vertical' */
   layout?: FormLayout;
+  /** 校验通过并提交时的回调 */
   onFinish?: (values: Record<string, unknown>) => void;
+  /** 校验失败时的回调 */
   onFinishFailed?: (errors: Record<string, string>) => void;
+  /** 表单内容，通常为 Form.Item */
   children?: ReactNode;
+  /** 自定义类名 */
   className?: string;
 }
 
@@ -194,12 +200,17 @@ export function VertMForm({
 }
 
 export interface FormItemProps {
+  /** 字段名，对应表单值的 key */
   name: string;
+  /** 字段标签 */
   label?: ReactNode;
+  /** 校验规则列表 @default [] */
   rules?: Rule[];
-  /** Show required marker; defaults to `true` when any rule has `required`. */
+  /** 是否显示必填标记；有 required 规则时默认为 true */
   required?: boolean;
+  /** 表单控件，需能接收 value / onChange */
   children?: ReactElement;
+  /** 自定义类名 */
   className?: string;
 }
 

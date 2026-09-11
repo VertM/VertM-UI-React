@@ -25,11 +25,85 @@ export default () => {
       </VertMButton>
       <VertMDrawer
         open={open}
-        title="ᠰᠢᠷᠭᠤᠯ"
-        placement="right"
+        title="ᠰᠢᠷᠡᠭᠡ"
         onClose={() => setOpen(false)}
       >
         <VertMText text="ᠠᠭᠤᠯᠭ᠎ᠠ ᠁" />
+      </VertMDrawer>
+    </VertMDemoFrame>
+  );
+};
+```
+
+## 位置
+
+```tsx
+import { useState } from 'react';
+import { VertMDrawer, VertMButton, VertMSpace, VertMText } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  const [placement, setPlacement] = useState<'left' | 'right'>('right');
+  return (
+    <VertMDemoFrame minHeight={260}>
+      <VertMSpace>
+        <VertMButton
+          onClick={() => {
+            setPlacement('left');
+            setOpen(true);
+          }}
+        >
+          left
+        </VertMButton>
+        <VertMButton
+          onClick={() => {
+            setPlacement('right');
+            setOpen(true);
+          }}
+        >
+          right
+        </VertMButton>
+      </VertMSpace>
+      <VertMDrawer
+        open={open}
+        placement={placement}
+        title="ᠰᠢᠷᠡᠭᠡ"
+        onClose={() => setOpen(false)}
+      >
+        <VertMText text={placement} />
+      </VertMDrawer>
+    </VertMDemoFrame>
+  );
+};
+```
+
+## 带页脚
+
+```tsx
+import { useState } from 'react';
+import { VertMDrawer, VertMButton, VertMText, VertMSpace } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <VertMDemoFrame minHeight={240}>
+      <VertMButton onClick={() => setOpen(true)}>footer</VertMButton>
+      <VertMDrawer
+        open={open}
+        title="ᠰᠢᠷᠡᠭᠡ"
+        onClose={() => setOpen(false)}
+        footer={
+          <VertMSpace>
+            <VertMButton onClick={() => setOpen(false)}>ᠪᠣᠯᠢᠬᠤ</VertMButton>
+            <VertMButton type="primary" onClick={() => setOpen(false)}>
+              ᠵᠥᠪ
+            </VertMButton>
+          </VertMSpace>
+        }
+      >
+        <VertMText text="ᠠᠭᠤᠯᠭ᠎ᠠ" />
       </VertMDrawer>
     </VertMDemoFrame>
   );

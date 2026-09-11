@@ -10,12 +10,19 @@ export interface AnchorItem {
 }
 
 export interface AnchorProps {
+  /** 锚点链接列表 @default [] */
   items?: AnchorItem[];
+  /** 距离窗口顶部达到该偏移量后触发高亮 */
   offsetTop?: number;
+  /** 锚点区域边界 */
   bounds?: number;
+  /** 指定滚动容器 */
   getContainer?: () => HTMLElement | Window;
+  /** 点击锚点的回调 */
   onClick?: (e: MouseEvent<HTMLAnchorElement>, link: { href: string; title: ReactNode }) => void;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

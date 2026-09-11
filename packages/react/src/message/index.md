@@ -39,6 +39,63 @@ export default () => (
 );
 ```
 
+## 警告与加载
+
+```tsx
+import { VertMApp, VertMButton, VertMSpace } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+const Demo = () => {
+  const { message } = VertMApp.useApp();
+  return (
+    <VertMSpace align="start">
+      <VertMButton onClick={() => message.warning('ᠠᠩᠬᠠᠷ')}>warning</VertMButton>
+      <VertMButton
+        onClick={() => {
+          const id = message.loading('ᠠᠴᠢᠶᠠᠯᠠᠵᠤ...', 0);
+          setTimeout(() => message.destroy(id), 1500);
+        }}
+      >
+        loading
+      </VertMButton>
+    </VertMSpace>
+  );
+};
+
+export default () => (
+  <VertMDemoFrame minHeight={220}>
+    <VertMApp>
+      <Demo />
+    </VertMApp>
+  </VertMDemoFrame>
+);
+```
+
+## 销毁
+
+```tsx
+import { VertMApp, VertMButton, VertMSpace } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+const Demo = () => {
+  const { message } = VertMApp.useApp();
+  return (
+    <VertMSpace align="start">
+      <VertMButton onClick={() => message.info('ᠮᠡᠳᠡᠭᠡ', 10)}>long</VertMButton>
+      <VertMButton onClick={() => message.destroy()}>destroy</VertMButton>
+    </VertMSpace>
+  );
+};
+
+export default () => (
+  <VertMDemoFrame minHeight={220}>
+    <VertMApp>
+      <Demo />
+    </VertMApp>
+  </VertMDemoFrame>
+);
+```
+
 ## 竖排提示
 
 - 全局 `message.*` 会挂独立 React 根，**读不到**外层 `VertMConfigProvider`

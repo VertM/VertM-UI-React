@@ -18,18 +18,27 @@ import { VertMModal } from './Modal.js';
 export type ConfirmType = 'confirm' | 'info' | 'success' | 'error' | 'warning';
 
 export interface ModalFuncConfig {
+  /** 对话框标题 */
   title?: ReactNode;
+  /** 对话框内容 */
   content?: ReactNode;
+  /** 确定按钮文案 */
   okText?: string;
+  /** 取消按钮文案 */
   cancelText?: string;
-  /** Resolve to close, reject to keep the dialog open. Shows a loading OK button. */
+  /** 点击确定的回调；返回 Promise 时 OK 按钮显示 loading，reject 则保持打开 */
   onOk?: () => void | Promise<unknown>;
+  /** 点击取消的回调 */
   onCancel?: () => void;
-  /** Hide the cancel button; defaults to true for the single-action variants. */
+  /** 是否仅显示确定按钮；单操作变体默认 true */
   okOnly?: boolean;
+  /** 是否显示遮罩 */
   mask?: boolean;
+  /** 点击遮罩是否关闭 */
   maskClosable?: boolean;
+  /** 对话框宽度 */
   width?: number | string;
+  /** 自定义类名 */
   className?: string;
 }
 

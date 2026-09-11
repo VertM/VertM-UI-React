@@ -14,21 +14,33 @@ import { VertMText } from '../VertMText.js';
 export type PaginationLayout = 'horizontal' | 'vertical';
 
 export interface PaginationProps {
+  /** 受控当前页 */
   current?: number;
+  /** 非受控初始页码 */
   defaultCurrent?: number;
+  /** 页码或 pageSize 变化回调 */
   onChange?: (page: number, pageSize: number) => void;
+  /** 数据总数 */
   total?: number;
+  /** 受控每页条数 */
   pageSize?: number;
+  /** 非受控初始每页条数 */
   defaultPageSize?: number;
+  /** 是否显示每页条数切换器 */
   showSizeChanger?: boolean;
+  /** 每页条数可选列表 */
   pageSizeOptions?: number[];
+  /** 是否显示快速跳转 */
   showQuickJumper?: boolean;
-  /** Show first / last page controls (default on in vertical layout). */
+  /** 是否显示首页/末页按钮（竖排布局默认开启） */
   showFirstLast?: boolean;
+  /** 是否禁用 */
   disabled?: boolean;
-  /** Page list direction; default `vertical` (Mongolian column). `horizontal` uses classic row layout with English labels. */
+  /** 页码列表方向；默认 vertical（蒙文列） */
   layout?: PaginationLayout;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
 }
 

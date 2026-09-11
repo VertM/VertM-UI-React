@@ -27,31 +27,45 @@ import { VertMText } from './VertMText.js';
 export type VertMTextFieldVariant = 'boxed' | 'bare';
 
 export interface VertMTextFieldProps {
+  /** 受控值 */
   value?: string;
+  /** 非受控初始值 @default '' */
   defaultValue?: string;
+  /** 值变化回调 */
   onChange?: (value: string) => void;
+  /** 占位文案 @default '' */
   placeholder?: string;
+  /** 可视行数（多行时） @default 1 */
   rows?: number;
-  /** Visible writing depth per column (line count); widens until maxColumns. Default 4. */
+  /** 竖排时每列可见书写深度（行数），超出扩列 @default 4 */
   columnDepth?: number;
-  /** Max columns; Input/TextArea auto-widen until this limit. Default 1. */
+  /** 最大列数，输入区可自动扩宽至此 @default 1 */
   maxColumns?: number;
+  /** 是否自动聚焦 @default false */
   autoFocus?: boolean;
+  /** 是否禁用 @default false */
   disabled?: boolean;
+  /** 字体族 */
   fontFamily?: string;
+  /** 字号（px） @default 16 */
   fontSize?: number;
+  /** 行高倍数 @default 1.6 */
   lineHeight?: number;
+  /** 书写模式 */
   writingMode?: WritingMode;
+  /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
   style?: CSSProperties;
-  /** `boxed` = bordered field; `bare` = lightweight inline mirror input. */
+  /** 外观：边框输入框或轻量内联 @default 'boxed' */
   variant?: VertMTextFieldVariant;
-  /** When true, visual layer shows bullets instead of actual text (password mode). */
+  /** 是否以圆点掩码显示（密码模式） @default false */
   masked?: boolean;
+  /** 失焦回调 */
   onBlur?: () => void;
-  /** Strip disallowed characters before commit; also blocks single-char keydown when set. */
+  /** 提交前过滤非法字符；设置后也会拦截单字符按键 */
   sanitize?: (value: string) => string;
-  /** Fired when input is rejected (illegal char or stripped from paste / IME). */
+  /** 输入被拒绝（非法字符或粘贴/IME 剥离）时触发 */
   onSanitizeReject?: () => void;
 }
 
