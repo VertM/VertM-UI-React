@@ -57,7 +57,7 @@ export function normalizeForSearch(text: string): string {
 export const DEFAULT_VERTM_FONT_STACK =
   '"Noto Sans Mongolian", "Mongolian Baiti", "Menksoft Qagan", sans-serif';
 
-export type WritingMode = 'vertical-lr' | 'vertical-rl';
+export type WritingMode = 'vertical-lr' | 'vertical-rl' | 'horizontal-tb';
 
 export const DEFAULT_WRITING_MODE: WritingMode = 'vertical-lr';
 

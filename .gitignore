@@ -35,6 +35,11 @@ Thumbs.db
 # Vite
 .vite/
 
+# dumi
+**/.dumi/tmp
+**/.dumi/tmp-production
+packages/docs/dist/
+
 # Design harness / internal planning (not published)
 docs/design/
 docs/requirements/

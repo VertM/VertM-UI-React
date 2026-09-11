@@ -1,0 +1,27 @@
+{
+  "name": "@vertm/docs",
+  "private": true,
+  "version": "0.1.0",
+  "description": "VertM UI documentation site (dumi)",
+  "scripts": {
+    "dev": "dumi dev",
+    "build": "dumi build",
+    "preview": "dumi preview",
+    "start": "npm run dev"
+  },
+  "dependencies": {
+    "@vertm/core": "^0.1.0",
+    "@vertm/icons": "^0.1.0",
+    "@vertm/react": "^0.1.0",
+    "@vertm/styles": "^0.1.0",
+    "@vertm/tokens": "^0.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "dumi": "^2.4.21",
+    "typescript": "^5.4.5"
+  }
+}

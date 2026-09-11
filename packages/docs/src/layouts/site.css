@@ -1,0 +1,133 @@
+/**
+ * Site-level CSS: load VertM styles once, plus demo frame chrome.
+ * Design shell (header/sidebar) still uses dumi defaults until §9 design lands.
+ */
+@import '@vertm/styles/index.css';
+
+.vertm-site-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: center;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+}
+
+.vertm-site-controls__group {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.vertm-site-controls__label {
+  color: #666;
+  margin-inline-end: 4px;
+}
+
+.vertm-site-controls__btn {
+  appearance: none;
+  border: 1px solid #d9d9d9;
+  background: #fff;
+  color: #1c1917;
+  border-radius: 4px;
+  padding: 2px 10px;
+  cursor: pointer;
+  line-height: 1.6;
+}
+
+.vertm-site-controls__btn--active {
+  border-color: #171a18;
+  background: #171a18;
+  color: #fbfaf6;
+}
+
+.vertm-demo-frame {
+  margin: 16px 0 24px;
+  border: 1px solid #e7e5e4;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.vertm-demo-frame__toolbar {
+  padding: 10px 14px;
+  border-bottom: 1px solid #e7e5e4;
+  background: #fafaf9;
+}
+
+.vertm-demo-frame__stage {
+  padding: 20px 24px;
+  overflow: auto;
+}
+
+.vertm-demo-frame__stage--vertical {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+  /* Stage itself is vertical-lr; children flow as columns left→right. */
+}
+
+.vertm-demo-frame__stage--horizontal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.vertm-docs-hero {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+  padding: 48px 0 32px;
+  font-family: system-ui, sans-serif;
+}
+
+.vertm-docs-hero__mark {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  font-size: 42px;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  color: #171a18;
+  min-height: 220px;
+  font-family: 'Noto Sans Mongolian', 'Mongolian Baiti', serif;
+}
+
+.vertm-docs-hero__body h1 {
+  margin: 0 0 12px;
+  font-size: 32px;
+  font-weight: 650;
+  color: #171a18;
+}
+
+.vertm-docs-hero__body p {
+  margin: 0 0 20px;
+  max-width: 36em;
+  color: #57534e;
+  line-height: 1.65;
+}
+
+.vertm-docs-hero__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.vertm-docs-hero__actions a {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.vertm-docs-hero__actions a.primary {
+  background: #171a18;
+  color: #fbfaf6;
+}
+
+.vertm-docs-hero__actions a.secondary {
+  border: 1px solid #d6d3d1;
+  color: #1c1917;
+}

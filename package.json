@@ -30,6 +30,8 @@
   "scripts": {
     "build": "npm run build -w @vertm/tokens && npm run build -w @vertm/core && npm run build -w @vertm/icons && npm run build -w @vertm/react && npm run build -w @vertm/wasm && npm run build -w @vertm/react-demo --if-present",
     "dev": "npm run dev -w @vertm/react-demo",
+    "docs": "npm run dev -w @vertm/docs",
+    "docs:build": "npm run build -w @vertm/docs",
     "test": "npm run test --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "pack:check": "npm run build && npm pack -w @vertm/tokens --dry-run && npm pack -w @vertm/core --dry-run && npm pack -w @vertm/styles --dry-run && npm pack -w @vertm/icons --dry-run && npm pack -w @vertm/wasm --dry-run && npm pack -w @vertm/react --dry-run",

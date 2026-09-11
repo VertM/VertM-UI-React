@@ -1,11 +1,14 @@
 # VertM UI — 传统蒙古文竖排 React 组件库
 
 [![CI](https://github.com/VertM/VertM-UI-React/actions/workflows/ci.yml/badge.svg)](https://github.com/VertM/VertM-UI-React/actions/workflows/ci.yml)
+[![Docs](https://github.com/VertM/VertM-UI-React/actions/workflows/docs.yml/badge.svg)](https://github.com/VertM/VertM-UI-React/actions/workflows/docs.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 **VertM UI** 是面向传统蒙古文竖排（`vertical-lr`）的 React 组件库，组件 API 尽量贴近 [Ant Design](https://ant.design/components/overview-cn/) 的使用习惯，便于上手。名称取 **Vert**(ical) + **M**(ongolian) 之意。
 
 采用 **CSS-native 渲染路径**（`writing-mode: vertical-lr`，符合 [W3C mlreq](https://www.w3.org/TR/mlreq/)），输入交互使用 Mirror Input 模式。
+
+文档站（开发中）：本地 `npm run docs` → http://localhost:8000/VertM-UI-React/ ；规划见 [docs/documentation-site-plan.md](./docs/documentation-site-plan.md)。
 
 ## 预览
 
@@ -49,7 +52,8 @@ npm install @vertm/react @vertm/styles @vertm/tokens
 ```bash
 npm install
 npm run build
-npm run dev   # 启动 Demo (http://localhost:5173)
+npm run docs  # 文档站 (http://localhost:8000/VertM-UI-React/)
+npm run dev   # 内部 playground (http://localhost:5173)，已冻结
 ```
 
 ## 使用示例

@@ -22,9 +22,19 @@ npm run build
 # 运行测试
 npm test
 
-# 启动 Demo（http://localhost:5173）
+# 启动 Demo（http://localhost:5173）— 内部 playground，已冻结
 npm run dev
+
+# 启动文档站（http://localhost:8000/VertM-UI-React/）— 面向用户的示例唯一来源
+npm run docs
 ```
+
+## 文档站与示例约定
+
+- **新示例只进文档站**（`packages/docs` + 各组件旁的 `index.md` / `_vertical/*.md`），不要往 `packages/react-demo` 加面向用户的 demo。
+- `react-demo` 仅作本地联调 playground；文档站覆盖完整前可保留，但不再扩展。
+- 改组件 props 时请同步更新同目录文档（`index.md`），并尽量补 JSDoc 以便 API 表格有描述。
+- 规划见 [docs/documentation-site-plan.md](docs/documentation-site-plan.md)。
 
 ## 测试
 
@@ -59,10 +69,11 @@ packages/
 ├── tokens/      # 设计令牌
 ├── styles/      # CSS tokens + vertical-lr 竖排预设
 ├── icons/       # 方向感知 SVG 图标
-├── react/       # React 组件库
+├── react/       # React 组件库（组件旁 index.md 为文档）
+├── docs/        # 文档站（dumi，面向用户的示例唯一来源）
 ├── wasm/        # 可选 Harfbuzz WASM 封装
-└── react-demo/  # 本地 Demo（不发布）
-docs/            # 浏览器兼容矩阵
+└── react-demo/  # 内部 playground（已冻结，不发布）
+docs/            # 规划与兼容矩阵
 examples/        # Phase 0 CSS 基线验证
 ```
 
