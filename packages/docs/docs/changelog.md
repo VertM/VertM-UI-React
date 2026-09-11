@@ -15,6 +15,7 @@ nav:
 
 - Documentation site scaffold (`@vertm/docs`, dumi 2) with guide / core / theme pages and component sample docs.
 - Full documentation site component coverage (guides, core demos, theme swatches, all major `@vertm/react` / `@vertm/icons` pages, imperative App/message/notification/Modal docs).
+- Docs iteration 1 tasks 4–5: per-page content thickening (≥8 demos), components overview, design-specs / FAQ / antd migration / a11y guides.
 - `appearance="editorial"` preset theme and structural skin.
 - `WritingMode` now includes `horizontal-tb` for docs / preview toggles.
 

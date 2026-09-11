@@ -7,9 +7,20 @@ group:
 
 # Typography
 
-竖排排版组件，含 `Title` / `Text` / `Paragraph` / `Link`。
+排版。提供 `Title` / `Text` / `Paragraph` / `Link`；字符串子节点经 `VertMText` 规范化并适配竖排。
+
+## 何时使用
+
+- 页面标题、正文、辅助说明需要统一语义色与字号层级
+- 长文需要省略（`ellipsis`）或一键复制（`copyable`）
+- 内联链接与禁用链接
+- 竖排阅读流中的标题层级与段落间距
 
 ## 基本用法
+
+### 标题与段落
+
+组合 Title + Paragraph + Text + Link。
 
 ```tsx
 import { Typography } from '@vertm/react';
@@ -27,7 +38,9 @@ export default () => (
 );
 ```
 
-## 标题层级
+### 标题层级
+
+`level` 1–5 对应不同字号。
 
 ```tsx
 import { Typography } from '@vertm/react';
@@ -39,11 +52,14 @@ export default () => (
     <Typography.Title level={2}>ᠬᠣᠶᠠᠷ</Typography.Title>
     <Typography.Title level={3}>ᠭᠤᠷᠪᠠ</Typography.Title>
     <Typography.Title level={4}>ᠳᠥᠷᠪᠡ</Typography.Title>
+    <Typography.Title level={5}>ᠲᠠᠪᠤ</Typography.Title>
   </VertMDemoFrame>
 );
 ```
 
-## 文本类型
+### 文本类型
+
+语义色：`secondary` / `success` / `warning` / `danger`。
 
 ```tsx
 import { Typography, VertMSpace } from '@vertm/react';
@@ -57,17 +73,156 @@ export default () => (
       <Typography.Text type="success">ᠵᠥᠪ</Typography.Text>
       <Typography.Text type="warning">ᠠᠩᠬᠠᠷ</Typography.Text>
       <Typography.Text type="danger">ᠠᠯᠳᠠᠭ᠎ᠠ</Typography.Text>
-      <Typography.Text copyable>ᠬᠠᠭᠤᠯᠬᠤ</Typography.Text>
     </VertMSpace>
+  </VertMDemoFrame>
+);
+```
+
+## 交互能力
+
+### 可复制
+
+`copyable` 在文旁显示复制按钮。
+
+```tsx
+import { Typography, VertMSpace } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={220}>
+    <VertMSpace direction="vertical" align="start">
+      <Typography.Text copyable>ᠬᠠᠭᠤᠯᠬᠤ</Typography.Text>
+      <Typography.Paragraph copyable>
+        ᠲᠠᠤᠯᠠᠢ ᠶ᠋ᠢᠨ ᠭᠦᠶᠦᠳᠡᠯ
+      </Typography.Paragraph>
+    </VertMSpace>
+  </VertMDemoFrame>
+);
+```
+
+### 自定义复制文本
+
+对象形式指定 `text` / `onCopy`。
+
+```tsx
+import { Typography } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={200}>
+    <Typography.Text
+      copyable={{ text: 'copied-value', onCopy: () => undefined }}
+    >
+      show-me
+    </Typography.Text>
+  </VertMDemoFrame>
+);
+```
+
+### 省略
+
+`ellipsis` 截断过长文本；对象可指定 `rows`。
+
+```tsx
+import { Typography } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={240}>
+    <Typography.Paragraph ellipsis={{ rows: 2 }} style={{ maxHeight: 160 }}>
+      ᠲᠠᠤᠯᠠᠢ ᠶ᠋ᠢᠨ ᠭᠦᠶᠦᠳᠡᠯ ᠰᠢᠭ᠌ ᠰᠠᠯᠬᠢᠨ ᠳ᠋ᠦ ᠲᠤᠤᠯᠠ ᠶ᠋ᠢᠨ ᠰᠢᠭᠤᠢ ᠨᠠᠢᠢᠭᠤᠨ᠎ᠠ
+      ᠲᠠᠤᠯᠠᠢ ᠶ᠋ᠢᠨ ᠭᠦᠶᠦᠳᠡᠯ ᠰᠢᠭ᠌ ᠰᠠᠯᠬᠢᠨ ᠳ᠋ᠦ ᠲᠤᠤᠯᠠ ᠶ᠋ᠢᠨ ᠰᠢᠭᠤᠢ ᠨᠠᠢᠢᠭᠤᠨ᠎ᠠ
+    </Typography.Paragraph>
+  </VertMDemoFrame>
+);
+```
+
+## 链接与块级
+
+### 链接与禁用
+
+`Typography.Link` 支持 `href` / `disabled`。
+
+```tsx
+import { Typography, VertMSpace } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={220}>
+    <VertMSpace direction="vertical" align="start">
+      <Typography.Link href="https://doc.onon.cn" target="_blank">
+        ᠪ ᠶᠠᠪᠣᠬᠣᠭᠣᠯᠠᠩ
+      </Typography.Link>
+      <Typography.Link disabled href="#">
+        disabled
+      </Typography.Link>
+    </VertMSpace>
+  </VertMDemoFrame>
+);
+```
+
+### 块级 Text
+
+`block` 让 Text 独占一行。
+
+```tsx
+import { Typography } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={200}>
+    <Typography.Text block type="secondary">
+      block secondary
+    </Typography.Text>
+    <Typography.Text block>block default</Typography.Text>
+  </VertMDemoFrame>
+);
+```
+
+### raw 原文
+
+`raw` 跳过文本规范化，按原文渲染。
+
+```tsx
+import { Typography } from '@vertm/react';
+import VertMDemoFrame from 'VertMDemoFrame';
+
+export default () => (
+  <VertMDemoFrame minHeight={200}>
+    <Typography.Text raw>  spaced  text  </Typography.Text>
   </VertMDemoFrame>
 );
 ```
 
 ## 竖排提示
 
-- 字符串子节点走 `VertMText`，竖排与规范化一致
-- `copyable` 等交互在竖排下仍可用
+- 所有字符串内容默认走 `VertMText`，竖排字形与规范化一致
+- 标题字号对应 `--vertm-font-size-heading-*`
+- 复制按钮图标在竖排下仍保持可点触尺寸
 
 ## API
 
-<API id="Typography"></API>
+Typography 为复合导出，无单一根组件 props。子组件：
+
+<API id="Title"></API>
+
+<API id="Text"></API>
+
+<API id="Paragraph"></API>
+
+<API id="Link"></API>
+
+若表格为空，请对照源码 `TitleProps` / `TextProps` / `ParagraphProps` / `LinkProps`（均扩展 `BaseTypographyProps`：`type` / `ellipsis` / `copyable` / `raw`）。
+
+## 主题变量
+
+| 变量 | 说明 |
+|------|------|
+| `--vertm-font-size-heading-1` … `5` | 标题层级字号 |
+| `--vertm-font-size` | 正文字号 |
+| `--vertm-color-text` | 默认文字色 |
+| `--vertm-color-text-secondary` | secondary 类型 |
+| `--vertm-color-success` / `--vertm-color-warning` / `--vertm-color-error` | 语义色 |
+| `--vertm-color-link` | 链接色 |
+| `--vertm-font-family` | 蒙文字体栈 |
+| `--vertm-line-height` | 行高 |

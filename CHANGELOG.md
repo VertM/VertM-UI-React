@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Docs iteration 1 continued: thickened every component page (≥8 demos, 何时使用, theme vars), added components overview, design-specs/FAQ/antd-migration/a11y guides; global sticky theme/writing-mode switcher with localStorage; Chinese JSDoc for API tables.
 - Component doc pages aligned to a locked template (基本用法 → 能力小节 → 竖排提示 → API); Chinese JSDoc on exported Props for API table descriptions.
 
 ## [0.1.0] - 2026-07-12
