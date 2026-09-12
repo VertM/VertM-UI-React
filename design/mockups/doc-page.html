@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Button 按钮 — VertM UI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:"Noto Sans Mongolian";src:url("../../packages/styles/src/fonts/NotoSansMongolian-400.woff2") format("woff2");font-display:swap;}
+  :root{
+    --night:#071a3f; --sky:#0e2f74; --sky-2:#16408f; --azure:#3f7ce0;
+    --snow:#f5f6f8; --snow-dim:rgba(245,246,248,.66);
+    --gilt:#e0aa4e; --gilt-deep:#c68f34;
+    --canvas:#eef0f4; --panel:#ffffff; --panel-2:#f6f7f9;
+    --inkblue:#0e2f74; --text:#1e2740; --muted:#5b6478; --line:#dde1ea; --line-soft:#e8ebf1;
+    --disp:"Sora",ui-sans-serif,system-ui,sans-serif;
+    --cjk:"PingFang SC","Noto Sans SC",system-ui,sans-serif;
+    --mong:"Noto Sans Mongolian","Mongolian Baiti",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,"SF Mono",monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{background:var(--canvas); color:var(--text); font-family:var(--cjk); line-height:1.6; -webkit-font-smoothing:antialiased;}
+
+  /* ── top bar (brand-constant deep blue) ── */
+  .top{position:sticky; top:0; z-index:20; background:var(--sky); color:var(--snow);
+    display:flex; align-items:center; gap:26px; height:56px; padding:0 26px; border-bottom:1px solid rgba(0,0,0,.15);}
+  .top .mark{font-family:var(--disp); font-weight:700; font-size:18px;}
+  .top .mark .u{color:var(--gilt);}
+  .top nav{display:flex; gap:22px; margin-left:8px;}
+  .top nav a{font-size:14px; color:var(--snow-dim); text-decoration:none;}
+  .top nav a.on{color:var(--snow); font-weight:600;}
+  .top .end{margin-left:auto; display:flex; align-items:center; gap:16px;}
+  .search{display:flex; align-items:center; gap:8px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.14); color:var(--snow-dim); font-size:13px; padding:6px 12px; border-radius:7px; width:190px;}
+  .search .k{margin-left:auto; font-family:var(--mono); font-size:11px; opacity:.7;}
+  .top .gh{font-size:14px; color:var(--snow); text-decoration:none; border-bottom:1.5px solid var(--gilt); padding-bottom:2px;}
+
+  /* ── 3-column doc layout ── */
+  .layout{display:grid; grid-template-columns:236px minmax(0,1fr) 208px; gap:0; max-width:1340px; margin:0 auto;}
+
+  /* sidebar */
+  .side{padding:26px 16px 60px; position:sticky; top:56px; height:calc(100vh - 56px); overflow:auto;}
+  .side .grp{font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; color:var(--muted); text-transform:uppercase; padding:16px 12px 6px;}
+  .side a{display:block; font-size:13.5px; color:var(--text); text-decoration:none; padding:7px 12px; border-radius:7px; position:relative;}
+  .side a:hover{background:var(--panel-2);}
+  .side a.on{background:var(--panel); color:var(--inkblue); font-weight:700; box-shadow:0 1px 2px rgba(14,47,116,.06);}
+  .side a.on::before{content:""; position:absolute; left:-16px; top:50%; transform:translateY(-50%); width:3px; height:17px; background:var(--gilt); border-radius:0 2px 2px 0;}
+
+  /* article */
+  .art{background:var(--panel); border-left:1px solid var(--line); border-right:1px solid var(--line); min-height:calc(100vh - 56px); padding:34px 52px 80px;}
+  .crumb{font-size:12.5px; color:var(--muted); margin-bottom:14px;}
+  .crumb b{color:var(--text); font-weight:600;}
+  .art h1{font-family:var(--cjk); font-weight:800; font-size:33px; color:var(--inkblue); margin:0 0 6px; letter-spacing:-.01em; display:flex; align-items:baseline; gap:12px;}
+  .art h1 .mn{font-family:var(--mong); writing-mode:vertical-lr; font-size:20px; color:var(--gilt-deep); line-height:1;}
+  .art .sub{font-size:15px; color:var(--muted); margin:0 0 30px; max-width:60ch;}
+  .art h2{font-size:20px; font-weight:700; color:var(--inkblue); margin:40px 0 12px; padding-top:10px;}
+  .art p{font-size:15px; max-width:62ch; margin:0 0 14px;}
+  .art .note{border-left:3px solid var(--gilt); background:#fbf4e6; padding:12px 16px; border-radius:0 6px 6px 0; font-size:14px; color:#6a5220; margin:16px 0; max-width:62ch;}
+
+  /* DemoFrame */
+  .demo{border:1px solid var(--line); border-radius:10px; overflow:hidden; margin:14px 0 8px;}
+  .demo .head{display:flex; align-items:center; gap:12px; padding:9px 14px; border-bottom:1px solid var(--line-soft); background:var(--panel-2);}
+  .demo .dots{display:flex; gap:5px;}
+  .demo .dots i{width:8px; height:8px; border-radius:50%; background:#d4d8e2;}
+  .demo .fname{font-family:var(--mono); font-size:11.5px; color:var(--muted);}
+  .demo .ctrls{margin-left:auto; display:flex; gap:14px; align-items:center;}
+  .seg{display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; background:#fff;}
+  .seg span{font-size:11px; padding:3px 10px; color:var(--muted); cursor:pointer;}
+  .seg span.on{background:var(--sky); color:var(--snow);}
+  .seg .lbl{padding:3px 8px 3px 0; color:var(--muted); background:transparent; font-size:11px;}
+  .clab{font-size:11px; color:var(--muted); margin-right:2px;}
+  .demo .stage{background:var(--canvas); padding:34px 26px; display:flex; justify-content:center;}
+  /* horizontal flex shell; writing-mode lives only on the text-bearing controls */
+  .vrow{display:flex; gap:18px; align-items:flex-start;}
+  .vb{position:relative; writing-mode:vertical-lr; font-family:var(--mong); font-size:21px; padding:15px 12px; border-radius:4px;}
+  .vb.primary{background:var(--sky); color:var(--snow);}
+  .vb.def{background:#fff; border:1px solid var(--line); color:var(--inkblue);}
+  .vb.dash{background:#fff; border:1px dashed var(--line); color:var(--inkblue);}
+  .vb.sel::after{content:""; position:absolute; inset-block:6px; inset-inline-end:-1px; width:3px; background:var(--sky);}
+  .vf{position:relative; writing-mode:vertical-lr; font-family:var(--mong); font-size:21px; padding:14px 12px; border:1px solid var(--sky); border-radius:4px; background:#fff; color:var(--muted); min-height:150px;}
+  .vf .cc{position:absolute; inset-block-start:14px; inset-inline-start:12px; width:3px; height:24px; background:var(--gilt);}
+  .demo .expand{border-top:1px solid var(--line-soft); padding:8px 14px; font-family:var(--mono); font-size:12px; color:var(--muted); cursor:pointer; display:flex; gap:7px; align-items:center; background:var(--panel-2);}
+
+  /* code block */
+  pre{background:var(--night); color:#dfe6f5; border-radius:10px; padding:18px 20px; overflow:auto; font-family:var(--mono); font-size:13px; line-height:1.7; margin:12px 0; max-width:none;}
+  pre .kw{color:#8fb4ff;} pre .st{color:var(--gilt);} pre .cm{color:#6f80a6;} pre .fn{color:#f5f7fa;} pre .pn{color:#a6f0d0;}
+
+  /* API table */
+  table{width:100%; border-collapse:collapse; margin:12px 0; font-size:13.5px;}
+  thead th{text-align:left; background:var(--canvas); color:var(--inkblue); font-weight:700; padding:10px 14px; border-bottom:1px solid var(--line);}
+  tbody td{padding:11px 14px; border-bottom:1px solid var(--line-soft); vertical-align:top;}
+  td .prop{font-family:var(--mono); color:var(--gilt-deep); font-weight:500;}
+  td .type{font-family:var(--mono); color:var(--azure); font-size:12.5px;}
+  td .def{font-family:var(--mono); color:var(--muted); font-size:12.5px;}
+
+  /* TOC */
+  .toc{padding:34px 18px; position:sticky; top:56px; height:calc(100vh - 56px);}
+  .toc .t{font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:12px;}
+  .toc a{display:block; font-size:13px; color:var(--muted); text-decoration:none; padding:5px 0 5px 12px; border-left:2px solid var(--line); }
+  .toc a.on{color:var(--inkblue); border-left-color:var(--gilt); font-weight:600;}
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="mark">VertM<span class="u"> UI</span></div>
+    <nav><a>指南</a><a class="on">组件</a><a>核心能力</a><a>主题</a></nav>
+    <div class="end">
+      <div class="search">搜索组件<span class="k">⌘K</span></div>
+      <a class="gh">GitHub</a>
+    </div>
+  </div>
+
+  <div class="layout">
+    <!-- sidebar -->
+    <aside class="side">
+      <div class="grp">通用</div>
+      <a class="on">Button 按钮</a>
+      <a>Icon 图标</a>
+      <a>Typography 排版</a>
+      <div class="grp">数据录入</div>
+      <a>Input 输入框</a>
+      <a>Select 选择器</a>
+      <a>Form 表单</a>
+      <a>Checkbox 多选</a>
+      <div class="grp">导航</div>
+      <a>Menu 导航菜单</a>
+      <a>Tabs 标签页</a>
+      <div class="grp">反馈</div>
+      <a>Modal 对话框</a>
+      <a>Message 全局提示</a>
+    </aside>
+
+    <!-- article -->
+    <main class="art">
+      <div class="crumb">组件 / 通用 / <b>Button</b></div>
+      <h1>Button 按钮<span class="mn">ᠲᠣᠪᠴᠢ</span></h1>
+      <p class="sub">竖排按钮。字符串子节点走 VertMText 渲染,文字自上而下,列向右推进。</p>
+
+      <h2 id="s1">何时使用</h2>
+      <p>标记一个操作命令,响应用户点击行为。竖排布局下,按钮沿 block 轴(左→右)排列;主按钮在 editorial 下为墨色填充,default 下为品牌蓝。</p>
+      <div class="note">竖排提示:承载 writing-mode 的节点上不要放 flex;多行标签用 columnDepth 限制列深,超出后换到下一列。</div>
+
+      <h2 id="s2">代码演示</h2>
+      <div class="demo">
+        <div class="head">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <span class="fname">button/basic.tsx</span>
+          <div class="ctrls">
+            <span class="seg"><span class="lbl">主题</span><span>Default</span><span>Dark</span><span class="on">Editorial</span></span>
+            <span class="seg"><span class="lbl">书写</span><span class="on">竖排</span><span>横排</span></span>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="vrow">
+            <div class="vb primary sel">ᠨᠡᠮᠡᠬᠦ</div>
+            <div class="vb def">ᠬᠠᠰᠠᠬᠤ</div>
+            <div class="vb dash">ᠵᠠᠰᠠᠬᠤ</div>
+            <div class="vf"><span class="cc"></span>ᠪᠢᠴᠢᠭ ᠣᠷᠤᠭᠤᠯ</div>
+          </div>
+        </div>
+        <div class="expand">&lt;/&gt; 展开代码</div>
+      </div>
+
+      <pre><span class="cm">// 竖排按钮 · 逻辑轴排列</span>
+<span class="kw">import</span> { <span class="fn">VertMButton</span>, <span class="fn">VertMSpace</span> } <span class="kw">from</span> <span class="st">'@vertm/react'</span>;
+
+<span class="kw">export default</span> () =&gt; (
+  &lt;<span class="fn">VertMSpace</span>&gt;
+    &lt;<span class="fn">VertMButton</span> <span class="pn">type</span>=<span class="st">"primary"</span>&gt;ᠨᠡᠮᠡᠬᠦ&lt;/<span class="fn">VertMButton</span>&gt;
+    &lt;<span class="fn">VertMButton</span>&gt;ᠬᠠᠰᠠᠬᠤ&lt;/<span class="fn">VertMButton</span>&gt;
+    &lt;<span class="fn">VertMButton</span> <span class="pn">type</span>=<span class="st">"dashed"</span>&gt;ᠵᠠᠰᠠᠬᠤ&lt;/<span class="fn">VertMButton</span>&gt;
+  &lt;/<span class="fn">VertMSpace</span>&gt;
+);</pre>
+
+      <h2 id="s3">API</h2>
+      <table>
+        <thead><tr><th style="width:18%">属性</th><th style="width:34%">类型</th><th style="width:16%">默认值</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><span class="prop">type</span></td><td><span class="type">'primary' | 'default' | 'dashed' | 'text' | 'link'</span></td><td><span class="def">'default'</span></td><td>设置按钮类型</td></tr>
+          <tr><td><span class="prop">size</span></td><td><span class="type">'small' | 'middle' | 'large'</span></td><td><span class="def">'middle'</span></td><td>按钮尺寸(竖排下为控件壳宽)</td></tr>
+          <tr><td><span class="prop">danger</span></td><td><span class="type">boolean</span></td><td><span class="def">false</span></td><td>危险操作按钮</td></tr>
+          <tr><td><span class="prop">loading</span></td><td><span class="type">boolean</span></td><td><span class="def">false</span></td><td>载入状态,inline-end 处显示 spinner</td></tr>
+          <tr><td><span class="prop">columnDepth</span></td><td><span class="type">number</span></td><td><span class="def">4</span></td><td>单列最大行数,超出后换列</td></tr>
+        </tbody>
+      </table>
+    </main>
+
+    <!-- toc -->
+    <nav class="toc">
+      <div class="t">本页</div>
+      <a class="on">何时使用</a>
+      <a>代码演示</a>
+      <a>API</a>
+    </nav>
+  </div>
+</body>
+</html>

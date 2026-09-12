@@ -77,6 +77,7 @@ const VertMButtonBase = forwardRef<HTMLButtonElement, ButtonProps>(function Vert
     'vertm-btn',
     `vertm-btn--${type}`,
     `vertm-btn--${resolvedSize}`,
+    vertical && 'vertm-btn--vertical',
     danger && 'vertm-btn--danger',
     block && 'vertm-btn--block',
     loading && 'vertm-btn--loading',
@@ -103,9 +104,12 @@ const VertMButtonBase = forwardRef<HTMLButtonElement, ButtonProps>(function Vert
       onKeyDown={handleKeyDown}
       {...rest}
     >
-      {loading && <Loading spin size="small" vertical={vertical} className="vertm-btn__icon" />}
       {!loading && icon && <span className="vertm-btn__icon">{icon}</span>}
       {label ? <VertMText as="span" text={label} className="vertm-btn__text" /> : children}
+      {/* Loading sits at inline-end (below the label in vertical-lr columns). */}
+      {loading && (
+        <Loading spin size="small" vertical={vertical} className="vertm-btn__icon vertm-btn__icon--loading" />
+      )}
     </button>
   );
 });

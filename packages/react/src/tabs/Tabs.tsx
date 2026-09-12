@@ -81,9 +81,9 @@ export function VertMTabs({
   const editorial = appearance === 'editorial';
   const resolvedPosition = tabPosition ?? resolveDefaultTabPosition(isVerticalWriting);
   const verticalBar = isVerticalBar(resolvedPosition);
-  // Editorial tabs are peer columns: Left/Right always move between them,
-  // even when the tab bar sits on the left/right edge of the panel.
-  const useBlockAxisKeys = editorial || !verticalBar;
+  // Vertical writing treats tabs as peer columns (Left/Right), even when the
+  // tab bar sits on the left/right edge of the panel.
+  const useBlockAxisKeys = isVerticalWriting || !verticalBar;
 
   const firstKey = items[0]?.key ?? '';
   const [active, setActive] = useControlled(activeKey, defaultActiveKey || firstKey, onChange);
@@ -156,7 +156,7 @@ export function VertMTabs({
 
     // Roving tabindex leaves inactive tabs out of the tab order, so the arrow
     // keys along the tab bar's own axis are the only way to reach them.
-    // Editorial appearance always treats tabs as peer columns (Left/Right).
+    // Vertical writing always treats tabs as peer columns (Left/Right).
     const prevKey = useBlockAxisKeys ? 'ArrowLeft' : 'ArrowUp';
     const nextKey = useBlockAxisKeys ? 'ArrowRight' : 'ArrowDown';
     const index = items.findIndex((item) => item.key === key);
@@ -185,6 +185,7 @@ export function VertMTabs({
         'vertm-tabs',
         `vertm-tabs--${type}`,
         `vertm-tabs--${resolvedPosition}`,
+        isVerticalWriting && 'vertm-tabs--vertical-writing',
         editorial && 'vertm-tabs--editorial',
         className,
       ]

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>主题 — VertM UI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:"Noto Sans Mongolian";src:url("../../packages/styles/src/fonts/NotoSansMongolian-400.woff2") format("woff2");font-display:swap;}
+  :root{
+    --night:#071a3f; --sky:#0e2f74; --azure:#3f7ce0;
+    --snow:#f5f6f8; --snow-dim:rgba(245,246,248,.66);
+    --gilt:#e0aa4e; --gilt-deep:#c68f34;
+    --canvas:#eef0f4; --panel:#ffffff; --panel-2:#f6f7f9;
+    --inkblue:#0e2f74; --text:#1e2740; --muted:#5b6478; --line:#dde1ea; --line-soft:#e8ebf1;
+    --disp:"Sora",ui-sans-serif,system-ui,sans-serif;
+    --cjk:"PingFang SC","Noto Sans SC",system-ui,sans-serif;
+    --mong:"Noto Sans Mongolian","Mongolian Baiti",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,"SF Mono",monospace;
+  }
+  *{box-sizing:border-box;} html,body{margin:0;}
+  body{background:var(--canvas); color:var(--text); font-family:var(--cjk); line-height:1.6; -webkit-font-smoothing:antialiased;}
+
+  .top{position:sticky; top:0; z-index:20; background:var(--sky); color:var(--snow); display:flex; align-items:center; gap:26px; height:56px; padding:0 26px;}
+  .top .mark{font-family:var(--disp); font-weight:700; font-size:18px;} .top .mark .u{color:var(--gilt);}
+  .top nav{display:flex; gap:22px; margin-left:8px;}
+  .top nav a{font-size:14px; color:var(--snow-dim); text-decoration:none;} .top nav a.on{color:var(--snow); font-weight:600;}
+  .top .end{margin-left:auto;} .top .gh{font-size:14px; color:var(--snow); text-decoration:none; border-bottom:1.5px solid var(--gilt); padding-bottom:2px;}
+
+  .wrap{max-width:1180px; margin:0 auto; padding:38px 40px 90px;}
+  .phead{display:flex; align-items:flex-end; gap:16px; margin-bottom:8px;}
+  .phead h1{font-family:var(--cjk); font-weight:800; font-size:30px; color:var(--inkblue); margin:0; letter-spacing:-.01em;}
+  .phead .mn{font-family:var(--mong); writing-mode:vertical-lr; font-size:22px; color:var(--gilt-deep); line-height:1; margin-bottom:2px;}
+  .pdesc{font-size:14px; color:var(--muted); margin:0 0 8px; max-width:60ch;}
+
+  h2.sec{display:flex; align-items:center; gap:10px; font-size:16px; color:var(--inkblue); font-weight:700; margin:42px 0 16px;}
+  h2.sec i{width:6px; height:6px; background:var(--gilt); border-radius:50%;}
+  h2.sec span{font-family:var(--mono); font-size:11px; color:var(--muted); font-weight:400;}
+  h2.sec .rule{flex:1; height:1px; background:var(--line);}
+
+  /* ── 语义色角色 ── */
+  .roles{display:grid; grid-template-columns:repeat(5,1fr); gap:12px;}
+  .role{background:var(--panel); border:1px solid var(--line); border-radius:10px; overflow:hidden;}
+  .role .bar{height:52px;} .role .b{padding:9px 12px;}
+  .role .rn{font-family:var(--disp); font-weight:600; font-size:13px; color:var(--inkblue);}
+  .role .hx{font-family:var(--mono); font-size:11px; color:var(--muted);}
+
+  /* ── 预设画廊 ── */
+  .gal{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .tcard{background:var(--panel); border:1px solid var(--line); border-radius:12px; overflow:hidden; transition:border-color .15s, box-shadow .15s;}
+  .tcard:hover{border-color:var(--gilt); box-shadow:0 4px 14px rgba(14,47,116,.07);}
+  .tcard.cur{border-color:var(--sky); box-shadow:0 0 0 2px rgba(14,47,116,.12);}
+  .tcard .h{display:flex; align-items:center; gap:8px; padding:11px 13px; border-bottom:1px solid var(--line-soft);}
+  .tcard .h .dot{width:13px; height:13px; border-radius:50%; background:var(--p); box-shadow:0 0 0 3px color-mix(in srgb, var(--p) 16%, transparent);}
+  .tcard .h .nm{font-weight:700; font-size:14px; color:var(--inkblue);}
+  .tcard .h .lt{font-family:var(--mono); font-size:10px; color:var(--muted);}
+  .tcard .h .cur-tag{margin-left:auto; font-family:var(--mono); font-size:9.5px; color:#fff; background:var(--sky); padding:2px 7px; border-radius:999px;}
+  .tstage{background:var(--layout); padding:18px 16px; display:flex; gap:11px; justify-content:center; align-items:flex-start;}
+  .tb{writing-mode:vertical-lr; font-family:var(--mong); font-size:16px; padding:10px 8px; border-radius:var(--rad); background:var(--p); color:#fff;}
+  .tf{position:relative; writing-mode:vertical-lr; font-family:var(--mong); font-size:16px; padding:9px 8px; border-radius:var(--rad); background:var(--bg); border:1px solid var(--p); color:var(--sub); min-height:74px;}
+  .tf::before{content:""; position:absolute; inset-block-start:9px; inset-inline-start:7px; width:2.5px; height:15px; background:var(--p);}
+  .tt{writing-mode:vertical-lr; font-family:var(--mong); font-size:14px; padding:7px 6px; border-radius:var(--rad); background:color-mix(in srgb, var(--p) 12%, var(--bg)); color:var(--p);}
+  .tsw{display:flex; align-items:center; gap:7px; padding:11px 13px; border-top:1px solid var(--line-soft);}
+  .tsw .s{width:20px; height:20px; border-radius:5px; border:1px solid rgba(0,0,0,.06);}
+  .tsw .hx{margin-left:auto; font-family:var(--mono); font-size:10.5px; color:var(--muted);}
+  .tmeta{display:flex; gap:6px; padding:0 13px 12px;}
+  .tmeta span{font-family:var(--mono); font-size:9.5px; color:var(--muted); background:var(--panel-2); border:1px solid var(--line-soft); padding:2px 7px; border-radius:5px;}
+
+  /* ── 自定义 ── */
+  .custom{display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start;}
+  .knobs{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px 20px;}
+  .knobs .kl{font-size:12px; color:var(--muted); margin:14px 0 8px;} .knobs .kl:first-child{margin-top:0;}
+  .primset{display:flex; gap:9px; flex-wrap:wrap;}
+  .primset .pd{width:26px; height:26px; border-radius:7px; cursor:pointer; border:2px solid transparent;}
+  .primset .pd.on{border-color:var(--gilt); box-shadow:0 0 0 2px rgba(224,170,78,.25);}
+  .slider{display:flex; align-items:center; gap:12px;}
+  .track{flex:1; height:4px; background:var(--line); border-radius:2px; position:relative;}
+  .track .fill{position:absolute; left:0; top:0; height:100%; background:var(--sky); border-radius:2px;}
+  .track .thumb{position:absolute; top:50%; transform:translate(-50%,-50%); width:14px; height:14px; border-radius:50%; background:#fff; border:2px solid var(--sky);}
+  .kv{font-family:var(--mono); font-size:12px; color:var(--inkblue); min-width:42px; text-align:right;}
+  pre{background:var(--night); color:#dfe6f5; border-radius:12px; padding:18px 20px; overflow:auto; font-family:var(--mono); font-size:12.5px; line-height:1.75; margin:0;}
+  pre .kw{color:#8fb4ff;} pre .st{color:var(--gilt);} pre .cm{color:#6f80a6;} pre .fn{color:#f5f7fa;} pre .pn{color:#a6f0d0;} pre .nm2{color:#e6ecfb;}
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="mark">VertM<span class="u"> UI</span></div>
+    <nav><a>指南</a><a>组件</a><a>核心能力</a><a class="on">主题</a></nav>
+    <div class="end"><a class="gh">GitHub</a></div>
+  </div>
+
+  <div class="wrap">
+    <div class="phead">
+      <h1>主题</h1>
+      <span class="mn">ᠥᠩᠭᠡ</span>
+      <span class="pdesc" style="margin:0 0 6px">语义化 token,一处切换全站。API 对齐 antd ConfigProvider,并扩展竖排专属 vertical.* 字段。</span>
+    </div>
+
+    <!-- 语义色角色 -->
+    <h2 class="sec"><i></i>语义色角色 <span>Semantic roles · 钴蓝</span><span class="rule"></span></h2>
+    <div class="roles">
+      <div class="role"><div class="bar" style="background:#0e2f74"></div><div class="b"><div class="rn">Primary 主色</div><div class="hx">#0e2f74</div></div></div>
+      <div class="role"><div class="bar" style="background:#247a55"></div><div class="b"><div class="rn">Success 成功</div><div class="hx">#247a55</div></div></div>
+      <div class="role"><div class="bar" style="background:#d97706"></div><div class="b"><div class="rn">Warning 警告</div><div class="hx">#d97706</div></div></div>
+      <div class="role"><div class="bar" style="background:#d84a32"></div><div class="b"><div class="rn">Error 错误</div><div class="hx">#d84a32</div></div></div>
+      <div class="role"><div class="bar" style="background:#3f7ce0"></div><div class="b"><div class="rn">Info 信息</div><div class="hx">#3f7ce0</div></div></div>
+    </div>
+
+    <!-- 预设画廊 -->
+    <h2 class="sec"><i></i>内置主题 <span>8 presets · 3 原生 + 5 新增</span><span class="rule"></span></h2>
+    <div class="gal">
+
+      <!-- 钴蓝 -->
+      <div class="tcard cur" style="--p:#0e2f74;--bg:#ffffff;--layout:#eef0f4;--sub:#5b6478;--rad:6px">
+        <div class="h"><span class="dot"></span><span class="nm">钴蓝</span><span class="lt">Cobalt</span><span class="cur-tag">当前</span></div>
+        <div class="tstage"><div class="tb">ᠲᠣᠪᠴᠢ</div><div class="tf">ᠪᠢᠴᠢᠭ</div><div class="tt">ᠰᠢᠨᠡ</div></div>
+        <div class="tsw"><span class="s" style="background:#0e2f74"></span><span class="s" style="background:#247a55"></span><span class="s" style="background:#d97706"></span><span class="s" style="background:#d84a32"></span><span class="s" style="background:#3f7ce0"></span><span class="hx">#0e2f74</span></div>
+        <div class="tmeta"><span>radius 6</span><span>column 32</span><span>gap 16</span></div>
+      </div>
+
+      <!-- 墨 Editorial -->
+      <div class="tcard" style="--p:#171a18;--bg:#fbfaf6;--layout:#f3f1ea;--sub:#686b66;--rad:3px">
+        <div class="h"><span class="dot"></span><span class="nm">墨</span><span class="lt">Editorial</span></div>
+        <div class="tstage"><div class="tb">ᠲᠣᠪᠴᠢ</div><div class="tf">ᠪᠢᠴᠢᠭ</div><div class="tt" style="color:#2155d6;background:color-mix(in srgb,#2155d6 10%,#fbfaf6)">ᠬᠣᠯᠪᠣ</div></div>
+        <div class="tsw"><span class="s" style="background:#171a18"></span><span class="s" style="background:#247a55"></span><span class="s" style="background:#d97706"></span><span class="s" style="background:#d84a32"></span><span class="s" style="background:#2155d6"></span><span class="hx">#171a18</span></div>
+        <div class="tmeta"><span>radius 3</span><span>column 40</span><span>shadow none</span></div>
+      </div>
+
+      <!-- 夜 Nocturne -->
+      <div class="tcard" style="--p:#2d77db;--bg:#1c1917;--layout:#0c0a09;--sub:#a8a29e;--rad:6px">
+        <div class="h"><span class="dot"></span><span class="nm">夜</span><span class="lt">Nocturne</span></div>
+        <div class="tstage"><div class="tb">ᠲᠣᠪᠴᠢ</div><div class="tf">ᠪᠢᠴᠢᠭ</div><div class="tt">ᠰᠢᠨᠡ</div></div>
+        <div class="tsw"><span class="s" style="background:#2d77db"></span><span class="s" style="background:#22c55e"></span><span class="s" style="background:#fbbf24"></span><span class="s" style="background:#ef4444"></span><span class="s" style="background:#1c1917;border-color:#44403c"></span><span class="hx">#2d77db</span></div>
+        <div class="tmeta"><span>radius 6</span><span>dark surface</span><span>column 32</span></div>
+      </div>
+
+      <!-- 朱砂 Cinnabar (新) -->
+      <div class="tcard" style="--p:#b23b2e;--bg:#fbf7f2;--layout:#f3ebe1;--sub:#7a6357;--rad:4px">
+        <div class="h"><span class="dot"></span><span class="nm">朱砂</span><span class="lt">Cinnabar · 新</span></div>
+        <div class="tstage"><div class="tb">ᠲᠣᠪᠴᠢ</div><div class="tf">ᠪᠢᠴᠢᠭ</div><div class="tt">ᠰᠢᠨᠡ</div></div>
+        <div class="tsw"><span class="s" style="background:#b23b2e"></span><span class="s" style="background:#4a7a3f"></span><span class="s" style="background:#cc7a1f"></span><span class="s" style="background:#a32d22"></span><span class="s" style="background:#e2d5c6"></span><span class="hx">#b23b2e</span></div>
+        <div class="tmeta"><span>radius 4</span><span>warm paper</span><span>column 36</span></div>
+      </div>
+
+      <!-- 草原 Steppe (新) -->
+      <div class="tcard" style="--p:#2e6b4f;--bg:#ffffff;--layout:#eef3ef;--sub:#5a6b60;--rad:6px">
+        <div class="h"><span class="dot"></span><span class="nm">草原</span><span class="lt">Steppe · 新</span></div>
+        <div class="tstage"><div class="tb">ᠲᠣᠪᠴᠢ</div><div class="tf">ᠪᠢᠴᠢᠭ</div><div class="tt">ᠰᠢᠨᠡ</div></div>
+        <div class="tsw"><span class="s" style="background:#2e6b4f"></span><span class="s" style="background:#2e6b4f"></span><span class="s" style="background:#c8871f"></span><span class="s" style="background:#b8422f"></span><span class="s" style="background:#d7e0d8"></span><span class="hx">#2e6b4f</span></div>
+        <div class="tmeta"><span>radius 6</span><span>column 32</span><span>gap 16</span></div>
+      </div>
+
+      <!-- 鎏金 Amber (新) -->
+      <div class="tcard" style="--p:#a26a1f;--bg:#fbf8f1;--layout:#f2ecdf;--sub:#77664a;--rad:6px">
+        <div class="h"><span class="dot"></span><span class="nm">鎏金</span><span class="lt">Amber · 新</span></div>
+        <div class="tstage"><div class="tb">ᠲᠣᠪᠴᠢ</div><div class="tf">ᠪᠢᠴᠢᠭ</div><div class="tt">ᠰᠢᠨᠡ</div></div>
+        <div class="tsw"><span class="s" style="background:#a26a1f"></span><span class="s" style="background:#5f7a2e"></span><span class="s" style="background:#c88a1f"></span><span class="s" style="background:#b04a2a"></span><span class="s" style="background:#e3d8c2"></span><span class="hx">#a26a1f</span></div>
+        <div class="tmeta"><span>radius 6</span><span>warm paper</span><span>column 32</span></div>
+      </div>
+
+      <!-- 黛青 Slate (新) -->
+      <div class="tcard" style="--p:#2f5b66;--bg:#ffffff;--layout:#eef2f3;--sub:#5a686b;--rad:6px">
+        <div class="h"><span class="dot"></span><span class="nm">黛青</span><span class="lt">Slate · 新</span></div>
+        <div class="tstage"><div class="tb">ᠲᠣᠪᠴᠢ</div><div class="tf">ᠪᠢᠴᠢᠭ</div><div class="tt">ᠰᠢᠨᠡ</div></div>
+        <div class="tsw"><span class="s" style="background:#2f5b66"></span><span class="s" style="background:#2e6b57"></span><span class="s" style="background:#c8871f"></span><span class="s" style="background:#b8422f"></span><span class="s" style="background:#d6dee0"></span><span class="hx">#2f5b66</span></div>
+        <div class="tmeta"><span>radius 6</span><span>cool neutral</span><span>column 32</span></div>
+      </div>
+
+      <!-- 霜 Frost (新) -->
+      <div class="tcard" style="--p:#2155d6;--bg:#f5f9ff;--layout:#e7eefb;--sub:#566a8f;--rad:8px">
+        <div class="h"><span class="dot"></span><span class="nm">霜</span><span class="lt">Frost · 新</span></div>
+        <div class="tstage"><div class="tb">ᠲᠣᠪᠴᠢ</div><div class="tf">ᠪᠢᠴᠢᠭ</div><div class="tt">ᠰᠢᠨᠡ</div></div>
+        <div class="tsw"><span class="s" style="background:#2155d6"></span><span class="s" style="background:#247a55"></span><span class="s" style="background:#d97706"></span><span class="s" style="background:#d84a32"></span><span class="s" style="background:#cfdcf3"></span><span class="hx">#2155d6</span></div>
+        <div class="tmeta"><span>radius 8</span><span>ice surface</span><span>column 32</span></div>
+      </div>
+
+    </div>
+
+    <!-- 自定义 -->
+    <h2 class="sec"><i></i>自定义主题 <span>ConfigProvider</span><span class="rule"></span></h2>
+    <div class="custom">
+      <div class="knobs">
+        <div class="kl">colorPrimary 主色</div>
+        <div class="primset">
+          <span class="pd on" style="background:#0e2f74"></span>
+          <span class="pd" style="background:#171a18"></span>
+          <span class="pd" style="background:#b23b2e"></span>
+          <span class="pd" style="background:#2e6b4f"></span>
+          <span class="pd" style="background:#a26a1f"></span>
+          <span class="pd" style="background:#2f5b66"></span>
+          <span class="pd" style="background:#2155d6"></span>
+        </div>
+        <div class="kl">columnSize 列宽</div>
+        <div class="slider"><div class="track"><div class="fill" style="width:40%"></div><div class="thumb" style="left:40%"></div></div><span class="kv">32px</span></div>
+        <div class="kl">columnGap 列距</div>
+        <div class="slider"><div class="track"><div class="fill" style="width:50%"></div><div class="thumb" style="left:50%"></div></div><span class="kv">16px</span></div>
+        <div class="kl">borderRadius 圆角</div>
+        <div class="slider"><div class="track"><div class="fill" style="width:30%"></div><div class="thumb" style="left:30%"></div></div><span class="kv">6px</span></div>
+      </div>
+      <pre><span class="cm">// 一处切换,全站生效</span>
+<span class="kw">import</span> { <span class="fn">VertMConfigProvider</span>, <span class="nm2">cobaltTheme</span> } <span class="kw">from</span> <span class="st">'@vertm/react'</span>;
+
+&lt;<span class="fn">VertMConfigProvider</span>
+  <span class="pn">theme</span>={{
+    ...<span class="nm2">cobaltTheme</span>,
+    <span class="pn">token</span>: { <span class="pn">colorPrimary</span>: <span class="st">'#b23b2e'</span>, <span class="pn">borderRadius</span>: <span class="st">4</span> },
+    <span class="pn">vertical</span>: { <span class="pn">columnSize</span>: <span class="st">36</span>, <span class="pn">columnGap</span>: <span class="st">16</span> },
+  }}
+&gt;
+  &lt;<span class="fn">App</span> /&gt;
+&lt;/<span class="fn">VertMConfigProvider</span>&gt;</pre>
+    </div>
+  </div>
+</body>
+</html>

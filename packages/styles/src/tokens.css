@@ -63,6 +63,11 @@
   --vertm-column-gap: 16px;
   --vertm-vertical-line-height: 1.6;
   --vertm-hanging-punctuation: allow-end;
+  /* Block-end selection / focus markers (shared by default + editorial) */
+  --vertm-marker-width: 3px;
+  --vertm-marker-inset: -1px;
+  --vertm-control-column: 32px;
+  --vertm-field-column: 32px;
   /* vertical-lr: block axis = physical left/right; symmetric padding avoids edge clipping */
   --vertm-text-block-padding-start: 4px;
   --vertm-text-block-padding-end: 4px;

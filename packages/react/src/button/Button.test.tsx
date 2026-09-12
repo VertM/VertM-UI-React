@@ -84,6 +84,19 @@ describe('VertMButton', () => {
     expect(screen.queryByTestId('icon')).not.toBeInTheDocument();
   });
 
+  it('places the loading spinner after the label (inline-end)', () => {
+    const { container } = render(<VertMButton loading>ᠲᠡᠶᠢᠮᠦ</VertMButton>);
+    const button = screen.getByRole('button');
+    const label = container.querySelector('.vertm-btn__text');
+    const spinner = container.querySelector('.vertm-btn__icon--loading');
+    expect(spinner).toBeTruthy();
+    expect(label).toBeTruthy();
+    expect(
+      Boolean(label && spinner && label.compareDocumentPosition(spinner) & Node.DOCUMENT_POSITION_FOLLOWING)
+    ).toBe(true);
+    expect(button.contains(spinner)).toBe(true);
+  });
+
   it('forwards htmlType so it can submit a form', () => {
     render(<VertMButton htmlType="submit">ᠲᠡᠶᠢᠮᠦ</VertMButton>);
     expect(screen.getByRole('button')).toHaveAttribute('type', 'submit');

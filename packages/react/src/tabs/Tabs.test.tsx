@@ -67,11 +67,11 @@ describe('VertMTabs', () => {
     expect(screen.getByRole('tab', { name: /ᠨᠢᠭᠡ/ })).toHaveFocus();
   });
 
-  it('uses the vertical arrow keys for a side tab bar', async () => {
+  it('uses Left/Right for a side tab bar under vertical writing', async () => {
     render(<VertMTabs items={items} tabPosition="left" />);
     screen.getByRole('tab', { name: /ᠨᠢᠭᠡ/ }).focus();
 
-    await userEvent.keyboard('{ArrowDown}');
+    await userEvent.keyboard('{ArrowRight}');
     expect(screen.getByRole('tab', { name: /ᠬᠣᠶᠠᠷ/ })).toHaveFocus();
   });
 
@@ -112,9 +112,10 @@ describe('VertMTabs', () => {
     expect(onChange).toHaveBeenLastCalledWith('b');
   });
 
-  it('marks the tablist orientation from the tab position', () => {
+  it('marks the tablist orientation from writing mode and tab position', () => {
     const { unmount } = render(<VertMTabs items={items} tabPosition="left" />);
-    expect(screen.getByRole('tablist')).toHaveAttribute('aria-orientation', 'vertical');
+    // Default writing mode is vertical-lr: peer columns use horizontal orientation.
+    expect(screen.getByRole('tablist')).toHaveAttribute('aria-orientation', 'horizontal');
     unmount();
 
     render(<VertMTabs items={items} tabPosition="top" />);

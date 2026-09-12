@@ -1,0 +1,34 @@
+/**
+ * Docs site chrome design tokens.
+ * Source: docs/site-visual-spec.md — chrome only; demos keep @vertm/tokens.
+ */
+@import '@vertm/styles/fonts.css';
+
+:root {
+  --vm-night: #071a3f;
+  --vm-sky: #0e2f74;
+  --vm-sky-2: #16408f;
+  --vm-azure: #3f7ce0;
+
+  --vm-canvas: #eef0f4;
+  --vm-panel: #ffffff;
+  --vm-panel-2: #f6f7f9;
+  --vm-snow: #f5f6f8;
+  --vm-snow-dim: rgba(245, 246, 248, 0.66);
+
+  --vm-gilt: #e0aa4e;
+  --vm-gilt-deep: #c68f34;
+
+  --vm-inkblue: #0e2f74;
+  --vm-text: #1e2740;
+  --vm-muted: #5b6478;
+  --vm-line: #dde1ea;
+  --vm-line-soft: #e8ebf1;
+
+  --vm-disp: 'Sora', ui-sans-serif, system-ui, sans-serif;
+  --vm-cjk: 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif;
+  --vm-mong: 'Noto Sans Mongolian', 'Mongolian Baiti', sans-serif;
+  --vm-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --vm-focus-ring: 0 0 0 2px var(--vm-panel), 0 0 0 4px var(--vm-gilt);
+}

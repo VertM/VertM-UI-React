@@ -8,15 +8,42 @@ import {
   type ReactNode,
 } from 'react';
 import {
+  amberTheme,
+  cinnabarTheme,
   createTheme,
   darkTheme,
   editorialTheme,
+  frostTheme,
+  slateTheme,
+  steppeTheme,
+  cobaltTheme,
   type VertMTheme,
 } from '@vertm/tokens';
 import type { VertMAppearance } from '@vertm/react';
 import type { WritingMode } from '@vertm/core';
 
-export type SiteThemeId = 'default' | 'dark' | 'editorial';
+export type SiteThemeId =
+  | 'default'
+  | 'cobalt'
+  | 'dark'
+  | 'editorial'
+  | 'cinnabar'
+  | 'steppe'
+  | 'amber'
+  | 'slate'
+  | 'frost';
+
+export const SITE_THEME_IDS: SiteThemeId[] = [
+  'cobalt',
+  'default',
+  'editorial',
+  'dark',
+  'cinnabar',
+  'steppe',
+  'amber',
+  'slate',
+  'frost',
+];
 
 const STORAGE_KEY = 'vertm-docs-controls';
 
@@ -31,17 +58,35 @@ export interface SiteControlsValue {
 
 const SiteControlsContext = createContext<SiteControlsValue | null>(null);
 
+function isSiteThemeId(value: string | undefined): value is SiteThemeId {
+  return !!value && (SITE_THEME_IDS as string[]).includes(value);
+}
+
 export function resolveTheme(id: SiteThemeId): {
   theme: VertMTheme;
   appearance: VertMAppearance;
 } {
-  if (id === 'editorial') {
-    return { theme: editorialTheme, appearance: 'editorial' };
+  switch (id) {
+    case 'editorial':
+      return { theme: editorialTheme, appearance: 'editorial' };
+    case 'dark':
+      return { theme: darkTheme, appearance: 'default' };
+    case 'cobalt':
+      return { theme: cobaltTheme, appearance: 'default' };
+    case 'cinnabar':
+      return { theme: cinnabarTheme, appearance: 'default' };
+    case 'steppe':
+      return { theme: steppeTheme, appearance: 'default' };
+    case 'amber':
+      return { theme: amberTheme, appearance: 'default' };
+    case 'slate':
+      return { theme: slateTheme, appearance: 'default' };
+    case 'frost':
+      return { theme: frostTheme, appearance: 'default' };
+    case 'default':
+    default:
+      return { theme: createTheme(), appearance: 'default' };
   }
-  if (id === 'dark') {
-    return { theme: darkTheme, appearance: 'default' };
-  }
-  return { theme: createTheme(), appearance: 'default' };
 }
 
 function readStored(): { themeId: SiteThemeId; writingMode: WritingMode } | null {
@@ -53,12 +98,8 @@ function readStored(): { themeId: SiteThemeId; writingMode: WritingMode } | null
       themeId?: string;
       writingMode?: string;
     };
-    const themeId =
-      parsed.themeId === 'default' ||
-      parsed.themeId === 'dark' ||
-      parsed.themeId === 'editorial'
-        ? parsed.themeId
-        : null;
+    const rawThemeId = parsed.themeId === 'tengri' ? 'cobalt' : parsed.themeId;
+    const themeId = isSiteThemeId(rawThemeId) ? rawThemeId : null;
     const writingMode =
       parsed.writingMode === 'vertical-lr' ||
       parsed.writingMode === 'vertical-rl' ||
@@ -73,7 +114,7 @@ function readStored(): { themeId: SiteThemeId; writingMode: WritingMode } | null
 }
 
 export function SiteControlsProvider({ children }: { children: ReactNode }) {
-  const [themeId, setThemeIdState] = useState<SiteThemeId>('default');
+  const [themeId, setThemeIdState] = useState<SiteThemeId>('cobalt');
   const [writingMode, setWritingModeState] = useState<WritingMode>('vertical-lr');
   const [hydrated, setHydrated] = useState(false);
 
@@ -89,22 +130,14 @@ export function SiteControlsProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!hydrated) return;
     try {
-      window.localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({ themeId, writingMode })
-      );
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ themeId, writingMode }));
     } catch {
-      // ignore quota / private mode
+      // ignore
     }
   }, [themeId, writingMode, hydrated]);
 
-  const setThemeId = useCallback((id: SiteThemeId) => {
-    setThemeIdState(id);
-  }, []);
-
-  const setWritingMode = useCallback((mode: WritingMode) => {
-    setWritingModeState(mode);
-  }, []);
+  const setThemeId = useCallback((id: SiteThemeId) => setThemeIdState(id), []);
+  const setWritingMode = useCallback((mode: WritingMode) => setWritingModeState(mode), []);
 
   const value = useMemo<SiteControlsValue>(() => {
     const resolved = resolveTheme(themeId);
@@ -126,9 +159,9 @@ export function SiteControlsProvider({ children }: { children: ReactNode }) {
 export function useSiteControls(): SiteControlsValue {
   const ctx = useContext(SiteControlsContext);
   if (!ctx) {
-    const resolved = resolveTheme('default');
+    const resolved = resolveTheme('cobalt');
     return {
-      themeId: 'default',
+      themeId: 'cobalt',
       setThemeId: () => undefined,
       writingMode: 'vertical-lr',
       setWritingMode: () => undefined,

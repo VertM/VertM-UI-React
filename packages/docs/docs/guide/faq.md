@@ -49,4 +49,4 @@ import { App, ConfigProvider } from '@vertm/react';
 
 ## 文档站 demo 主题怎么统一切？
 
-顶部 sticky 工具栏为**全站唯一**切换器，选择会写入 `localStorage`（`vertm-docs-controls`）。个别专题可用 `VertMDemoFrame forceTheme="editorial"` 锁定。
+顶部导航栏搜索框左侧的下拉为**全站唯一**切换器，选择会写入 `localStorage`（`vertm-docs-controls`）。个别专题可用 `VertMDemoFrame forceTheme="editorial"` 锁定。

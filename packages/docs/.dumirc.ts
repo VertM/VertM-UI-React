@@ -9,6 +9,9 @@ export default defineConfig({
   outputPath: 'dist',
   favicons: ['/logo.svg'],
   locales: [{ id: 'zh-CN', name: '中文' }],
+  styles: [
+    'https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap',
+  ],
   alias: {
     '@vertm/react': pkg('../react/src'),
     '@vertm/core': pkg('../core/src'),
@@ -16,7 +19,10 @@ export default defineConfig({
     '@vertm/icons': pkg('../icons/src'),
     '@vertm/styles': pkg('../styles/src'),
     '@vertm/styles/index.css': pkg('../styles/src/index.css'),
+    '@vertm/styles/fonts.css': pkg('../styles/src/fonts.css'),
     VertMDemoFrame: pkg('src/components/VertMDemoFrame.tsx'),
+    ThemeGallery: pkg('src/components/ThemeGallery.tsx'),
+    ComponentsOverview: pkg('src/components/ComponentsOverview.tsx'),
   },
   monorepoRedirect: {},
   chainWebpack(memo: any) {
@@ -49,7 +55,7 @@ export default defineConfig({
       { title: '指南', link: '/guide/introduction' },
       { title: '组件', link: '/components' },
       { title: '核心能力', link: '/core/normalize' },
-      { title: '主题', link: '/theme/tokens' },
+      { title: '主题', link: '/theme' },
       { title: '更新日志', link: '/changelog' },
       {
         title: 'GitHub',
@@ -92,6 +98,7 @@ export default defineConfig({
         {
           title: '主题',
           children: [
+            { title: '主题画廊', link: '/theme' },
             { title: 'Design Tokens', link: '/theme/tokens' },
             { title: '竖排专属令牌', link: '/theme/vertical-tokens' },
             { title: 'Editorial 外观', link: '/theme/editorial' },

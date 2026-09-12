@@ -10,7 +10,7 @@ order: 3
 1. **`editorialTheme`**：纸色背景、墨色主色、钴蓝仅用于链接/caret
 2. **`appearance="editorial"`**：列式结构 + block-end marker + 逻辑轴键盘
 
-下方 demo **强制** Editorial，不受顶部全局切换器影响。设计真源：`design/vertical-editorial/DESIGN-SPEC.md`。
+下方 demo **强制** Editorial，不受顶部全局切换器影响。设计真源：`design/vertical-editorial/DESIGN-SPEC.md`；文档壳/DemoFrame 样机见 `design/mockups/`。
 
 ## 对比示意
 

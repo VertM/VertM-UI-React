@@ -223,16 +223,21 @@ export interface SearchProps extends InputProps {
   enterButton?: boolean | ReactNode;
 }
 
-function Search({ onSearch, enterButton, suffix, ...rest }: SearchProps) {
+function Search({ onSearch, enterButton, suffix, value, defaultValue = '', onChange, ...rest }: SearchProps) {
   const vertical = useIsVertical();
+  const [uncontrolled, setUncontrolled] = useState(String(defaultValue ?? ''));
+  const current = value !== undefined ? String(value) : uncontrolled;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (value === undefined) setUncontrolled(e.target.value);
+    onChange?.(e);
+  };
+
+  const fireSearch = () => onSearch?.(current);
+
   const searchSuffix = enterButton ? (
     typeof enterButton === 'boolean' ? (
-      <VertMButton
-        type="primary"
-        block
-        icon={<SearchIcon vertical={vertical} />}
-        onClick={() => onSearch?.(rest.value ?? '')}
-      />
+      <VertMButton type="primary" block icon={<SearchIcon vertical={vertical} />} onClick={fireSearch} />
     ) : (
       enterButton
     )
@@ -240,7 +245,16 @@ function Search({ onSearch, enterButton, suffix, ...rest }: SearchProps) {
     suffix ?? <SearchIcon vertical={vertical} />
   );
 
-  return <VertMInputBase suffix={searchSuffix} {...rest} />;
+  return (
+    <VertMInputBase
+      {...rest}
+      suffix={searchSuffix}
+      value={value}
+      defaultValue={defaultValue}
+      onChange={handleChange}
+      onPressEnter={fireSearch}
+    />
+  );
 }
 
 // ── Password ──

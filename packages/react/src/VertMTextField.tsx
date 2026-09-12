@@ -67,6 +67,8 @@ export interface VertMTextFieldProps {
   sanitize?: (value: string) => string;
   /** 输入被拒绝（非法字符或粘贴/IME 剥离）时触发 */
   onSanitizeReject?: () => void;
+  /** 单行模式下按下 Enter（已 preventDefault）时触发 */
+  onPressEnter?: (e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
 function fieldCssVars(
@@ -112,6 +114,7 @@ export function VertMTextField({
   onBlur,
   sanitize,
   onSanitizeReject,
+  onPressEnter,
 }: VertMTextFieldProps) {
   const isControlled = controlledValue !== undefined;
   const [internalValue, setInternalValue] = useState(defaultValue);
@@ -478,6 +481,7 @@ export function VertMTextField({
 
     if (e.key === 'Enter') {
       e.preventDefault();
+      onPressEnter?.(e);
       return;
     }
 

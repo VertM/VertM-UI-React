@@ -12,6 +12,8 @@ export interface VertMDemoFrameProps {
   minHeight?: number | string;
   className?: string;
   style?: CSSProperties;
+  /** Shown in the frame chrome title bar (e.g. `Button / basic.tsx`). */
+  title?: string;
   /** Override global theme for this demo only (e.g. editorial showcase). */
   forceTheme?: SiteThemeId;
   /** Override global writing mode for this demo only. */
@@ -21,12 +23,14 @@ export interface VertMDemoFrameProps {
 /**
  * Live-demo shell. Reads theme/writing-mode from the global SiteControlsProvider
  * (see `.dumi/app.tsx`). Optional force* props pin a demo to a specific skin.
+ * Chrome follows `design/mockups/demo-frame.html`.
  */
 export function VertMDemoFrame({
   children,
   minHeight = 220,
   className = '',
   style,
+  title,
   forceTheme,
   forceWritingMode,
 }: VertMDemoFrameProps) {
@@ -39,7 +43,22 @@ export function VertMDemoFrame({
   const vertical = writingMode === 'vertical-lr' || writingMode === 'vertical-rl';
 
   return (
-    <div className={`vertm-demo-frame ${className}`.trim()} style={style}>
+    <div
+      className={[
+        'vertm-demo-frame',
+        appearance === 'editorial' && 'vertm-demo-frame--editorial',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      style={style}
+      data-docs-theme={themeId}
+    >
+      <div className="vertm-demo-frame__bar">
+        <span className="vertm-demo-frame__dot" aria-hidden />
+        <span className="vertm-demo-frame__title">{title ?? 'demo'}</span>
+        <span className="vertm-demo-frame__badge">{writingMode}</span>
+      </div>
       <VertMConfigProvider theme={theme} appearance={appearance} writingMode={writingMode}>
         <div
           className={
@@ -47,7 +66,6 @@ export function VertMDemoFrame({
               ? 'vertm-demo-frame__stage vertm-demo-frame__stage--vertical'
               : 'vertm-demo-frame__stage vertm-demo-frame__stage--horizontal'
           }
-          data-docs-theme={themeId}
           style={{
             minHeight,
             writingMode,

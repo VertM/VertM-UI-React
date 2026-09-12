@@ -1,50 +1,51 @@
 ---
 title: VertM UI
-hero:
-  title: VertM UI
-  description: 面向传统蒙古文竖排的 React 组件库
-  actions:
-    - text: 快速开始
-      link: /guide/getting-started
-    - text: 浏览组件
-      link: /components/button
 ---
 
-<div className="vertm-docs-hero">
-  <div className="vertm-docs-hero__mark" lang="mn-Mong">ᠸᠡᠷᠲ᠋ᠮ<br/>ᠦᠢ</div>
-  <div className="vertm-docs-hero__body">
-    <h1>VertM UI</h1>
+<div className="vertm-site-hero">
+  <div className="say">
+    <h1>竖排蒙古文,<br />一等公民的<br />React 组件库</h1>
     <p>
-      以 <code>writing-mode: vertical-lr</code> 为真源的 React 组件库，API 对标 Ant Design。
-      用列式几何与逻辑轴键盘表达竖排交互，而不是把横排组件整体旋转。
+      CSS-native 竖排渲染,不靠旋转。列式几何、逻辑轴键盘、block-end 焦点标记,45+ 组件,API 贴近 Ant
+      Design。让一列蒙古文,写得像一行英文一样自然。
     </p>
-    <div className="vertm-docs-hero__actions">
-      <a className="primary" href="/VertM-UI-React/guide/getting-started">快速开始</a>
-      <a className="secondary" href="/VertM-UI-React/components/button">浏览组件</a>
+    <div className="cta">
+      <a className="btn gilt" href="/VertM-UI-React/guide/getting-started">开始使用</a>
+      <a className="btn ghost" href="/VertM-UI-React/components">浏览组件</a>
     </div>
+    <div className="facts">
+      <div className="fact"><div className="n">45+</div><div className="l">组件</div></div>
+      <div className="fact"><div className="n">2</div><div className="l">套外观</div></div>
+      <div className="fact"><div className="n">3</div><div className="l">浏览器验证</div></div>
+    </div>
+  </div>
+  <div className="forest" aria-hidden="true">
+    <div className="col small s1">ᠪᠢᠴᠢᠭ᠌</div>
+    <div className="col title">ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ</div>
+    <div className="col caret">ᠲᠥᠯᠥᠪ<span className="c"></span></div>
+    <div className="col small s2">ᠦᠰᠦᠭ</div>
   </div>
 </div>
 
-## 特性
-
-- **竖排优先**：组件按列设计，选中态用 block-end 边缘 marker
-- **Ant Design 心智**：熟悉的 API，降低迁移成本
-- **主题与外观**：default / dark / `appearance="editorial"`
-- **核心能力**：规范化、检索归一化、元音和谐、光标映射等 `@vertm/core` 工具
-
-## 快速安装
-
-```bash
-npm install @vertm/react @vertm/styles @vertm/tokens
-```
-
-```tsx
-import { ConfigProvider, Button } from '@vertm/react';
-import '@vertm/styles/index.css';
-
-export default () => (
-  <ConfigProvider>
-    <Button type="primary">ᠨᠡᠮᠡᠬᠦ</Button>
-  </ConfigProvider>
-);
-```
+<div className="vertm-site-ground">
+  <div className="row">
+    <div>
+      <h2>从这里开始</h2>
+      <p className="lead">安装、写下第一列竖排文本,再按分组浏览组件与主题。</p>
+      <div className="links">
+        <a href="/VertM-UI-React/guide/getting-started">快速开始<span className="d">5 分钟</span></a>
+        <a href="/VertM-UI-React/components">组件总览<span className="d">45+</span></a>
+        <a href="/VertM-UI-React/theme">主题与外观<span className="d">presets</span></a>
+      </div>
+    </div>
+    <div>
+      <p className="shelf-h">// 竖排组件标本</p>
+      <div className="shelf">
+        <div className="item"><div className="v primary">ᠨᠡᠮᠡᠬᠦ</div><div className="cap">Button · primary</div></div>
+        <div className="item"><div className="v default">ᠬᠠᠰᠠᠬᠤ</div><div className="cap">Button · default</div></div>
+        <div className="item"><div className="v tag">ᠰᠢᠨᠡ</div><div className="cap">Tag</div></div>
+        <div className="item"><div className="v field"><span className="cc"></span>ᠪᠢᠴᠢᠭ</div><div className="cap">TextField</div></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>组件总览 — VertM UI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:"Noto Sans Mongolian";src:url("../../packages/styles/src/fonts/NotoSansMongolian-400.woff2") format("woff2");font-display:swap;}
+  :root{
+    --night:#071a3f; --sky:#0e2f74; --azure:#3f7ce0;
+    --snow:#f5f6f8; --snow-dim:rgba(245,246,248,.66);
+    --gilt:#e0aa4e; --gilt-deep:#c68f34;
+    --canvas:#eef0f4; --panel:#ffffff; --panel-2:#f6f7f9;
+    --inkblue:#0e2f74; --text:#1e2740; --muted:#5b6478; --line:#dde1ea; --line-soft:#e8ebf1;
+    --disp:"Sora",ui-sans-serif,system-ui,sans-serif;
+    --cjk:"PingFang SC","Noto Sans SC",system-ui,sans-serif;
+    --mong:"Noto Sans Mongolian","Mongolian Baiti",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,"SF Mono",monospace;
+  }
+  *{box-sizing:border-box;} html,body{margin:0;}
+  body{background:var(--canvas); color:var(--text); font-family:var(--cjk); line-height:1.6; -webkit-font-smoothing:antialiased;}
+
+  .top{position:sticky; top:0; z-index:20; background:var(--sky); color:var(--snow); display:flex; align-items:center; gap:26px; height:56px; padding:0 26px;}
+  .top .mark{font-family:var(--disp); font-weight:700; font-size:18px;}
+  .top .mark .u{color:var(--gilt);}
+  .top nav{display:flex; gap:22px; margin-left:8px;}
+  .top nav a{font-size:14px; color:var(--snow-dim); text-decoration:none;}
+  .top nav a.on{color:var(--snow); font-weight:600;}
+  .top .end{margin-left:auto;}
+  .top .gh{font-size:14px; color:var(--snow); text-decoration:none; border-bottom:1.5px solid var(--gilt); padding-bottom:2px;}
+
+  .wrap{max-width:1180px; margin:0 auto; padding:38px 40px 80px;}
+  .phead{display:flex; align-items:flex-end; gap:16px; margin-bottom:8px;}
+  .phead h1{font-family:var(--cjk); font-weight:800; font-size:30px; color:var(--inkblue); margin:0; letter-spacing:-.01em;}
+  .phead .mn{font-family:var(--mong); writing-mode:vertical-lr; font-size:22px; color:var(--gilt-deep); line-height:1; margin-bottom:2px;}
+  .phead .count{font-family:var(--mono); font-size:12px; color:var(--muted); margin-bottom:6px;}
+  .pdesc{font-size:14px; color:var(--muted); margin:0 0 30px; max-width:56ch;}
+
+  .cat{margin-top:34px;}
+  .cat-h{display:flex; align-items:center; gap:10px; margin:0 0 16px;}
+  .cat-h i{width:6px; height:6px; background:var(--gilt); border-radius:50%;}
+  .cat-h b{font-size:15px; color:var(--inkblue); font-weight:700;}
+  .cat-h span{font-family:var(--mono); font-size:11px; color:var(--muted);}
+  .cat-h .rule{flex:1; height:1px; background:var(--line);}
+
+  .grid{display:grid; grid-template-columns:repeat(5, 1fr); gap:16px;}
+  .tile{background:var(--panel); border:1px solid var(--line); border-radius:10px; overflow:hidden; text-decoration:none; color:inherit; transition:border-color .15s, box-shadow .15s;}
+  .tile:hover{border-color:var(--gilt); box-shadow:0 4px 14px rgba(14,47,116,.07);}
+  .tile .mini{height:104px; background:var(--canvas); display:flex; align-items:center; justify-content:center; border-bottom:1px solid var(--line-soft);}
+  .tile .foot{padding:10px 13px;}
+  .tile .nm{font-family:var(--disp); font-weight:600; font-size:14px; color:var(--inkblue);}
+  .tile .zh{font-size:12px; color:var(--muted); margin-top:1px;}
+
+  /* mini vertical specimens */
+  .m{writing-mode:vertical-lr; font-family:var(--mong); font-size:16px; position:relative;}
+  .m.primary{background:var(--sky); color:var(--snow); padding:11px 8px; border-radius:4px;}
+  .m.def{background:#fff; border:1px solid var(--line); color:var(--inkblue); padding:11px 8px; border-radius:4px;}
+  .m.tag{background:rgba(14,47,116,.08); color:var(--sky); padding:8px 6px; border-radius:4px; font-size:14px;}
+  .m.field{background:#fff; border:1px solid var(--sky); color:var(--muted); padding:9px 8px; border-radius:4px; min-height:78px;}
+  .m.field::before{content:""; position:absolute; inset-block-start:9px; inset-inline-start:7px; width:2.5px; height:16px; background:var(--gilt);}
+  .m.rows{display:flex; gap:9px; color:var(--inkblue); font-size:14px;}
+  .m.rows .s{color:var(--sky); position:relative;}
+  .m.rows .s::after{content:""; position:absolute; inset-inline-end:-5px; inset-block:2px; width:2.5px; background:var(--gilt);}
+  .m.plain{color:var(--inkblue);}
+  .m.muted{color:var(--muted);}
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="mark">VertM<span class="u"> UI</span></div>
+    <nav><a>指南</a><a class="on">组件</a><a>核心能力</a><a>主题</a></nav>
+    <div class="end"><a class="gh">GitHub</a></div>
+  </div>
+
+  <div class="wrap">
+    <div class="phead">
+      <h1>组件总览</h1>
+      <span class="mn">ᠡᠳ᠋</span>
+      <span class="count">45+ components · appearance: editorial</span>
+    </div>
+    <p class="pdesc">全部竖排组件按 Ant Design 习惯分组。每个标本展示该组件在 editorial 外观、vertical-lr 下的最小形态。点击进入详情、示例与 API。</p>
+
+    <!-- 通用 -->
+    <section class="cat">
+      <div class="cat-h"><i></i><b>通用</b><span>General</span><span class="rule"></span></div>
+      <div class="grid">
+        <a class="tile"><div class="mini"><div class="m primary">ᠲᠣᠪᠴᠢ</div></div><div class="foot"><div class="nm">Button</div><div class="zh">按钮</div></div></a>
+        <a class="tile"><div class="mini"><div class="m rows"><span class="plain">ᠡᠭᠡ</span><span class="muted">ᠵᠢᠷᠤᠭ</span></div></div><div class="foot"><div class="nm">Icon</div><div class="zh">图标</div></div></a>
+        <a class="tile"><div class="mini"><div class="m plain" style="font-size:22px">ᠭᠠᠷᠴᠠᠭ</div></div><div class="foot"><div class="nm">Typography</div><div class="zh">排版</div></div></a>
+        <a class="tile"><div class="mini"><div class="m def">ᠲᠣᠬᠢᠷᠠᠭ</div></div><div class="foot"><div class="nm">ConfigProvider</div><div class="zh">全局配置</div></div></a>
+        <a class="tile"><div class="mini"><div class="m tag">ᠰᠢᠨᠡ</div></div><div class="foot"><div class="nm">Tag</div><div class="zh">标签</div></div></a>
+      </div>
+    </section>
+
+    <!-- 数据录入 -->
+    <section class="cat">
+      <div class="cat-h"><i></i><b>数据录入</b><span>Data Entry</span><span class="rule"></span></div>
+      <div class="grid">
+        <a class="tile"><div class="mini"><div class="m field">ᠪᠢᠴᠢᠭ</div></div><div class="foot"><div class="nm">Input</div><div class="zh">输入框</div></div></a>
+        <a class="tile"><div class="mini"><div class="m def">ᠰᠣᠩᠭᠣ</div></div><div class="foot"><div class="nm">Select</div><div class="zh">选择器</div></div></a>
+        <a class="tile"><div class="mini"><div class="m rows"><span class="s">ᠦᠭᠡ</span><span class="muted">ᠮᠥᠷ</span></div></div><div class="foot"><div class="nm">Form</div><div class="zh">表单</div></div></a>
+        <a class="tile"><div class="mini"><div class="m rows"><span class="s">ᠨᠢᠭᠡ</span><span class="plain">ᠬᠣᠶᠠᠷ</span></div></div><div class="foot"><div class="nm">Checkbox</div><div class="zh">多选框</div></div></a>
+        <a class="tile"><div class="mini"><div class="m def">ᠰᠡᠭᠮᠧᠨᠲ</div></div><div class="foot"><div class="nm">Segmented</div><div class="zh">分段控制</div></div></a>
+      </div>
+    </section>
+
+    <!-- 导航 -->
+    <section class="cat">
+      <div class="cat-h"><i></i><b>导航</b><span>Navigation</span><span class="rule"></span></div>
+      <div class="grid">
+        <a class="tile"><div class="mini"><div class="m rows"><span class="s">ᠴᠡᠰᠦ</span><span class="muted">ᠵᠠᠭᠪᠤᠷ</span><span class="muted">ᠲᠥᠯᠥᠪ</span></div></div><div class="foot"><div class="nm">Menu</div><div class="zh">导航菜单</div></div></a>
+        <a class="tile"><div class="mini"><div class="m rows"><span class="s">ᠨᠢᠭᠡ</span><span class="muted">ᠬᠣᠶᠠᠷ</span></div></div><div class="foot"><div class="nm">Tabs</div><div class="zh">标签页</div></div></a>
+        <a class="tile"><div class="mini"><div class="m def">ᠲᠣᠪᠴᠢ</div></div><div class="foot"><div class="nm">Dropdown</div><div class="zh">下拉菜单</div></div></a>
+        <a class="tile"><div class="mini"><div class="m rows"><span class="muted">ᠨᠢᠭᠡ</span><span class="s">ᠬᠣᠶᠠᠷ</span></div></div><div class="foot"><div class="nm">Steps</div><div class="zh">步骤条</div></div></a>
+        <a class="tile"><div class="mini"><div class="m rows"><span class="plain">١</span><span class="s">٢</span><span class="plain">٣</span></div></div><div class="foot"><div class="nm">Pagination</div><div class="zh">分页</div></div></a>
+      </div>
+    </section>
+
+    <!-- 反馈 -->
+    <section class="cat">
+      <div class="cat-h"><i></i><b>反馈</b><span>Feedback</span><span class="rule"></span></div>
+      <div class="grid">
+        <a class="tile"><div class="mini"><div class="m def">ᠮᠡᠳᠡᠭᠡ</div></div><div class="foot"><div class="nm">Modal</div><div class="zh">对话框</div></div></a>
+        <a class="tile"><div class="mini"><div class="m primary">ᠠᠩᠬᠠᠷ</div></div><div class="foot"><div class="nm">Alert</div><div class="zh">警告提示</div></div></a>
+        <a class="tile"><div class="mini"><div class="m tag">ᠠᠮᠵᠢᠯᠲᠠ</div></div><div class="foot"><div class="nm">Message</div><div class="zh">全局提示</div></div></a>
+        <a class="tile"><div class="mini"><div class="m muted" style="font-size:15px">ᠠᠴᠢᠶᠠᠯᠠᠵᠤ</div></div><div class="foot"><div class="nm">Spin</div><div class="zh">加载中</div></div></a>
+        <a class="tile"><div class="mini"><div class="m def">ᠳ᠋ᠷᠠᠸᠧᠷ</div></div><div class="foot"><div class="nm">Drawer</div><div class="zh">抽屉</div></div></a>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

@@ -246,32 +246,24 @@ packages/react/src/select/Select 等每个组件 index.md
 
 ---
 
-## 9. 设计交付物(需徐亚奥产出,本文档未覆盖)
+## 9. 设计交付物
 
-上面全是**工程结构**,设计侧还缺一页。文档站的核心矛盾是**竖排语言 × 类 antd 文档形态**,不能照搬 antd。设计至少要定清以下四项,建议单独出一份《文档站设计规范》:
+样机源码（可微调）已落地：
 
-1. **首页 Hero**
-   - 竖排主标题(蒙古文)如何排版、与副标题/CTA 的关系
-   - 与 antd 文档站首页的**差异点**(横排 antd Hero 的心智不能直接套)
-   - 特性卡片区、配色(墨色主色 `#171a18` / 钴蓝 `#2155d6`)
+- Hero：[`design/mockups/hero.html`](../design/mockups/hero.html) · 渲染图 [`design/mockups/renders/hero.png`](../design/mockups/renders/hero.png)
+- DemoFrame + 文档壳对照：[`design/mockups/demo-frame.html`](../design/mockups/demo-frame.html) · [`design/mockups/renders/demo-frame.png`](../design/mockups/renders/demo-frame.png)
 
-2. **文档壳(双写模式版式)**
-   - 顶栏 / 侧栏 / 正文的整体骨架
-   - **关键**:正文说明文字(横排)vs demo 区(竖排 `vertical-lr`)的并置版式与视觉分界 —— 读者要能一眼分清"这是讲解、那是竖排示例"
-   - 侧边栏分组、当前页锚点、响应式/移动端行为
+工程对齐要点：
 
-3. **`<VertMDemoFrame>` 外框规范**
-   - demo 容器边框/背景/内边距/操作条样式
-   - **主题切换器 + 书写模式切换器**的位置(全局顶栏 or 每个 demo 局部)、交互与状态呈现
-   - 竖排 demo 的最小高度、滚动、溢出处理
+1. **首页 Hero** — 左横排文案 + 右竖排蒙古文 showpiece（墨色 marker / 钴蓝 caret）
+2. **文档壳** — dumi 顶栏 / 侧栏；全局切换器在顶栏搜索框左侧下拉（样机里的 sticky 分段条为早期方案，已收敛）
+3. **`<VertMDemoFrame>`** — 虚线顶栏 + `writingMode` badge + 浅底 stage；editorial 时条带偏纸色
+4. **Editorial 呈现** — 主题页 + `forceTheme="editorial"` 锁定对比
 
-4. **Editorial 外观在文档站中的呈现**
-   - `appearance="editorial"` 作为三态之一如何展示;是否设专题页对比 default/editorial 的列式几何与 block-end marker
-
----
+仍可后续打磨：移动端壳层、暗色文档壳、更完整的侧栏选中态与正文/demo 分界。
 
 ## 10. 结论与并行启动建议
 
-- **工程规划**:已就绪,**可立即启动阶段 0**(脚手架 + 已定决策 A/B + 按 §3.1 登记 `_vertical`),不必等设计完成。
-- **设计规划**:仍缺 §9 这一页。建议让**徐亚奥基于本文 §2 信息架构,先产出"文档壳层 + DemoFrame 规范"**(即 §9 的 2、3 两项),这两项一旦定稿工程即可对齐落地;首页 Hero 与 Editorial 呈现(§9 的 1、4)可稍后。
-- **并行策略**:工程搭脚手架 / 建 6 个样板页 与 设计出壳层规范 **并行推进,不要串行等全部组件设计完**。样板页阶段(2a)正好作为设计与工程的对齐节点。
+- **工程规划**:已就绪;脚手架与组件文档覆盖已完成。
+- **设计样机**:Hero / DemoFrame 已有可复用源码(`design/mockups/`),文档站首页与 DemoFrame chrome 已对齐;切换器采用顶栏下拉而非样机 sticky 条。
+- **后续**:移动端壳层、暗色文档壳、视觉回归 fixture 可继续迭代。

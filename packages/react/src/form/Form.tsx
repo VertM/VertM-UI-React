@@ -12,6 +12,7 @@ import {
   type ReactElement,
 } from 'react';
 import { VertMText } from '../VertMText.js';
+import { useIsVertical } from '../config/context.js';
 
 export interface Rule {
   required?: boolean;
@@ -169,6 +170,7 @@ export function VertMForm({
   if (!internalStore.current) internalStore.current = createFormStore();
   const store = form?._store ?? internalStore.current;
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const isVerticalWriting = useIsVertical();
 
   useFormStore(store);
 
@@ -190,7 +192,14 @@ export function VertMForm({
   return (
     <FormContext.Provider value={{ store, errors, layout }}>
       <form
-        className={`vertm-form vertm-form--${layout} vertm-vertical ${className}`.trim()}
+        className={[
+          'vertm-form',
+          `vertm-form--${layout}`,
+          isVerticalWriting && 'vertm-form--vertical-writing',
+          className,
+        ]
+          .filter(Boolean)
+          .join(' ')}
         onSubmit={handleSubmit}
       >
         {children}
@@ -208,6 +217,10 @@ export interface FormItemProps {
   rules?: Rule[];
   /** 是否显示必填标记；有 required 规则时默认为 true */
   required?: boolean;
+  /** 字段下方的帮助文案（有校验错误时由错误信息替换） */
+  help?: ReactNode;
+  /** 字段额外说明，始终显示在 help/error 之后 */
+  extra?: ReactNode;
   /** 表单控件，需能接收 value / onChange */
   children?: ReactElement;
   /** 自定义类名 */
@@ -224,6 +237,8 @@ export function FormItem({
   label,
   rules = [],
   required,
+  help,
+  extra,
   children,
   className = '',
 }: FormItemProps) {
@@ -253,7 +268,7 @@ export function FormItem({
 
   return (
     <div
-      className={`vertm-form-item vertm-vertical ${error ? 'vertm-form-item--error' : ''} ${className}`.trim()}
+      className={`vertm-form-item ${error ? 'vertm-form-item--error' : ''} ${className}`.trim()}
     >
       {label && (
         <label className="vertm-form-item__label">
@@ -266,9 +281,20 @@ export function FormItem({
         </label>
       )}
       <div className="vertm-form-item__control">{control}</div>
-      {error && (
+      {error ? (
         <div className="vertm-form-item__error" role="alert">
           {typeof error === 'string' ? <VertMText as="span" text={error} /> : error}
+        </div>
+      ) : (
+        help && (
+          <div className="vertm-form-item__help">
+            {typeof help === 'string' ? <VertMText as="span" text={help} /> : help}
+          </div>
+        )
+      )}
+      {extra && (
+        <div className="vertm-form-item__extra">
+          {typeof extra === 'string' ? <VertMText as="span" text={extra} /> : extra}
         </div>
       )}
     </div>

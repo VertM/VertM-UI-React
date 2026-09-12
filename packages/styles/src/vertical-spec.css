@@ -1,0 +1,223 @@
+/**
+ * Shared §4 vertical-writing behaviours for default + editorial.
+ * Editorial.css may override density / ink colours on top of these.
+ */
+
+/* ── Button: block-end marker on hover/focus; loading already at DOM end ── */
+.vertm-btn--vertical {
+  position: relative;
+}
+
+.vertm-btn--vertical::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 10px;
+  inset-inline-end: var(--vertm-marker-inset);
+  width: var(--vertm-marker-width);
+  height: 0;
+  background: var(--vertm-color-primary);
+  transition: height var(--vertm-motion-duration-fast);
+  pointer-events: none;
+}
+
+.vertm-btn--vertical:hover:not(:disabled):not(.vertm-btn--loading)::after,
+.vertm-btn--vertical:focus-visible::after {
+  height: 28px;
+}
+
+.vertm-btn--vertical.vertm-btn--primary::after {
+  background: #fff;
+}
+
+/* ── Input: count at block-end; focus marker on field ── */
+.vertm-input--vertical {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.vertm-input--vertical .vertm-input__wrap {
+  flex-direction: column;
+  align-items: center;
+}
+
+.vertm-input--vertical .vertm-field {
+  position: relative;
+}
+
+.vertm-input--vertical .vertm-field:focus-within::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 16px;
+  inset-inline-end: var(--vertm-marker-inset);
+  width: var(--vertm-marker-width);
+  height: 40px;
+  background: var(--vertm-color-primary);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.vertm-input--vertical.vertm-input--error .vertm-field::after,
+.vertm-form-item--error .vertm-input--vertical .vertm-field::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 16px;
+  inset-inline-end: var(--vertm-marker-inset);
+  width: var(--vertm-marker-width);
+  height: 40px;
+  background: var(--vertm-color-error);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.vertm-input--vertical .vertm-input__count {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  font-family: var(--vertm-font-family);
+  align-self: flex-start;
+  padding-block-start: 8px;
+}
+
+/* ── Select: selected uses marker (+ optional soft fill in default) ── */
+.vertm-select__option {
+  position: relative;
+}
+
+.vertm-select__option--selected::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 12px;
+  inset-inline-end: 0;
+  width: var(--vertm-marker-width);
+  height: 36px;
+  background: var(--vertm-color-primary);
+  pointer-events: none;
+}
+
+.vertm-select--open .vertm-select__selector {
+  position: relative;
+}
+
+.vertm-select--open .vertm-select__selector::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 14px;
+  inset-inline-end: var(--vertm-marker-inset);
+  width: var(--vertm-marker-width);
+  height: 40px;
+  background: var(--vertm-color-primary);
+  pointer-events: none;
+}
+
+/* ── Menu: root items as L→R peer columns; selected = marker, not fill ── */
+.vertm-menu[data-vertical-writing]:not(.vertm-menu--horizontal) .vertm-menu__list {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.vertm-menu[data-vertical-writing] .vertm-menu-item--selected,
+.vertm-menu[data-vertical-writing] .vertm-menu-item--selected:hover {
+  background: transparent;
+  color: var(--vertm-color-text);
+}
+
+.vertm-menu[data-vertical-writing] .vertm-menu-item--selected {
+  position: relative;
+}
+
+.vertm-menu[data-vertical-writing] .vertm-menu-item--selected::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 12px;
+  inset-inline-end: var(--vertm-marker-inset);
+  width: var(--vertm-marker-width);
+  height: 44px;
+  background: var(--vertm-color-primary);
+  pointer-events: none;
+}
+
+/* ── Tabs: peer columns + block-end marker (hide ink-bar) ── */
+.vertm-tabs--vertical-writing .vertm-tabs__ink-bar {
+  display: none;
+}
+
+.vertm-tabs--vertical-writing.vertm-tabs--left .vertm-tabs__nav-wrap,
+.vertm-tabs--vertical-writing.vertm-tabs--right .vertm-tabs__nav-wrap {
+  flex-direction: row;
+  align-items: stretch;
+  border-inline-end: 1px solid var(--vertm-color-border-secondary);
+  border-bottom: none;
+  border-top: none;
+}
+
+.vertm-tabs--vertical-writing .vertm-tabs__tab {
+  position: relative;
+}
+
+.vertm-tabs--vertical-writing .vertm-tabs__tab--active::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 14px;
+  inset-inline-end: var(--vertm-marker-inset);
+  width: var(--vertm-marker-width);
+  height: 40px;
+  background: var(--vertm-color-primary);
+  pointer-events: none;
+}
+
+/* ── Form: block-axis field columns; help/error at block-end of item ── */
+.vertm-form {
+  writing-mode: horizontal-tb;
+}
+
+.vertm-form--vertical-writing {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--vertm-margin);
+  overflow-x: auto;
+  padding-block-end: var(--vertm-padding-sm);
+}
+
+.vertm-form--vertical-writing .vertm-form-item {
+  writing-mode: horizontal-tb;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  align-items: start;
+  column-gap: var(--vertm-margin-xs);
+  row-gap: var(--vertm-margin-xs);
+  min-width: calc(var(--vertm-field-column) + 40px);
+}
+
+.vertm-form--vertical-writing .vertm-form-item__label {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  font-family: var(--vertm-font-family);
+  align-items: flex-start;
+  min-height: 80px;
+}
+
+.vertm-form--vertical-writing .vertm-form-item__help,
+.vertm-form--vertical-writing .vertm-form-item__error,
+.vertm-form--vertical-writing .vertm-form-item__extra {
+  grid-column: 1 / -1;
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  font-family: var(--vertm-font-family);
+  font-size: var(--vertm-font-size-sm);
+  max-width: calc(var(--vertm-field-column) + 40px);
+}
+
+.vertm-form-item__help {
+  color: var(--vertm-color-text-secondary);
+  font-size: var(--vertm-font-size-sm);
+}
+
+.vertm-form-item__extra {
+  color: var(--vertm-color-text-secondary);
+  font-size: var(--vertm-font-size-sm);
+}
+
+.vertm-form--vertical-writing > .vertm-btn {
+  align-self: flex-start;
+  margin-inline-start: var(--vertm-margin-sm);
+}

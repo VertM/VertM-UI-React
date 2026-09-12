@@ -85,6 +85,18 @@ describe('VertMSelect', () => {
     expect(onChange).toHaveBeenCalledWith('zh');
   });
 
+  it('commits the highlighted option with ArrowRight under vertical writing', async () => {
+    const onChange = vi.fn();
+    render(<VertMSelect options={options} onChange={onChange} />);
+    screen.getByRole('combobox').focus();
+
+    await userEvent.keyboard('{ArrowDown}');
+    await userEvent.keyboard('{ArrowDown}');
+    await userEvent.keyboard('{ArrowRight}');
+
+    expect(onChange).toHaveBeenCalledWith('zh');
+  });
+
   it('highlights the first enabled option when opening', async () => {
     const onChange = vi.fn();
     const leadingDisabled: SelectOption[] = [

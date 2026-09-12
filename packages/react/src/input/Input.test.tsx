@@ -114,6 +114,14 @@ describe('VertMInput.Search', () => {
     await userEvent.click(screen.getByRole('button'));
     expect(onSearch).toHaveBeenCalledWith('ᠠᠪ');
   });
+
+  it('fires onSearch when Enter is pressed in the field', async () => {
+    const onSearch = vi.fn();
+    render(<VertMInput.Search defaultValue="ᠠᠪ" onSearch={onSearch} />);
+    screen.getByRole('textbox').focus();
+    await userEvent.keyboard('{Enter}');
+    expect(onSearch).toHaveBeenCalledWith('ᠠᠪ');
+  });
 });
 
 describe('VertMInput.Password', () => {

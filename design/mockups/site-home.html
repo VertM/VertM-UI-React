@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>VertM UI — 竖排蒙古文 React 组件库</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @font-face{
+    font-family:"Noto Sans Mongolian";
+    src:url("../../packages/styles/src/fonts/NotoSansMongolian-400.woff2") format("woff2");
+    font-display:swap;
+  }
+  :root{
+    --night:#071a3f; --sky:#0e2f74; --sky-2:#16408f; --azure:#3f7ce0;
+    --snow:#f5f6f8; --snow-dim:rgba(245,246,248,.62); --snow-faint:rgba(245,246,248,.15);
+    --gilt:#e0aa4e; --gilt-deep:#c68f34;
+    --paper:#eef0f4; --paper-2:#e3e6ec; --inkblue:#0e2f74; --inkblue-dim:#3a5187; --line-ground:#d4d8e2;
+    --disp:"Sora", ui-sans-serif, system-ui, sans-serif;
+    --cjk:"PingFang SC","Noto Sans SC", system-ui, sans-serif;
+    --mong:"Noto Sans Mongolian","Mongolian Baiti", sans-serif;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{background:var(--paper); color:var(--inkblue); font-family:var(--cjk); line-height:1.5; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 44px;}
+
+  /* ═══ SKY (hero) ═══ */
+  .sky{position:relative; overflow:hidden; color:var(--snow);
+    background:
+      radial-gradient(120% 80% at 50% -18%, var(--sky-2) 0%, var(--sky) 34%, var(--night) 82%);
+  }
+  /* faint star/measure dust */
+  .sky::before{content:""; position:absolute; inset:0;
+    background-image:radial-gradient(rgba(243,239,228,.5) 1px, transparent 1.4px);
+    background-size:46px 46px; opacity:.05;}
+
+  header{position:relative; z-index:3;}
+  .bar{display:flex; align-items:center; gap:30px; padding:24px 0;}
+  .mark{font-family:var(--disp); font-weight:700; font-size:19px; letter-spacing:-.01em; color:var(--snow);}
+  .mark .u{color:var(--gilt);}
+  nav{display:flex; gap:26px; margin-left:10px;}
+  nav a{font-size:14px; color:var(--snow-dim); text-decoration:none;}
+  nav a:hover{color:var(--snow);}
+  .bar .end{margin-left:auto;}
+  .gh{font-size:14px; color:var(--snow); text-decoration:none; border-bottom:1.5px solid var(--gilt); padding-bottom:2px;}
+
+  .hero{position:relative; z-index:2; display:grid; grid-template-columns:minmax(0,44%) minmax(0,1fr); gap:20px; align-items:center; padding:44px 0 70px; min-height:600px;}
+
+  .say h1{font-family:var(--cjk); font-weight:800; font-size:46px; line-height:1.18; letter-spacing:-.01em; color:var(--snow); margin:0 0 22px;}
+  .say p{font-size:16px; line-height:1.75; color:var(--snow-dim); margin:0 0 32px; max-width:44ch;}
+  .cta{display:flex; gap:14px; align-items:center;}
+  .btn{font-family:var(--cjk); font-weight:600; font-size:15px; padding:13px 24px; border-radius:4px; text-decoration:none; cursor:pointer; display:inline-block;}
+  .btn.gilt{background:var(--gilt); color:#2a1c02;}
+  .btn.ghost{background:transparent; color:var(--snow); border:1.5px solid var(--snow-faint);}
+  .facts{display:flex; gap:34px; margin-top:38px;}
+  .fact .n{font-family:var(--disp); font-weight:700; font-size:24px; color:var(--snow);}
+  .fact .l{font-size:12.5px; color:var(--snow-dim); margin-top:2px;}
+
+  /* the column-forest: script written down from the sky */
+  .forest{position:relative; display:flex; justify-content:center; align-items:flex-start; gap:34px; height:500px; padding-top:20px;}
+  .forest::before{content:""; position:absolute; top:8px; left:10%; right:10%; height:1px; background:var(--snow-faint);} /* the horizon line */
+  .col{writing-mode:vertical-lr; text-orientation:mixed; font-family:var(--mong); color:var(--snow); position:relative;}
+  .col.title{font-size:110px; line-height:1.22; letter-spacing:1px; padding-top:20px;}
+  /* gilt block-end marker, hugging the title's block-end edge */
+  .col.title::after{content:""; position:absolute; inset-block:8% 10%; inset-inline-end:-11px; width:4px; border-radius:2px; background:var(--gilt);}
+  .col.small{font-size:38px; color:var(--snow-dim);}
+  .col.s1{padding-top:96px;} .col.s2{padding-top:188px;}
+  .col.caret{font-size:38px; color:var(--snow-dim); padding-top:150px;}
+  .col.caret .c{position:absolute; inset-inline-start:-9px; inset-block-start:152px; width:3px; height:28px; background:var(--gilt); animation:blink 1.05s step-end infinite;}
+  @keyframes blink{50%{opacity:0;}}
+
+  /* ═══ GROUND (content land) ═══ inverted palette */
+  .ground{position:relative; background:var(--paper); color:var(--inkblue); padding:56px 0 72px;}
+  .ground .row{display:grid; grid-template-columns:300px 1fr; gap:56px; align-items:start;}
+  .ground h2{font-family:var(--cjk); font-weight:800; font-size:26px; margin:0 0 8px; color:var(--inkblue);}
+  .ground .lead{font-size:14px; color:var(--inkblue-dim); line-height:1.7; margin:0 0 22px; max-width:34ch;}
+  .links{display:flex; flex-direction:column; gap:2px;}
+  .links a{display:flex; align-items:center; gap:11px; padding:11px 0; border-top:1px solid var(--line-ground); color:var(--inkblue); text-decoration:none; font-size:15px; font-weight:600;}
+  .links a:last-child{border-bottom:1px solid var(--line-ground);}
+  .links a i{width:6px; height:6px; background:var(--gilt); border-radius:50%;}
+  .links a .d{font-family:var(--cjk); font-weight:400; font-size:13px; color:var(--inkblue-dim); margin-left:auto;}
+
+  .shelf-h{font-family:var(--mono); font-size:11.5px; color:var(--inkblue-dim); margin:0 0 18px; padding-bottom:14px; border-bottom:1px solid var(--line-ground);}
+  .shelf{display:flex; gap:30px; align-items:flex-start;}
+  .item{display:flex; flex-direction:column; align-items:center; gap:11px;}
+  .item .cap{font-family:var(--mono); font-size:11px; color:var(--inkblue-dim);}
+  .v{writing-mode:vertical-lr; font-family:var(--mong); font-size:22px; padding:16px 13px; border-radius:4px;}
+  .v.primary{background:var(--sky); color:var(--snow);}
+  .v.default{background:#fff; border:1px solid var(--line-ground); color:var(--inkblue);}
+  .v.tag{background:rgba(14,47,116,.08); color:var(--sky); font-size:18px; padding:12px 10px;}
+  .v.field{position:relative; background:#fff; border:1px solid var(--sky); color:var(--inkblue-dim); min-height:150px;}
+  .v.field .m{position:absolute; inset-inline-end:-1px; inset-block:6px; width:3px; background:var(--sky);}
+  .v.field .cc{position:absolute; inset-block-start:14px; inset-inline-start:13px; width:3px; height:24px; background:var(--gilt);}
+
+  @media (prefers-reduced-motion: reduce){ .col.caret .c{animation:none;} }
+</style>
+</head>
+<body>
+  <!-- ===== SKY ===== -->
+  <section class="sky">
+    <div class="wrap">
+      <header>
+        <div class="bar">
+          <div class="mark">VertM<span class="u"> UI</span></div>
+          <nav><a>指南</a><a>组件</a><a>核心能力</a><a>主题</a></nav>
+          <div class="end"><a class="gh">GitHub</a></div>
+        </div>
+      </header>
+
+      <div class="hero">
+        <div class="say">
+          <h1>竖排蒙古文,<br>一等公民的<br>React 组件库</h1>
+          <p>CSS-native 竖排渲染,不靠旋转。列式几何、逻辑轴键盘、block-end 焦点标记,45+ 组件,API 贴近 Ant Design。让一列蒙古文,写得像一行英文一样自然。</p>
+          <div class="cta">
+            <a class="btn gilt">开始使用</a>
+            <a class="btn ghost">浏览组件</a>
+          </div>
+          <div class="facts">
+            <div class="fact"><div class="n">45+</div><div class="l">组件</div></div>
+            <div class="fact"><div class="n">2</div><div class="l">套外观</div></div>
+            <div class="fact"><div class="n">3</div><div class="l">浏览器验证</div></div>
+          </div>
+        </div>
+
+        <div class="forest" aria-hidden="true">
+          <div class="col small s1">ᠪᠢᠴᠢᠭ᠌</div>
+          <div class="col title">ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ</div>
+          <div class="col caret">ᠲᠥᠯᠥᠪ<span class="c"></span></div>
+          <div class="col small s2">ᠦᠰᠦᠭ</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GROUND ===== -->
+  <section class="ground">
+    <div class="wrap">
+      <div class="row">
+        <div>
+          <h2>从这里开始</h2>
+          <p class="lead">安装、写下第一列竖排文本,再按分组浏览组件与主题。</p>
+          <div class="links">
+            <a>快速开始<span class="d">5 分钟</span></a>
+            <a>组件总览<span class="d">45+</span></a>
+            <a>主题与外观<span class="d">default · editorial</span></a>
+          </div>
+        </div>
+        <div>
+          <p class="shelf-h">// 竖排组件标本 · appearance: editorial</p>
+          <div class="shelf">
+            <div class="item"><div class="v primary">ᠨᠡᠮᠡᠬᠦ</div><div class="cap">Button · primary</div></div>
+            <div class="item"><div class="v default">ᠬᠠᠰᠠᠬᠤ</div><div class="cap">Button · default</div></div>
+            <div class="item"><div class="v tag">ᠰᠢᠨᠡ</div><div class="cap">Tag</div></div>
+            <div class="item"><div class="v field"><span class="cc"></span><span class="m"></span>ᠪᠢᠴᠢᠭ ᠣᠷᠤᠭᠤᠯ</div><div class="cap">TextField · focus</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

@@ -97,7 +97,6 @@ export function VertMSelect({
 }: SelectProps) {
   const config = useVertMConfig();
   const vertical = useIsVertical();
-  const editorial = config.appearance === 'editorial';
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
   const [highlight, setHighlight] = useState(0);
@@ -292,7 +291,7 @@ export function VertMSelect({
 
   const handleKeyDown = (e: KeyboardEvent) => {
     if (!open) {
-      if (e.key === 'ArrowDown' || e.key === 'Enter' || (editorial && e.key === 'ArrowRight')) {
+      if (e.key === 'ArrowDown' || e.key === 'Enter' || (vertical && e.key === 'ArrowRight')) {
         e.preventDefault();
         setOpen(true);
       }
@@ -310,9 +309,9 @@ export function VertMSelect({
       return;
     }
 
-    // Editorial: options are peer columns; ArrowRight commits the highlight.
-    // Default keeps Left/Right as alternate navigation for the horizontal list.
-    if (editorial) {
+    // Vertical writing: options are peer columns; ArrowRight commits the highlight.
+    // Horizontal keeps Left/Right as alternate navigation along the list.
+    if (vertical) {
       if (e.key === 'ArrowRight') {
         e.preventDefault();
         const opt = filtered[highlight];

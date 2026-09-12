@@ -40,7 +40,7 @@
   position: absolute;
   inset-block-start: 14px;
   inset-inline-end: var(--vertm-marker-inset);
-  width: 2px;
+  width: var(--vertm-marker-width);
   height: 0;
   background: currentColor;
   transition: height var(--vertm-motion-duration-fast);
@@ -55,7 +55,6 @@
 [data-appearance='editorial'] .vertm-btn:hover:not(:disabled):not(.vertm-btn--loading) {
   border-color: var(--vertm-color-text);
   color: var(--vertm-color-text);
-  transform: translateY(-2px);
 }
 
 [data-appearance='editorial'] .vertm-btn--primary {
@@ -99,10 +98,6 @@
   opacity: 1;
   border-color: var(--vertm-color-border-secondary);
   color: var(--vertm-color-text-disabled);
-}
-
-[data-appearance='editorial'] .vertm-btn:active:not(:disabled):not(.vertm-btn--loading) {
-  transform: none;
 }
 
 [data-appearance='editorial'] .vertm-btn--small {

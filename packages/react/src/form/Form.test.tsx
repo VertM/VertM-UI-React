@@ -198,4 +198,17 @@ describe('useForm', () => {
     await userEvent.click(screen.getByRole('button', { name: 'reset' }));
     await waitFor(() => expect(screen.queryByText('required')).not.toBeInTheDocument());
   });
+
+  it('renders help and extra under the control', () => {
+    render(
+      <VertMForm>
+        <VertMForm.Item name="name" label="ᠨᠡᠷᠡ" help="ᠲᠠᠢᠯᠪᠤᠷᠢ" extra="extra-note">
+          <VertMInput />
+        </VertMForm.Item>
+      </VertMForm>
+    );
+
+    expect(screen.getByText('ᠲᠠᠢᠯᠪᠤᠷᠢ')).toBeInTheDocument();
+    expect(screen.getByText('extra-note')).toBeInTheDocument();
+  });
 });
