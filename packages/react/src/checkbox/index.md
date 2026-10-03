@@ -56,7 +56,7 @@ export default () => {
   return (
     <VertMDemoFrame minHeight={300}>
       <VertMSpace direction="vertical" align="start">
-        <VertMText text="ᠠᠷᠪᠢᠨ ᠰᠣᠩᠭᠣᠬᠤ" />
+        <VertMText text="ᠣᠯᠠᠨ ᠰᠣᠩᠭᠣᠯᠲᠠ" />
         <VertMCheckbox.Group
           options={[
             { label: 'ᠰᠣᠩᠭᠣᠯᠲᠠ C', value: 'c' },
@@ -123,7 +123,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={280}>
     <VertMSpace direction="vertical" align="start">
-      <VertMCheckbox disabled>ᠬᠤᠷᠢᠭᠯᠠᠭᠳᠠᠭᠰᠠᠨ</VertMCheckbox>
+      <VertMCheckbox disabled>ᠬᠣᠷᠢᠭᠯᠠᠭᠰᠠᠨ</VertMCheckbox>
       <VertMCheckbox disabled defaultChecked>
         checked + disabled
       </VertMCheckbox>
@@ -179,7 +179,7 @@ export default () => (
     <VertMCheckbox.Group
       options={[
         { label: 'ᠨᠢᠭᠡ', value: '1' },
-        { label: 'ᠬᠤᠷᠢᠭᠯᠠᠭᠳᠠᠭᠰᠠᠨ', value: '2', disabled: true },
+        { label: 'ᠬᠣᠷᠢᠭᠯᠠᠭᠰᠠᠨ', value: '2', disabled: true },
         { label: 'ᠭᠤᠷᠪᠠ', value: '3' },
       ]}
     />

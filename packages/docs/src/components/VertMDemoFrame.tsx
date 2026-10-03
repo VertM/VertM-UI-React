@@ -60,6 +60,7 @@ export function VertMDemoFrame({
         <span className="vertm-demo-frame__badge">{writingMode}</span>
       </div>
       <VertMConfigProvider theme={theme} appearance={appearance} writingMode={writingMode}>
+        {/* Stage is flex-only; writing-mode lives on child controls via ConfigProvider. */}
         <div
           className={
             vertical
@@ -68,7 +69,6 @@ export function VertMDemoFrame({
           }
           style={{
             minHeight,
-            writingMode,
             background: theme.colorBgLayout,
             color: theme.colorText,
           }}

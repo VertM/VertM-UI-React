@@ -79,7 +79,7 @@ export default () => {
       <VertMModal
         open={open}
         title="ᠠᠰᠠᠭᠤᠯᠲᠠ"
-        okText="ᠲᠡᠢᠢᠮᠦ"
+        okText="ᠲᠡᠢᠮᠦ"
         cancelText="ᠦᠭᠡᠢ"
         onCancel={() => setOpen(false)}
         onOk={() => setOpen(false)}
@@ -178,10 +178,10 @@ export default () => {
         onCancel={() => setA(false)}
         onOk={() => setA(false)}
       >
-        <VertMText text="ᠳᠡᠯᠭᠡᠴᠡ ᠳᠡᠭᠡᠷ᠎ᠡ ᠳᠠᠷᠤᠬᠤ ᠪᠣᠯᠤᠮᠵᠢ ᠦᠭᠡᠢ" />
+        <VertMText text="ᠠᠷᠤ ᠲᠠᠯ᠎ᠠ ᠶᠢ ᠳᠠᠷᠤᠪᠠᠴᠤ ᠬᠠᠭᠠᠭᠳᠠᠬᠤ ᠦᠭᠡᠢ" />
       </VertMModal>
       <VertMModal open={b} title="ᠭᠠᠷᠴᠠᠭ" mask={false} onCancel={() => setB(false)} onOk={() => setB(false)}>
-        <VertMText text="ᠳᠡᠯᠭᠡᠴᠡ ᠦᠭᠡᠢ" />
+        <VertMText text="ᠮᠠᠰᠺ ᠦᠭᠡᠢ" />
       </VertMModal>
     </VertMDemoFrame>
   );
@@ -241,7 +241,7 @@ export default () => {
         onCancel={() => setOpen(false)}
         onOk={() => setOpen(false)}
       >
-        <VertMInput placeholder="ᠪᠢᠴᠢᠭᠯᠡᠬᠦ ᠁" />
+        <VertMInput placeholder="ᠣᠷᠤᠭᠤᠯᠤᠭᠠᠷᠠᠢ" />
       </VertMModal>
     </VertMDemoFrame>
   );
@@ -265,9 +265,9 @@ const Demo = () => {
       danger
       onClick={() =>
         modal.confirm({
-          title: 'ᠤᠰᠤᠳᠬᠠᠬᠤ ᠦᠦ ?',
-          content: 'ᠡᠨᠡ ᠦᠢᠯᠡᠳᠦᠯ ᠪᠤᠴᠠᠵᠤ ᠪᠣᠯᠤᠮᠵᠢ ᠦᠭᠡᠢ',
-          onOk: () => message.success('ᠤᠰᠤᠳᠭᠠᠪᠠ'),
+          title: 'ᠤᠰᠠᠳᠬᠠᠬᠤ ᠤᠤ ?',
+          content: 'ᠡᠨᠡ ᠦᠢᠯᠡᠳᠦᠯ ᠢ ᠪᠤᠴᠠᠭᠠᠬᠤ ᠪᠣᠯᠤᠮᠵᠢ ᠦᠭᠡᠢ',
+          onOk: () => message.success('ᠤᠰᠠᠳᠬᠠᠪᠠ'),
         })
       }
     >
@@ -341,7 +341,7 @@ const Demo = () => {
       type="primary"
       onClick={() =>
         modal.confirm({
-          title: 'ᠠᠰᠢᠩᠬᠷᠣᠨ',
+          title: 'ᠲᠤᠰᠢᠶᠠᠬᠤ ᠤᠤ ?',
           content: '1s…',
           onOk: () =>
             new Promise((resolve) => {

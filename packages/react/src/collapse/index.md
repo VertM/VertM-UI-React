@@ -83,7 +83,7 @@ export default () => (
         {
           key: '1',
           label: 'ᠨᠢᠭᠡ',
-          children: <VertMText text="ᠤᠷᠲᠤ ᠲᠡᠺᠰᠲ ᠨᠢᠭᠡ ᠬᠣᠶᠠᠷ ᠭᠤᠷᠪᠠ ᠳᠥᠷᠪᠡ ᠲᠠᠪᠤ" />,
+          children: <VertMText text="ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠪᠣᠯ ᠮᠣᠩᠭᠣᠯᠴᠤᠳ ᠤᠨ ᠡᠷᠲᠡ ᠡᠴᠡ ᠬᠡᠷᠡᠭᠯᠡᠵᠦ ᠢᠷᠡᠭᠰᠡᠨ ᠪᠢᠴᠢᠭ ᠮᠥᠨ᠃ ᠳᠡᠭᠡᠷ᠎ᠡ ᠡᠴᠡ ᠳᠣᠣᠷ᠎ᠠ ᠪᠢᠴᠢᠬᠦ ᠪᠥᠭᠡᠳ ᠮᠥᠷ ᠨᠢ ᠵᠡᠭᠦᠨ ᠡᠴᠡ ᠪᠠᠷᠠᠭᠤᠨ ᠰᠢᠯᠵᠢᠨ᠎ᠡ᠃" />,
         },
         { key: '2', label: 'ᠬᠣᠶᠠᠷ', children: <VertMText text="ᠬᠣᠶᠠᠷ" /> },
         { key: '3', label: 'ᠭᠤᠷᠪᠠ', children: <VertMText text="ᠭᠤᠷᠪᠠ" /> },
@@ -137,9 +137,9 @@ export default () => (
         { key: '1', label: 'ᠨᠢᠭᠡ', children: <VertMText text="ᠨᠢᠭᠡ" /> },
         {
           key: '2',
-          label: 'ᠬᠤᠷᠢᠭᠯᠠᠭᠳᠠᠭᠰᠠᠨ',
+          label: 'ᠬᠣᠷᠢᠭᠯᠠᠭᠰᠠᠨ',
           collapsible: 'disabled',
-          children: <VertMText text="ᠦᠯᠦ ᠨᠡᠬᠡᠭᠳᠡᠨ᠎ᠡ" />,
+          children: <VertMText text="ᠨᠡᠭᠡᠭᠡᠬᠦ ᠪᠣᠯᠤᠮᠵᠢ ᠦᠭᠡᠢ" />,
         },
       ]}
     />
@@ -161,9 +161,9 @@ export default () => (
       items={[
         {
           key: '1',
-          label: 'ᠵᠢᠭᠤᠷ ᠬᠡᠰᠡᠭ',
+          label: 'ᠰᠤᠮᠤ ᠶᠢ ᠳᠠᠷᠤᠵᠤ ᠳᠡᠯᠭᠡᠬᠦ',
           collapsible: 'icon',
-          children: <VertMText text="ᠵᠢᠭᠤᠷ ᠳᠡᠭᠡᠷ᠎ᠡ ᠳᠠᠷᠤᠬᠤ" />,
+          children: <VertMText text="ᠵᠥᠪᠬᠡᠨ ᠰᠤᠮᠤ ᠶᠢ ᠳᠠᠷᠤᠪᠠᠯ ᠳᠡᠯᠭᠡᠷᠡᠨ᠎ᠡ" />,
         },
         { key: '2', label: 'ᠬᠣᠶᠠᠷ', children: <VertMText text="ᠬᠣᠶᠠᠷ" /> },
       ]}
@@ -188,7 +188,7 @@ export default () => {
   return (
     <VertMDemoFrame minHeight={320}>
       <VertMSpace direction="vertical" size="middle" align="stretch" style={{ width: '100%' }}>
-        <VertMButton onClick={() => setActiveKey('2')}>ᠬᠣᠶᠠᠷ ᠨᠡᠬᠡᠭᠡᠬᠦ</VertMButton>
+        <VertMButton onClick={() => setActiveKey('2')}>ᠬᠣᠶᠠᠷ ᠨᠡᠭᠡᠭᠡᠬᠦ</VertMButton>
         <VertMCollapse
           activeKey={activeKey}
           onChange={setActiveKey}

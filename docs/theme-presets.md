@@ -73,12 +73,13 @@
 | colorSuccess | `#5f7a2e` | | colorBgLayout | `#f2ecdf` |
 | colorWarning | `#c88a1f` | | colorBorder | `#e3d8c2` |
 | colorError | `#b04a2a` | | colorBorderSecondary | `#ece3d2` |
-| colorText | `#2a2114` | | colorLink | `#a26a1f` |
-| colorTextSecondary | `#77664a` | | colorLinkHover | `#83551a` |
+| colorText | `#2a2114` | | colorLink | `#83551a` |
+| colorTextSecondary | `#77664a` | | colorLinkHover | `#6a4515` |
 | colorTextDisabled | `#b6a988` | | caretColor | `#a26a1f` |
 | borderRadius | `6 / 4 / 8` | | vertical.columnSize / Gap | `32 / 16` |
 
 > ⚠️ 主色 `#a26a1f` 已压深以保证白字按钮对比 ≥ AA;不要用更亮的琥珀(如 `#e0aa4e`)当 `colorPrimary`,那是装饰金。
+> `colorLink` 再压至 `#83551a`,以保证暖纸底上正文链接 ≥ AA normal。
 
 ### 黛青 Slate `#2f5b66`
 | 字段 | 值 | | 字段 | 值 |

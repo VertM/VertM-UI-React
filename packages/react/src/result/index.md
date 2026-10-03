@@ -88,7 +88,7 @@ export default () => (
     <VertMResult
       status="error"
       title="ᠠᠯᠳᠠᠭ᠎ᠠ"
-      subTitle="ᠳᠠᠬᠢᠨ ᠣᠷᠤᠯᠳᠤᠭᠤᠯ"
+      subTitle="ᠳᠠᠬᠢᠨ ᠣᠷᠤᠯᠳᠤᠭᠠᠷᠠᠢ"
       extra={
         <VertMSpace>
           <VertMButton>cancel</VertMButton>
@@ -132,7 +132,7 @@ export default () => (
   <VertMDemoFrame minHeight={360}>
     <VertMSpace direction="horizontal" size="large" align="start">
       <VertMResult status="403" title="403" subTitle="ᠡᠷᠬᠡ ᠦᠭᠡᠢ" />
-      <VertMResult status="500" title="500" subTitle="ᠰᠡᠷᠪᠡᠷ ᠠᠯᠳᠠᠭ᠎ᠠ" />
+      <VertMResult status="500" title="500" subTitle="ᠳᠣᠲᠣᠭᠠᠳᠤ ᠠᠯᠳᠠᠭ᠎ᠠ" />
     </VertMSpace>
   </VertMDemoFrame>
 );
@@ -153,7 +153,7 @@ export default () => (
   <VertMDemoFrame minHeight={260}>
     <VertMResult
       icon={<Search size="large" vertical />}
-      title="ᠡᠷᠢᠯᠲᠡ"
+      title="ᠬᠠᠢᠯᠲᠠ"
       subTitle="custom icon"
     />
   </VertMDemoFrame>

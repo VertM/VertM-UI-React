@@ -33,15 +33,15 @@ const Demo = () => {
   return (
     <VertMForm
       form={form}
-      onFinish={(vals) => message.success(`ᠲᠤᠰᠢᠶᠠᠴᠢᠬᠠᠯ᠎ᠠ : ${JSON.stringify(vals)}`)}
+      onFinish={(vals) => message.success(`ᠲᠤᠰᠢᠶᠠᠪᠠ : ${JSON.stringify(vals)}`)}
       onFinishFailed={() => message.error('Error')}
     >
       <VertMForm.Item
         name="word"
         label="ᠨᠡᠷ᠎ᠡ"
-        rules={[{ required: true, message: 'ᠡᠷᠬᠡᠪᠰᠢ ᠲᠠᠭᠯᠠᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ' }]}
+        rules={[{ required: true, message: 'ᠨᠡᠷ᠎ᠡ ᠪᠡᠨ ᠣᠷᠤᠭᠤᠯᠤᠭᠠᠷᠠᠢ' }]}
       >
-        <VertMInput placeholder="ᠲᠠᠭᠯᠠᠬᠤ ᠁" />
+        <VertMInput placeholder="ᠣᠷᠤᠭᠤᠯᠤᠭᠠᠷᠠᠢ" />
       </VertMForm.Item>
       <VertMForm.Item name="note" label="ᠪᠤᠰᠤᠳ">
         <VertMInput.TextArea rows={3} />
@@ -83,20 +83,20 @@ const Demo = () => {
     >
       <VertMForm.Item
         name="email"
-        label="ᠢᠮᠡᠶᠢᠯ"
+        label="ᠴᠠᠬᠢᠮ ᠱᠤᠤᠳᠠᠩ"
         rules={[
-          { required: true, message: 'ᠣᠷᠤᠭᠤᠯ' },
-          { pattern: /.+@.+\..+/, message: 'ᠪᠤᠷᠤᠭᠤ' },
+          { required: true, message: 'ᠣᠷᠤᠭᠤᠯᠤᠭᠠᠷᠠᠢ' },
+          { pattern: /.+@.+\..+/, message: 'ᠬᠡᠯᠪᠡᠷᠢ ᠪᠤᠷᠤᠭᠤ' },
         ]}
       >
         <VertMInput style={{ width: 48 }} />
       </VertMForm.Item>
       <VertMSpace>
         <VertMButton type="primary" htmlType="submit">
-          ᠢᠯᠭᠡᠬᠦ
+          ᠲᠤᠰᠢᠶᠠᠬᠤ
         </VertMButton>
         <VertMButton htmlType="button" onClick={() => form.resetFields()}>
-          ᠰᠡᠷᠭᠡᠭᠡᠬᠦ
+          ᠰᠡᠷᠭᠦᠭᠡᠬᠦ
         </VertMButton>
       </VertMSpace>
     </VertMForm>
@@ -133,10 +133,10 @@ const Demo = () => {
     >
       <VertMForm.Item
         name="code"
-        label="ᠺᠣᠳ"
+        label="ᠰᠢᠯᠭᠠᠬᠤ ᠺᠣᠳ"
         rules={[
           {
-            message: 'ᠪᠤᠷᠤᠭᠤ ᠺᠣᠳ',
+            message: 'ᠺᠣᠳ ᠪᠤᠷᠤᠭᠤ',
             validator: async (value) => {
               if (value !== '1234') {
                 throw new Error('invalid');
@@ -148,7 +148,7 @@ const Demo = () => {
         <VertMInput placeholder="1234" />
       </VertMForm.Item>
       <VertMButton type="primary" htmlType="submit">
-        ᠢᠯᠭᠡᠬᠦ
+        ᠲᠤᠰᠢᠶᠠᠬᠤ
       </VertMButton>
     </VertMForm>
   );
@@ -182,7 +182,7 @@ export default () => {
           <VertMInput />
         </VertMForm.Item>
         <VertMButton type="primary" htmlType="submit">
-          ᠢᠯᠭᠡᠬᠦ
+          ᠲᠤᠰᠢᠶᠠᠬᠤ
         </VertMButton>
       </VertMForm>
     </VertMDemoFrame>
@@ -218,7 +218,7 @@ export default () => {
         <VertMSpace>
           <VertMButton
             htmlType="button"
-            onClick={() => form.setFieldValue('name', 'ᠰᠠᠷᠠ')}
+            onClick={() => form.setFieldValue('name', 'ᠲᠡᠮᠦᠵᠢᠨ')}
           >
             set name
           </VertMButton>
@@ -250,7 +250,7 @@ const Demo = () => {
       <VertMForm.Item
         name="title"
         label="ᠭᠠᠷᠴᠠᠭ"
-        rules={[{ required: true, message: 'ᠣᠷᠤᠭᠤᠯ' }]}
+        rules={[{ required: true, message: 'ᠣᠷᠤᠭᠤᠯᠤᠭᠠᠷᠠᠢ' }]}
       >
         <VertMInput />
       </VertMForm.Item>
@@ -297,7 +297,7 @@ const Demo = () => {
       <VertMForm.Item
         name="color"
         label="ᠥᠩᠭᠡ"
-        rules={[{ required: true, message: 'ᠰᠣᠩᠭᠣ' }]}
+        rules={[{ required: true, message: 'ᠰᠣᠩᠭᠣᠭᠠᠷᠠᠢ' }]}
       >
         <VertMSelect
           allowClear
@@ -308,7 +308,7 @@ const Demo = () => {
         />
       </VertMForm.Item>
       <VertMButton type="primary" htmlType="submit">
-        ᠢᠯᠭᠡᠬᠦ
+        ᠲᠤᠰᠢᠶᠠᠬᠤ
       </VertMButton>
     </VertMForm>
   );
@@ -346,11 +346,11 @@ const Demo = () => {
           ]}
         />
       </VertMForm.Item>
-      <VertMForm.Item name="on" label="ᠰᠣᠯᠢᠬᠤ">
+      <VertMForm.Item name="on" label="ᠮᠡᠳᠡᠭᠳᠡᠯ ᠬᠦᠯᠢᠶᠡᠨ ᠠᠪᠬᠤ">
         <VertMSwitch />
       </VertMForm.Item>
       <VertMButton type="primary" htmlType="submit">
-        ᠢᠯᠭᠡᠬᠦ
+        ᠲᠤᠰᠢᠶᠠᠬᠤ
       </VertMButton>
     </VertMForm>
   );
@@ -382,12 +382,12 @@ export default () => {
       <VertMForm form={form}>
         <VertMForm.Item
           name="a"
-          label="ᠵᠠᠰᠠᠯᠲᠠᠢ"
-          rules={[{ required: true, message: 'ᠣᠷᠤᠭᠤᠯ' }]}
+          label="ᠡᠷᠬᠡᠪᠰᠢ"
+          rules={[{ required: true, message: 'ᠣᠷᠤᠭᠤᠯᠤᠭᠠᠷᠠᠢ' }]}
         >
           <VertMInput />
         </VertMForm.Item>
-        <VertMForm.Item name="b" label="ᠰᠤᠯᠠ" required={false}>
+        <VertMForm.Item name="b" label="ᠰᠣᠩᠭᠣᠮᠣᠯ" required={false}>
           <VertMInput />
         </VertMForm.Item>
       </VertMForm>
@@ -469,7 +469,7 @@ const Demo = () => {
         <VertMInput.TextArea rows={2} columnDepth={3} />
       </VertMForm.Item>
       <VertMButton type="primary" htmlType="submit">
-        ᠢᠯᠭᠡᠬᠦ
+        ᠲᠤᠰᠢᠶᠠᠬᠤ
       </VertMButton>
     </VertMForm>
   );

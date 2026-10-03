@@ -53,7 +53,7 @@ export default () => (
   <VertMDemoFrame forceTheme="editorial" minHeight={300}>
     <VertMSpace align="start" size="large">
       <VertMButton type="primary">ᠨᠡᠮᠡᠬᠦ</VertMButton>
-      <VertMInput placeholder="ᠪᠢᠴᠢᠭᠯᠡᠬᠦ ᠁" />
+      <VertMInput placeholder="ᠣᠷᠤᠭᠤᠯᠤᠭᠠᠷᠠᠢ" />
     </VertMSpace>
   </VertMDemoFrame>
 );
@@ -173,7 +173,7 @@ export default () => (
     >
       <VertMSpace>
         <VertMButton type="primary">ᠨᠡᠮᠡᠬᠦ</VertMButton>
-        <VertMButton type="link">ᠯᠢᠩᠺ</VertMButton>
+        <VertMButton type="link">ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ</VertMButton>
       </VertMSpace>
     </VertMConfigProvider>
   </VertMDemoFrame>

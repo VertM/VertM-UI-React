@@ -208,7 +208,7 @@ export function VertMPagination({
         <>
           <VertMText as="span" text="ᠨᠡᠢᠲᠡ " className="vertm-pagination__total-label" />
           <span className="vertm-pagination__total-num">{total}</span>
-          <VertMText as="span" text="ᠵᠤᠷᠪᠤᠰ  " className="vertm-pagination__total-label" />
+          <VertMText as="span" text=" ᠵᠦᠢᠯ" className="vertm-pagination__total-label" />
         </>
       )}
     </span>
@@ -295,7 +295,7 @@ export function VertMPagination({
           aria-label="First page"
           onClick={() => goTo(1)}
         >
-          <VertMText as="span" text="ᠡᠬᠢᠨ ᠎ᠦ  ᠨᠢᠭᠤᠷ" className="vertm-pagination__edge-label" />
+          <VertMText as="span" text="ᠲᠡᠷᠢᠭᠦᠨ ᠨᠢᠭᠤᠷ" className="vertm-pagination__edge-label" />
         </VertMButton>
       )}
 
@@ -330,7 +330,7 @@ export function VertMPagination({
           aria-label="Last page"
           onClick={() => goTo(totalPages)}
         >
-          <VertMText as="span" text="ᠡᠴᠦᠰ ᠎ᠦᠨ ᠨᠢᠭᠦᠷ " className="vertm-pagination__edge-label" />
+          <VertMText as="span" text="ᠡᠴᠦᠰ ᠦᠨ ᠨᠢᠭᠤᠷ" className="vertm-pagination__edge-label" />
         </VertMButton>
       )}
 

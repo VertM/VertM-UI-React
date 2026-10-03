@@ -32,8 +32,8 @@ export default () => (
       current={1}
       items={[
         { title: 'ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠠᠯᠬᠤᠮ', description: 'ᠭᠦᠢᠴᠡᠳᠬᠡᠭᠰᠡᠨ' },
-        { title: 'ᠬᠣᠶᠠᠳᠤᠭᠠᠷ ᠠᠯᠬᠤᠮ', description: 'ᠭᠦᠢᠴᠡᠳᠬᠡᠵᠦ' },
-        { title: 'ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ ᠠᠯᠬᠤᠮ', description: 'ᠬᠦᠯᠢᠶᠡᠵᠦ' },
+        { title: 'ᠬᠣᠶᠠᠳᠤᠭᠠᠷ ᠠᠯᠬᠤᠮ', description: 'ᠭᠦᠢᠴᠡᠳᠬᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ' },
+        { title: 'ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ ᠠᠯᠬᠤᠮ', description: 'ᠬᠦᠯᠢᠶᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ' },
       ]}
     />
   </VertMDemoFrame>
@@ -53,9 +53,9 @@ export default () => (
     <VertMSteps
       current={0}
       items={[
-        { title: 'ᠨᠢᠭᠡ' },
-        { title: 'ᠬᠣᠶᠠᠷ' },
-        { title: 'ᠭᠤᠷᠪᠠ' },
+        { title: 'ᠪᠦᠷᠢᠳᠬᠡᠬᠦ' },
+        { title: 'ᠰᠢᠯᠭᠠᠬᠤ' },
+        { title: 'ᠲᠡᠭᠦᠰᠬᠦ' },
       ]}
     />
   </VertMDemoFrame>
@@ -196,9 +196,9 @@ export default () => {
         <VertMSteps
           current={current}
           items={[
-            { title: 'ᠨᠢᠭᠡ' },
-            { title: 'ᠬᠣᠶᠠᠷ' },
-            { title: 'ᠭᠤᠷᠪᠠ' },
+            { title: 'ᠪᠦᠷᠢᠳᠬᠡᠬᠦ' },
+            { title: 'ᠰᠢᠯᠭᠠᠬᠤ' },
+            { title: 'ᠲᠡᠭᠦᠰᠬᠦ' },
           ]}
         />
         <VertMSpace>

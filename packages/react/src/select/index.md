@@ -29,7 +29,7 @@ import { VertMSelect } from '@vertm/react';
 import VertMDemoFrame from 'VertMDemoFrame';
 
 const OPTIONS = [
-  { label: 'ᠤᠯᠠᠭᠠᠨᠪᠠᠭᠠᠲᠤᠷ', value: 'red' },
+  { label: 'ᠤᠯᠠᠭᠠᠨ', value: 'red' },
   { label: 'ᠬᠥᠬᠡ', value: 'blue' },
   { label: 'ᠨᠣᠭᠤᠭᠠᠨ', value: 'green' },
 ];
@@ -44,7 +44,7 @@ export default () => {
         onChange={(v) => setValue(v as string)}
         showSearch
         allowClear
-        placeholder="ᠰᠣᠩᠭᠣᠬᠤ"
+        placeholder="ᠰᠣᠩᠭᠣᠭᠠᠷᠠᠢ"
       />
     </VertMDemoFrame>
   );
@@ -63,7 +63,7 @@ import { VertMSelect } from '@vertm/react';
 import VertMDemoFrame from 'VertMDemoFrame';
 
 const OPTIONS = [
-  { label: 'ᠤᠯᠠᠭᠠᠨᠪᠠᠭᠠᠲᠤᠷ', value: 'red' },
+  { label: 'ᠤᠯᠠᠭᠠᠨ', value: 'red' },
   { label: 'ᠬᠥᠬᠡ', value: 'blue' },
   { label: 'ᠨᠣᠭᠤᠭᠠᠨ', value: 'green' },
   { label: 'ᠰᠢᠷ᠎ᠠ', value: 'yellow' },
@@ -83,7 +83,7 @@ export default () => {
         height={300}
         listWidth={300}
         listHeight={300}
-        placeholder="ᠠᠷᠪᠢᠨ ᠰᠣᠩᠭᠣᠬᠤ"
+        placeholder="ᠣᠯᠠᠨ ᠢ ᠰᠣᠩᠭᠣᠵᠤ ᠪᠣᠯᠤᠨ᠎ᠠ"
       />
     </VertMDemoFrame>
   );
@@ -160,7 +160,7 @@ export default () => (
   <VertMDemoFrame minHeight={300}>
     <VertMSpace align="start" size="large">
       <VertMSelect disabled defaultValue="1" options={OPTIONS} />
-      <VertMSelect options={OPTIONS} placeholder="ᠰᠣᠩᠭᠣᠬᠤ" />
+      <VertMSelect options={OPTIONS} placeholder="ᠰᠣᠩᠭᠣᠭᠠᠷᠠᠢ" />
     </VertMSpace>
   </VertMDemoFrame>
 );
@@ -188,7 +188,7 @@ export default () => (
         { label: 'ᠭᠤᠷᠪᠠ', value: '3' },
         { label: 'ᠳᠥᠷᠪᠡ', value: '4' },
       ]}
-      placeholder="ᠰᠣᠩᠭᠣᠬᠤ"
+      placeholder="ᠰᠣᠩᠭᠣᠭᠠᠷᠠᠢ"
     />
   </VertMDemoFrame>
 );
@@ -212,7 +212,7 @@ export default () => (
         { label: 'ᠨᠢᠭᠡ', value: '1' },
         { label: 'ᠬᠣᠶᠠᠷ', value: '2' },
       ]}
-      placeholder="ᠰᠣᠩᠭᠣᠬᠤ"
+      placeholder="ᠰᠣᠩᠭᠣᠭᠠᠷᠠᠢ"
     />
   </VertMDemoFrame>
 );
@@ -260,9 +260,9 @@ export default () => {
         value={value}
         onChange={(v) => setValue(v as string)}
         allowClear
-        placeholder="ᠪᠢᠴᠢᠭᠯᠡᠬᠦ / ᠰᠣᠩᠭᠣᠬᠤ"
+        placeholder="ᠣᠷᠤᠭᠤᠯᠬᠤ ᠪᠤᠶᠤ ᠰᠣᠩᠭᠣᠬᠤ"
         options={[
-          { label: 'ᠤᠯᠠᠭᠠᠨᠪᠠᠭᠠᠲᠤᠷ', value: 'red' },
+          { label: 'ᠤᠯᠠᠭᠠᠨ', value: 'red' },
           { label: 'ᠬᠥᠬᠡ', value: 'blue' },
           { label: 'ᠨᠣᠭᠤᠭᠠᠨ', value: 'green' },
         ]}
@@ -288,7 +288,7 @@ export default () => {
   return (
     <VertMDemoFrame minHeight={320}>
       <VertMSpace align="start" size="large">
-        <VertMText text="ᠨᠢᠭᠡ ᠎ᠶᠢ ᠰᠣᠩᠭᠣᠬᠤ" />
+        <VertMText text="ᠭᠠᠭᠴᠠ ᠰᠣᠩᠭᠣᠯᠲᠠ" />
         <VertMSelect
           options={[
             { label: 'ᠰᠣᠩᠭᠣᠯᠲᠠ A', value: 'a' },

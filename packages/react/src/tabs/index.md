@@ -64,8 +64,8 @@ const SAMPLE = 'ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ';
 
 export default () => {
   const [items, setItems] = useState([
-    { key: '1', label: 'ᠲᠠᠪ 1', children: <VertMText text={SAMPLE} fontSize={16} /> },
-    { key: '2', label: 'ᠲᠠᠪ 2', children: <VertMText text={SAMPLE} fontSize={16} /> },
+    { key: '1', label: 'ᠬᠠᠭᠤᠳᠠᠰᠤ 1', children: <VertMText text={SAMPLE} fontSize={16} /> },
+    { key: '2', label: 'ᠬᠠᠭᠤᠳᠠᠰᠤ 2', children: <VertMText text={SAMPLE} fontSize={16} /> },
   ]);
   return (
     <VertMDemoFrame minHeight={360}>
@@ -80,7 +80,7 @@ export default () => {
                   ...tabs,
                   {
                     key: next,
-                    label: `ᠲᠠᠪ ${tabs.length + 1}`,
+                    label: `ᠬᠠᠭᠤᠳᠠᠰᠤ ${tabs.length + 1}`,
                     children: <VertMText text={SAMPLE} fontSize={16} />,
                   },
                 ]);
@@ -143,7 +143,7 @@ export default () => (
         defaultActiveKey="1"
         items={[
           { key: '1', label: 'ᠨᠢᠭᠡ', children: <VertMText text="ᠨᠢᠭᠡ" fontSize={16} /> },
-          { key: '2', label: 'ᠬᠤᠷᠢᠭᠯᠠᠭᠳᠠᠭᠰᠠᠨ', disabled: true },
+          { key: '2', label: 'ᠬᠣᠷᠢᠭᠯᠠᠭᠰᠠᠨ', disabled: true },
           { key: '3', label: 'ᠭᠤᠷᠪᠠ', children: <VertMText text="ᠭᠤᠷᠪᠠ" fontSize={16} /> },
         ]}
       />
@@ -251,7 +251,7 @@ import { VertMTabs, VertMText } from '@vertm/react';
 import VertMDemoFrame from 'VertMDemoFrame';
 
 const LONG =
-  'ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠤᠨ ᠵᠢᠭᠠᠰᠤᠨ ᠦᠰᠦᠭ ᠪᠣᠯ ᠨᠢᠭᠡ ᠨᠤᠲᠤᠭ ᠤᠨ ᠰᠣᠶᠣᠯ ᠤᠨ ᠥᠪ ᠡᠷᠳᠡᠮ';
+  'ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠪᠣᠯ ᠮᠣᠩᠭᠣᠯᠴᠤᠳ ᠤᠨ ᠡᠷᠲᠡ ᠡᠴᠡ ᠬᠡᠷᠡᠭᠯᠡᠵᠦ ᠢᠷᠡᠭᠰᠡᠨ ᠪᠢᠴᠢᠭ ᠮᠥᠨ᠃ ᠳᠡᠭᠡᠷ᠎ᠡ ᠡᠴᠡ ᠳᠣᠣᠷ᠎ᠠ ᠪᠢᠴᠢᠬᠦ ᠪᠥᠭᠡᠳ ᠮᠥᠷ ᠨᠢ ᠵᠡᠭᠦᠨ ᠡᠴᠡ ᠪᠠᠷᠠᠭᠤᠨ ᠰᠢᠯᠵᠢᠨ᠎ᠡ᠃';
 
 export default () => (
   <VertMDemoFrame minHeight={400}>

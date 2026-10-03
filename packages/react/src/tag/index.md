@@ -29,8 +29,8 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={200}>
     <VertMSpace>
-      <VertMTag>ᠡᠩ</VertMTag>
-      <VertMTag>ᠲᠡᠭ</VertMTag>
+      <VertMTag>ᠰᠣᠶᠣᠯ</VertMTag>
+      <VertMTag>ᠲᠡᠦᠬᠡ</VertMTag>
     </VertMSpace>
   </VertMDemoFrame>
 );
@@ -94,7 +94,7 @@ export default () => {
       <VertMSpace>
         {visible ? (
           <VertMTag closable onClose={() => setVisible(false)}>
-            ᠬᠠᠭᠠᠴᠢᠬᠠᠬᠤ
+            ᠬᠠᠭᠠᠵᠤ ᠪᠣᠯᠬᠤ
           </VertMTag>
         ) : (
           <VertMButton size="small" onClick={() => setVisible(true)}>
@@ -122,7 +122,7 @@ export default () => {
     <VertMDemoFrame minHeight={200}>
       <VertMSpace>
         <VertMTag checkable checked={checked} onChange={setChecked}>
-          ᠰᠢᠯᠭᠠᠬᠤ
+          ᠰᠣᠩᠭᠣᠵᠤ ᠪᠣᠯᠬᠤ
         </VertMTag>
         <VertMTag.Checkable defaultChecked>Checkable</VertMTag.Checkable>
       </VertMSpace>

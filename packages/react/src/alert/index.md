@@ -78,13 +78,13 @@ export default () => (
       <VertMAlert
         type="info"
         message="ᠮᠡᠳᠡᠭᠡ"
-        description="ᠡᠨᠡ ᠨᠢ ᠨᠡᠮᠡᠯᠲᠡ ᠲᠠᠢᠯᠪᠤᠷᠢ ᠶᠤᠮ"
+        description="ᠡᠨᠡ ᠪᠣᠯ ᠨᠡᠮᠡᠯᠲᠡ ᠲᠠᠢᠯᠪᠤᠷᠢ ᠮᠥᠨ"
         showIcon
       />
       <VertMAlert
         type="error"
         message="ᠠᠯᠳᠠᠭ᠎ᠠ"
-        description="ᠳᠠᠬᠢᠨ ᠣᠷᠤᠯᠭ᠎ᠠ ᠬᠢᠭᠡᠷᠡᠢ"
+        description="ᠳᠠᠬᠢᠨ ᠣᠷᠤᠯᠳᠤᠭᠠᠷᠠᠢ"
         showIcon
       />
     </VertMSpace>
@@ -104,7 +104,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={200}>
-    <VertMAlert type="info" message="ᠵᠢᠭᠤᠷ ᠦᠭᠡᠢ ᠮᠡᠳᠡᠭᠡ" showIcon={false} />
+    <VertMAlert type="info" message="ᠳᠦᠷᠰᠦ ᠲᠡᠮᠳᠡᠭ ᠦᠭᠡᠢ ᠮᠡᠳᠡᠭᠡ" showIcon={false} />
   </VertMDemoFrame>
 );
 ```
@@ -151,7 +151,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={220}>
-    <VertMAlert banner type="error" message="ᠦᠢᠯᠡᠴᠢᠯᠡᠭᠡ ᠠᠮᠵᠢᠯᠲᠠᠭᠦᠢ" showIcon closable />
+    <VertMAlert banner type="error" message="ᠦᠢᠯᠡᠴᠢᠯᠡᠭᠡ ᠲᠦᠷ ᠵᠣᠭᠰᠣᠪᠠ" showIcon closable />
   </VertMDemoFrame>
 );
 ```
@@ -171,7 +171,7 @@ export default () => (
     <VertMSpace direction="vertical" size="small" align="stretch" style={{ width: '100%' }}>
       <VertMAlert type="success" message="ᠬᠠᠳᠠᠭᠠᠯᠠᠪᠠ" showIcon />
       <VertMAlert type="info" message="ᠰᠢᠨ᠎ᠡ ᠬᠤᠪᠢᠯᠪᠤᠷᠢ ᠪᠠᠢᠨ᠎ᠠ" showIcon />
-      <VertMAlert type="warning" message="ᠴᠠᠭ ᠬᠦᠷᠴᠦ ᠪᠠᠢᠨ᠎ᠠ" showIcon closable />
+      <VertMAlert type="warning" message="ᠬᠤᠭᠤᠴᠠᠭ᠎ᠠ ᠨᠢ ᠳᠥᠬᠦᠮ ᠳᠠᠭᠤᠰᠤᠨ᠎ᠠ" showIcon closable />
     </VertMSpace>
   </VertMDemoFrame>
 );

@@ -68,8 +68,8 @@ const TYPE_ICONS = {
   warning: WarningCircle,
 };
 
-const DEFAULT_OK_TEXT = 'ᠵᠥᠪᠰᠢᠶᠡᠷᠡᠨ᠎ᠡ';
-const DEFAULT_CANCEL_TEXT = 'ᠦᠭᠡᠢ';
+const DEFAULT_OK_TEXT = 'ᠲᠣᠭᠲᠠᠭᠠᠬᠤ';
+const DEFAULT_CANCEL_TEXT = 'ᠪᠣᠯᠢᠬᠤ';
 
 /** Id-addressed operations so queued global calls keep a working handle. */
 interface InternalModalAPI extends ModalAPI {

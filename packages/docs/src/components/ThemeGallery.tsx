@@ -2,7 +2,6 @@ import { useMemo, useState, type CSSProperties } from 'react';
 import {
   amberTheme,
   cinnabarTheme,
-  createTheme,
   darkTheme,
   editorialTheme,
   frostTheme,
@@ -62,28 +61,21 @@ const GALLERY: GalleryItem[] = [
     name: '鎏金',
     latin: 'Amber · 新',
     theme: amberTheme,
-    meta: ['radius 6', 'column 32', 'gap 16'],
+    meta: ['radius 6', 'warm paper', 'column 32'],
   },
   {
     id: 'slate',
     name: '黛青',
     latin: 'Slate · 新',
     theme: slateTheme,
-    meta: ['radius 6', 'column 32', 'gap 16'],
+    meta: ['radius 6', 'cool neutral', 'column 32'],
   },
   {
     id: 'frost',
     name: '霜',
     latin: 'Frost · 新',
     theme: frostTheme,
-    meta: ['radius 8', 'column 32', 'gap 16'],
-  },
-  {
-    id: 'default',
-    name: 'Default',
-    latin: 'createTheme()',
-    theme: createTheme(),
-    meta: ['radius 6', 'legacy blue', 'column 32'],
+    meta: ['radius 8', 'ice surface', 'column 32'],
   },
 ];
 
@@ -97,6 +89,61 @@ function cardVars(theme: VertMTheme): CSSProperties {
     ['--sub' as string]: theme.colorTextSecondary,
     ['--rad' as string]: `${theme.borderRadius}px`,
   };
+}
+
+function KnobSlider({
+  label,
+  min,
+  max,
+  value,
+  unit = 'px',
+  onChange,
+}: {
+  label: string;
+  min: number;
+  max: number;
+  value: number;
+  unit?: string;
+  onChange: (n: number) => void;
+}) {
+  const pct = ((value - min) / (max - min)) * 100;
+  return (
+    <div className="kl">
+      {label}
+      <div className="slider">
+        <div
+          className="track"
+          role="slider"
+          tabIndex={0}
+          aria-label={label}
+          aria-valuemin={min}
+          aria-valuemax={max}
+          aria-valuenow={value}
+          onClick={(e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const ratio = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
+            onChange(Math.round(min + ratio * (max - min)));
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+              e.preventDefault();
+              onChange(Math.min(max, value + 1));
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+              e.preventDefault();
+              onChange(Math.max(min, value - 1));
+            }
+          }}
+        >
+          <div className="fill" style={{ width: `${pct}%` }} />
+          <div className="thumb" style={{ left: `${pct}%` }} />
+        </div>
+        <span className="kv">
+          {value}
+          {unit}
+        </span>
+      </div>
+    </div>
+  );
 }
 
 /** Theme gallery — class names match design/mockups/theme-page.html under .vertm-theme-page */
@@ -190,7 +237,7 @@ const theme = createTheme({
               <div className="tstage" aria-hidden>
                 <span className="tb">ᠲᠣᠪᠴᠢ</span>
                 <span className="tf">ᠪᠢᠴᠢᠭ</span>
-                <span className="tt">ᠰᠢᠨᠡ</span>
+                <span className="tt">ᠰᠢᠨ᠎ᠡ</span>
               </div>
               <div className="tsw">
                 <span className="s" style={{ background: t.colorPrimary }} />
@@ -230,45 +277,27 @@ const theme = createTheme({
               />
             ))}
           </div>
-          <label className="kl">
-            columnSize
-            <div className="slider">
-              <input
-                type="range"
-                min={24}
-                max={48}
-                value={columnSize}
-                onChange={(e) => setColumnSize(Number(e.target.value))}
-              />
-              <span className="kv">{columnSize}</span>
-            </div>
-          </label>
-          <label className="kl">
-            columnGap
-            <div className="slider">
-              <input
-                type="range"
-                min={8}
-                max={28}
-                value={columnGap}
-                onChange={(e) => setColumnGap(Number(e.target.value))}
-              />
-              <span className="kv">{columnGap}</span>
-            </div>
-          </label>
-          <label className="kl">
-            borderRadius
-            <div className="slider">
-              <input
-                type="range"
-                min={0}
-                max={12}
-                value={borderRadius}
-                onChange={(e) => setBorderRadius(Number(e.target.value))}
-              />
-              <span className="kv">{borderRadius}</span>
-            </div>
-          </label>
+          <KnobSlider
+            label="columnSize 列宽"
+            min={24}
+            max={48}
+            value={columnSize}
+            onChange={setColumnSize}
+          />
+          <KnobSlider
+            label="columnGap 列距"
+            min={8}
+            max={28}
+            value={columnGap}
+            onChange={setColumnGap}
+          />
+          <KnobSlider
+            label="borderRadius 圆角"
+            min={0}
+            max={12}
+            value={borderRadius}
+            onChange={setBorderRadius}
+          />
         </div>
         <pre>
           <code>{code}</code>

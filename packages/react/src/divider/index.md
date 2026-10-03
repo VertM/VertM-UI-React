@@ -94,7 +94,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={200}>
     <VertMText text="ᠡᠮᠦᠨ᠎ᠡ" />
-    <VertMDivider dashed>ᠰᠢᠷ᠎ᠡ</VertMDivider>
+    <VertMDivider dashed>ᠲᠠᠰᠤᠷᠬᠠᠢ</VertMDivider>
     <VertMText text="ᠬᠣᠢᠲᠤ" />
   </VertMDemoFrame>
 );
@@ -111,7 +111,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={200}>
     <VertMText text="ᠡᠮᠦᠨ᠎ᠡ" />
-    <VertMDivider plain>ᠬᠡᠯᠡᠪᠦᠷᠢ</VertMDivider>
+    <VertMDivider plain>ᠡᠩ ᠦᠨ</VertMDivider>
     <VertMText text="ᠬᠣᠢᠲᠤ" />
   </VertMDemoFrame>
 );
@@ -148,7 +148,7 @@ import { VertMDivider, VertMText } from '@vertm/react';
 import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => {
-  const [text, setText] = useState('ᠵᠠᠰᠠᠬᠤ');
+  const [text, setText] = useState('ᠨᠠᠶᠢᠷᠠᠭᠤᠯᠬᠤ');
   return (
     <VertMDemoFrame minHeight={220}>
       <VertMText text="ᠡᠮᠦᠨ᠎ᠡ" />

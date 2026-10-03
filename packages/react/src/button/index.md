@@ -31,10 +31,10 @@ export default () => (
   <VertMDemoFrame>
     <VertMSpace align="start" wrap>
       <VertMButton type="primary">ᠨᠡᠮᠡᠬᠦ</VertMButton>
-      <VertMButton>ᠬᠠᠰᠠᠬᠤ</VertMButton>
-      <VertMButton type="dashed">ᠵᠠᠰᠠᠬᠤ</VertMButton>
-      <VertMButton type="text">ᠲᠡᠺᠰᠲ</VertMButton>
-      <VertMButton type="link">ᠯᠢᠩᠺ</VertMButton>
+      <VertMButton>ᠬᠠᠰᠤᠬᠤ</VertMButton>
+      <VertMButton type="dashed">ᠨᠠᠶᠢᠷᠠᠭᠤᠯᠬᠤ</VertMButton>
+      <VertMButton type="text">ᠪᠣᠯᠢᠬᠤ</VertMButton>
+      <VertMButton type="link">ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ</VertMButton>
     </VertMSpace>
   </VertMDemoFrame>
 );
@@ -105,13 +105,13 @@ export default () => (
   <VertMDemoFrame>
     <VertMSpace align="start" wrap>
       <VertMButton danger type="primary">
-        ᠤᠰᠤᠳᠬᠠᠬᠤ
+        ᠤᠰᠠᠳᠬᠠᠬᠤ
       </VertMButton>
       <VertMButton danger>Danger</VertMButton>
       <VertMButton loading type="primary">
         ᠠᠴᠢᠶᠠᠯᠠᠵᠤ
       </VertMButton>
-      <VertMButton disabled>ᠬᠤᠷᠢᠭᠯᠠᠭᠳᠠᠭᠰᠠᠨ</VertMButton>
+      <VertMButton disabled>ᠬᠣᠷᠢᠭᠯᠠᠭᠰᠠᠨ</VertMButton>
     </VertMSpace>
   </VertMDemoFrame>
 );
@@ -150,10 +150,10 @@ export default () => (
   <VertMDemoFrame minHeight={320}>
     <VertMSpace align="start">
       <VertMButton type="dashed" columnDepth={4}>
-        ᠬᠠᠭᠤᠷᠮᠠᠭ ᠱᠤᠭᠤᠮ
+        ᠪᠦᠷᠢᠳᠬᠡᠯ ᠲᠤᠰᠢᠶᠠᠬᠤ
       </VertMButton>
       <VertMButton type="primary" columnDepth={3}>
-        ᠤᠷᠲᠤ ᠲᠡᠮᠳᠡᠭᠯᠡᠯ
+        ᠲᠡᠮᠳᠡᠭᠯᠡᠯ ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ
       </VertMButton>
     </VertMSpace>
   </VertMDemoFrame>
@@ -174,9 +174,9 @@ export default () => (
   <VertMDemoFrame>
     <VertMSpace direction="vertical" align="start" size="large">
       <VertMButton.Group>
-        <VertMButton type="primary">ᠨᠢᠭᠡ</VertMButton>
-        <VertMButton>ᠬᠣᠶᠠᠷ</VertMButton>
-        <VertMButton>ᠭᠤᠷᠪᠠ</VertMButton>
+        <VertMButton type="primary">ᠡᠳᠦᠷ</VertMButton>
+        <VertMButton>ᠭᠠᠷᠠᠭ</VertMButton>
+        <VertMButton>ᠰᠠᠷ᠎ᠠ</VertMButton>
       </VertMButton.Group>
       <VertMButton.Group size="small">
         <VertMButton type="primary">ᠪᠠᠭ᠎ᠠ</VertMButton>
@@ -206,9 +206,9 @@ export default () => (
     >
       <VertMSpace align="start">
         <VertMButton type="primary" htmlType="submit">
-          ᠢᠯᠭᠡᠬᠦ
+          ᠲᠤᠰᠢᠶᠠᠬᠤ
         </VertMButton>
-        <VertMButton htmlType="reset">ᠰᠡᠷᠭᠡᠭᠡᠬᠦ</VertMButton>
+        <VertMButton htmlType="reset">ᠰᠡᠷᠭᠦᠭᠡᠬᠦ</VertMButton>
         <VertMButton htmlType="button">ᠪᠤᠴᠠᠬᠤ</VertMButton>
       </VertMSpace>
     </form>

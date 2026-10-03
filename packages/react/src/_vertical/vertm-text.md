@@ -84,7 +84,7 @@ import { VertMText } from '@vertm/react';
 import VertMDemoFrame from 'VertMDemoFrame';
 
 const LONG =
-  'ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠤᠨ ᠵᠢᠭᠠᠰᠤᠨ ᠦᠰᠦᠭ ᠪᠣᠯ ᠨᠢᠭᠡ ᠨᠤᠲᠤᠭ ᠤᠨ ᠰᠣᠶᠣᠯ ᠤᠨ ᠥᠪ ᠡᠷᠳᠡᠮ ᠮᠥᠨ';
+  'ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠪᠣᠯ ᠮᠣᠩᠭᠣᠯᠴᠤᠳ ᠤᠨ ᠡᠷᠲᠡ ᠡᠴᠡ ᠬᠡᠷᠡᠭᠯᠡᠵᠦ ᠢᠷᠡᠭᠰᠡᠨ ᠪᠢᠴᠢᠭ ᠮᠥᠨ᠃ ᠳᠡᠭᠡᠷ᠎ᠡ ᠡᠴᠡ ᠳᠣᠣᠷ᠎ᠠ ᠪᠢᠴᠢᠬᠦ ᠪᠥᠭᠡᠳ ᠮᠥᠷ ᠨᠢ ᠵᠡᠭᠦᠨ ᠡᠴᠡ ᠪᠠᠷᠠᠭᠤᠨ ᠰᠢᠯᠵᠢᠨ᠎ᠡ᠃';
 
 export default () => (
   <VertMDemoFrame minHeight={300}>
@@ -145,7 +145,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame>
-    <VertMText text="ᠬᠤᠷᠢᠭᠯᠠᠭᠳᠠᠭᠰᠠᠨ" fontSize={18} disabled href="#" />
+    <VertMText text="ᠬᠣᠷᠢᠭᠯᠠᠭᠰᠠᠨ" fontSize={18} disabled href="#" />
   </VertMDemoFrame>
 );
 ```
@@ -171,7 +171,7 @@ export default () => (
         } as CSSProperties
       }
     >
-      <VertMText text="ᠥᠪᠡᠷ ᠡᠴᠡ ᠰᠢᠯᠭᠠᠬᠤ" inheritTypography />
+      <VertMText text="ᠦᠰᠦᠭ ᠦᠨ ᠬᠡᠪ ᠢ ᠥᠪ ᠠᠯᠠᠭᠤᠷᠪᠠ" inheritTypography />
     </div>
   </VertMDemoFrame>
 );

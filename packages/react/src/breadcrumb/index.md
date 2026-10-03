@@ -31,9 +31,9 @@ export default () => (
   <VertMDemoFrame minHeight={220}>
     <VertMBreadcrumb
       items={[
-        { title: 'ᠨᠢᠭᠡ', href: '#' },
-        { title: 'ᠬᠣᠶᠠᠷ', href: '#' },
-        { title: 'ᠭᠤᠷᠪᠠ' },
+        { title: 'ᠲᠡᠷᠢᠭᠦᠨ ᠨᠢᠭᠤᠷ', href: '#' },
+        { title: 'ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ', href: '#' },
+        { title: 'ᠮᠣᠩᠭᠣᠯ ᠨᠣᠮ' },
       ]}
     />
   </VertMDemoFrame>
@@ -55,9 +55,9 @@ export default () => (
     <VertMBreadcrumb
       separator="→"
       items={[
-        { title: 'ᠨᠢᠭᠡ', href: '#' },
-        { title: 'ᠬᠣᠶᠠᠷ', href: '#' },
-        { title: 'ᠭᠤᠷᠪᠠ' },
+        { title: 'ᠲᠡᠷᠢᠭᠦᠨ ᠨᠢᠭᠤᠷ', href: '#' },
+        { title: 'ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ', href: '#' },
+        { title: 'ᠮᠣᠩᠭᠣᠯ ᠨᠣᠮ' },
       ]}
     />
   </VertMDemoFrame>
@@ -76,10 +76,10 @@ export default () => (
   <VertMDemoFrame minHeight={220}>
     <VertMBreadcrumb
       items={[
-        { title: 'ᠨᠢᠭᠡ', href: '#' },
+        { title: 'ᠲᠡᠷᠢᠭᠦᠨ ᠨᠢᠭᠤᠷ', href: '#' },
         { type: 'separator', separator: '/' },
-        { title: 'ᠬᠣᠶᠠᠷ', href: '#' },
-        { title: 'ᠭᠤᠷᠪᠠ' },
+        { title: 'ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ', href: '#' },
+        { title: 'ᠮᠣᠩᠭᠣᠯ ᠨᠣᠮ' },
       ]}
     />
   </VertMDemoFrame>
@@ -100,17 +100,17 @@ export default () => (
   <VertMDemoFrame minHeight={260}>
     <VertMBreadcrumb
       items={[
-        { title: 'ᠨᠢᠭᠡ', href: '#' },
+        { title: 'ᠲᠡᠷᠢᠭᠦᠨ ᠨᠢᠭᠤᠷ', href: '#' },
         {
-          title: 'ᠬᠣᠶᠠᠷ',
+          title: 'ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ',
           menu: {
             items: [
-              { key: '1', title: 'ᠭᠤᠷᠪᠠ', href: '#' },
-              { key: '2', title: 'ᠳᠥᠷᠪᠡ', href: '#' },
+              { key: '1', title: 'ᠮᠣᠩᠭᠣᠯ ᠨᠣᠮ', href: '#' },
+              { key: '2', title: 'ᠬᠢᠲᠠᠳ ᠨᠣᠮ', href: '#' },
             ],
           },
         },
-        { title: 'ᠲᠠᠪᠤ' },
+        { title: 'ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ' },
       ]}
     />
   </VertMDemoFrame>
@@ -130,9 +130,9 @@ export default () => (
     <VertMBreadcrumb
       direction="horizontal"
       items={[
-        { title: 'ᠨᠢᠭᠡ', href: '#' },
-        { title: 'ᠬᠣᠶᠠᠷ', href: '#' },
-        { title: 'ᠭᠤᠷᠪᠠ' },
+        { title: 'ᠲᠡᠷᠢᠭᠦᠨ ᠨᠢᠭᠤᠷ', href: '#' },
+        { title: 'ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ', href: '#' },
+        { title: 'ᠮᠣᠩᠭᠣᠯ ᠨᠣᠮ' },
       ]}
     />
   </VertMDemoFrame>
@@ -152,9 +152,9 @@ export default () => (
     <VertMBreadcrumb
       direction="vertical"
       items={[
-        { title: 'ᠨᠢᠭᠡ', href: '#' },
-        { title: 'ᠬᠣᠶᠠᠷ', href: '#' },
-        { title: 'ᠭᠤᠷᠪᠠ' },
+        { title: 'ᠲᠡᠷᠢᠭᠦᠨ ᠨᠢᠭᠤᠷ', href: '#' },
+        { title: 'ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ', href: '#' },
+        { title: 'ᠮᠣᠩᠭᠣᠯ ᠨᠣᠮ' },
       ]}
     />
   </VertMDemoFrame>
@@ -174,10 +174,10 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={220}>
     <VertMBreadcrumb>
-      <VertMBreadcrumb.Item href="#">ᠨᠢᠭᠡ</VertMBreadcrumb.Item>
+      <VertMBreadcrumb.Item href="#">ᠲᠡᠷᠢᠭᠦᠨ ᠨᠢᠭᠤᠷ</VertMBreadcrumb.Item>
       <VertMBreadcrumb.Separator>/</VertMBreadcrumb.Separator>
-      <VertMBreadcrumb.Item href="#">ᠬᠣᠶᠠᠷ</VertMBreadcrumb.Item>
-      <VertMBreadcrumb.Item>ᠭᠤᠷᠪᠠ</VertMBreadcrumb.Item>
+      <VertMBreadcrumb.Item href="#">ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ</VertMBreadcrumb.Item>
+      <VertMBreadcrumb.Item>ᠮᠣᠩᠭᠣᠯ ᠨᠣᠮ</VertMBreadcrumb.Item>
     </VertMBreadcrumb>
   </VertMDemoFrame>
 );
@@ -199,8 +199,8 @@ export default () => (
         item: { fontWeight: 600 },
       }}
       items={[
-        { title: 'ᠨᠢᠭᠡ', href: '#' },
-        { title: 'ᠬᠣᠶᠠᠷ' },
+        { title: 'ᠲᠡᠷᠢᠭᠦᠨ ᠨᠢᠭᠤᠷ', href: '#' },
+        { title: 'ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ' },
       ]}
     />
   </VertMDemoFrame>

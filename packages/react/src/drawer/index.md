@@ -33,9 +33,9 @@ export default () => {
   return (
     <VertMDemoFrame minHeight={260}>
       <VertMButton type="primary" onClick={() => setOpen(true)}>
-        ᠨᠡᠬᠡᠭᠡᠬᠦ
+        ᠨᠡᠭᠡᠭᠡᠬᠦ
       </VertMButton>
-      <VertMDrawer open={open} title="ᠰᠢᠷᠭᠤᠯ" onClose={() => setOpen(false)}>
+      <VertMDrawer open={open} title="ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ" onClose={() => setOpen(false)}>
         <VertMText text="ᠠᠭᠤᠯᠭ᠎ᠠ ᠁" />
       </VertMDrawer>
     </VertMDemoFrame>
@@ -119,7 +119,7 @@ export default () => {
     <VertMDemoFrame minHeight={260}>
       <VertMButton onClick={() => setOpen(true)}>520px</VertMButton>
       <VertMDrawer open={open} size={520} title="ᠥᠷᠭᠡᠨ" onClose={() => setOpen(false)}>
-        <VertMText text="ᠥᠷᠭᠡᠨ ᠰᠢᠷᠭᠤᠯ" />
+        <VertMText text="ᠥᠷᠭᠡᠨ ᠲᠠᠲᠠᠭᠤᠷ" />
       </VertMDrawer>
     </VertMDemoFrame>
   );
@@ -140,7 +140,7 @@ export default () => {
   return (
     <VertMDemoFrame minHeight={280}>
       <VertMButton type="primary" onClick={() => setOpen(true)}>
-        ᠨᠡᠬᠡᠭᠡᠬᠦ
+        ᠨᠡᠭᠡᠭᠡᠬᠦ
       </VertMButton>
       <VertMDrawer
         open={open}
@@ -148,7 +148,7 @@ export default () => {
         onClose={() => setOpen(false)}
         footer={
           <VertMSpace>
-            <VertMButton onClick={() => setOpen(false)}>ᠬᠠᠰᠤᠬᠤ</VertMButton>
+            <VertMButton onClick={() => setOpen(false)}>ᠪᠣᠯᠢᠬᠤ</VertMButton>
             <VertMButton type="primary" onClick={() => setOpen(false)}>
               ᠪᠠᠲᠤᠯᠠᠬᠤ
             </VertMButton>
@@ -179,7 +179,7 @@ export default () => {
     <VertMDemoFrame minHeight={260}>
       <VertMButton onClick={() => setOpen(true)}>ᠮᠠᠰᠺ ᠦᠭᠡᠢ</VertMButton>
       <VertMDrawer open={open} mask={false} title="ᠮᠠᠰᠺ ᠦᠭᠡᠢ" onClose={() => setOpen(false)}>
-        <VertMText text="ᠳᠡᠯᠭᠡᠴᠡᠭᠡ ᠦᠵᠡᠭᠳᠡᠨ᠎ᠡ" />
+        <VertMText text="ᠠᠷᠤ ᠲᠠᠯ᠎ᠠ ᠶᠢ ᠳᠠᠷᠤᠵᠤ ᠪᠣᠯᠤᠨ᠎ᠠ" />
       </VertMDrawer>
     </VertMDemoFrame>
   );
@@ -206,7 +206,7 @@ export default () => {
         title="ᠮᠠᠰᠺ ᠬᠠᠭᠠᠬᠤ ᠦᠭᠡᠢ"
         onClose={() => setOpen(false)}
       >
-        <VertMText text="ᠬᠠᠭᠠᠬᠤ ᠲᠣᠪᠴᠢ ᠬᠡᠷᠡᠭᠯᠡ" />
+        <VertMText text="ᠬᠠᠭᠠᠬᠤ ᠲᠣᠪᠴᠢ ᠪᠠᠷ ᠬᠠᠭᠠᠭᠠᠷᠠᠢ" />
       </VertMDrawer>
     </VertMDemoFrame>
   );
@@ -228,7 +228,7 @@ export default () => {
     <VertMDemoFrame minHeight={260}>
       <VertMButton onClick={() => setOpen(true)}>ᠤᠷᠲᠤ</VertMButton>
       <VertMDrawer open={open} title="ᠤᠷᠲᠤ ᠠᠭᠤᠯᠭ᠎ᠠ" onClose={() => setOpen(false)}>
-        <VertMText text="ᠨᠢᠭᠡ ᠬᠣᠶᠠᠷ ᠭᠤᠷᠪᠠ ᠳᠥᠷᠪᠡ ᠲᠠᠪᠤ ᠵᠢᠷᠭᠤᠭ᠎ᠠ ᠳᠣᠯᠤᠭ᠎ᠠ ᠨᠠᠢᠮᠠ ᠶᠢᠰᠦ ᠠᠷᠪᠠ" />
+        <VertMText text="ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠪᠣᠯ ᠮᠣᠩᠭᠣᠯᠴᠤᠳ ᠤᠨ ᠡᠷᠲᠡ ᠡᠴᠡ ᠬᠡᠷᠡᠭᠯᠡᠵᠦ ᠢᠷᠡᠭᠰᠡᠨ ᠪᠢᠴᠢᠭ ᠮᠥᠨ᠃ ᠳᠡᠭᠡᠷ᠎ᠡ ᠡᠴᠡ ᠳᠣᠣᠷ᠎ᠠ ᠪᠢᠴᠢᠬᠦ ᠪᠥᠭᠡᠳ ᠮᠥᠷ ᠨᠢ ᠵᠡᠭᠦᠨ ᠡᠴᠡ ᠪᠠᠷᠠᠭᠤᠨ ᠰᠢᠯᠵᠢᠨ᠎ᠡ᠃" />
       </VertMDrawer>
     </VertMDemoFrame>
   );

@@ -165,10 +165,10 @@ export default () => (
     <VertMMenu defaultSelectedKeys={['1']}>
       <VertMMenu.Item itemKey="1">ᠨᠢᠭᠡ</VertMMenu.Item>
       <VertMMenu.Item itemKey="2" disabled>
-        ᠬᠤᠷᠢᠭᠯᠠᠭᠳᠠᠭᠰᠠᠨ
+        ᠬᠣᠷᠢᠭᠯᠠᠭᠰᠠᠨ
       </VertMMenu.Item>
       <VertMMenu.Item itemKey="3" danger>
-        ᠤᠰᠤᠳᠬᠠᠬᠤ
+        ᠤᠰᠠᠳᠬᠠᠬᠤ
       </VertMMenu.Item>
     </VertMMenu>
   </VertMDemoFrame>
@@ -217,7 +217,7 @@ export default () => (
         { key: '1', label: 'ᠨᠢᠭᠡ' },
         {
           key: 'sub',
-          label: 'ᠰᠤᠪ',
+          label: 'ᠪᠤᠰᠤᠳ',
           children: [
             { key: '2', label: 'ᠬᠣᠶᠠᠷ' },
             { key: '3', label: 'ᠭᠤᠷᠪᠠ' },
@@ -286,7 +286,7 @@ export default () => (
               label: 'ᠳᠥᠷᠪᠡ',
               children: [
                 { key: '3-1', label: 'ᠲᠠᠪᠤ' },
-                { key: '3-2', label: 'ᠵᠢᠷᠭᠤᠭᠠ' },
+                { key: '3-2', label: 'ᠵᠢᠷᠭᠤᠭ᠎ᠠ' },
               ],
             },
           ],

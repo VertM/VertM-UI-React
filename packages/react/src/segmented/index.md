@@ -59,7 +59,7 @@ export default () => {
         options={[
           { label: 'ᠡᠳᠦᠷ', value: 'day' },
           { label: 'ᠭᠠᠷᠠᠭ', value: 'week' },
-          { label: 'ᠰᠠᠷᠠ', value: 'month' },
+          { label: 'ᠰᠠᠷ᠎ᠠ', value: 'month' },
         ]}
       />
       <VertMText text={val} />
@@ -177,7 +177,7 @@ export default () => (
       defaultValue="on"
       options={[
         { label: 'ᠨᠡᠭᠡᠭᠡᠬᠦ', value: 'on' },
-        { label: 'ᠤᠨᠲᠠᠷᠠᠬᠤ', value: 'off' },
+        { label: 'ᠬᠠᠭᠠᠬᠤ', value: 'off' },
       ]}
     />
   </VertMDemoFrame>

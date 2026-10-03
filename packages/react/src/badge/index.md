@@ -104,10 +104,10 @@ export default () => (
   <VertMDemoFrame minHeight={240}>
     <VertMSpace direction="vertical" size="small">
       <VertMBadge status="success" text="ᠠᠮᠵᠢᠯᠲᠠ" />
-      <VertMBadge status="processing" text="ᠦᠢᠯᠡᠳᠦᠯ" />
-      <VertMBadge status="default" text="ᠡᠭᠦᠷᠢᠳᠡ" />
+      <VertMBadge status="processing" text="ᠰᠢᠢᠳᠬᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ" />
+      <VertMBadge status="default" text="ᠡᠩ ᠦᠨ" />
       <VertMBadge status="error" text="ᠠᠯᠳᠠᠭ᠎ᠠ" />
-      <VertMBadge status="warning" text="ᠠᠩᠬᠠᠷ" />
+      <VertMBadge status="warning" text="ᠠᠩᠬᠠᠷᠤᠯᠭ᠎ᠠ" />
     </VertMSpace>
   </VertMDemoFrame>
 );

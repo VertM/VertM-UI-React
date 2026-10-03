@@ -20,9 +20,9 @@ title: VertM UI
     </div>
   </div>
   <div className="forest" aria-hidden="true">
-    <div className="col small s1">ᠪᠢᠴᠢᠭ᠌</div>
+    <div className="col small s1">ᠮᠥᠷ</div>
     <div className="col title">ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ</div>
-    <div className="col caret">ᠲᠥᠯᠥᠪ<span className="c"></span></div>
+    <div className="col caret">ᠪᠢᠴᠢᠬᠦ<span className="c"></span></div>
     <div className="col small s2">ᠦᠰᠦᠭ</div>
   </div>
 </div>
@@ -42,8 +42,8 @@ title: VertM UI
       <p className="shelf-h">// 竖排组件标本</p>
       <div className="shelf">
         <div className="item"><div className="v primary">ᠨᠡᠮᠡᠬᠦ</div><div className="cap">Button · primary</div></div>
-        <div className="item"><div className="v default">ᠬᠠᠰᠠᠬᠤ</div><div className="cap">Button · default</div></div>
-        <div className="item"><div className="v tag">ᠰᠢᠨᠡ</div><div className="cap">Tag</div></div>
+        <div className="item"><div className="v default">ᠪᠣᠯᠢᠬᠤ</div><div className="cap">Button · default</div></div>
+        <div className="item"><div className="v tag">ᠰᠢᠨ᠎ᠡ</div><div className="cap">Tag</div></div>
         <div className="item"><div className="v field"><span className="cc"></span>ᠪᠢᠴᠢᠭ</div><div className="cap">TextField</div></div>
       </div>
     </div>

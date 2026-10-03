@@ -32,8 +32,8 @@ const CATEGORIES: Category[] = [
         zh: '图标',
         specimen: (
           <span className="m-rows">
-            <span className="m plain">ᠡᠭᠡ</span>
-            <span className="m muted">ᠵᠢᠷᠤᠭ</span>
+            <span className="m plain">ᠳᠦᠷᠰᠦ</span>
+            <span className="m muted">ᠲᠡᠮᠳᠡᠭ</span>
           </span>
         ),
       },
@@ -47,13 +47,13 @@ const CATEGORIES: Category[] = [
         href: `${BASE}/components/config`,
         name: 'ConfigProvider',
         zh: '全局配置',
-        specimen: <span className="m def">ᠲᠣᠬᠢᠷᠠᠭ</span>,
+        specimen: <span className="m def">ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ</span>,
       },
       {
         href: `${BASE}/components/tag`,
         name: 'Tag',
         zh: '标签',
-        specimen: <span className="m tag">ᠰᠢᠨᠡ</span>,
+        specimen: <span className="m tag">ᠰᠢᠨ᠎ᠡ</span>,
       },
     ],
   },
@@ -71,7 +71,7 @@ const CATEGORIES: Category[] = [
         href: `${BASE}/components/select`,
         name: 'Select',
         zh: '选择器',
-        specimen: <span className="m def">ᠰᠣᠩᠭᠣ</span>,
+        specimen: <span className="m def">ᠰᠣᠩᠭᠣᠬᠤ</span>,
       },
       {
         href: `${BASE}/components/form`,
@@ -79,8 +79,8 @@ const CATEGORIES: Category[] = [
         zh: '表单',
         specimen: (
           <span className="m-rows">
-            <span className="m s">ᠦᠭᠡ</span>
-            <span className="m muted">ᠮᠥᠷ</span>
+            <span className="m s">ᠨᠡᠷ᠎ᠡ</span>
+            <span className="m muted">ᠤᠲᠠᠰᠤ</span>
           </span>
         ),
       },
@@ -99,7 +99,7 @@ const CATEGORIES: Category[] = [
         href: `${BASE}/components/segmented`,
         name: 'Segmented',
         zh: '分段控制',
-        specimen: <span className="m def">ᠰᠡᠭ</span>,
+        specimen: <span className="m def">ᠡᠳᠦᠷ</span>,
       },
     ],
   },
@@ -113,8 +113,8 @@ const CATEGORIES: Category[] = [
         zh: '导航菜单',
         specimen: (
           <span className="m-rows">
-            <span className="m s">ᠴᠡᠰᠦ</span>
-            <span className="m muted">ᠵᠠᠭ</span>
+            <span className="m s">ᠴᠡᠰ</span>
+            <span className="m muted">ᠮᠡᠳᠡᠭᠡ</span>
           </span>
         ),
       },
@@ -168,7 +168,7 @@ const CATEGORIES: Category[] = [
         href: `${BASE}/components/modal`,
         name: 'Modal',
         zh: '对话框',
-        specimen: <span className="m def">ᠴᠤᠮ</span>,
+        specimen: <span className="m def">ᠴᠣᠩᠬ᠎ᠠ</span>,
       },
       {
         href: `${BASE}/components/alert`,
@@ -192,7 +192,7 @@ const CATEGORIES: Category[] = [
         href: `${BASE}/components/drawer`,
         name: 'Drawer',
         zh: '抽屉',
-        specimen: <span className="m def">ᠬᠠᠶᠢᠷᠴᠠᠭ</span>,
+        specimen: <span className="m def">ᠲᠠᠲᠠᠭᠤᠷ</span>,
       },
     ],
   },
@@ -205,7 +205,7 @@ export function ComponentsOverview() {
       <div className="phead">
         <h1>组件总览</h1>
         <span className="mn" lang="mn-Mong">
-          ᠡᠳ᠋
+          ᠪᠦᠷᠢᠯᠳᠡᠬᠦᠨ
         </span>
         <span className="count">45+ components · vertical-lr</span>
       </div>

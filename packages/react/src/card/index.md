@@ -50,7 +50,7 @@ export default () => (
   <VertMDemoFrame minHeight={240}>
     <VertMCard
       title="ᠮᠡᠳᠡᠭᠡ"
-      extra={<VertMButton type="link">ᠢᠯᠡᠭᠡᠬᠦ</VertMButton>}
+      extra={<VertMButton type="link">ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ</VertMButton>}
       style={{ width: 300 }}
     >
       <VertMText text="ᠨᠡᠮᠡᠯᠲᠡ ᠠᠭᠤᠯᠭ᠎ᠠ" />
@@ -73,10 +73,10 @@ export default () => (
       title="ᠦᠢᠯᠡᠳᠦᠯ"
       actions={[
         <VertMButton key="e" type="text">
-          ᠵᠠᠰᠠᠬᠤ
+          ᠨᠠᠶᠢᠷᠠᠭᠤᠯᠬᠤ
         </VertMButton>,
         <VertMButton key="d" type="text" danger>
-          ᠤᠰᠤᠳᠬᠠᠬᠤ
+          ᠤᠰᠠᠳᠬᠠᠬᠤ
         </VertMButton>,
       ]}
       style={{ width: 300 }}
@@ -111,7 +111,7 @@ export default () => (
       }
       style={{ width: 280 }}
     >
-      <VertMText text="ᠬᠠᠯᠠᠭᠤᠨ ᠵᠢᠷᠤᠭ" />
+      <VertMText text="ᠵᠢᠷᠤᠭ ᠤᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ" />
     </VertMCard>
   </VertMDemoFrame>
 );
@@ -130,8 +130,8 @@ export default () => (
     <VertMCard style={{ width: 300 }}>
       <VertMCard.Meta
         avatar={<VertMAvatar>ᠮ</VertMAvatar>}
-        title="ᠨᠡᠷ᠎ᠡ"
-        description="ᠲᠠᠢᠯᠪᠤᠷᠢ ᠶᠤᠮ"
+        title="ᠪᠠᠲᠤ"
+        description="ᠬᠡᠷᠡᠭᠯᠡᠭᠴᠢ ᠶᠢᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ"
       />
     </VertMCard>
   </VertMDemoFrame>
@@ -150,8 +150,8 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={220}>
-    <VertMCard hoverable title="ᠬᠥᠯᠦᠰᠦᠨ" style={{ width: 260 }}>
-      <VertMText text="ᠬᠥᠯᠦᠰᠦᠨ ᠳᠡᠭᠡᠷ᠎ᠡ" />
+    <VertMCard hoverable title="ᠮᠡᠳᠡᠭᠡ" style={{ width: 260 }}>
+      <VertMText text="ᠬᠤᠯᠤᠭᠠᠨ᠎ᠠ ᠪᠠᠷ ᠵᠢᠭᠠᠭᠠᠷᠠᠢ" />
     </VertMCard>
   </VertMDemoFrame>
 );
@@ -169,7 +169,7 @@ export default () => (
   <VertMDemoFrame minHeight={220}>
     <VertMCard
       bordered={false}
-      title="ᠬᠢᠯᠪᠠᠷ ᠦᠭᠡᠢ"
+      title="ᠬᠢᠵᠠᠭᠠᠷ ᠦᠭᠡᠢ"
       style={{ width: 260, background: 'var(--vertm-color-bg-layout)' }}
     >
       <VertMText text="ᠠᠭᠤᠯᠭ᠎ᠠ" />

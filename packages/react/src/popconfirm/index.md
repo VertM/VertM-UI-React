@@ -29,10 +29,10 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={240}>
     <VertMPopconfirm
-      title="ᠤᠰᠤᠳᠬᠠᠬᠤ ᠦᠦ ?"
+      title="ᠤᠰᠠᠳᠬᠠᠬᠤ ᠤᠤ ?"
       onConfirm={() => undefined}
     >
-      <VertMButton danger>ᠤᠰᠤᠳᠬᠠᠬᠤ</VertMButton>
+      <VertMButton danger>ᠤᠰᠠᠳᠬᠠᠬᠤ</VertMButton>
     </VertMPopconfirm>
   </VertMDemoFrame>
 );
@@ -50,7 +50,7 @@ export default () => (
   <VertMDemoFrame minHeight={260}>
     <VertMPopconfirm
       title="ᠵᠥᠪᠰᠢᠶᠡᠷᠡᠬᠦ ᠦᠦ ?"
-      description="ᠡᠨᠡ ᠦᠢᠯᠡᠳᠦᠯ ᠪᠤᠴᠠᠵᠤ ᠪᠣᠯᠤᠰᠢ ᠦᠭᠡᠢ"
+      description="ᠡᠨᠡ ᠦᠢᠯᠡᠳᠦᠯ ᠢ ᠪᠤᠴᠠᠭᠠᠬᠤ ᠪᠣᠯᠤᠮᠵᠢ ᠦᠭᠡᠢ"
       onConfirm={() => undefined}
     >
       <VertMButton type="primary">confirm</VertMButton>
@@ -94,7 +94,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={240}>
     <VertMPopconfirm
-      title="ᠬᠦᠯᠢᠶᠡᠭᠡ"
+      title="ᠲᠤᠰᠢᠶᠠᠬᠤ ᠤᠤ ?"
       onConfirm={() => new Promise((r) => setTimeout(r, 800))}
     >
       <VertMButton type="primary">async</VertMButton>
@@ -117,7 +117,7 @@ export default () => {
   return (
     <VertMDemoFrame minHeight={260}>
       <VertMPopconfirm
-        title="ᠪᠣᠯᠢᠬᠤ ᠦᠦ ?"
+        title="ᠪᠣᠯᠢᠬᠤ ᠤᠤ ?"
         onConfirm={() => setMsg('ok')}
         onCancel={() => setMsg('cancel')}
       >
@@ -159,12 +159,12 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={240}>
     <VertMSpace>
-      <VertMPopconfirm title="ᠤᠰᠤᠳᠬᠠᠬᠤ ?" onConfirm={() => undefined}>
+      <VertMPopconfirm title="ᠤᠰᠠᠳᠬᠠᠬᠤ ᠤᠤ ?" onConfirm={() => undefined}>
         <VertMButton danger type="primary">
           delete
         </VertMButton>
       </VertMPopconfirm>
-      <VertMPopconfirm title="ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ ?" onConfirm={() => undefined}>
+      <VertMPopconfirm title="ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ ᠤᠤ ?" onConfirm={() => undefined}>
         <VertMButton type="primary">save</VertMButton>
       </VertMPopconfirm>
     </VertMSpace>
@@ -206,7 +206,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={220}>
-    <VertMPopconfirm title="ᠬᠢᠢᠬᠦ ᠦᠦ ?" onConfirm={() => undefined}>
+    <VertMPopconfirm title="ᠬᠢᠬᠦ ᠦᠦ ?" onConfirm={() => undefined}>
       <VertMButton>compact</VertMButton>
     </VertMPopconfirm>
   </VertMDemoFrame>

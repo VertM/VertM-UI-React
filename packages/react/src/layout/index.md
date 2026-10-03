@@ -118,7 +118,7 @@ export default () => (
         collapsedWidth={48}
         style={{ background: 'var(--vertm-color-bg-layout)' }}
       >
-        <VertMText text="ᠮᠡᠨᠦ" />
+        <VertMText text="ᠴᠡᠰ" />
       </VertMLayout.Sider>
       <VertMLayout.Content style={{ padding: 16 }}>
         <VertMText text="ᠠᠭᠤᠯᠭ᠎ᠠ" />
@@ -145,10 +145,10 @@ export default () => (
         width={140}
         style={{ background: 'var(--vertm-color-bg-layout)' }}
       >
-        <VertMText text="ᠮᠡᠨᠦ" />
+        <VertMText text="ᠴᠡᠰ" />
       </VertMLayout.Sider>
       <VertMLayout.Content style={{ padding: 16 }}>
-        <VertMText text="ᠨᠡᠬᠡᠭᠡᠬᠦ" />
+        <VertMText text="ᠠᠭᠤᠯᠭ᠎ᠠ" />
       </VertMLayout.Content>
     </VertMLayout>
   </VertMDemoFrame>
@@ -170,7 +170,7 @@ export default () => {
     <VertMDemoFrame minHeight={320}>
       <VertMSpace direction="vertical" size="middle" align="stretch" style={{ width: '100%' }}>
         <VertMButton onClick={() => setCollapsed((c) => !c)}>
-          {collapsed ? 'ᠨᠡᠬᠡᠭᠡᠬᠦ' : 'ᠬᠤᠤᠴᠠᠬᠤ'}
+          {collapsed ? 'ᠳᠡᠯᠭᠡᠬᠦ' : 'ᠬᠤᠷᠢᠶᠠᠬᠤ'}
         </VertMButton>
         <VertMLayout style={{ minHeight: 220, border: '1px solid var(--vertm-color-border)' }}>
           <VertMLayout.Sider
@@ -181,7 +181,7 @@ export default () => {
             width={140}
             style={{ background: 'var(--vertm-color-bg-layout)' }}
           >
-            <VertMText text="ᠮᠡᠨᠦ" />
+            <VertMText text="ᠴᠡᠰ" />
           </VertMLayout.Sider>
           <VertMLayout.Content style={{ padding: 16 }}>
             <VertMText text="ᠠᠭᠤᠯᠭ᠎ᠠ" />
@@ -211,7 +211,7 @@ export default () => (
       </VertMLayout.Header>
       <VertMLayout>
         <VertMLayout.Sider width={100} style={{ background: 'var(--vertm-color-border-secondary)' }}>
-          <VertMText text="ᠨᠠᠪᠢ" />
+          <VertMText text="ᠴᠡᠰ" />
         </VertMLayout.Sider>
         <VertMLayout.Content style={{ padding: 16 }}>
           <VertMText text="ᠠᠭᠤᠯᠭ᠎ᠠ ᠁" />

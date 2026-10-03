@@ -35,7 +35,7 @@ export default () => {
       <VertMInput
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        placeholder="ᠪᠢᠴᠢᠭᠯᠡᠬᠦ ᠁"
+        placeholder="ᠣᠷᠤᠭᠤᠯᠤᠭᠠᠷᠠᠢ"
         allowClear
       />
     </VertMDemoFrame>
@@ -63,7 +63,7 @@ const Demo = () => {
       onChange={(e) => setValue(e.target.value)}
       placeholder="ᠬᠠᠢᠬᠤ ᠁"
       enterButton
-      onSearch={(v) => message.success(`ᠬᠠᠢᠯ᠎ᠠ : ${v || 'empty'}`)}
+      onSearch={(v) => message.success(`ᠬᠠᠢᠯᠲᠠ : ${v || 'empty'}`)}
     />
   );
 };
@@ -89,7 +89,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={260}>
-    <VertMInput.Password placeholder="ᠨᠢᠬᠣᠴᠠ ᠨᠣᠮᠧᠷ" />
+    <VertMInput.Password placeholder="ᠨᠢᠭᠤᠴᠠ ᠺᠣᠳ" />
   </VertMDemoFrame>
 );
 ```
@@ -110,7 +110,7 @@ export default () => (
       rows={2}
       columnDepth={4}
       maxColumns={3}
-      placeholder="ᠪᠢᠴᠢᠭᠯᠡᠬᠦ ᠁"
+      placeholder="ᠣᠷᠤᠭᠤᠯᠤᠭᠠᠷᠠᠢ"
     />
   </VertMDemoFrame>
 );
@@ -129,9 +129,9 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={320}>
     <VertMSpace align="start" size="large">
-      <VertMInput fontSize={14} lineHeight={1.6} placeholder="ᠪᠢᠴᠢᠭᠯᠡᠬᠦ ᠁" />
-      <VertMInput fontSize={20} lineHeight={1.6} placeholder="ᠪᠢᠴᠢᠭᠯᠡᠬᠦ ᠁" />
-      <VertMInput fontSize={28} lineHeight={1.5} columnDepth={3} placeholder="ᠪᠢᠴᠢᠭᠯᠡᠬᠦ ᠁" />
+      <VertMInput fontSize={14} lineHeight={1.6} placeholder="ᠣᠷᠤᠭᠤᠯᠤᠭᠠᠷᠠᠢ" />
+      <VertMInput fontSize={20} lineHeight={1.6} placeholder="ᠣᠷᠤᠭᠤᠯᠤᠭᠠᠷᠠᠢ" />
+      <VertMInput fontSize={28} lineHeight={1.5} columnDepth={3} placeholder="ᠣᠷᠤᠭᠤᠯᠤᠭᠠᠷᠠᠢ" />
     </VertMSpace>
   </VertMDemoFrame>
 );
@@ -190,7 +190,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={280}>
-    <VertMInput showCount maxLength={20} placeholder="ᠪᠢᠴᠢᠭᠯᠡᠬᠦ ᠁" />
+    <VertMInput showCount maxLength={20} placeholder="ᠣᠷᠤᠭᠤᠯᠤᠭᠠᠷᠠᠢ" />
   </VertMDemoFrame>
 );
 ```
@@ -208,8 +208,8 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={260}>
     <VertMSpace align="start">
-      <VertMInput disabled defaultValue="ᠬᠤᠷᠢᠭᠯᠠᠭᠳᠠᠭᠰᠠᠨ" />
-      <VertMInput disabled placeholder="ᠪᠢᠴᠢᠭᠯᠡᠬᠦ ᠁" />
+      <VertMInput disabled defaultValue="ᠬᠣᠷᠢᠭᠯᠠᠭᠰᠠᠨ" />
+      <VertMInput disabled placeholder="ᠣᠷᠤᠭᠤᠯᠤᠭᠠᠷᠠᠢ" />
     </VertMSpace>
   </VertMDemoFrame>
 );

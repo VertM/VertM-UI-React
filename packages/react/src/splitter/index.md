@@ -209,7 +209,7 @@ export default () => (
       <VertMSplitter>
         <VertMSplitter.Panel min={100}>
           <VertMSpace direction="vertical" align="start">
-            <VertMText text="ᠵᠠᠰᠠᠬᠤ" />
+            <VertMText text="ᠨᠠᠶᠢᠷᠠᠭᠤᠯᠬᠤ" />
             <VertMButton size="small" type="primary">
               action
             </VertMButton>

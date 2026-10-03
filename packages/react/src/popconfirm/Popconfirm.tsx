@@ -28,8 +28,8 @@ export function VertMPopconfirm({
   description,
   onConfirm,
   onCancel,
-  okText = 'ᠵᠥᠪᠰᠢᠶᠡᠷᠡᠨ᠎ᠡ',
-  cancelText = 'ᠦᠭᠡᠢ',
+  okText = 'ᠲᠣᠭᠲᠠᠭᠠᠬᠤ',
+  cancelText = 'ᠪᠣᠯᠢᠬᠤ',
   children,
   disabled,
 }: PopconfirmProps) {

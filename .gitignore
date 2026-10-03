@@ -1,3 +1,6 @@
+# Standalone SDK repo (VertM/VertM-Orthography) — tracked in its own git root
+vertm-orthography/
+
 # Dependencies
 node_modules/
 .pnp

@@ -33,7 +33,7 @@ export default () => (
       title="ᠬᠡᠷᠡᠭᠯᠡᠭᠴᠢ"
       items={[
         { key: '1', label: 'ᠨᠡᠷ᠎ᠡ', children: 'ᠪᠠᠲᠤ' },
-        { key: '2', label: 'ᠤᠲᠠᠰᠤᠨ', children: '138****0000' },
+        { key: '2', label: 'ᠤᠲᠠᠰᠤ', children: '138****0000' },
         { key: '3', label: 'ᠬᠣᠲᠠ', children: 'ᠬᠥᠬᠡᠬᠣᠲᠠ' },
       ]}
     />
@@ -54,12 +54,12 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={260}>
     <VertMDescriptions
-      title="ᠮᠡᠳᠡᠭᠡᠯᠡᠯ"
+      title="ᠬᠤᠪᠢ ᠶᠢᠨ ᠮᠡᠳᠡᠭᠡᠯᠡᠯ"
       column={2}
       items={[
         { key: '1', label: 'ᠨᠡᠷ᠎ᠡ', children: 'ᠪᠠᠲᠤ' },
         { key: '2', label: 'ᠨᠠᠰᠤ', children: '28' },
-        { key: '3', label: 'ᠬᠦᠢᠰᠦ', children: 'ᠡᠷᠡ' },
+        { key: '3', label: 'ᠬᠦᠢᠰᠦ', children: 'ᠡᠷᠡᠭᠲᠡᠢ' },
         { key: '4', label: 'ᠬᠣᠲᠠ', children: 'ᠪᠡᠭᠡᠵᠢᠩ' },
       ]}
     />
@@ -128,11 +128,11 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={260}>
     <VertMDescriptions
-      title="ᠬᠢᠯᠪᠠᠷᠲᠠᠢ"
+      title="ᠬᠡᠯᠡ ᠪᠢᠴᠢᠭ"
       bordered
       column={1}
       items={[
-        { key: '1', label: 'ᠲᠥᠷᠥᠯ', children: 'ᠮᠣᠩᠭᠣᠯ' },
+        { key: '1', label: 'ᠦᠨᠳᠦᠰᠦᠲᠡᠨ', children: 'ᠮᠣᠩᠭᠣᠯ' },
         { key: '2', label: 'ᠬᠡᠯᠡ', children: 'ᠮᠣᠩᠭᠣᠯ ᠬᠡᠯᠡ' },
       ]}
     />
@@ -175,8 +175,8 @@ export default () => (
     <VertMDescriptions
       bordered
       items={[
-        { key: '1', label: 'ᠲᠠᠭ', children: <VertMTag color="primary">ᠰᠢᠨ᠎ᠡ</VertMTag> },
-        { key: '2', label: 'ᠲᠡᠺᠰᠲ', children: 'ᠡᠨᠡ ᠨᠢ ᠲᠡᠺᠰᠲ' },
+        { key: '1', label: 'ᠲᠡᠮᠳᠡᠭ', children: <VertMTag color="primary">ᠰᠢᠨ᠎ᠡ</VertMTag> },
+        { key: '2', label: 'ᠲᠠᠢᠯᠪᠤᠷᠢ', children: 'ᠡᠨᠡ ᠪᠣᠯ ᠲᠠᠢᠯᠪᠤᠷᠢ ᠦᠰᠦᠭ' },
       ]}
     />
   </VertMDemoFrame>
@@ -194,7 +194,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={240}>
     <VertMDescriptions
-      title="ᠵᠠᠭᠤᠰᠤ"
+      title="ᠲᠣᠪᠴᠢ ᠮᠡᠳᠡᠭᠡᠯᠡᠯ"
       style={{
         maxWidth: 360,
         padding: 12,

@@ -28,11 +28,11 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={320}>
-    <Typography.Title level={2}>ᠲᠤᠤᠯᠠ ᠶᠢᠨ ᠰᠢᠭᠤᠢ</Typography.Title>
+    <Typography.Title level={2}>ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ</Typography.Title>
     <Typography.Paragraph>
-      ᠲᠠᠤᠯᠠᠢ ᠶ᠋ᠢᠨ ᠭᠦᠶᠦᠳᠡᠯ ᠰᠢᠭ᠌ ᠰᠠᠯᠬᠢᠨ ᠳ᠋ᠦ ᠲᠤᠤᠯᠠ ᠶ᠋ᠢᠨ ᠰᠢᠭᠤᠢ ᠨᠠᠢᠢᠭᠤᠨ᠎ᠠ
+      ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠪᠣᠯ ᠮᠣᠩᠭᠣᠯᠴᠤᠳ ᠤᠨ ᠡᠷᠲᠡ ᠡᠴᠡ ᠬᠡᠷᠡᠭᠯᠡᠵᠦ ᠢᠷᠡᠭᠰᠡᠨ ᠪᠢᠴᠢᠭ ᠮᠥᠨ᠃ ᠳᠡᠭᠡᠷ᠎ᠡ ᠡᠴᠡ ᠳᠣᠣᠷ᠎ᠠ ᠪᠢᠴᠢᠬᠦ ᠪᠥᠭᠡᠳ ᠮᠥᠷ ᠨᠢ ᠵᠡᠭᠦᠨ ᠡᠴᠡ ᠪᠠᠷᠠᠭᠤᠨ ᠰᠢᠯᠵᠢᠨ᠎ᠡ᠃
     </Typography.Paragraph>
-    <Typography.Text type="secondary">ᠳᠡᠮᠵᠢᠭᠦᠯᠦᠭᠰᠡᠨ ᠦᠰᠦᠭ</Typography.Text>
+    <Typography.Text type="secondary">ᠲᠤᠰᠠᠯᠠᠮᠵᠢ ᠲᠠᠢᠯᠪᠤᠷᠢ</Typography.Text>
     <Typography.Link href="https://github.com/VertM/VertM-UI-React">ᠬᠣᠯᠪᠤᠭ᠎ᠠ</Typography.Link>
   </VertMDemoFrame>
 );
@@ -48,11 +48,11 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={360}>
-    <Typography.Title level={1}>ᠨᠢᠭᠡ</Typography.Title>
-    <Typography.Title level={2}>ᠬᠣᠶᠠᠷ</Typography.Title>
-    <Typography.Title level={3}>ᠭᠤᠷᠪᠠ</Typography.Title>
-    <Typography.Title level={4}>ᠳᠥᠷᠪᠡ</Typography.Title>
-    <Typography.Title level={5}>ᠲᠠᠪᠤ</Typography.Title>
+    <Typography.Title level={1}>ᠭᠠᠷᠴᠠᠭ ᠨᠢᠭᠡ</Typography.Title>
+    <Typography.Title level={2}>ᠭᠠᠷᠴᠠᠭ ᠬᠣᠶᠠᠷ</Typography.Title>
+    <Typography.Title level={3}>ᠭᠠᠷᠴᠠᠭ ᠭᠤᠷᠪᠠ</Typography.Title>
+    <Typography.Title level={4}>ᠭᠠᠷᠴᠠᠭ ᠳᠥᠷᠪᠡ</Typography.Title>
+    <Typography.Title level={5}>ᠭᠠᠷᠴᠠᠭ ᠲᠠᠪᠤ</Typography.Title>
   </VertMDemoFrame>
 );
 ```
@@ -68,11 +68,11 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={240}>
     <VertMSpace direction="horizontal" size="middle" align="start">
-      <Typography.Text>ᠡᠩ</Typography.Text>
-      <Typography.Text type="secondary">ᠳᠡᠮᠵᠢ</Typography.Text>
-      <Typography.Text type="success">ᠵᠥᠪ</Typography.Text>
-      <Typography.Text type="warning">ᠠᠩᠬᠠᠷ</Typography.Text>
-      <Typography.Text type="danger">ᠠᠯᠳᠠᠭ᠎ᠠ</Typography.Text>
+      <Typography.Text>ᠡᠩ ᠦᠨ</Typography.Text>
+      <Typography.Text type="secondary">ᠲᠤᠰᠠᠯᠠᠮᠵᠢ</Typography.Text>
+      <Typography.Text type="success">ᠠᠮᠵᠢᠯᠲᠠ</Typography.Text>
+      <Typography.Text type="warning">ᠠᠩᠬᠠᠷᠤᠯᠭ᠎ᠠ</Typography.Text>
+      <Typography.Text type="danger">ᠠᠶᠤᠯ</Typography.Text>
     </VertMSpace>
   </VertMDemoFrame>
 );
@@ -91,9 +91,9 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={220}>
     <VertMSpace direction="vertical" align="start">
-      <Typography.Text copyable>ᠬᠠᠭᠤᠯᠬᠤ</Typography.Text>
+      <Typography.Text copyable>ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ</Typography.Text>
       <Typography.Paragraph copyable>
-        ᠲᠠᠤᠯᠠᠢ ᠶ᠋ᠢᠨ ᠭᠦᠶᠦᠳᠡᠯ
+        ᠳᠡᠭᠡᠷ᠎ᠡ ᠡᠴᠡ ᠳᠣᠣᠷ᠎ᠠ ᠪᠢᠴᠢᠬᠦ ᠪᠥᠭᠡᠳ ᠮᠥᠷ ᠨᠢ ᠵᠡᠭᠦᠨ ᠡᠴᠡ ᠪᠠᠷᠠᠭᠤᠨ ᠰᠢᠯᠵᠢᠨ᠎ᠡ᠃
       </Typography.Paragraph>
     </VertMSpace>
   </VertMDemoFrame>
@@ -130,8 +130,8 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={240}>
     <Typography.Paragraph ellipsis={{ rows: 2 }} style={{ maxHeight: 160 }}>
-      ᠲᠠᠤᠯᠠᠢ ᠶ᠋ᠢᠨ ᠭᠦᠶᠦᠳᠡᠯ ᠰᠢᠭ᠌ ᠰᠠᠯᠬᠢᠨ ᠳ᠋ᠦ ᠲᠤᠤᠯᠠ ᠶ᠋ᠢᠨ ᠰᠢᠭᠤᠢ ᠨᠠᠢᠢᠭᠤᠨ᠎ᠠ
-      ᠲᠠᠤᠯᠠᠢ ᠶ᠋ᠢᠨ ᠭᠦᠶᠦᠳᠡᠯ ᠰᠢᠭ᠌ ᠰᠠᠯᠬᠢᠨ ᠳ᠋ᠦ ᠲᠤᠤᠯᠠ ᠶ᠋ᠢᠨ ᠰᠢᠭᠤᠢ ᠨᠠᠢᠢᠭᠤᠨ᠎ᠠ
+      ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠪᠣᠯ ᠮᠣᠩᠭᠣᠯᠴᠤᠳ ᠤᠨ ᠡᠷᠲᠡ ᠡᠴᠡ ᠬᠡᠷᠡᠭᠯᠡᠵᠦ ᠢᠷᠡᠭᠰᠡᠨ ᠪᠢᠴᠢᠭ ᠮᠥᠨ᠃ ᠳᠡᠭᠡᠷ᠎ᠡ ᠡᠴᠡ ᠳᠣᠣᠷ᠎ᠠ ᠪᠢᠴᠢᠬᠦ ᠪᠥᠭᠡᠳ ᠮᠥᠷ ᠨᠢ ᠵᠡᠭᠦᠨ ᠡᠴᠡ ᠪᠠᠷᠠᠭᠤᠨ ᠰᠢᠯᠵᠢᠨ᠎ᠡ᠃
+      ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠪᠣᠯ ᠮᠣᠩᠭᠣᠯᠴᠤᠳ ᠤᠨ ᠡᠷᠲᠡ ᠡᠴᠡ ᠬᠡᠷᠡᠭᠯᠡᠵᠦ ᠢᠷᠡᠭᠰᠡᠨ ᠪᠢᠴᠢᠭ ᠮᠥᠨ᠃ ᠳᠡᠭᠡᠷ᠎ᠡ ᠡᠴᠡ ᠳᠣᠣᠷ᠎ᠠ ᠪᠢᠴᠢᠬᠦ ᠪᠥᠭᠡᠳ ᠮᠥᠷ ᠨᠢ ᠵᠡᠭᠦᠨ ᠡᠴᠡ ᠪᠠᠷᠠᠭᠤᠨ ᠰᠢᠯᠵᠢᠨ᠎ᠡ᠃
     </Typography.Paragraph>
   </VertMDemoFrame>
 );
@@ -151,7 +151,7 @@ export default () => (
   <VertMDemoFrame minHeight={220}>
     <VertMSpace direction="vertical" align="start">
       <Typography.Link href="https://doc.onon.cn" target="_blank">
-        ᠪ ᠶᠠᠪᠣᠬᠣᠭᠣᠯᠠᠩ
+        ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ ᠦᠵᠡᠬᠦ
       </Typography.Link>
       <Typography.Link disabled href="#">
         disabled

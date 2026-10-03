@@ -57,8 +57,8 @@ export default () => {
       <VertMSwitch
         checked={checked}
         onChange={setChecked}
-        checkedChildren="ᠬᠠᠭᠠᠬᠤ"
-        unCheckedChildren="ᠨᠡᠭᠡᠭᠡᠬᠦ"
+        checkedChildren="ᠨᠡᠭᠡᠭᠡᠬᠦ"
+        unCheckedChildren="ᠬᠠᠭᠠᠬᠤ"
       />
     </VertMDemoFrame>
   );
@@ -189,7 +189,7 @@ export default () => {
           <VertMSwitch checked={notify} onChange={setNotify} />
         </VertMSpace>
         <VertMSpace align="start">
-          <VertMText text="ᠬᠠᠷᠠᠩᠭᠤᠢ" />
+          <VertMText text="ᠬᠠᠷᠠᠩᠭᠤᠢ ᠬᠡᠪ" />
           <VertMSwitch checked={dark} onChange={setDark} />
         </VertMSpace>
       </VertMSpace>

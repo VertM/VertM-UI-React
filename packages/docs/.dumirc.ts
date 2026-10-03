@@ -46,7 +46,7 @@ export default defineConfig({
   apiParser: {},
   themeConfig: {
     name: 'VertM UI',
-    logo: '/logo.svg',
+    logo: false,
     footer: `VertM UI © ${new Date().getFullYear()} · Traditional Mongolian vertical React components`,
     socialLinks: {
       github: 'https://github.com/VertM/VertM-UI-React',

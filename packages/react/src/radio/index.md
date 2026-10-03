@@ -33,7 +33,7 @@ export default () => {
   return (
     <VertMDemoFrame minHeight={280}>
       <VertMSpace direction="vertical" align="start">
-        <VertMText text="ᠨᠢᠭᠡ ᠎ᠶᠢ ᠰᠣᠩᠭᠣᠬᠤ" />
+        <VertMText text="ᠭᠠᠭᠴᠠ ᠰᠣᠩᠭᠣᠯᠲᠠ" />
         <VertMRadio.Group
           value={value}
           onChange={setValue}
@@ -69,7 +69,7 @@ export default () => {
         onChange={setValue}
         options={[
           { label: 'ᠡᠳᠦᠷ', value: 'day' },
-          { label: 'ᠳᠣᠯᠤᠭ᠎ᠠ', value: 'week' },
+          { label: 'ᠭᠠᠷᠠᠭ', value: 'week' },
           { label: 'ᠰᠠᠷ᠎ᠠ', value: 'month' },
         ]}
       />
@@ -139,7 +139,7 @@ export default () => (
         defaultValue="1"
         options={[
           { label: 'ᠨᠢᠭᠡ', value: '1' },
-          { label: 'ᠬᠤᠷᠢᠭᠯᠠᠭᠳᠠᠭᠰᠠᠨ', value: '2', disabled: true },
+          { label: 'ᠬᠣᠷᠢᠭᠯᠠᠭᠰᠠᠨ', value: '2', disabled: true },
           { label: 'ᠭᠤᠷᠪᠠ', value: '3' },
         ]}
       />

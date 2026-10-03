@@ -105,8 +105,8 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={300}>
     <VertMList
-      header={<VertMText text="ᠲᠣᠯᠤᠭᠠᠢ" />}
-      footer={<VertMText text="ᠲᠡᠭᠦᠰᠬᠦ" />}
+      header={<VertMText text="ᠵᠢᠭᠰᠠᠭᠠᠯᠲᠠ" />}
+      footer={<VertMText text="ᠨᠡᠢᠲᠡ 2 ᠵᠦᠢᠯ" />}
       bordered
       dataSource={[
         { id: '1', text: 'ᠨᠢᠭᠡ' },

@@ -30,8 +30,8 @@ export default () => (
   <VertMDemoFrame minHeight={220}>
     <VertMSpace>
       <VertMButton type="primary">ᠨᠡᠮᠡᠬᠦ</VertMButton>
-      <VertMButton>ᠬᠠᠰᠠᠬᠤ</VertMButton>
-      <VertMButton type="dashed">ᠵᠠᠰᠠᠬᠤ</VertMButton>
+      <VertMButton>ᠬᠠᠰᠤᠬᠤ</VertMButton>
+      <VertMButton type="dashed">ᠨᠠᠶᠢᠷᠠᠭᠤᠯᠬᠤ</VertMButton>
     </VertMSpace>
   </VertMDemoFrame>
 );
@@ -119,7 +119,7 @@ export default () => (
       <VertMButton block type="primary">
         ᠨᠡᠮᠡᠬᠦ
       </VertMButton>
-      <VertMButton block>ᠬᠠᠰᠠᠬᠤ</VertMButton>
+      <VertMButton block>ᠬᠠᠰᠤᠬᠤ</VertMButton>
     </VertMSpace>
   </VertMDemoFrame>
 );

@@ -33,7 +33,7 @@ export default () => {
       <VertMTextField
         value={value}
         onChange={setValue}
-        placeholder="ᠪᠢᠴᠢᠭᠯᠡᠬᠦ ᠁"
+        placeholder="ᠣᠷᠤᠭᠤᠯᠤᠭᠠᠷᠠᠢ"
       />
     </VertMDemoFrame>
   );
@@ -56,7 +56,7 @@ export default () => (
       rows={2}
       columnDepth={4}
       maxColumns={3}
-      placeholder="ᠪᠢᠴᠢᠭᠯᠡᠬᠦ ᠁"
+      placeholder="ᠣᠷᠤᠭᠤᠯᠤᠭᠠᠷᠠᠢ"
       defaultValue=""
     />
   </VertMDemoFrame>
@@ -94,7 +94,7 @@ import { VertMTextField, VertMTextFieldBare, VertMSpace } from '@vertm/react';
 import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => {
-  const [a, setA] = useState('ᠪᠠᠷ᠎ᠡ');
+  const [a, setA] = useState('ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ');
   const [b, setB] = useState('Bare');
   return (
     <VertMDemoFrame minHeight={300}>
@@ -176,7 +176,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={280}>
     <VertMSpace align="start" size="large">
-      <VertMTextField disabled defaultValue="ᠬᠤᠷᠢᠭᠯᠠᠭᠳᠠᠭᠰᠠᠨ" />
+      <VertMTextField disabled defaultValue="ᠬᠣᠷᠢᠭᠯᠠᠭᠰᠠᠨ" />
       <VertMTextField autoFocus placeholder="autoFocus" />
     </VertMSpace>
   </VertMDemoFrame>

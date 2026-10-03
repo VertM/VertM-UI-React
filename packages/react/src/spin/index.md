@@ -43,7 +43,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={200}>
-    <VertMSpin tip="ᠡᠷᠢᠵᠦ ᠪᠠᠢᠨ᠎ᠠ ᠁" />
+    <VertMSpin tip="ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠢᠨ᠎ᠠ ᠁" />
   </VertMDemoFrame>
 );
 ```
@@ -103,7 +103,7 @@ export default () => {
     <VertMDemoFrame minHeight={260}>
       <VertMSpace direction="vertical" align="start">
         <VertMButton onClick={() => setSpinning((s) => !s)}>toggle</VertMButton>
-        <VertMSpin spinning={spinning} tip="ᠡᠷᠢᠵᠦ ᠪᠠᠢᠨ᠎ᠠ">
+        <VertMSpin spinning={spinning} tip="ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠢᠨ᠎ᠠ">
           <div style={{ padding: 12, minHeight: 100 }}>
             <VertMText text="content" />
           </div>
@@ -124,9 +124,9 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={260}>
-    <VertMSpin size="large" tip="ᠠᠴᠢᠶᠠᠯᠠᠵᠤ">
+    <VertMSpin size="large" tip="ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠢᠨ᠎ᠠ">
       <div style={{ padding: 24, minHeight: 140 }}>
-        <VertMText text="ᠬᠦᠯᠢᠶᠡᠭᠡ" />
+        <VertMText text="ᠲᠦᠷ ᠬᠦᠯᠢᠶᠡᠭᠡᠷᠡᠢ" />
       </div>
     </VertMSpin>
   </VertMDemoFrame>

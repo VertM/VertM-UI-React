@@ -29,7 +29,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={240}>
-    <VertMEmpty description="ᠬᠣᠭᠣᠰᠤᠨ ᠪᠠᠢᠨ᠎ᠠ ᠁" />
+    <VertMEmpty description="ᠮᠡᠳᠡᠭᠡᠯᠡᠯ ᠦᠭᠡᠢ" />
   </VertMDemoFrame>
 );
 ```
@@ -46,7 +46,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={220}>
-    <VertMEmpty image="simple" description="ᠰᠢᠮᠫᠯᠧ" />
+    <VertMEmpty image="simple" description="ᠬᠣᠭᠣᠰᠤᠨ" />
   </VertMDemoFrame>
 );
 ```
@@ -61,7 +61,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={240}>
-    <VertMEmpty image="default" description="ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ" />
+    <VertMEmpty image="default" description="ᠮᠡᠳᠡᠭᠡᠯᠡᠯ ᠦᠭᠡᠢ" />
   </VertMDemoFrame>
 );
 ```
@@ -93,7 +93,7 @@ export default () => (
           ∅
         </div>
       }
-      description="ᠥᠪᠡᠷᠮᠥᠷ ᠵᠢᠷᠤᠭ"
+      description="ᠵᠢᠷᠤᠭ ᠣᠯᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ"
     />
   </VertMDemoFrame>
 );
@@ -128,7 +128,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={280}>
-    <VertMEmpty description="ᠢᠯᠡᠷᠡᠭᠰᠡᠨ ᠦᠭᠡᠢ">
+    <VertMEmpty description="ᠣᠯᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ">
       <VertMSpace>
         <VertMButton>ᠰᠡᠷᠭᠦᠭᠡᠬᠦ</VertMButton>
         <VertMButton type="primary">ᠨᠡᠮᠡᠬᠦ</VertMButton>
@@ -166,7 +166,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={240}>
     <VertMEmpty
-      description="ᠵᠠᠭᠤᠰᠤ"
+      description="ᠬᠣᠭᠣᠰᠤᠨ"
       style={{
         padding: 24,
         borderRadius: 8,
@@ -187,7 +187,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={300}>
-    <VertMCard title="ᠵᠠᠭᠰᠠᠭᠠᠯᠲᠠ" style={{ width: 320 }}>
+    <VertMCard title="ᠵᠢᠭᠰᠠᠭᠠᠯᠲᠠ" style={{ width: 320 }}>
       <VertMEmpty image="simple" description="ᠬᠣᠭᠣᠰᠤᠨ" />
     </VertMCard>
   </VertMDemoFrame>

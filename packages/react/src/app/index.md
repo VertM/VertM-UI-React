@@ -160,7 +160,7 @@ const Demo = () => {
     <VertMSpace>
       <VertMButton
         onClick={() => {
-          const id = message.loading('ᠠᠴᠢᠶᠠᠯᠠᠵᠤ...', 0);
+          const id = message.loading('ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠢᠨ᠎ᠠ ᠁', 0);
           setTimeout(() => message.destroy(id), 1500);
         }}
       >

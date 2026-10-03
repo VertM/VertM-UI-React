@@ -28,7 +28,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 
 export default () => (
   <VertMDemoFrame minHeight={200}>
-    <VertMStatistic title="ᠨᠢᠭᠡᠳᠦᠭᠡᠷ" value={112893} />
+    <VertMStatistic title="ᠬᠡᠷᠡᠭᠯᠡᠭᠴᠢ ᠶᠢᠨ ᠲᠣᠭ᠎ᠠ" value={112893} />
   </VertMDemoFrame>
 );
 ```
@@ -79,9 +79,9 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={240}>
     <VertMSpace direction="horizontal" size="large" align="start">
-      <VertMStatistic title="ᠨᠢᠭᠡ" value={120} />
-      <VertMStatistic title="ᠬᠣᠶᠠᠷ" value={86} />
-      <VertMStatistic title="ᠭᠤᠷᠪᠠ" value={34} />
+      <VertMStatistic title="ᠰᠢᠨ᠎ᠡ" value={120} />
+      <VertMStatistic title="ᠢᠳᠡᠪᠬᠢᠲᠡᠢ" value={86} />
+      <VertMStatistic title="ᠬᠦᠯᠢᠶᠡᠵᠦ ᠪᠠᠢᠬᠤ" value={34} />
     </VertMSpace>
   </VertMDemoFrame>
 );

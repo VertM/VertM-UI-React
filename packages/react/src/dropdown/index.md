@@ -157,7 +157,7 @@ export default () => (
         ],
       }}
     >
-      <VertMButton>ᠣᠷᠤᠰᠢᠭᠤᠯᠤᠭᠰᠠᠨ</VertMButton>
+      <VertMButton>ᠣᠯᠠᠨ ᠱᠠᠲᠤ</VertMButton>
     </VertMDropdown>
   </VertMDemoFrame>
 );
@@ -204,7 +204,7 @@ export default () => (
       disabled
       menu={{ items: [{ key: '1', label: 'ᠨᠢᠭᠡ' }] }}
     >
-      <VertMButton disabled>ᠬᠤᠷᠢᠭᠯᠠᠭᠳᠠᠭᠰᠠᠨ</VertMButton>
+      <VertMButton disabled>ᠬᠣᠷᠢᠭᠯᠠᠭᠰᠠᠨ</VertMButton>
     </VertMDropdown>
   </VertMDemoFrame>
 );

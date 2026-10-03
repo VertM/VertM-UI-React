@@ -141,7 +141,7 @@ import VertMDemoFrame from 'VertMDemoFrame';
 export default () => (
   <VertMDemoFrame minHeight={300}>
     <VertMTimeline
-      pending="ᠦᠷᠭᠦᠯᠵᠢᠯᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ..."
+      pending="ᠦᠷᠭᠦᠯᠵᠢᠯᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ ᠁"
       items={[
         { children: 'step 1' },
         { children: 'step 2' },
