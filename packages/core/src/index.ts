@@ -62,6 +62,12 @@ export {
 } from './overlay/placement.js';
 
 export {
+  stepEnabledIndex,
+  firstEnabledIndex,
+  type NavigableItem,
+} from './interaction/collection.js';
+
+export {
   buildVerticalCaretLayout,
   getVerticalCaretSlot,
   moveVerticalCaret,

@@ -10,7 +10,12 @@ import {
   type MouseEvent,
   type CSSProperties,
 } from 'react';
-import { normalizeForSearch, resolveDefaultPlacement } from '@vertm/core';
+import {
+  firstEnabledIndex,
+  normalizeForSearch,
+  resolveDefaultPlacement,
+  stepEnabledIndex,
+} from '@vertm/core';
 import { ChevronRight, Close, Search, Check } from '@vertm/icons';
 import { computeOverlayPosition, type Placement } from '../overlay/placement.js';
 import { Portal } from '../overlay/Portal.js';
@@ -205,7 +210,7 @@ export function VertMSelect({
       setSearch('');
       return;
     }
-    const firstEnabled = filtered.findIndex((o) => !o.disabled);
+    const firstEnabled = firstEnabledIndex(filtered);
     setHighlight(firstEnabled === -1 ? 0 : firstEnabled);
     // `filtered` is intentionally read only at open time; live filtering keeps
     // its own highlight reset in the search handler.
@@ -281,11 +286,9 @@ export function VertMSelect({
 
   /** Step to the next enabled option, staying put when none is available. */
   const stepHighlight = useCallback(
-    (from: number, step: number) => {
-      for (let i = from + step; i >= 0 && i < filtered.length; i += step) {
-        if (!filtered[i]!.disabled) return i;
-      }
-      return from;
+    (from: number, step: 1 | -1) => {
+      const next = stepEnabledIndex(filtered, from, step);
+      return next === -1 ? from : next;
     },
     [filtered]
   );

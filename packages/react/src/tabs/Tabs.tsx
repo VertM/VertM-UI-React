@@ -7,6 +7,7 @@ import {
   type KeyboardEvent,
   type ReactNode,
 } from 'react';
+import { stepEnabledIndex } from '@vertm/core';
 import { Close, Plus } from '@vertm/icons';
 import { useIsVertical, useVertMConfig } from '../config/context.js';
 import { useControlled } from '../hooks/useControlled.js';
@@ -131,18 +132,14 @@ export function VertMTabs({
   };
 
   /** Focus and activate the nearest enabled tab, wrapping at both ends. */
-  const moveTab = (from: number, step: number) => {
-    const total = items.length;
-    for (let i = 1; i <= total; i += 1) {
-      const index = (from + step * i + total * i) % total;
-      const candidate = items[index];
-      if (!candidate || candidate.disabled) continue;
-      setActive(candidate.key);
-      tabListRef.current
-        ?.querySelector<HTMLElement>(`[data-tab-key="${CSS.escape(candidate.key)}"]`)
-        ?.focus();
-      return;
-    }
+  const moveTab = (from: number, step: 1 | -1) => {
+    const index = stepEnabledIndex(items, from, step, { loop: true });
+    if (index === -1) return;
+    const candidate = items[index]!;
+    setActive(candidate.key);
+    tabListRef.current
+      ?.querySelector<HTMLElement>(`[data-tab-key="${CSS.escape(candidate.key)}"]`)
+      ?.focus();
   };
 
   const handleTabKeyDown = (e: KeyboardEvent<HTMLButtonElement>, key: string, disabled?: boolean) => {
