@@ -17,6 +17,7 @@ export default defineConfig({
     '@vertm/core/dom': pkg('../core/src/dom/index.ts'),
     '@vertm/core': pkg('../core/src'),
     '@vertm/tokens': pkg('../tokens/src'),
+    '@vertm/icons/definitions': pkg('../icons/src/definitions.ts'),
     '@vertm/icons': pkg('../icons/src'),
     '@vertm/styles': pkg('../styles/src'),
     '@vertm/styles/index.css': pkg('../styles/src/index.css'),

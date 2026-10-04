@@ -14,6 +14,7 @@ export default defineConfig({
       '@vertm/core/dom': resolveSrc('../core/src/dom/index.ts'),
       '@vertm/core': resolveSrc('../core/src/index.ts'),
       '@vertm/tokens': resolveSrc('../tokens/src/index.ts'),
+      '@vertm/icons/definitions': resolveSrc('../icons/src/definitions.ts'),
       '@vertm/icons': resolveSrc('../icons/src/index.ts'),
     },
   },

@@ -1,4 +1,7 @@
 import { createElement, type CSSProperties, type SVGProps } from 'react';
+import { shouldRotateIcon, type IconDefinition } from './definitions.js';
+
+export type { IconDefinition };
 
 export type IconSize = number | 'small' | 'middle' | 'large';
 
@@ -24,20 +27,12 @@ export interface VertMIconProps extends Omit<SVGProps<SVGSVGElement>, 'color'> {
   vertical?: boolean;
 }
 
-export interface IconDefinition {
-  name: string;
-  /** Whether this icon has a directional meaning (arrow, chevron, etc.). */
-  directional?: boolean;
-  viewBox?: string;
-  paths: string | string[];
-}
-
 export function resolveIconSize(size: IconSize = 'middle'): number {
   return typeof size === 'number' ? size : SIZE_MAP[size];
 }
 
 export function createIconComponent(def: IconDefinition) {
-  const { name, directional = false, viewBox = '0 0 24 24', paths } = def;
+  const { name, viewBox = '0 0 24 24', paths } = def;
   const pathList = Array.isArray(paths) ? paths : [paths];
 
   function Icon({
@@ -51,7 +46,7 @@ export function createIconComponent(def: IconDefinition) {
     ...rest
   }: VertMIconProps) {
     const px = resolveIconSize(size);
-    const shouldRotate = directional && rotateForVertical && vertical;
+    const shouldRotate = shouldRotateIcon(def, { vertical, rotateForVertical });
 
     const iconStyle: CSSProperties = {
       display: 'inline-block',
