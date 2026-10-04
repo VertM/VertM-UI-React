@@ -13,6 +13,7 @@ import {
   type ReactElement,
   type ReactNode,
 } from 'react';
+import { resolveDefaultPlacement } from '@vertm/core';
 import { Ellipsis } from '@vertm/icons';
 import { useIsVertical, useVertMConfig } from '../config/context.js';
 import { VertMButton, type ButtonProps } from '../button/Button.js';
@@ -110,10 +111,6 @@ type TriggerProps = {
   ref?: (node: HTMLElement | null) => void;
 };
 
-function resolveDefaultPlacement(isVerticalWriting: boolean): Placement {
-  return isVerticalWriting ? 'rightTop' : 'bottomLeft';
-}
-
 function DropdownBase({
   menu,
   children,
@@ -143,7 +140,7 @@ function DropdownBase({
   const [pos, setPos] = useState({
     top: 0,
     left: 0,
-    placement: resolveDefaultPlacement(isVerticalWriting),
+    placement: resolveDefaultPlacement('dropdown', config.writingMode),
   });
   const [mounted, setMounted] = useState(open);
   const openRef = useRef(open);
@@ -154,7 +151,7 @@ function DropdownBase({
     [trigger]
   );
   const showArrow = Boolean(arrow);
-  const resolvedPlacement = placement ?? resolveDefaultPlacement(isVerticalWriting);
+  const resolvedPlacement = placement ?? resolveDefaultPlacement('dropdown', config.writingMode);
 
   const menuOnClickRef = useRef(menu.onClick);
   const menuOnSelectRef = useRef(menu.onSelect);
@@ -239,12 +236,12 @@ function DropdownBase({
         items={menu.items}
         selectedKeys={menu.selectedKeys}
         defaultSelectedKeys={menu.defaultSelectedKeys}
-        defaultPopupPlacement={isVerticalWriting ? 'rightTop' : 'rightTop'}
+        defaultPopupPlacement={resolveDefaultPlacement('submenu', config.writingMode)}
         arrowVertical={false}
         onSelect={handleMenuSelect}
       />
     ),
-    [menu.items, menu.selectedKeys, menu.defaultSelectedKeys, handleMenuSelect, isVerticalWriting]
+    [menu.items, menu.selectedKeys, menu.defaultSelectedKeys, handleMenuSelect, config.writingMode]
   );
 
   const popupContent = popupRender ? popupRender(menuNode) : menuNode;

@@ -10,7 +10,7 @@ import {
   type MouseEvent,
   type CSSProperties,
 } from 'react';
-import { normalizeForSearch } from '@vertm/core';
+import { normalizeForSearch, resolveDefaultPlacement } from '@vertm/core';
 import { ChevronRight, Close, Search, Check } from '@vertm/icons';
 import { computeOverlayPosition, type Placement } from '../overlay/placement.js';
 import { Portal } from '../overlay/Portal.js';
@@ -93,10 +93,11 @@ export function VertMSelect({
   height,
   listHeight,
   listWidth,
-  placement = 'rightTop',
+  placement: placementProp,
 }: SelectProps) {
   const config = useVertMConfig();
   const vertical = useIsVertical();
+  const placement = placementProp ?? resolveDefaultPlacement('select', config.writingMode);
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
   const [highlight, setHighlight] = useState(0);

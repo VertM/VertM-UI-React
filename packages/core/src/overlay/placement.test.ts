@@ -1,7 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { computeOverlayPosition, type Placement } from './placement.js';
+import {
+  computeOverlayPosition,
+  resolveDefaultPlacement,
+  type OverlayKind,
+  type Placement,
+} from './placement.js';
+import type { WritingMode } from '../normalize.js';
 
 const viewport = { top: 0, left: 0, width: 400, height: 300 };
+const defaultViewport = { top: 0, left: 0, width: 1024, height: 768 };
 const trigger = { top: 100, left: 100, width: 40, height: 40 };
 const popup = { top: 0, left: 0, width: 80, height: 60 };
 
@@ -52,5 +59,31 @@ describe('computeOverlayPosition', () => {
     expect(result.left).toBeGreaterThanOrEqual(4);
     expect(result.top + hugePopup.height).toBeLessThanOrEqual(viewport.height - 4);
     expect(result.left + hugePopup.width).toBeLessThanOrEqual(viewport.width - 4);
+  });
+
+  it('accepts an explicit default viewport', () => {
+    const result = computeOverlayPosition(trigger, popup, 'bottomLeft', defaultViewport);
+    expect(result.placement).toBe('bottomLeft');
+  });
+});
+
+describe('resolveDefaultPlacement', () => {
+  const cases: Array<[OverlayKind, WritingMode, Placement]> = [
+    ['dropdown', 'vertical-lr', 'rightTop'],
+    ['dropdown', 'vertical-rl', 'rightTop'],
+    ['dropdown', 'horizontal-tb', 'bottomLeft'],
+    ['select', 'vertical-lr', 'rightTop'],
+    ['select', 'vertical-rl', 'rightTop'],
+    ['select', 'horizontal-tb', 'rightTop'],
+    ['submenu', 'vertical-lr', 'rightTop'],
+    ['submenu', 'vertical-rl', 'rightTop'],
+    ['submenu', 'horizontal-tb', 'rightTop'],
+    ['menubarSubmenu', 'vertical-lr', 'bottomLeft'],
+    ['menubarSubmenu', 'vertical-rl', 'bottomLeft'],
+    ['menubarSubmenu', 'horizontal-tb', 'bottomLeft'],
+  ];
+
+  it.each(cases)('%s + %s → %s', (kind, writingMode, expected) => {
+    expect(resolveDefaultPlacement(kind, writingMode)).toBe(expected);
   });
 });

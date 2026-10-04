@@ -15,3 +15,5 @@ export {
   getCaretPosition,
   type CaretPosition,
 } from './caret-mapper.js';
+
+export { getViewportRect } from './viewport.js';

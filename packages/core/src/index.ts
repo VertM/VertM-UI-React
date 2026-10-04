@@ -53,6 +53,15 @@ export {
 export { countOverflowColumns } from './count-overflow-columns.js';
 
 export {
+  computeOverlayPosition,
+  resolveDefaultPlacement,
+  type Placement,
+  type OverlayRect,
+  type OverlayPosition,
+  type OverlayKind,
+} from './overlay/placement.js';
+
+export {
   buildVerticalCaretLayout,
   getVerticalCaretSlot,
   moveVerticalCaret,

@@ -8,6 +8,7 @@ import {
   type KeyboardEvent,
   type ReactNode,
 } from 'react';
+import { resolveDefaultPlacement, type WritingMode } from '@vertm/core';
 import { ChevronRight } from '@vertm/icons';
 import { useIsVertical, useVertMConfig } from '../config/context.js';
 import { useControlled } from '../hooks/useControlled.js';
@@ -95,13 +96,12 @@ function renderLabel(node: ReactNode): ReactNode {
 }
 
 function resolveSubMenuPlacement(
-  isVerticalWriting: boolean,
+  writingMode: WritingMode,
   mode: MenuMode,
   override?: Placement
 ): Placement {
   if (override) return override;
-  if (mode === 'horizontal') return 'bottomLeft';
-  return isVerticalWriting ? 'rightTop' : 'rightTop';
+  return resolveDefaultPlacement(mode === 'horizontal' ? 'menubarSubmenu' : 'submenu', writingMode);
 }
 
 function mergeArrowConfig(base: MenuArrowConfig, override?: MenuArrowConfig): MenuArrowConfig {
@@ -251,7 +251,7 @@ function SubMenu({
   });
 
   const placement = resolveSubMenuPlacement(
-    ctx.isVerticalWriting,
+    config.writingMode,
     ctx.mode,
     popupPlacement ?? ctx.defaultPopupPlacement
   );
