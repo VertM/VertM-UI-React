@@ -102,6 +102,13 @@ export {
 } from './field/selection.js';
 
 export {
+  normalizeSelectValue,
+  toggleSelectValue,
+  filterOptionsBySearch,
+  type SelectValue,
+} from './select/selection.js';
+
+export {
   buildVerticalCaretLayout,
   getVerticalCaretSlot,
   moveVerticalCaret,

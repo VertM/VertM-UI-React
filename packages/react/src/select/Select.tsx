@@ -11,11 +11,13 @@ import {
   type CSSProperties,
 } from 'react';
 import {
+  filterOptionsBySearch,
   firstEnabledIndex,
-  normalizeForSearch,
+  normalizeSelectValue,
   resolveDefaultPlacement,
   resolveSelectKey,
   stepEnabledIndex,
+  toggleSelectValue,
 } from '@vertm/core';
 import { ChevronRight, Close, Search, Check } from '@vertm/icons';
 import { computeOverlayPosition, type Placement } from '../overlay/placement.js';
@@ -71,19 +73,6 @@ function optionLabel(opt: SelectOption): string {
   return typeof opt.label === 'string' ? opt.label : opt.value;
 }
 
-function normalizeCurrent(
-  multiple: boolean,
-  raw: string | string[] | undefined
-): string | string[] {
-  if (multiple) {
-    if (Array.isArray(raw)) return raw;
-    if (raw) return [raw];
-    return [];
-  }
-  if (Array.isArray(raw)) return raw[0] ?? '';
-  return raw ?? '';
-}
-
 export function VertMSelect({
   options = [],
   value,
@@ -116,26 +105,25 @@ export function VertMSelect({
   const [pos, setPos] = useState({ top: 0, left: 0 });
 
   const [selected, setSelected] = useState<string | string[]>(() =>
-    normalizeCurrent(multiple, defaultValue as string | string[])
+    normalizeSelectValue(multiple, defaultValue as string | string[])
   );
 
   const isControlled = value !== undefined;
-  const current = normalizeCurrent(
+  const current = normalizeSelectValue(
     multiple,
     isControlled ? value : selected
   );
 
   const updateSelected = (next: string | string[]) => {
-    const normalized = normalizeCurrent(multiple, next);
+    const normalized = normalizeSelectValue(multiple, next);
     if (!isControlled) setSelected(normalized);
     onChange?.(normalized);
   };
 
-  const filtered = useMemo(() => {
-    if (!showSearch || !search.trim()) return options;
-    const key = normalizeForSearch(search);
-    return options.filter((o) => normalizeForSearch(optionLabel(o)).includes(key));
-  }, [options, search, showSearch]);
+  const filtered = useMemo(
+    () => (showSearch ? filterOptionsBySearch(options, search, optionLabel) : options),
+    [options, search, showSearch]
+  );
 
   const selectedOptions = useMemo(() => {
     if (multiple) {
@@ -267,11 +255,7 @@ export function VertMSelect({
 
   const selectOption = (val: string) => {
     if (multiple) {
-      const values = current as string[];
-      const next = values.includes(val)
-        ? values.filter((v) => v !== val)
-        : [...values, val];
-      updateSelected(next);
+      updateSelected(toggleSelectValue(current as string[], val));
     } else {
       updateSelected(val);
       setOpen(false);
