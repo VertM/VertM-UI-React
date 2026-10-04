@@ -14,6 +14,7 @@ export default defineConfig({
   ],
   alias: {
     '@vertm/react': pkg('../react/src'),
+    '@vertm/core/dom': pkg('../core/src/dom/index.ts'),
     '@vertm/core': pkg('../core/src'),
     '@vertm/tokens': pkg('../tokens/src'),
     '@vertm/icons': pkg('../icons/src'),

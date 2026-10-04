@@ -1,4 +1,4 @@
-import { DEFAULT_VERTM_FONT_STACK } from './normalize.js';
+import { DEFAULT_VERTM_FONT_STACK } from '../normalize.js';
 
 export interface FontDetectResult {
   available: boolean;

@@ -15,13 +15,12 @@ import {
 } from 'react';
 import {
   normalizeMongolianText,
-  mapClickToIndex,
-  getCaretPosition,
   countOverflowColumns,
   DEFAULT_VERTM_FONT_STACK,
   DEFAULT_WRITING_MODE,
   type WritingMode,
 } from '@vertm/core';
+import { mapClickToIndex, getCaretPosition } from '@vertm/core/dom';
 import { VertMText } from './VertMText.js';
 
 export type VertMTextFieldVariant = 'boxed' | 'bare';

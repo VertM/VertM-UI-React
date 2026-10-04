@@ -37,23 +37,18 @@ export {
 
 export { MONGOLIAN_WORD_BANK } from './__fixtures__/word-bank.js';
 
+// Back-compat re-exports; new code should import these from '@vertm/core/dom'.
 export {
   detectMongolFonts,
   isFontLoaded,
-} from './font-detect.js';
-
-export {
   detectVerticalSupport,
   getVerticalLayoutClasses,
   type VerticalSupportResult,
-} from './detect-vertical-support.js';
-
-export {
   mapClickToIndex,
   getCaretRectAtIndex,
   getCaretPosition,
   type CaretPosition,
-} from './caret-mapper.js';
+} from './dom/index.js';
 
 export { countOverflowColumns } from './count-overflow-columns.js';
 

@@ -11,6 +11,7 @@ export default defineConfig({
     alias: {
       '@vertm/styles/index.css': resolveSrc('../styles/src/index.css'),
       '@vertm/react': resolveSrc('../react/src/index.ts'),
+      '@vertm/core/dom': resolveSrc('../core/src/dom/index.ts'),
       '@vertm/core': resolveSrc('../core/src/index.ts'),
       '@vertm/tokens': resolveSrc('../tokens/src/index.ts'),
       '@vertm/icons': resolveSrc('../icons/src/index.ts'),
