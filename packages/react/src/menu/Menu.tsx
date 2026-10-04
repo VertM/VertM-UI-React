@@ -8,7 +8,17 @@ import {
   type KeyboardEvent,
   type ReactNode,
 } from 'react';
-import { resolveDefaultPlacement, type WritingMode } from '@vertm/core';
+import {
+  resolveDefaultPlacement,
+  resolveMenuItemKey,
+  resolveSubMenuKey,
+  type WritingMode,
+} from '@vertm/core';
+import {
+  focusFirstMenuControl,
+  focusSiblingMenuControl,
+  focusSubmenuTitle,
+} from '@vertm/core/dom';
 import { ChevronRight } from '@vertm/icons';
 import { useIsVertical, useVertMConfig } from '../config/context.js';
 import { useControlled } from '../hooks/useControlled.js';
@@ -23,7 +33,6 @@ import {
   type MenuExpandIconRender,
   type MenuItemType,
 } from './context.js';
-import { focusFirstMenuControl, focusSiblingMenuControl } from './menuKeyboard.js';
 import type { MenuMode, MenuSelectInfo } from './types.js';
 
 export interface MenuProps extends MenuArrowConfig {
@@ -164,32 +173,26 @@ function MenuItem({
 
   const handleKeyDown = (e: KeyboardEvent<HTMLLIElement>) => {
     if (disabled) return;
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      handleClick();
-      return;
-    }
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      focusSiblingMenuControl(e.currentTarget, 1);
-      return;
-    }
-    if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      focusSiblingMenuControl(e.currentTarget, -1);
-      return;
-    }
-    // Nested items live under a portalled popup; ArrowLeft closes that level.
-    if (e.key === 'ArrowLeft') {
+    const action = resolveMenuItemKey(e.key);
+    if (!action) return;
+    if (action === 'exitToParent') {
       const parentKey = ctx.keyPathPrefix[ctx.keyPathPrefix.length - 1];
       if (!parentKey) return;
       e.preventDefault();
       if (ctx.openKeys.includes(parentKey)) ctx.toggleOpenKey(parentKey);
-      document
-        .querySelector<HTMLElement>(
-          `.vertm-submenu[data-menu-key="${CSS.escape(parentKey)}"] > .vertm-submenu__title`
-        )
-        ?.focus();
+      focusSubmenuTitle(parentKey);
+      return;
+    }
+    e.preventDefault();
+    switch (action) {
+      case 'activate':
+        handleClick();
+        return;
+      case 'next':
+        focusSiblingMenuControl(e.currentTarget, 1);
+        return;
+      case 'prev':
+        focusSiblingMenuControl(e.currentTarget, -1);
     }
   };
 
@@ -337,32 +340,33 @@ function SubMenu({
       '.vertm-submenu__title, [role="menuitem"]'
     );
     const focusFrom = target ?? e.currentTarget.querySelector<HTMLElement>('.vertm-submenu__title');
+    const action = resolveSubMenuKey(e.key, { open });
+    if (!action) return;
 
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      handleToggle();
-      return;
-    }
-    if (e.key === 'ArrowDown' && focusFrom) {
-      e.preventDefault();
-      focusSiblingMenuControl(focusFrom, 1);
-      return;
-    }
-    if (e.key === 'ArrowUp' && focusFrom) {
-      e.preventDefault();
-      focusSiblingMenuControl(focusFrom, -1);
-      return;
-    }
-    if (e.key === 'ArrowRight' && !open) {
-      e.preventDefault();
-      focusChildOnOpenRef.current = true;
-      openSubMenu();
-      return;
-    }
-    if (e.key === 'ArrowLeft' && open) {
-      e.preventDefault();
-      closeSubMenu();
-      triggerRef.current?.querySelector<HTMLElement>('.vertm-submenu__title')?.focus();
+    switch (action) {
+      case 'toggle':
+        e.preventDefault();
+        handleToggle();
+        return;
+      case 'next':
+        if (!focusFrom) return;
+        e.preventDefault();
+        focusSiblingMenuControl(focusFrom, 1);
+        return;
+      case 'prev':
+        if (!focusFrom) return;
+        e.preventDefault();
+        focusSiblingMenuControl(focusFrom, -1);
+        return;
+      case 'open':
+        e.preventDefault();
+        focusChildOnOpenRef.current = true;
+        openSubMenu();
+        return;
+      case 'close':
+        e.preventDefault();
+        closeSubMenu();
+        triggerRef.current?.querySelector<HTMLElement>('.vertm-submenu__title')?.focus();
     }
   };
 

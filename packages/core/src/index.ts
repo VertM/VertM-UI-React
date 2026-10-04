@@ -68,6 +68,21 @@ export {
 } from './interaction/collection.js';
 
 export {
+  resolveSelectKey,
+  resolveMenuItemKey,
+  resolveSubMenuKey,
+  resolveTabsKeyAxis,
+  resolveTabsKey,
+  resolveFieldKey,
+  type SelectKeyAction,
+  type MenuItemKeyAction,
+  type SubMenuKeyAction,
+  type TabsKeyAxis,
+  type TabsKeyAction,
+  type FieldKeyAction,
+} from './interaction/keymap.js';
+
+export {
   buildVerticalCaretLayout,
   getVerticalCaretSlot,
   moveVerticalCaret,

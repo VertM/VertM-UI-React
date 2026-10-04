@@ -18,6 +18,7 @@ import {
   countOverflowColumns,
   DEFAULT_VERTM_FONT_STACK,
   DEFAULT_WRITING_MODE,
+  resolveFieldKey,
   type WritingMode,
 } from '@vertm/core';
 import { mapClickToIndex, getCaretPosition } from '@vertm/core/dom';
@@ -415,7 +416,8 @@ export function VertMTextField({
 
   const handleKeyUp = (e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (isMultiline) return;
-    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+    const action = resolveFieldKey(e.key);
+    if (action === 'caretPrev' || action === 'caretNext') {
       scrollSingleLineCaretIntoView();
     }
   };
@@ -478,21 +480,18 @@ export function VertMTextField({
       return;
     }
 
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      onPressEnter?.(e);
-      return;
-    }
-
-    if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      moveSingleLineCaret(-1, e.shiftKey);
-      return;
-    }
-
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      moveSingleLineCaret(1, e.shiftKey);
+    const action = resolveFieldKey(e.key);
+    if (!action) return;
+    e.preventDefault();
+    switch (action) {
+      case 'submit':
+        onPressEnter?.(e);
+        return;
+      case 'caretPrev':
+        moveSingleLineCaret(-1, e.shiftKey);
+        return;
+      case 'caretNext':
+        moveSingleLineCaret(1, e.shiftKey);
     }
   };
 

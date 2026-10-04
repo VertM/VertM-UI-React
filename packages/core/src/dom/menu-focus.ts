@@ -37,3 +37,12 @@ export function focusFirstMenuControl(root: ParentNode | null): HTMLElement | nu
   first?.focus();
   return first;
 }
+
+/** Focus the title of the submenu identified by `key` (used when leaving a nested level). */
+export function focusSubmenuTitle(key: string, root: ParentNode = document): HTMLElement | null {
+  const title = root.querySelector<HTMLElement>(
+    `.vertm-submenu[data-menu-key="${CSS.escape(key)}"] > .vertm-submenu__title`
+  );
+  title?.focus();
+  return title;
+}

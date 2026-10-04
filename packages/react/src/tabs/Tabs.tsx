@@ -7,7 +7,7 @@ import {
   type KeyboardEvent,
   type ReactNode,
 } from 'react';
-import { stepEnabledIndex } from '@vertm/core';
+import { resolveTabsKey, resolveTabsKeyAxis, stepEnabledIndex } from '@vertm/core';
 import { Close, Plus } from '@vertm/icons';
 import { useIsVertical, useVertMConfig } from '../config/context.js';
 import { useControlled } from '../hooks/useControlled.js';
@@ -84,7 +84,7 @@ export function VertMTabs({
   const verticalBar = isVerticalBar(resolvedPosition);
   // Vertical writing treats tabs as peer columns (Left/Right), even when the
   // tab bar sits on the left/right edge of the panel.
-  const useBlockAxisKeys = isVerticalWriting || !verticalBar;
+  const keyAxis = resolveTabsKeyAxis(isVerticalWriting, verticalBar);
 
   const firstKey = items[0]?.key ?? '';
   const [active, setActive] = useControlled(activeKey, defaultActiveKey || firstKey, onChange);
@@ -144,33 +144,28 @@ export function VertMTabs({
 
   const handleTabKeyDown = (e: KeyboardEvent<HTMLButtonElement>, key: string, disabled?: boolean) => {
     if (disabled) return;
+    const action = resolveTabsKey(e.key, keyAxis);
+    if (!action) return;
 
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      selectTab(key, disabled);
-      return;
-    }
-
-    // Roving tabindex leaves inactive tabs out of the tab order, so the arrow
-    // keys along the tab bar's own axis are the only way to reach them.
-    // Vertical writing always treats tabs as peer columns (Left/Right).
-    const prevKey = useBlockAxisKeys ? 'ArrowLeft' : 'ArrowUp';
-    const nextKey = useBlockAxisKeys ? 'ArrowRight' : 'ArrowDown';
     const index = items.findIndex((item) => item.key === key);
-    if (index === -1) return;
+    if (action !== 'activate' && index === -1) return;
 
-    if (e.key === prevKey) {
-      e.preventDefault();
-      moveTab(index, -1);
-    } else if (e.key === nextKey) {
-      e.preventDefault();
-      moveTab(index, 1);
-    } else if (e.key === 'Home') {
-      e.preventDefault();
-      moveTab(-1, 1);
-    } else if (e.key === 'End') {
-      e.preventDefault();
-      moveTab(items.length, -1);
+    e.preventDefault();
+    switch (action) {
+      case 'activate':
+        selectTab(key, disabled);
+        return;
+      case 'prev':
+        moveTab(index, -1);
+        return;
+      case 'next':
+        moveTab(index, 1);
+        return;
+      case 'first':
+        moveTab(-1, 1);
+        return;
+      case 'last':
+        moveTab(items.length, -1);
     }
   };
 
@@ -193,7 +188,7 @@ export function VertMTabs({
       <div
         className="vertm-tabs__nav"
         role="tablist"
-        aria-orientation={useBlockAxisKeys ? 'horizontal' : 'vertical'}
+        aria-orientation={keyAxis}
       >
         <div className="vertm-tabs__nav-wrap" ref={tabListRef}>
           {type === 'line' && <span className="vertm-tabs__ink-bar" style={inkStyle} aria-hidden />}

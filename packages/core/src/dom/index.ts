@@ -17,3 +17,9 @@ export {
 } from './caret-mapper.js';
 
 export { getViewportRect } from './viewport.js';
+
+export {
+  focusSiblingMenuControl,
+  focusFirstMenuControl,
+  focusSubmenuTitle,
+} from './menu-focus.js';

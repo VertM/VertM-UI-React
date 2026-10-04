@@ -14,6 +14,7 @@ import {
   firstEnabledIndex,
   normalizeForSearch,
   resolveDefaultPlacement,
+  resolveSelectKey,
   stepEnabledIndex,
 } from '@vertm/core';
 import { ChevronRight, Close, Search, Check } from '@vertm/icons';
@@ -294,58 +295,27 @@ export function VertMSelect({
   );
 
   const handleKeyDown = (e: KeyboardEvent) => {
-    if (!open) {
-      if (e.key === 'ArrowDown' || e.key === 'Enter' || (vertical && e.key === 'ArrowRight')) {
-        e.preventDefault();
+    const action = resolveSelectKey(e.key, { open, vertical });
+    if (!action) return;
+    if (action !== 'close') e.preventDefault();
+    switch (action) {
+      case 'open':
         setOpen(true);
-      }
-      return;
-    }
-
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      setHighlight((h) => stepHighlight(h, 1));
-      return;
-    }
-    if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      setHighlight((h) => stepHighlight(h, -1));
-      return;
-    }
-
-    // Vertical writing: options are peer columns; ArrowRight commits the highlight.
-    // Horizontal keeps Left/Right as alternate navigation along the list.
-    if (vertical) {
-      if (e.key === 'ArrowRight') {
-        e.preventDefault();
+        return;
+      case 'next':
+        setHighlight((h) => stepHighlight(h, 1));
+        return;
+      case 'prev':
+        setHighlight((h) => stepHighlight(h, -1));
+        return;
+      case 'commit': {
         const opt = filtered[highlight];
         if (opt && !opt.disabled) selectOption(opt.value);
         return;
       }
-      if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        setHighlight((h) => stepHighlight(h, -1));
-        return;
-      }
-    } else {
-      if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        setHighlight((h) => stepHighlight(h, 1));
-        return;
-      }
-      if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        setHighlight((h) => stepHighlight(h, -1));
-        return;
-      }
+      case 'close':
+        setOpen(false);
     }
-
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      const opt = filtered[highlight];
-      if (opt && !opt.disabled) selectOption(opt.value);
-    }
-    if (e.key === 'Escape') setOpen(false);
   };
 
   const renderOptionLabel = (opt: SelectOption) =>
