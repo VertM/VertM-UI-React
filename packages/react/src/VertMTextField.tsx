@@ -15,10 +15,16 @@ import {
 } from 'react';
 import {
   normalizeMongolianText,
-  countOverflowColumns,
   DEFAULT_VERTM_FONT_STACK,
   DEFAULT_WRITING_MODE,
   resolveFieldKey,
+  computeFieldColumns,
+  computeScrollToReveal,
+  reconcileColumnScroll,
+  maxColumnScroll,
+  moveSelection,
+  mapCaretThroughSanitize,
+  normalizeFieldValue,
   type WritingMode,
 } from '@vertm/core';
 import { mapClickToIndex, getCaretPosition } from '@vertm/core/dom';
@@ -141,46 +147,25 @@ export function VertMTextField({
 
   const updateValue = useCallback(
     (newValue: string) => {
-      const raw = isMultiline ? newValue : newValue.replace(/[\r\n]/g, '');
-      const normalized = normalizeMongolianText(raw);
+      const normalized = normalizeFieldValue(newValue, isMultiline);
       if (!isControlled) setInternalValue(normalized);
       onChange?.(normalized);
     },
     [isControlled, onChange, isMultiline]
   );
 
-  const neededColumns = useMemo(() => {
-    const contentColumns = countOverflowColumns(normalizedValue, columnDepth);
-    const minColumns = isMultiline ? Math.max(1, rows) : 1;
-    if (maxColumns <= 1) {
-      return isMultiline ? minColumns : contentColumns;
-    }
-    return Math.max(minColumns, contentColumns);
-  }, [isMultiline, rows, normalizedValue, columnDepth, maxColumns]);
-
-  const effectiveColumnCount = useMemo(() => {
-    const minColumns = isMultiline ? Math.max(1, rows) : 1;
-    if (maxColumns <= 1) {
-      return isMultiline ? minColumns : Math.min(1, neededColumns);
-    }
-    return Math.min(maxColumns, neededColumns);
-  }, [isMultiline, rows, neededColumns, maxColumns]);
-
-  const useAutoColumns = maxColumns > 1;
-  const minColumnCount = isMultiline ? Math.max(1, rows) : 1;
-  const isColumnCapped = useAutoColumns && neededColumns > maxColumns;
-  const isWideField = useAutoColumns && effectiveColumnCount > minColumnCount;
+  const columns = useMemo(
+    () => computeFieldColumns({ text: normalizedValue, rows, columnDepth, maxColumns }),
+    [normalizedValue, rows, columnDepth, maxColumns]
+  );
+  const neededColumns = columns.needed;
+  const effectiveColumnCount = columns.effective;
+  const isColumnCapped = columns.capped;
+  const isWideField = columns.wide;
 
   const resolveNeededColumns = useCallback(
-    (text: string) => {
-      const contentColumns = countOverflowColumns(text, columnDepth);
-      const minColumns = isMultiline ? Math.max(1, rows) : 1;
-      if (maxColumns <= 1) {
-        return isMultiline ? minColumns : contentColumns;
-      }
-      return Math.max(minColumns, contentColumns);
-    },
-    [isMultiline, rows, columnDepth, maxColumns]
+    (text: string) => computeFieldColumns({ text, rows, columnDepth, maxColumns }).needed,
+    [rows, columnDepth, maxColumns]
   );
 
   /** Clamp / reset horizontal scroll from layout math (no DOM measure). */
@@ -189,20 +174,15 @@ export function VertMTextField({
       const visual = visualRef.current;
       if (!visual) return;
 
-      const needed = resolveNeededColumns(text);
-      const capped = maxColumns > 1 && needed > maxColumns;
-      const columnWidth = fontSize * lineHeight;
-      const maxScrollLeft = capped
-        ? Math.max(0, needed * columnWidth - visual.clientWidth)
-        : 0;
-
-      if (!capped || maxScrollLeft === 0) {
-        visual.scrollLeft = 0;
-        return;
-      }
-
-      if (visual.scrollLeft > maxScrollLeft) {
-        visual.scrollLeft = maxScrollLeft;
+      const next = reconcileColumnScroll({
+        needed: resolveNeededColumns(text),
+        maxColumns,
+        columnWidth: fontSize * lineHeight,
+        clientWidth: visual.clientWidth,
+        scrollLeft: visual.scrollLeft,
+      });
+      if (visual.scrollLeft !== next) {
+        visual.scrollLeft = next;
       }
     },
     [resolveNeededColumns, maxColumns, fontSize, lineHeight]
@@ -245,21 +225,18 @@ export function VertMTextField({
           const rects = range.getClientRects();
           const glyphRect = rects.length > 0 ? rects[0] : range.getBoundingClientRect();
           if (glyphRect.width || glyphRect.height) {
-            const pad = 4;
             const visualRect = visual.getBoundingClientRect();
             const columnWidth = fontSize * lineHeight;
             const needed = resolveNeededColumns(text);
-            const maxScrollLeft = Math.max(0, needed * columnWidth - visual.clientWidth);
+            const maxScrollLeft = maxColumnScroll(needed, columnWidth, visual.clientWidth);
             const contentLeft = glyphRect.left - visualRect.left + visual.scrollLeft;
-            const contentRight = contentLeft + Math.max(glyphRect.width, columnWidth);
-            const scrollLeft = visual.scrollLeft;
-            const viewW = visual.clientWidth;
-
-            if (contentLeft < scrollLeft + pad) {
-              visual.scrollLeft = Math.max(0, contentLeft - pad);
-            } else if (contentRight > scrollLeft + viewW - pad) {
-              visual.scrollLeft = Math.min(contentRight - viewW + pad, maxScrollLeft);
-            }
+            visual.scrollLeft = computeScrollToReveal({
+              start: contentLeft,
+              end: contentLeft + Math.max(glyphRect.width, columnWidth),
+              scroll: visual.scrollLeft,
+              viewport: visual.clientWidth,
+              max: maxScrollLeft,
+            });
           }
         }
       }
@@ -271,30 +248,23 @@ export function VertMTextField({
         visual.scrollTop = maxScrollTop;
       }
 
-      const pad = 4;
-      const viewH = visual.clientHeight;
-      const scrollTop = visual.scrollTop;
-      const caretTop = pos.top;
-      const caretBottom = pos.top + pos.height;
-
-      if (caretTop < scrollTop + pad) {
-        visual.scrollTop = Math.max(0, caretTop - pad);
-      } else if (caretBottom > scrollTop + viewH - pad) {
-        visual.scrollTop = Math.min(caretBottom - viewH + pad, maxScrollTop);
-      }
+      visual.scrollTop = computeScrollToReveal({
+        start: pos.top,
+        end: pos.top + pos.height,
+        scroll: visual.scrollTop,
+        viewport: visual.clientHeight,
+        max: maxScrollTop,
+      });
 
       if (isColumnCapped) {
         const maxScrollLeft = Math.max(0, visual.scrollWidth - visual.clientWidth);
-        const viewW = visual.clientWidth;
-        const scrollLeft = visual.scrollLeft;
-        const caretLeft = pos.left;
-        const caretRight = pos.left + pos.width;
-
-        if (caretLeft < scrollLeft + pad) {
-          visual.scrollLeft = Math.max(0, caretLeft - pad);
-        } else if (caretRight > scrollLeft + viewW - pad) {
-          visual.scrollLeft = Math.min(caretRight - viewW + pad, maxScrollLeft);
-        }
+        visual.scrollLeft = computeScrollToReveal({
+          start: pos.left,
+          end: pos.left + pos.width,
+          scroll: visual.scrollLeft,
+          viewport: visual.clientWidth,
+          max: maxScrollLeft,
+        });
       }
     }
 
@@ -375,26 +345,18 @@ export function VertMTextField({
     syncVisualScroll();
   };
 
-  const normalizeFieldValue = useCallback(
-    (newValue: string) => {
-      const raw = isMultiline ? newValue : newValue.replace(/[\r\n]/g, '');
-      return normalizeMongolianText(raw);
-    },
-    [isMultiline]
-  );
-
   const commitInputFromNative = useCallback(
     (el: HTMLInputElement | HTMLTextAreaElement, raw: string) => {
       const stripped = sanitize ? sanitize(raw) : raw;
       const rejected = !!sanitize && stripped !== raw;
-      const normalized = normalizeFieldValue(stripped);
+      const normalized = normalizeFieldValue(stripped, isMultiline);
 
       skipSyncRef.current = true;
 
       if (rejected) {
         onSanitizeReject?.();
         const rawCaret = el.selectionStart ?? stripped.length;
-        const nextCaret = sanitize!(raw.slice(0, rawCaret)).length;
+        const nextCaret = mapCaretThroughSanitize(raw, rawCaret, sanitize!);
         el.value = normalized;
         try {
           el.setSelectionRange(nextCaret, nextCaret);
@@ -406,7 +368,7 @@ export function VertMTextField({
       updateValue(stripped);
       reconcileHorizontalScroll(normalized);
     },
-    [sanitize, onSanitizeReject, normalizeFieldValue, updateValue, reconcileHorizontalScroll]
+    [sanitize, onSanitizeReject, isMultiline, updateValue, reconcileHorizontalScroll]
   );
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -443,23 +405,18 @@ export function VertMTextField({
       const el = inputRef.current as HTMLInputElement | null;
       if (!el || isMultiline) return;
 
-      const len = normalizedValue.length;
-      const start = el.selectionStart ?? 0;
-      const end = el.selectionEnd ?? start;
-
-      if (extend) {
-        const anchor = start;
-        const focus = Math.max(0, Math.min(end + delta, len));
-        if (focus < anchor) {
-          el.setSelectionRange(focus, anchor, 'backward');
-        } else {
-          el.setSelectionRange(anchor, focus, 'forward');
-        }
-        return;
+      const next = moveSelection({
+        start: el.selectionStart ?? 0,
+        end: el.selectionEnd ?? el.selectionStart ?? 0,
+        length: normalizedValue.length,
+        delta,
+        extend,
+      });
+      if (next.direction === 'none') {
+        el.setSelectionRange(next.start, next.end);
+      } else {
+        el.setSelectionRange(next.start, next.end, next.direction);
       }
-
-      const next = Math.max(0, Math.min(start + delta, len));
-      el.setSelectionRange(next, next);
     },
     [isMultiline, normalizedValue.length]
   );

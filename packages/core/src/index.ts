@@ -83,6 +83,25 @@ export {
 } from './interaction/keymap.js';
 
 export {
+  computeFieldColumns,
+  type FieldColumnsInput,
+  type FieldColumns,
+} from './field/columns.js';
+
+export {
+  computeScrollToReveal,
+  maxColumnScroll,
+  reconcileColumnScroll,
+} from './field/scroll.js';
+
+export {
+  moveSelection,
+  mapCaretThroughSanitize,
+  normalizeFieldValue,
+  type FieldSelection,
+} from './field/selection.js';
+
+export {
   buildVerticalCaretLayout,
   getVerticalCaretSlot,
   moveVerticalCaret,
