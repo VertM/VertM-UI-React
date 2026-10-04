@@ -9,6 +9,7 @@ import {
   type ReactElement,
   type ReactNode,
 } from 'react';
+import { computeSplitRatio } from '@vertm/core';
 import { useIsVertical } from '../config/context.js';
 
 export interface SplitterPanelProps {
@@ -72,10 +73,12 @@ function SplitterBase({ layout, children, className = '', style, onResize }: Spl
       const el = containerRef.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
-      const next = isColumn
-        ? (clientX - rect.left) / rect.width
-        : (clientY - rect.top) / rect.height;
-      const clamped = Math.min(0.85, Math.max(0.15, next));
+      const clamped = computeSplitRatio({
+        x: clientX,
+        y: clientY,
+        rect,
+        axis: isColumn ? 'column' : 'row',
+      });
       setRatio(clamped);
       onResize?.([clamped, 1 - clamped]);
     },

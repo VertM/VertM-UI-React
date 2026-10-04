@@ -5,10 +5,11 @@ import {
   useEffect,
   useMemo,
   useRef,
-  useState,
+  useSyncExternalStore,
   type ReactNode,
 } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
+import { createToastQueue } from '@vertm/core';
 import { Close } from '@vertm/icons';
 import { VertMConfigProvider } from '../config/VertMConfigProvider.js';
 import { VertMText } from '../VertMText.js';
@@ -47,8 +48,6 @@ export interface NotificationAPI {
   destroy: (id?: string) => void;
 }
 
-const DEFAULT_DURATION = 4.5;
-
 /** The holder accepts a caller-assigned id so queued calls keep their handle. */
 interface InternalNotificationAPI extends NotificationAPI {
   open: (config: NotificationConfig, id?: string) => string;
@@ -60,7 +59,7 @@ let globalApi: InternalNotificationAPI | null = null;
 let globalRoot: Root | null = null;
 let pending: Array<(api: InternalNotificationAPI) => void> = [];
 
-function groupByPlacement(list: NotificationItem[]) {
+function groupByPlacement(list: readonly NotificationItem[]) {
   const map: Partial<Record<NotificationPlacement, NotificationItem[]>> = {};
   for (const item of list) {
     const p = item.placement ?? 'topRight';
@@ -74,40 +73,32 @@ function groupByPlacement(list: NotificationItem[]) {
  * mode and locale from the nearest VertMConfigProvider.
  */
 export function NotificationHolder({ children }: { children?: ReactNode }) {
-  const [items, setItems] = useState<NotificationItem[]>([]);
   const seq = useRef(0);
-  const timers = useRef(new Set<ReturnType<typeof setTimeout>>());
+  const queue = useMemo(
+    () =>
+      createToastQueue<NotificationConfig>({
+        defaultDuration: 4.5,
+        createId: () => {
+          seq.current += 1;
+          return `vertm-notif-${seq.current}`;
+        },
+        onExpire: (item) => item.onClose?.(),
+      }),
+    []
+  );
+  const items = useSyncExternalStore(queue.subscribe, queue.getItems, queue.getItems);
 
-  useEffect(() => {
-    const pool = timers.current;
-    return () => {
-      pool.forEach(clearTimeout);
-      pool.clear();
-    };
-  }, []);
+  useEffect(() => () => queue.dispose(), [queue]);
 
-  const destroy = useCallback((id?: string) => {
-    setItems((prev) => (id ? prev.filter((n) => n.id !== id) : []));
-  }, []);
+  const destroy = useCallback((id?: string) => queue.destroy(id), [queue]);
 
   const open = useCallback(
-    (config: NotificationConfig, presetId?: string) => {
-      seq.current += 1;
-      const id = presetId ?? `vertm-notif-${seq.current}`;
-      setItems((prev) => [...prev, { ...config, id }]);
-
-      const duration = config.duration ?? DEFAULT_DURATION;
-      if (duration > 0) {
-        const timer = setTimeout(() => {
-          timers.current.delete(timer);
-          destroy(id);
-          config.onClose?.();
-        }, duration * 1000);
-        timers.current.add(timer);
-      }
-      return id;
-    },
-    [destroy]
+    (config: NotificationConfig, presetId?: string) =>
+      queue.open(config, {
+        id: presetId,
+        durationSec: config.duration,
+      }),
+    [queue]
   );
 
   const api = useMemo<InternalNotificationAPI>(
@@ -133,7 +124,7 @@ export function NotificationHolder({ children }: { children?: ReactNode }) {
     };
   }, [api]);
 
-  const grouped = groupByPlacement(items);
+  const grouped = groupByPlacement(items as NotificationItem[]);
 
   return (
     <NotificationContext.Provider value={api}>

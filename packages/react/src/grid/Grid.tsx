@@ -1,10 +1,7 @@
 import { type CSSProperties, type ReactNode } from 'react';
+import { resolveGutter, resolveResponsiveValue, spanToWidth, type Breakpoint } from '@vertm/core';
 import { useIsVertical } from '../config/context.js';
-import {
-  useBreakpoint,
-  resolveResponsiveValue,
-  type Breakpoint,
-} from '../hooks/useBreakpoint.js';
+import { useBreakpoint } from '../hooks/useBreakpoint.js';
 
 export type RowJustify =
   | 'start'
@@ -66,22 +63,6 @@ const ALIGN_MAP: Record<RowAlign, string> = {
   bottom: 'flex-end',
   stretch: 'stretch',
 };
-
-function resolveGutter(
-  gutter: number | [number, number] | undefined,
-  isVertical: boolean
-): { row: number; col: number } {
-  if (gutter == null) return { row: 0, col: 0 };
-  if (Array.isArray(gutter)) {
-    const [h, v] = gutter;
-    return isVertical ? { row: v, col: h } : { row: h, col: v };
-  }
-  return { row: gutter / 2, col: gutter / 2 };
-}
-
-function spanToWidth(span: number): string {
-  return `${(span / 24) * 100}%`;
-}
 
 function buildColStyle(
   span: number | undefined,

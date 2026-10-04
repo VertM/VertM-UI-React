@@ -1,4 +1,5 @@
 import { forwardRef, useMemo, useState, useRef, useLayoutEffect, useEffect, useCallback, type ReactNode, type CSSProperties } from 'react';
+import { stripNonPrintableAscii } from '@vertm/core';
 import { Close, Search as SearchIcon, Eye, EyeInvisible } from '@vertm/icons';
 import { useControlled } from '../hooks/useControlled.js';
 import { useIsVertical } from '../config/context.js';
@@ -259,13 +260,6 @@ function Search({ onSearch, enterButton, suffix, value, defaultValue = '', onCha
 
 // ── Password ──
 
-/** Printable half-width (ASCII) characters: letters, digits, symbols, space. */
-const PASSWORD_CHAR_PATTERN = /[^\u0020-\u007E]/g;
-
-function sanitizePasswordInput(value: string): string {
-  return value.replace(PASSWORD_CHAR_PATTERN, '');
-}
-
 export interface PasswordProps extends InputProps {
   /** 输入非法字符时的提示文案 */
   invalidCharMessage?: string;
@@ -306,7 +300,7 @@ function Password({
     <div className={`vertm-input-password${vertical ? ' vertm-input-password--vertical' : ''}`}>
       <VertMInputBase
         {...props}
-        sanitize={sanitizePasswordInput}
+        sanitize={stripNonPrintableAscii}
         onSanitizeReject={handleSanitizeReject}
         status={showHint ? 'error' : status}
         masked={!visible}

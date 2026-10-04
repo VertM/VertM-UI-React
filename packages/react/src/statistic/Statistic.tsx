@@ -1,4 +1,5 @@
 import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
+import { formatCountdown, formatFixed } from '@vertm/core';
 import { useIsVertical } from '../config/context.js';
 import { VertMText } from '../VertMText.js';
 
@@ -41,8 +42,8 @@ function renderNode(node: ReactNode, className: string): ReactNode {
 }
 
 function formatValue(value: ReactNode, precision?: number): ReactNode {
-  if (typeof value === 'number' && precision != null) {
-    return value.toFixed(precision);
+  if (typeof value === 'number') {
+    return formatFixed(value, precision);
   }
   return value;
 }
@@ -106,11 +107,7 @@ function Countdown({
     return () => window.clearInterval(id);
   }, [target, onFinish]);
 
-  const totalSec = Math.ceil(remaining / 1000);
-  const h = Math.floor(totalSec / 3600);
-  const m = Math.floor((totalSec % 3600) / 60);
-  const s = totalSec % 60;
-  const text = [h, m, s].map((n) => String(n).padStart(2, '0')).join(':');
+  const text = formatCountdown(remaining);
 
   return (
     <div

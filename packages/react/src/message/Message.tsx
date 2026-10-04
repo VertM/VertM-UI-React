@@ -1,14 +1,14 @@
 import {
   createContext,
   useContext,
-  useState,
   useCallback,
   useEffect,
   useMemo,
-  useRef,
+  useSyncExternalStore,
   type ReactNode,
 } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
+import { createToastQueue } from '@vertm/core';
 import {
   CheckCircle,
   CloseCircle,
@@ -67,37 +67,28 @@ let holderRoot: Root | null = null;
 let pending: Array<(api: InternalMessageAPI) => void> = [];
 
 function MessageRenderer({ children }: { children?: ReactNode }) {
-  const [items, setItems] = useState<MessageItem[]>([]);
-  const timers = useRef(new Set<ReturnType<typeof setTimeout>>());
+  const queue = useMemo(
+    () =>
+      createToastQueue<MessageConfig>({
+        defaultDuration: 3,
+        createId: () => `msg-${Date.now()}-${Math.random().toString(36).slice(2)}`,
+        onExpire: (item) => item.onClose?.(),
+      }),
+    []
+  );
+  const items = useSyncExternalStore(queue.subscribe, queue.getItems, queue.getItems);
 
-  useEffect(() => {
-    const pool = timers.current;
-    return () => {
-      pool.forEach(clearTimeout);
-      pool.clear();
-    };
-  }, []);
+  useEffect(() => () => queue.dispose(), [queue]);
 
-  const destroy = useCallback((id?: string) => {
-    if (id) setItems((prev) => prev.filter((m) => m.id !== id));
-    else setItems([]);
-  }, []);
+  const destroy = useCallback((id?: string) => queue.destroy(id), [queue]);
 
   const open = useCallback(
-    (config: MessageConfig, presetId?: string) => {
-      const id = presetId ?? `msg-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-      setItems((prev) => [...prev, { ...config, id }]);
-      if (config.type !== 'loading' && (config.duration ?? 3) > 0) {
-        const timer = setTimeout(() => {
-          timers.current.delete(timer);
-          destroy(id);
-          config.onClose?.();
-        }, (config.duration ?? 3) * 1000);
-        timers.current.add(timer);
-      }
-      return id;
-    },
-    [destroy]
+    (config: MessageConfig, presetId?: string) =>
+      queue.open(config, {
+        id: presetId,
+        durationSec: config.type === 'loading' ? 0 : config.duration,
+      }),
+    [queue]
   );
 
   const api = useMemo<InternalMessageAPI>(
@@ -128,7 +119,7 @@ function MessageRenderer({ children }: { children?: ReactNode }) {
     <MessageContext.Provider value={api}>
       {children}
       <div className="vertm-message-container vertm-vertical" aria-live="polite">
-        {items.map((item) => {
+        {(items as MessageItem[]).map((item) => {
           const Icon = ICONS[item.type ?? 'info'];
           return (
             <div

@@ -23,3 +23,14 @@ export {
   focusFirstMenuControl,
   focusSubmenuTitle,
 } from './menu-focus.js';
+
+export {
+  FOCUSABLE_SELECTOR,
+  getFocusableElements,
+  handleFocusTrapKeydown,
+} from './focus-trap.js';
+
+export {
+  registerFont,
+  type RegisterFontOptions,
+} from './register-font.js';
