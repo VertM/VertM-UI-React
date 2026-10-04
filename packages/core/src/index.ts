@@ -109,6 +109,15 @@ export {
 } from './select/selection.js';
 
 export {
+  createFormStore,
+  DEFAULT_VALIDATE_MESSAGES,
+  type Rule,
+  type FormStore,
+  type FormStoreOptions,
+  type FormValidateMessages,
+} from './form/store.js';
+
+export {
   buildVerticalCaretLayout,
   getVerticalCaretSlot,
   moveVerticalCaret,

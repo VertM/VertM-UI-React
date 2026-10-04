@@ -11,30 +11,13 @@ import {
   type FormEvent,
   type ReactElement,
 } from 'react';
+import { createFormStore, type FormStore, type Rule } from '@vertm/core';
 import { VertMText } from '../VertMText.js';
 import { useIsVertical } from '../config/context.js';
 
-export interface Rule {
-  required?: boolean;
-  message?: string;
-  pattern?: RegExp;
-  validator?: (value: unknown) => Promise<void> | void;
-}
+export type { Rule } from '@vertm/core';
 
 type FormLayout = 'vertical' | 'horizontal';
-
-interface FormStore {
-  getValues: () => Record<string, unknown>;
-  getRules: () => Record<string, Rule[]>;
-  subscribe: (listener: () => void) => () => void;
-  /** Notified on `reset()` so the owning Form can drop its validation errors. */
-  subscribeReset: (listener: () => void) => () => void;
-  setFieldValue: (name: string, value: unknown) => void;
-  setFieldsValue: (values: Record<string, unknown>) => void;
-  registerRules: (name: string, rules: Rule[]) => void;
-  validate: () => Promise<Record<string, unknown>>;
-  reset: () => void;
-}
 
 export interface FormInstance {
   getFieldValue: (name: string) => unknown;
@@ -44,69 +27,6 @@ export interface FormInstance {
   validateFields: () => Promise<Record<string, unknown>>;
   resetFields: () => void;
   _store: FormStore;
-}
-
-function createFormStore(): FormStore {
-  let values: Record<string, unknown> = {};
-  let rules: Record<string, Rule[]> = {};
-  const listeners = new Set<() => void>();
-  const resetListeners = new Set<() => void>();
-  const notify = () => listeners.forEach((l) => l());
-
-  return {
-    getValues: () => values,
-    getRules: () => rules,
-    subscribe: (listener) => {
-      listeners.add(listener);
-      return () => listeners.delete(listener);
-    },
-    subscribeReset: (listener) => {
-      resetListeners.add(listener);
-      return () => resetListeners.delete(listener);
-    },
-    setFieldValue(name, value) {
-      values = { ...values, [name]: value };
-      notify();
-    },
-    setFieldsValue(vals) {
-      values = { ...values, ...vals };
-      notify();
-    },
-    registerRules(name, r) {
-      rules = { ...rules, [name]: r };
-    },
-    async validate() {
-      const errors: Record<string, string> = {};
-      for (const [name, fieldRules] of Object.entries(rules)) {
-        const value = values[name];
-        for (const rule of fieldRules) {
-          if (rule.required && (value === undefined || value === null || value === '')) {
-            errors[name] = rule.message ?? 'Required field';
-            break;
-          }
-          if (rule.pattern && typeof value === 'string' && !rule.pattern.test(value)) {
-            errors[name] = rule.message ?? 'Invalid format';
-            break;
-          }
-          if (rule.validator) {
-            try {
-              await rule.validator(value);
-            } catch {
-              errors[name] = rule.message ?? 'Validation failed';
-              break;
-            }
-          }
-        }
-      }
-      if (Object.keys(errors).length) throw errors;
-      return { ...values };
-    },
-    reset() {
-      values = {};
-      resetListeners.forEach((l) => l());
-      notify();
-    },
-  };
 }
 
 export function useForm(): [FormInstance] {
