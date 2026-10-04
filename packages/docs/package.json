@@ -10,9 +10,9 @@
     "start": "npm run dev"
   },
   "dependencies": {
-    "@vertm/core": "^0.1.0",
-    "@vertm/icons": "^0.1.0",
-    "@vertm/react": "^0.1.0",
+    "@vertm/core": "^0.2.0",
+    "@vertm/icons": "^0.2.0",
+    "@vertm/react": "^0.2.0",
     "@vertm/styles": "^0.1.0",
     "@vertm/tokens": "^0.1.0",
     "react": "^18.3.1",

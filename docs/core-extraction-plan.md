@@ -795,13 +795,13 @@ Message 的 `open` 中，`loading` 类型传 `durationSec: 0`。`groupByPlacemen
 
 ## 4. 全部完成后的总验收
 
-1. 根目录执行 `npm run build`、`npm test`、`npm run typecheck`，全部通过。
-2. `npm run docs:build` 成功（验证文档站 alias）。
-3. `core` 的 `purity.test.ts` 通过，`packages/core/package.json` 不含 React 依赖。
-4. `rg "'Arrow(Up|Down|Left|Right)'" packages/react/src --glob '!*.test.*'` 为空。
-5. `git diff bb609ae -- packages/react/src/**/*.test.tsx` 只有 `overlay/placement.test.ts` 的删除（移到了 core），没有其他测试改动。
-6. `git diff bb609ae -- packages/react/src/index.ts` 没有删除任何导出。
-7. 在 `CHANGELOG.md` 的未发布段落记录：新增 `@vertm/core/dom`、`@vertm/icons/definitions` 子路径；`@vertm/core` 新增导出清单；`createFormStore` 支持自定义校验文案。
+- [x] 根目录执行 `npm run build`、`npm test`、`npm run typecheck`，全部通过。
+- [x] `npm run docs:build` 成功（验证文档站 alias）。
+- [x] `core` 的 `purity.test.ts` 通过，`packages/core/package.json` 不含 React 依赖。
+- [x] `rg "'Arrow(Up|Down|Left|Right)'" packages/react/src --glob '!*.test.*'` 为空。
+- [x] `git diff bb609ae -- packages/react/src/**/*.test.tsx` 只有 `overlay/placement.test.ts` 的删除（移到了 core），没有其他测试改动。
+- [x] `git diff bb609ae -- packages/react/src/index.ts` 没有删除任何导出。
+- [x] 在 `CHANGELOG.md` 的未发布段落记录：新增 `@vertm/core/dom`、`@vertm/icons/definitions` 子路径；`@vertm/core` 新增导出清单；`createFormStore` 支持自定义校验文案。
 
 ## 5. 范围之外（不要做）
 

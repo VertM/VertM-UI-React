@@ -1,6 +1,6 @@
 {
   "name": "@vertm/core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Framework-agnostic core utilities for Traditional Mongolian text rendering",
   "license": "MIT",
   "author": "dorren002",
@@ -34,7 +34,6 @@
       "import": "./dist/dom/index.js"
     }
   },
-
   "files": [
     "dist"
   ],
