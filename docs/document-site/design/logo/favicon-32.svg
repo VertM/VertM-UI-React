@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="VertM UI">
+  <title>VertM UI —32</title>
+  <!-- 32px 是三列完整形态的下限：柱宽由 4.5 加粗到 5.5，保证小尺寸不断笔 -->
+  <rect width="64" height="64" rx="14" fill="#F5F6F8"/>
+  <g fill="#0E2F74">
+    <rect x="20" y="25" width="5.5" height="16" rx="2.75"/>
+    <rect x="29.5" y="19" width="5.5" height="26" rx="2.75"/>
+  </g>
+  <rect x="39" y="28" width="5.5" height="10" rx="2.75" fill="#3F7CE0"/>
+  <circle cx="50" cy="18" r="3.4" fill="#E0AA4E"/>
+</svg>

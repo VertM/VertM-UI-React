@@ -21,7 +21,7 @@ order: 9
 
 全局函数会挂独立 React 根，**读不到**外层 `ConfigProvider`。请用：
 
-```tsx
+```tsx | pure
 import { App, ConfigProvider } from '@vertm/react';
 
 <ConfigProvider appearance="editorial">

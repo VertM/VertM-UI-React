@@ -31,7 +31,7 @@ export default function App() {
 
 ## Editorial 外观
 
-```tsx
+```tsx | pure
 import { ConfigProvider } from '@vertm/react';
 
 <ConfigProvider appearance="editorial">

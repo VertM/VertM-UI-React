@@ -299,22 +299,37 @@ body {
   box-shadow: 0 1px 2px rgba(14, 47, 116, 0.06);
 }
 
+/* Dumi's dark rules are more specific than the light chrome selectors above. */
+html[data-prefers-color='dark'] .dumi-default-sidebar > dl > dd > a,
+html[data-prefers-color='dark'] .dumi-default-sidebar a {
+  color: var(--vm-text);
+}
+
+html[data-prefers-color='dark'] .dumi-default-sidebar > dl > dd > a.active,
+html[data-prefers-color='dark'] .dumi-default-sidebar a.active {
+  color: var(--vm-inkblue);
+}
+
 .dumi-default-sidebar > dl > dd > a.active::before,
 .dumi-default-sidebar a.active::before {
   content: '';
   position: absolute;
-  left: 0;
+  right: 0;
   top: 50%;
   transform: translateY(-50%);
   width: 3px;
   height: 17px;
   background: var(--vm-gilt);
-  border-radius: 0 2px 2px 0;
+  border-radius: 2px 0 0 2px;
 }
 
 /* ═══════════════════════════════════════════
    4. TOC
    ═══════════════════════════════════════════ */
+ul.dumi-default-toc {
+  border-inline-start: none;
+}
+
 .dumi-default-toc::before,
 .dumi-default-toc > h4,
 .dumi-default-toc-title {
@@ -326,27 +341,40 @@ body {
   font-weight: 500;
 }
 
-.dumi-default-toc li > a,
-.dumi-default-toc a {
+/* ul.… prefix outranks dumi's `.dumi-default-toc > li > a(.active)` */
+ul.dumi-default-toc > li > a {
   display: block;
   font-size: 13px;
   color: var(--vm-muted);
   text-decoration: none;
-  padding: 5px 0 5px 12px;
-  border-left: 2px solid var(--vm-line);
+  margin: 0;
+  padding: 8px 12px;
+  border-inline-start: none;
+  border-right: 2px solid var(--vm-line);
+  border-radius: 0;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 
-.dumi-default-toc li > a:hover,
-.dumi-default-toc a:hover {
+ul.dumi-default-toc > li[data-depth='3'] > a {
+  padding-inline-start: 22px;
+}
+
+ul.dumi-default-toc > li > a:hover {
   color: var(--vm-inkblue);
 }
 
-.dumi-default-toc li > a.active,
-.dumi-default-toc a.active {
+ul.dumi-default-toc > li > a.active {
+  margin-inline-start: 0;
   color: var(--vm-inkblue);
-  border-left-color: var(--vm-gilt);
+  border-inline-start: none;
+  border-right-color: var(--vm-gilt);
   font-weight: 700;
+  background: transparent;
+  box-shadow: none;
+}
+
+ul.dumi-default-toc > li > a.active::before {
+  content: none;
 }
 
 /* ═══════════════════════════════════════════
@@ -579,17 +607,26 @@ body {
 .markdown .dumi-default-container-warning,
 .dumi-default-container[data-type='info'],
 .dumi-default-container[data-type='note'] {
-  border-left: 3px solid var(--vm-gilt);
+  border-right: 3px solid var(--vm-gilt);
   background: #fbf4e6;
   padding: 12px 16px;
-  border-radius: 0 6px 6px 0;
+  border-radius: 6px 0 0 6px;
   font-size: 14px;
   color: #6a5220;
   margin: 16px 0;
   max-width: 62ch;
   border-top: none;
-  border-right: none;
+  border-left: none;
   border-bottom: none;
+}
+
+/* dumi's `.markdown blockquote` loads later with equal specificity */
+html .markdown blockquote {
+  border-left: none;
+  border-right: 3px solid var(--vm-gilt);
+  border-radius: 6px 0 0 6px;
+  background: #fbf4e6;
+  margin-inline: 0;
 }
 
 /* ═══════════════════════════════════════════
@@ -1023,7 +1060,7 @@ body {
 
 .vertm-theme-page .roles {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 12px;
 }
 
@@ -1052,6 +1089,13 @@ body {
 .vertm-theme-page .role .hx {
   font-family: var(--vm-mono);
   font-size: 11px;
+  color: var(--vm-muted);
+}
+
+.vertm-theme-page .role .ru {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.45;
   color: var(--vm-muted);
 }
 
@@ -1790,5 +1834,237 @@ button:focus-visible,
   .vertm-site-ground .row {
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+}
+
+/* Homepage bands under the hero (design 01). */
+.vertm-home {
+  background: var(--vm-canvas);
+  color: var(--vm-text);
+  margin: 0 -24px 0;
+  padding: 8px 24px 72px;
+}
+
+.vertm-home .band {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 36px 0 8px;
+}
+
+.vertm-home h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 8px;
+  font-family: var(--vm-disp);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--vm-inkblue);
+}
+
+.vertm-home h2 i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--vm-gilt);
+  align-self: center;
+}
+
+.vertm-home h2 span {
+  font-family: var(--vm-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--vm-muted);
+}
+
+.vertm-home .lead {
+  margin: 0 0 18px;
+  max-width: 62ch;
+  color: var(--vm-muted);
+  line-height: 1.7;
+}
+
+.vertm-home .cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.vertm-home .cards.four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.vertm-home .cards a {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 112px;
+  padding: 16px 18px;
+  background: var(--vm-panel);
+  border: 1px solid var(--vm-line);
+  border-radius: 12px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.vertm-home .cards a:hover {
+  border-color: var(--vm-azure);
+}
+
+.vertm-home .cards strong {
+  font-size: 16px;
+  color: var(--vm-inkblue);
+}
+
+.vertm-home .cards span {
+  color: var(--vm-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.vertm-home .cards em {
+  margin-top: auto;
+  font-style: normal;
+  font-family: var(--vm-mono);
+  font-size: 12px;
+  color: var(--vm-gilt-deep);
+}
+
+.vertm-home .stage {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.vertm-home .specimen {
+  display: block;
+  padding: 14px 14px 18px;
+  background: var(--vm-panel);
+  border: 1px solid var(--vm-line);
+  border-radius: 12px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.vertm-home .specimen .cap {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin-bottom: 14px;
+}
+
+.vertm-home .specimen .cap b {
+  color: var(--vm-inkblue);
+}
+
+.vertm-home .specimen .cap span {
+  color: var(--vm-muted);
+  font-size: 13px;
+}
+
+.vertm-home .specimen .body {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.vertm-home .col {
+  writing-mode: vertical-lr;
+  font-family: var(--vm-mong);
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.vertm-home .col.field {
+  padding: 12px 10px;
+  border: 1px solid var(--vm-sky);
+  border-radius: 8px;
+  background: var(--vm-panel);
+  box-shadow: inset -3px 0 0 var(--vm-gilt);
+}
+
+.vertm-home .col.menu {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  writing-mode: horizontal-tb;
+  padding: 10px 8px;
+  border: 1px solid var(--vm-line);
+  border-radius: 8px;
+  background: var(--vm-panel-2);
+}
+
+.vertm-home .col.menu > span,
+.vertm-home .col.tab {
+  writing-mode: vertical-lr;
+  font-family: var(--vm-mong);
+}
+
+.vertm-home .col.tab {
+  padding: 12px 10px;
+  border: 1px solid var(--vm-line);
+  border-radius: 8px;
+  background: var(--vm-panel);
+}
+
+.vertm-home .col.menu.sub {
+  background: var(--vm-panel);
+}
+
+.vertm-home .col .on,
+.vertm-home .col.tab.on {
+  color: var(--vm-sky);
+  box-shadow: inset -3px 0 0 var(--vm-gilt);
+}
+
+.vertm-home .steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vertm-home .steps li {
+  padding: 16px;
+  background: var(--vm-panel);
+  border: 1px solid var(--vm-line);
+  border-radius: 12px;
+}
+
+.vertm-home .steps em {
+  font-family: var(--vm-mono);
+  font-style: normal;
+  font-size: 12px;
+  color: var(--vm-gilt-deep);
+}
+
+.vertm-home .steps strong {
+  display: block;
+  margin: 6px 0 10px;
+  color: var(--vm-inkblue);
+}
+
+.vertm-home .steps pre {
+  margin: 0;
+  padding: 12px;
+  overflow: auto;
+  border-radius: 8px;
+  background: var(--vm-night);
+  color: var(--vm-snow);
+  font-family: var(--vm-mono);
+  font-size: 12px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .vertm-home .cards,
+  .vertm-home .cards.four,
+  .vertm-home .stage,
+  .vertm-home .steps {
+    grid-template-columns: 1fr;
   }
 }

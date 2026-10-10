@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="VertM UI">
+  <title>VertM UI —16</title>
+  <!-- 16px 极限档：舍弃 caret（金点缩到 2px 后只剩脏点），仅保留三根递减柱 -->
+  <rect width="64" height="64" rx="14" fill="#0E2F74"/>
+  <g fill="#F5F6F8">
+    <rect x="20" y="25" width="7" height="16" rx="3.5"/>
+    <rect x="29.5" y="19" width="7" height="26" rx="3.5"/>
+  </g>
+  <rect x="39" y="28" width="7" height="10" rx="3.5" fill="#3F7CE0"/>
+</svg>

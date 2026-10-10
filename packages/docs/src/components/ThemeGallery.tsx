@@ -157,11 +157,12 @@ export function ThemeGallery() {
   const roles = useMemo(() => {
     const t = cobaltTheme;
     return [
-      { name: 'Primary 主色', hex: t.colorPrimary },
-      { name: 'Success 成功', hex: t.colorSuccess },
-      { name: 'Warning 警告', hex: t.colorWarning },
-      { name: 'Error 错误', hex: t.colorError },
-      { name: 'Info 信息', hex: t.colorInfo },
+      { name: 'Primary 主色', hex: t.colorPrimary, use: '主按钮、选中态、caret' },
+      { name: 'Success 成功', hex: t.colorSuccess, use: '完成、通过、正向反馈' },
+      { name: 'Warning 警告', hex: t.colorWarning, use: '需确认的风险提示' },
+      { name: 'Error 错误', hex: t.colorError, use: '校验失败、破坏性操作' },
+      { name: 'Info 信息', hex: t.colorInfo, use: '说明、状态提示' },
+      { name: 'Link 链接', hex: t.colorLink, use: '正文链接、可跳转文字' },
     ];
   }, []);
 
@@ -189,8 +190,7 @@ const theme = createTheme({
         </span>
       </div>
       <p className="pdesc">
-        语义化 token，一处切换全站。API 对齐 antd ConfigProvider，并扩展竖排专属 vertical.* 字段。预设见
-        docs/theme-presets.md。
+        语义色只换颜色与几何，不改布局节奏。顶栏可以实时切换 9 套主题和横竖书写，文档里的示例会跟着变。
       </p>
 
       <h2 className="sec">
@@ -205,6 +205,7 @@ const theme = createTheme({
             <div className="b">
               <div className="rn">{r.name}</div>
               <div className="hx">{r.hex}</div>
+              <div className="ru">{r.use}</div>
             </div>
           </div>
         ))}

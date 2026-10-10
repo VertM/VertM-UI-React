@@ -51,7 +51,7 @@ export default defineConfig({
     logo: false,
     footer: `VertM UI © ${new Date().getFullYear()} · Traditional Mongolian vertical React components`,
     socialLinks: {
-      github: 'https://github.com/VertM/VertM-UI-React',
+      github: 'https://github.com/VertM/VertM-UI',
     },
     nav: [
       { title: '指南', link: '/guide/introduction' },
@@ -61,7 +61,7 @@ export default defineConfig({
       { title: '更新日志', link: '/changelog' },
       {
         title: 'GitHub',
-        link: 'https://github.com/VertM/VertM-UI-React',
+        link: 'https://github.com/VertM/VertM-UI',
       },
     ],
     sidebar: {

@@ -152,9 +152,9 @@ const CATEGORIES: Category[] = [
         zh: '分页',
         specimen: (
           <span className="m-rows">
-            <span className="m plain">١</span>
-            <span className="m s">٢</span>
-            <span className="m plain">٣</span>
+            <span className="m plain">᠑</span>
+            <span className="m s">᠒</span>
+            <span className="m plain">᠓</span>
           </span>
         ),
       },

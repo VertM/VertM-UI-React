@@ -15,8 +15,8 @@ title: VertM UI
     </div>
     <div className="facts">
       <div className="fact"><div className="n">45+</div><div className="l">组件</div></div>
-      <div className="fact"><div className="n">2</div><div className="l">套外观</div></div>
-      <div className="fact"><div className="n">3</div><div className="l">浏览器验证</div></div>
+      <div className="fact"><div className="n">9</div><div className="l">套主题</div></div>
+      <div className="fact"><div className="n">2</div><div className="l">种书写</div></div>
     </div>
   </div>
   <div className="forest" aria-hidden="true">
@@ -27,25 +27,11 @@ title: VertM UI
   </div>
 </div>
 
-<div className="vertm-site-ground">
-  <div className="row">
-    <div>
-      <h2>从这里开始</h2>
-      <p className="lead">安装、写下第一列竖排文本,再按分组浏览组件与主题。</p>
-      <div className="links">
-        <a href="/VertM-UI-React/guide/getting-started">快速开始<span className="d">5 分钟</span></a>
-        <a href="/VertM-UI-React/components">组件总览<span className="d">45+</span></a>
-        <a href="/VertM-UI-React/theme">主题与外观<span className="d">presets</span></a>
-      </div>
-    </div>
-    <div>
-      <p className="shelf-h">// 竖排组件标本</p>
-      <div className="shelf">
-        <div className="item"><div className="v primary">ᠨᠡᠮᠡᠬᠦ</div><div className="cap">Button · primary</div></div>
-        <div className="item"><div className="v default">ᠪᠣᠯᠢᠬᠤ</div><div className="cap">Button · default</div></div>
-        <div className="item"><div className="v tag">ᠰᠢᠨ᠎ᠡ</div><div className="cap">Tag</div></div>
-        <div className="item"><div className="v field"><span className="cc"></span>ᠪᠢᠴᠢᠭ</div><div className="cap">TextField</div></div>
-      </div>
-    </div>
-  </div>
-</div>
+```tsx
+/**
+ * inline: true
+ */
+import HomeBands from '../src/components/HomeBands';
+
+export default () => <HomeBands />;
+```

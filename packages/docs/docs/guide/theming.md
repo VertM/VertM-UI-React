@@ -7,7 +7,7 @@ order: 4
 
 ## createTheme
 
-```tsx
+```tsx | pure
 import { ConfigProvider, createTheme } from '@vertm/react';
 
 const theme = createTheme({

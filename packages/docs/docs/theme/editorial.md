@@ -35,7 +35,7 @@ export default () => (
 
 ## 用法
 
-```tsx
+```tsx | pure
 import { ConfigProvider } from '@vertm/react';
 
 <ConfigProvider appearance="editorial">

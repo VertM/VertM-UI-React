@@ -32,3 +32,17 @@
 
   --vm-focus-ring: 0 0 0 2px var(--vm-panel), 0 0 0 4px var(--vm-gilt);
 }
+
+/* Dumi sets this on <html> from the header light/dark switch. */
+html[data-prefers-color='dark'] {
+  color-scheme: dark;
+  --vm-canvas: #0c1220;
+  --vm-panel: #141c2e;
+  --vm-panel-2: #1b2540;
+  --vm-inkblue: #e7eefc;
+  --vm-text: #e6ebf5;
+  --vm-muted: #9aa6c0;
+  --vm-line: #2c3854;
+  --vm-line-soft: #243049;
+  --vm-focus-ring: 0 0 0 2px var(--vm-panel), 0 0 0 4px var(--vm-gilt);
+}

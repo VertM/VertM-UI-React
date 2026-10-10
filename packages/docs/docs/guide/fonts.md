@@ -5,7 +5,7 @@ order: 5
 
 # 字体接入
 
-```tsx
+```tsx | pure
 import { ConfigProvider, registerFont, FONT_PRESETS } from '@vertm/react';
 
 registerFont({

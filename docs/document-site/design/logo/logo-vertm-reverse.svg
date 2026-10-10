@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220" role="img" aria-label="VertM UI">
+  <title>VertM UI (reverse)</title>
+  <!-- 反白版：深色底使用。柱条取浅色，钴蓝提亮，caret 保持金色以维持全站唯一暖色 -->
+  <rect x="38" y="74" width="16" height="88" rx="8" fill="#F5F6F8"/>
+  <rect x="72" y="42" width="16" height="120" rx="8" fill="#F5F6F8"/>
+  <rect x="106" y="106" width="16" height="56" rx="8" fill="#3F7CE0"/>
+  <circle cx="165" cy="49" r="7" fill="#E0AA4E"/>
+</svg>

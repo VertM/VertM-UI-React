@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220" role="img" aria-label="VertM UI">
+  <title>VertM UI</title>
+  <!-- 列阵：三根递减竖条暗示竖排行末到行首的推进节奏；第三根取钴蓝代表新列自右侧生长 -->
+  <rect x="38" y="74" width="16" height="88" rx="8" fill="#0E2F74"/>
+  <rect x="72" y="42" width="16" height="120" rx="8" fill="#0E2F74"/>
+  <rect x="106" y="106" width="16" height="56" rx="8" fill="#2155D6"/>
+  <!-- 金色 caret = 设计系统中的列缘选中标记 -->
+  <circle cx="165" cy="49" r="7" fill="#E0AA4E"/>
+</svg>
